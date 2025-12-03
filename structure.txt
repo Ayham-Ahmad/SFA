@@ -1,0 +1,92 @@
+Folder PATH listing for volume Windows
+Volume serial number is 24CE-D83C
+C:.
+|   .env
+|   .gitignore
+|   app.py
+|   requirements.txt
+|   structure.txt
+|     
++---.venv/
+|       
++---api
+|       auth.py
+|       main.py
+|       models.py
+|       __init__.py
+|       
++---backend
+|   |   llm.py
+|   |   main.py
+|   |   rag.py
+|   |   routing.py
+|   |   __init__.py
+|   |   
+|   +---agents
+|   |       auditor.py
+|   |       planner.py
+|   |       worker.py
+|   |       __init__.py
+|   |       
+|   +---analytics
+|   |       metrics.py
+|   |       __init__.py
+|   |       
+|   +---decomposition
+|   |       __init__.py
+|   |       
+|   +---ingestion
+|   |       logger.py
+|   |       serializer.py
+|   |       sql_loader.py
+|   |       __init__.py
+|   |       
+|   +---rag_fusion
+|   |       __init__.py
+|   |       
+|   +---schema
+|   |       state.py
+|   |       __init__.py
+|   |       
+|   \---tools
+|           analysis_tools.py
+|           sql_tools.py
+|           vector_tools.py
+|           __init__.py
+|           
++---data
+|   +---db
+|   |       financial_data.db
+|   |       users_accounts_data.db
+|   |       
+|   +---raw_data
+|   |       num.txt
+|   |       pre.txt
+|   |       readme.htm
+|   |       sub.txt
+|   |       tag.txt
+|   |       
+|   \---vector_store
+|           chroma.sqlite3
+|           
++---docs
+\---frontend
+    |   base.py
+    |   
+    +---css
+    |       main.css
+    |       
+    +---html
+    |       about.html
+    |       admin.html
+    |       base.html
+    |       dashboard.html
+    |       login.html
+    |       manager.html
+    |       
+    +---js
+    |       main.js
+    |       
+    \---settings
+            config.html
+            
