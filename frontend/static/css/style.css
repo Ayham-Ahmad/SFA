@@ -1,0 +1,164 @@
+:root {
+    --main-bg-color: #009d63;
+    --main-text-color: #009d63;
+    --second-text-color: #bbbec5;
+    --second-bg-color: #c1efde;
+}
+
+.primary-text {
+    color: var(--main-text-color);
+}
+
+.second-text {
+    color: var(--second-text-color);
+}
+
+.primary-bg {
+    background-color: var(--main-bg-color);
+}
+
+.secondary-bg {
+    background-color: var(--second-bg-color);
+}
+
+.rounded-full {
+    border-radius: 100%;
+}
+
+#wrapper {
+    overflow-x: hidden;
+    background-image: linear-gradient(to right,
+            #baf3d7,
+            #c2f5de,
+            #cbf7e4,
+            #d4f8ea,
+            #ddfaef);
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin 0.25s ease-out;
+    -moz-transition: margin 0.25s ease-out;
+    -o-transition: margin 0.25s ease-out;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+#menu-toggle {
+    cursor: pointer;
+}
+
+.list-group-item {
+    border: none;
+    padding: 20px 30px;
+}
+
+.list-group-item.active {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.user-msg {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+}
+
+.bot-msg {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+/* Traffic Light Widget */
+.traffic-light-container {
+    background-color: #2c3e50;
+    padding: 10px;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.light {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 5px auto;
+    background-color: #555;
+    transition: all 0.3s ease;
+    border: 2px solid #1a252f;
+}
+
+.light.red.active {
+    background-color: #ff0000;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+.light.yellow.active {
+    background-color: #ffcc00;
+    box-shadow: 0 0 20px #ffcc00;
+}
+
+.light.green.active {
+    background-color: #00ff00;
+    box-shadow: 0 0 20px #00ff00;
+}
+
+/* Professional Data Card */
+.traffic-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.traffic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.financial-value {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
