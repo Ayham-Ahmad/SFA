@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize Groq client
-client = Groq(api_key=os.environ.get("OPENAI_API_KEY"))
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def generate_hyde_query(query: str) -> str:
     """

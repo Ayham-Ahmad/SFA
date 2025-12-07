@@ -5,7 +5,7 @@ from groq import Groq
 import os
 import traceback
 
-client = Groq(api_key=os.environ.get("OPENAI_API_KEY"))
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "llama-3.3-70b-versatile"
 
 def run_ramas_pipeline(question: str) -> str:
@@ -16,9 +16,17 @@ def run_ramas_pipeline(question: str) -> str:
     3. Worker: Executes each step.
     4. Auditor: Synthesizes final answer.
     """
+
     print(f"\n--- Starting RAMAS Pipeline for: {question} ---")
     
-    # 0. Intent Classification
+    # 0. Check for Graph Authorization
+    graph_allowed = False
+    if question.startswith("[GRAPH_REQ]"):
+        graph_allowed = True
+        question = question.replace("[GRAPH_REQ]", "").strip()
+        print(f"Graph Generation AUTHORIZED for: {question}")
+    
+    # 1. Intent Classification
     intent_prompt = f"""
     Classify the following user input into two categories:
     1. "CONVERSATIONAL": Greetings, small talk, questions about identity.
@@ -52,8 +60,9 @@ def run_ramas_pipeline(question: str) -> str:
 
     # 1. Plan
     try:
+        from backend.d_log import dlog
         plan = plan_task(question)
-        print(f"Plan:\n{plan}")
+        dlog(f"Plan Generated:\n{plan}")
         
         # 2. Work
         context = ""
@@ -63,14 +72,24 @@ def run_ramas_pipeline(question: str) -> str:
                 # Remove markdown bolding like "**SQL**:"
                 clean_step = step.replace("**", "")
                 clean_step = clean_step.split(".", 1)[1].strip() if "." in clean_step else clean_step
+                dlog(f"Executing Step: {clean_step}")
                 result = execute_step(clean_step)
+                dlog(f"Step Result: {result[:200]}...") # Log summary
                 context += f"\nStep: {step}\nResult: {result}\n"
         
         # 3. Audit
-        final_answer = audit_and_synthesize(question, context)
-        print(f"Final Answer:\n{final_answer}")
+        dlog("Auditing and Synthesizing...")
+        final_answer = audit_and_synthesize(question, context, graph_allowed)
         
-        return final_answer
+        # 4. Safety Guard
+        from backend.security.safety import sanitize_content
+        safe_answer = sanitize_content(final_answer)
+        
+        dlog(f"Final Output: {safe_answer[:100]}...")
+        
+        return safe_answer
     except Exception as e:
-        print(f"Pipeline Error: {traceback.format_exc()}")
+        import traceback
+        error_msg = traceback.format_exc()
+        dlog(f"Pipeline Error: {error_msg}")
         return f"Error encountered: {str(e)}"

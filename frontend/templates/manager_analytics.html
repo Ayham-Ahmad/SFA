@@ -4,18 +4,221 @@
 {% block header %}Analytics & AI Assistant{% endblock %}
 
 {% block content %}
-<!-- Analytics Graphs -->
+<!-- Markdown Parser -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<style>
+    /* Graphs Space Styles */
+    .graphs-space-container {
+        background: var(--card-bg);
+        /* Use variable for theme compatibility */
+        border-radius: 20px;
+        padding: 20px;
+        min-height: 400px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        /* Keep content inside */
+    }
+
+    .graphs-track {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        transition: all 0.5s ease;
+        width: 100%;
+        /* Ensure track takes full width */
+    }
+
+    .graph-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        /* Reduced padding */
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        cursor: default;
+        flex: 1 1 0;
+        /* flex-grow, flex-shrink, flex-basis */
+        min-width: 0;
+        /* Allow shrinking properly with Plotly */
+        height: 380px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        /* Ensure graph doesn't spill out */
+    }
+
+    /* Dark mode override */
+    [data-bs-theme="dark"] .graph-card {
+        background: #2b3035;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .graph-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .graph-content {
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Jiggle Animation */
+    @keyframes jiggle {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotate(1deg);
+        }
+
+        50% {
+            transform: rotate(0deg);
+        }
+
+        75% {
+            transform: rotate(-1deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    .jiggle-mode .graph-card {
+        animation: jiggle 0.3s infinite linear;
+        cursor: pointer;
+        border: 2px solid #0d6efd;
+    }
+
+    .jiggle-mode .graph-card:hover {
+        opacity: 0.8;
+    }
+
+    .jiggle-mode .graph-card::after {
+        content: "Click to Replace";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    /* Add Button - Hidden by default, shown in Jiggle Mode */
+    .add-graph-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        display: none;
+        /* Hidden by default */
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    /* Only show in jiggle/edit mode */
+    .jiggle-mode .add-graph-btn {
+        display: flex;
+    }
+
+    [data-bs-theme="dark"] .add-graph-btn {
+        background: #343a40;
+        border-color: #495057;
+        color: #e0e0e0;
+    }
+
+    .add-graph-btn:hover {
+        background: #e9ecef;
+        transform: scale(1.1);
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* Chat Table Styling - Static Ruler / Consistent Formatting */
+    .message table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 0.85rem;
+    }
+
+    .message th,
+    .message td {
+        padding: 8px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+
+    .message th {
+        background-color: rgba(0, 0, 0, 0.05);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+
+    [data-bs-theme="dark"] .message table {
+        border-color: #495057;
+    }
+
+    [data-bs-theme="dark"] .message th,
+    [data-bs-theme="dark"] .message td {
+        border-color: #495057;
+    }
+
+    [data-bs-theme="dark"] .message th {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+</style>
+
+<!-- Graphs Space -->
 <div class="row my-4">
-    <div class="col-lg-6 mb-3">
-        <div class="shadow-sm rounded p-3 h-100" style="background-color: var(--card-bg); color: var(--text-color);">
-            <h3 class="fs-5 border-bottom pb-2">Revenue Trend</h3>
-            <div id="revenue-chart"></div>
-        </div>
-    </div>
-    <div class="col-lg-6 mb-3">
-        <div class="shadow-sm rounded p-3 h-100" style="background-color: var(--card-bg); color: var(--text-color);">
-            <h3 class="fs-5 border-bottom pb-2">Net Income Analysis</h3>
-            <div id="income-chart"></div>
+    <div class="col-12">
+        <div class="graphs-space-container" id="graphs-space">
+            <div class="d-flex justify-content-between align-items-center absolute-top-buttons mb-2"
+                style="position:absolute; top: 10px; right: 20px; z-index: 20;">
+                <button class="btn btn-sm btn-outline-danger me-1" onclick="resetDashboard()" title="Reset Dashboard">
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-primary" id="edit-mode-btn" onclick="toggleEditMode()"
+                    title="Toggle Edit Mode"><i class="fas fa-edit"></i></button>
+            </div>
+
+            <div class="graphs-track" id="graphs-track">
+                <!-- Initial Graphs (Will be loaded by JS) -->
+                <!-- Example Structure for reference:
+                <div class="graph-card" id="card-0">
+                    <div id="chart-0" class="graph-content"></div>
+                </div>
+                -->
+            </div>
+
+            <!-- Floating Plus (only visible in edit/add mode or when space available?) 
+                 Actually req says "A + icon must appear". Let's put it at the end of the track or floating. 
+                 We'll append it dynamically to track.
+            -->
         </div>
     </div>
 </div>
@@ -30,6 +233,11 @@
                 <div class="message bot-msg">Hello! I can help you analyze financial data. Ask me anything!</div>
             </div>
             <div id="status-indicator" class="text-muted small mb-2 fst-italic" style="height: 20px;"></div>
+            <div class="text-muted mb-2 px-1" style="font-size: 0.75rem;">
+                <i class="fas fa-info-circle me-1"></i>
+                Note: AI-generated responses may vary in accuracy. Please verify critical data. If data is unavailable,
+                kindly retry your request.
+            </div>
             <div class="input-group">
                 <input type="text" id="user-input" class="form-control" placeholder="Type your question...">
                 <button class="btn btn-outline-secondary" onclick="requestGraph()" title="Generate Graph"><i
@@ -41,14 +249,198 @@
 </div>
 
 <script>
+    // --- Graph Manager System ---
+    const graphManager = {
+        graphs: [], // Stores current graph data objects { id, data, layout }
+        maxGraphs: 3,
+        isEditMode: false,
+        pendingGraphData: null, // Data waiting to be placed
+        cachedGraphData: null,
+
+        init() {
+            this.track = document.getElementById('graphs-track');
+            this.container = document.getElementById('graphs-space');
+        },
+
+        toggleEditMode(forceState = null) {
+            this.isEditMode = forceState !== null ? forceState : !this.isEditMode;
+            const container = document.getElementById('graphs-space');
+            if (this.isEditMode) {
+                container.classList.add('jiggle-mode');
+            } else {
+                container.classList.remove('jiggle-mode');
+            }
+            this.render();
+        },
+
+        // Called when a graph card is clicked
+        handleCardClick(index) {
+            if (this.pendingGraphData) {
+                // We are in "Replacement Mode" (User asked for graph, charts are jiggling)
+                this.replaceGraph(index, this.pendingGraphData);
+                this.pendingGraphData = null;
+                this.toggleEditMode(false); // Stop jiggle
+                sendMessageToChat("Graph placed successfully in slot " + (index + 1));
+            }
+        },
+
+        // Called when + is clicked
+        handleAddClick() {
+            if (this.pendingGraphData) {
+                // Adding the pending graph
+                this.addGraph(this.pendingGraphData);
+                this.pendingGraphData = null;
+                this.toggleEditMode(false);
+                sendMessageToChat("Graph added to the workspace.");
+            } else {
+                // User clicked + manually
+                const input = document.getElementById('user-input');
+                input.focus();
+                input.placeholder = "Describe the new graph you want...";
+                this.toggleEditMode(false);
+            }
+        },
+
+        // Core logic: Add a new graph (resizing others if needed)
+        addGraph(graphData) {
+            if (this.graphs.length >= this.maxGraphs) {
+                this.graphs.shift(); // Remove oldest
+            }
+            this.graphs.push(graphData);
+            this.render();
+            this.saveState();
+        },
+
+        replaceGraph(index, graphData) {
+            if (index >= 0 && index < this.graphs.length) {
+                this.graphs[index] = graphData;
+                this.render();
+                this.saveState();
+            }
+        },
+
+        render() {
+            this.track.innerHTML = '';
+
+            this.graphs.forEach((g, index) => {
+                const card = document.createElement('div');
+                card.className = 'graph-card';
+                card.onclick = () => this.handleCardClick(index);
+
+                const chartDiv = document.createElement('div');
+                chartDiv.className = 'graph-content';
+                chartDiv.id = `graph-slot-${index}`;
+                card.appendChild(chartDiv);
+                this.track.appendChild(card);
+
+                const theme = getThemeColors();
+                const layout = { ...g.layout, ...getCommonLayout(theme) };
+                if (g.layout.title) layout.title = { text: g.layout.title, font: { size: 14, color: theme.title } };
+
+                Plotly.newPlot(chartDiv.id, g.data, layout, { responsive: true, displayModeBar: false, autosize: true });
+            });
+
+            this.renderAddButton();
+
+            // Trigger window resize event to force Plotly to fill containers after DOM update
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 100);
+        },
+
+        renderAddButton() {
+            // Only add the button element if we have space (< 3 graphs)
+            if (this.graphs.length < this.maxGraphs) {
+                const btn = document.createElement('div');
+                btn.className = 'add-graph-btn';
+                btn.innerHTML = '<i class="fas fa-plus fa-2x text-muted"></i>';
+                btn.onclick = () => this.handleAddClick();
+                this.track.appendChild(btn);
+            }
+        },
+
+        // Incoming Graph Request Handler
+        handleNewIncomingGraph(graphJson) {
+            // Robustness check: Do not add if data is empty
+            if (!graphJson.data || graphJson.data.length === 0 || (graphJson.data[0].x && graphJson.data[0].x.length === 0)) {
+                console.warn("Received empty graph data. Skipping.");
+                return;
+            }
+
+            this.pendingGraphData = graphJson;
+            this.toggleEditMode(true);
+        },
+
+        // Cache Graph Data (for implicit generation)
+        cacheGraphData(graphJson) {
+            if (!graphJson.data || graphJson.data.length === 0) return;
+            this.cachedGraphData = graphJson;
+            console.log("Graph data cached for future use.");
+        },
+
+        // --- Persistence Layer ---
+        saveState() {
+            const state = {
+                graphs: this.graphs,
+                chatHistory: document.getElementById('chat-messages').innerHTML,
+                timestamp: new Date().getTime()
+            };
+            localStorage.setItem('sfa_analytics_state', JSON.stringify(state));
+        },
+
+        loadState() {
+            const saved = localStorage.getItem('sfa_analytics_state');
+            if (saved) {
+                try {
+                    const state = JSON.parse(saved);
+
+                    // Restore Chat
+                    if (state.chatHistory) {
+                        document.getElementById('chat-messages').innerHTML = state.chatHistory;
+                        // Scroll to bottom
+                        const chatBox = document.getElementById('chat-messages');
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    }
+
+                    // Restore Graphs
+                    if (state.graphs && state.graphs.length > 0) {
+                        this.graphs = state.graphs;
+                        this.render();
+                        return true; // Indicates we loaded from save
+                    }
+                } catch (e) {
+                    console.error("Failed to load state", e);
+                }
+            }
+            return false;
+        },
+
+        clearState() {
+            console.log("Clearing analytics state...");
+            localStorage.removeItem('sfa_analytics_state');
+            // Check if cleared
+            if (!localStorage.getItem('sfa_analytics_state')) {
+                console.log("State successfully cleared.");
+            }
+        }
+    };
+
     // Chat Logic
     let timerInterval;
+    let lastRequestWasGraph = false;
 
     async function sendMessage() {
         const input = document.getElementById('user-input');
         const statusDiv = document.getElementById('status-indicator');
         const message = input.value.trim();
         if (!message) return;
+
+        // Determine if this was a graph request
+        if (input.value.includes('[GRAPH_REQ]')) {
+            lastRequestWasGraph = true;
+        } else {
+            lastRequestWasGraph = false;
+        }
 
         addMessage(message, 'user-msg');
         input.value = '';
@@ -89,6 +481,7 @@
     }
 
     function addMessage(text, className) {
+        if (!text) return;
         const div = document.createElement('div');
         div.className = `message ${className}`;
 
@@ -98,66 +491,87 @@
 
         if (text.includes('graph_data||')) {
             const parts = text.split('graph_data||');
-            content = parts[0];
+            content = parts[0]; // The text before the graph data
             try {
-                graphJson = JSON.parse(parts[1]);
+                // Clean the trailing || if exists (though split should handle it if it's separator-like)
+                let jsonStr = parts[1];
+                if (jsonStr.endsWith('||')) jsonStr = jsonStr.slice(0, -2);
+
+                graphJson = JSON.parse(jsonStr);
             } catch (e) {
                 console.error("Failed to parse graph JSON", e);
             }
         }
 
-        div.innerHTML = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        // Render using Marked.js for Markdown/Table support
+        if (typeof marked !== 'undefined') {
+            marked.setOptions({
+                breaks: true, // Enable line breaks
+                gfm: true     // Enable GitHub Flavored Markdown (Tables)
+            });
+            div.innerHTML = marked.parse(content);
+        } else {
+            // Fallback if marked didn't load
+            div.innerHTML = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        }
 
         const chatBox = document.getElementById('chat-messages');
         chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
 
-        // If graph exists, append a graph container
+        // Route Graph Data
         if (graphJson && className === 'bot-msg') {
-            const graphDiv = document.createElement('div');
-            const graphId = 'chat-graph-' + Date.now();
-            graphDiv.id = graphId;
-            graphDiv.style.width = '100%';
-            graphDiv.style.height = '300px';
-            graphDiv.className = 'mt-2 mb-2 rounded';
-            // Dark mode background for graph container?
-            // Actually let's keep it transparent or adaptive
-            chatBox.appendChild(graphDiv);
-
-            try {
-                const theme = getThemeColors();
-                const modernLayout = {
-                    font: { family: 'Inter, sans-serif', size: 12, color: theme.text },
-                    plot_bgcolor: 'rgba(0,0,0,0)',
-                    paper_bgcolor: 'rgba(0,0,0,0)',
-                    xaxis: { gridcolor: theme.grid },
-                    yaxis: { gridcolor: theme.grid },
-                    margin: { t: 20, b: 40, l: 40, r: 20 },
-                    height: 300
-                };
-                Plotly.newPlot(graphId, graphJson.data, { ...modernLayout, ...graphJson.layout });
-            } catch (e) {
-                console.error("Plotly Error", e);
-                graphDiv.innerHTML = "<small class='text-danger'>Error rendering graph</small>";
+            if (lastRequestWasGraph) {
+                // EXPLICIT request: Jiggle and Place
+                graphManager.handleNewIncomingGraph(graphJson);
+                const noteDiv = document.createElement('div');
+                noteDiv.className = 'text-muted small ms-2 fst-italic';
+                noteDiv.innerHTML = "<i class='fas fa-level-up-alt'></i> Graph generated. Click a slot in 'Graphs Space' to place it.";
+                chatBox.appendChild(noteDiv);
+            } else {
+                // IMPLICIT (Normal chat): Cache it!
+                graphManager.cacheGraphData(graphJson);
             }
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        chatBox.scrollTop = chatBox.scrollHeight;
+        // SAVE STATE after message added
+        graphManager.saveState();
+    }
+
+    function sendMessageToChat(msg) {
+        // Helper to add local system messages
+        const div = document.createElement('div');
+        div.className = 'message bot-msg';
+        div.innerHTML = msg;
+        document.getElementById('chat-messages').appendChild(div);
+
+        // SAVE STATE
+        graphManager.saveState();
     }
 
     document.getElementById('user-input').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
     });
 
-    // Load Charts
     // Request Graph from AI
     async function requestGraph() {
         const input = document.getElementById('user-input');
-        const message = input.value.trim();
+        let message = input.value.trim();
+
+        // Caching Logic: If input is empty, and we have cached data, use it!
+        if (!message && graphManager.cachedGraphData) {
+            addMessage("Displaying graph for recent data...", 'user-msg'); // Artificial user msg
+            graphManager.handleNewIncomingGraph(graphManager.cachedGraphData);
+            return;
+        }
+
         if (!message) {
             alert("Please type what you want to graph (e.g. 'Net Income of Apple')");
             return;
         }
-        input.value = "Graph: " + message;
+        // KEY CHANGE: Add prefix
+        input.value = "[GRAPH_REQ] " + message;
         sendMessage();
     }
 
@@ -170,8 +584,45 @@
         };
     }
 
-    // Load Charts
+    function getCommonLayout(theme) {
+        return {
+            font: { family: 'Inter, sans-serif', size: 10, color: theme.text }, // Smaller font
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            xaxis: {
+                gridcolor: theme.grid,
+                zeroline: false,
+                showline: true,
+                linecolor: theme.grid
+            },
+            yaxis: {
+                gridcolor: theme.grid,
+                zeroline: false,
+                showline: false
+            },
+            // TIGHTER MARGINS for small cards
+            margin: { t: 30, r: 10, l: 30, b: 30 },
+            hovermode: 'closest',
+            showlegend: false
+        };
+    }
+
+    // Toggle Edit Mode Button
+    function toggleEditMode() {
+        graphManager.toggleEditMode();
+    }
+
+    // Load Initial Charts
     async function loadCharts() {
+        // Initialize Manager
+        graphManager.init();
+
+        // ATTEMPT LOAD FROM STATE FIRST
+        if (graphManager.loadState()) {
+            console.log("Restored state from storage.");
+            return;
+        }
+
         try {
             const token = localStorage.getItem('token');
             const response = await fetch('/api/dashboard/metrics', {
@@ -179,92 +630,77 @@
             });
             const data = await response.json();
 
-            const theme = getThemeColors();
-
-            // Common Layout Options for Modern Look
-            const commonLayout = {
-                font: { family: 'Inter, sans-serif', size: 12, color: theme.text },
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                xaxis: {
-                    gridcolor: theme.grid,
-                    zeroline: false,
-                    showline: true,
-                    linecolor: theme.grid,
-                    title: { text: 'Reporting Date', font: { size: 10, color: theme.text } },
-                    type: 'date'
-                },
-                yaxis: {
-                    gridcolor: theme.grid,
-                    zeroline: false,
-                    showline: false,
-                    tickprefix: '$',
-                },
-                margin: { t: 40, r: 20, l: 60, b: 60 },
-                height: 350,
-                hovermode: 'x unified',
-                showlegend: false
+            // Prepare Initial Data
+            // 1. Revenue
+            const revData = {
+                data: [{
+                    x: data.trend.dates,
+                    y: data.trend.values,
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    name: 'Revenue',
+                    fill: 'tozeroy',
+                    line: { shape: 'spline', width: 3, color: '#009d63' },
+                    fillcolor: 'rgba(0, 157, 99, 0.1)'
+                }],
+                layout: { title: 'Total Market Revenue' }
             };
 
-            // 1. Revenue Chart
-            Plotly.newPlot('revenue-chart', [{
-                x: data.trend.dates,
-                y: data.trend.values,
-                type: 'scatter',
-                mode: 'lines+markers',
-                name: 'Total Revenue',
-                fill: 'tozeroy',
-                line: { shape: 'spline', width: 3, color: '#009d63' },
-                fillcolor: 'rgba(0, 157, 99, 0.1)',
-                hovertemplate: '<b>%{x|%b %Y}</b><br>Revenue: $%{y:,.0f}<extra></extra>'
-            }], {
-                ...commonLayout,
-                title: { text: 'Total Market Revenue (USD)', font: { size: 14, color: theme.title }, x: 0.05 },
-                yaxis: { ...commonLayout.yaxis, title: { text: 'Amount (USD)', font: { size: 10 } } }
-            });
-
-            // 2. Net Income Chart
+            // 2. Net Income
             const incomeDates = data.income_trend ? data.income_trend.dates : [];
             const incomeValues = data.income_trend ? data.income_trend.values : [];
+            const incData = {
+                data: [{
+                    x: incomeDates,
+                    y: incomeValues,
+                    type: 'bar',
+                    name: 'Net Income',
+                    marker: {
+                        color: incomeValues.map(v => v >= 0 ? '#0d6efd' : '#dc3545'),
+                        opacity: 0.8
+                    }
+                }],
+                layout: { title: 'Total Net Income' }
+            };
 
-            Plotly.newPlot('income-chart', [{
-                x: incomeDates,
-                y: incomeValues,
-                type: 'bar',
-                name: 'Net Income',
-                marker: {
-                    color: incomeValues.map(v => v >= 0 ? '#0d6efd' : '#dc3545'),
-                    opacity: 0.8,
-                    line: { width: 0 }
-                },
-                hovertemplate: '<b>%{x|%b %Y}</b><br>Net Income: $%{y:,.0f}<extra></extra>'
-            }], {
-                ...commonLayout,
-                title: { text: 'Total Market Net Income (USD)', font: { size: 14, color: theme.title }, x: 0.05 },
-                yaxis: { ...commonLayout.yaxis, title: { text: 'Net Income (USD)', font: { size: 10 } } }
-            });
+            // Add them to manager
+            graphManager.addGraph(revData);
+            graphManager.addGraph(incData);
 
         } catch (error) {
             console.error("Error loading charts:", error);
-            // Show error in the chart containers
-            document.getElementById('revenue-chart').innerHTML = `<p class="text-danger p-3">Failed to load data.</p>`;
-            document.getElementById('income-chart').innerHTML = `<p class="text-danger p-3">Failed to load data.</p>`;
         }
     }
 
     loadCharts();
 
-    // Listen for Theme Changes and Reload Charts
+    // Listen for Theme Changes
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
-                loadCharts();
+                graphManager.render();
             }
         });
     });
 
-    observer.observe(document.documentElement, {
-        attributes: true
-    });
+    observer.observe(document.documentElement, { attributes: true });
+
+    // Handle Logout to Clear State
+    // We search for the specific logout link structure knowing it uses onclick="auth.logout()" (or similar) or text content.
+    // Based on base.html: <a href="#" onclick="logout()" ...>Logout</a>
+    const logoutBtn = document.querySelector('a[onclick="logout()"]');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            graphManager.clearState();
+        });
+    }
+
+    // Manual Reset Function
+    function resetDashboard() {
+        if (confirm("Are you sure you want to reset the dashboard? This will clear your chat history and restore default graphs.")) {
+            graphManager.clearState();
+            location.reload(); // Simple reload to restore defaults
+        }
+    }
 </script>
 {% endblock %}

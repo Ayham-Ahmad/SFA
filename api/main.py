@@ -59,8 +59,32 @@ from backend.routing import run_ramas_pipeline
 
 @app.post("/chat")
 async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_current_active_user)):
-    # In a real app, we might check roles here
-    response = run_ramas_pipeline(request.message)
+    # Simple in-memory history for context (last 2 interactions)
+    # In production, use Redis or DB with SessionID
+    global GLOBAL_HISTORY
+    if 'GLOBAL_HISTORY' not in globals():
+        GLOBAL_HISTORY = []
+        
+    # Append User Message
+    full_context_query = request.message
+    if GLOBAL_HISTORY:
+        # Prepend last Q&A to provide context
+        last_exchange = GLOBAL_HISTORY[-1]
+        if len(GLOBAL_HISTORY) > 2:
+            GLOBAL_HISTORY.pop(0) # Keep size small
+            
+        # We don't prepend to the actual string sent to the pipeline IF we modify pipeline to accept history.
+        # But `run_ramas_pipeline` takes a string.
+        # Quick Hack: Prepend context to the query if it looks like a follow-up ("it", "this", "that")
+        low_msg = request.message.lower()
+        if any(w in low_msg for w in ["this", "that", "it", "dates", "when"]):
+            full_context_query = f"Context: {last_exchange['q']} -> {last_exchange['a']}\nUser Follow-up: {request.message}"
+    
+    response = run_ramas_pipeline(full_context_query)
+    
+    # Store History
+    GLOBAL_HISTORY.append({"q": request.message, "a": response})
+    
     return {"response": response}
 
 from backend.analytics.metrics import get_key_metrics, get_revenue_trend, get_income_trend
@@ -138,7 +162,7 @@ async def read_users_me(current_user: User = Depends(get_current_active_user)):
 
 @app.get("/health")
 async def health_check():
-    return {"status": "ok", "env_check": "OPENAI_API_KEY" in os.environ}
+    return {"status": "ok", "env_check": "GROQ_API_KEY" in os.environ}
 
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -337,3 +361,4 @@ async def manager_analytics(request: Request):
 
 if __name__ == "__main__":
     uvicorn.run("api.main:app", host="127.0.0.1", port=8000, reload=True)
+# Forced reload

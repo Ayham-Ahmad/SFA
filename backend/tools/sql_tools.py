@@ -52,7 +52,7 @@ def get_table_schemas() -> str:
             
             # Add semantic hints for specific tables
             if table_name == 'numbers':
-                col_str += "\n    * HINTS: 'ddate' is integer YYYYMMDD (e.g. 20231231). 'uom' is Unit (USD, VND, etc). ALWAYS SELECT 'uom' with 'value'. 'tag' is the financial concept (e.g., NetIncomeLoss, Revenues)."
+                col_str += "\n    * HINTS: 'ddate' is integer YYYYMMDD. 'uom' is Unit. 'tag' is the Concept Name.\n    * COMMON TAGS (Use EXACTLY): 'NetIncomeLoss', 'Revenues', 'GrossProfit', 'OperatingIncomeLoss', 'Assets', 'Liabilities', 'StockholdersEquity', 'CashAndCashEquivalentsAtCarryingValue', 'EarningsPerShareBasic', 'ProfitLoss'."
             elif table_name == 'submissions':
                 col_str += "\n    * HINTS: 'sic' is Industry Code. 'countryba' is Country. 'name' is Company Name (e.g. APPLE INC., MICROSOFT CORP)."
                 
