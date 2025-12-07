@@ -3,6 +3,35 @@
     --main-text-color: #009d63;
     --second-text-color: #bbbec5;
     --second-bg-color: #c1efde;
+    --wrapper-bg: linear-gradient(to right, #e0eafc, #cfdef3);
+    --card-bg: #fff;
+    --sidebar-bg: #fff;
+    --navbar-bg: #fff;
+    --text-color: #212529;
+    --sidebar-text: #212529;
+}
+
+[data-bs-theme="dark"] {
+    --main-bg-color: #006039;
+    --main-text-color: #2ecc71;
+    --second-text-color: #a0a0a0;
+    --second-bg-color: #2c3e50;
+    --wrapper-bg: #121212;
+    --card-bg: #1e1e1e;
+    --sidebar-bg: #000;
+    --navbar-bg: #121212;
+    --text-color: #e0e0e0;
+    --sidebar-text: #e0e0e0;
+}
+
+body {
+    background-color: var(--wrapper-bg);
+    color: var(--text-color);
+}
+
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    color: var(--text-color);
 }
 
 .primary-text {
@@ -27,21 +56,19 @@
 
 #wrapper {
     overflow-x: hidden;
-    background-image: linear-gradient(to right,
-            #baf3d7,
-            #c2f5de,
-            #cbf7e4,
-            #d4f8ea,
-            #ddfaef);
+    background: var(--wrapper-bg);
 }
 
 #sidebar-wrapper {
     min-height: 100vh;
     margin-left: -15rem;
-    -webkit-transition: margin 0.25s ease-out;
-    -moz-transition: margin 0.25s ease-out;
-    -o-transition: margin 0.25s ease-out;
     transition: margin 0.25s ease-out;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+}
+
+[data-bs-theme="dark"] #sidebar-wrapper {
+    border-right: 1px solid #333;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -71,10 +98,15 @@
 }
 
 .list-group-item.active {
-    background: white;
+    background: var(--card-bg);
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
+    color: var(--main-text-color);
+}
+
+[data-bs-theme="dark"] .list-group-item.active {
+    border-color: #444;
 }
 
 .message {
@@ -85,7 +117,7 @@
 }
 
 .user-msg {
-    background-color: #007bff;
+    background-color: #0d6efd;
     color: white;
     margin-left: auto;
 }
@@ -93,6 +125,11 @@
 .bot-msg {
     background-color: #f1f1f1;
     color: black;
+}
+
+[data-bs-theme="dark"] .bot-msg {
+    background-color: #333;
+    color: #e0e0e0;
 }
 
 @media (min-width: 768px) {
@@ -146,10 +183,14 @@
 
 /* Professional Data Card */
 .traffic-card {
-    background: #fff;
+    background: var(--card-bg);
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     transition: transform 0.2s;
+}
+
+[data-bs-theme="dark"] .traffic-card {
+    border-color: #333;
 }
 
 .traffic-card:hover {
@@ -161,4 +202,36 @@
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 1.2rem;
+}
+
+[data-bs-theme="dark"] .form-control {
+    background-color: #2b3035;
+    border-color: #495057;
+    color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .form-control:focus {
+    background-color: #2b3035;
+    color: #fff;
+    border-color: #86b7fe;
+}
+
+[data-bs-theme="dark"] .table {
+    color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .table-light {
+    background-color: #333;
+    color: #fff;
+}
+
+[data-bs-theme="dark"] .modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid #444;
+}
+
+[data-bs-theme="dark"] .table-hover>tbody>tr:hover>* {
+    color: #fff;
+    background-color: #373b3e;
 }

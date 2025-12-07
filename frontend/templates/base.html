@@ -18,7 +18,7 @@
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
-        <div class="bg-dark text-white" id="sidebar-wrapper">
+        <div id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
                 <i class="fas fa-chart-line me-2"></i>SFA
             </div>
@@ -37,6 +37,10 @@
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold {% if active_page == 'admin' %}active{% endif %}">
                     <i class="fas fa-user-shield me-2"></i>Admin Panel
                 </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#settingsModal"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                    <i class="fas fa-cog me-2"></i>Settings
+                </a>
                 <a href="#" onclick="logout()"
                     class="list-group-item list-group-item-action bg-transparent text-danger fw-bold">
                     <i class="fas fa-power-off me-2"></i>Logout
@@ -47,7 +51,7 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light py-4 px-4 border-bottom">
+            <nav class="navbar navbar-expand-lg py-4 px-4 border-bottom">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
                     <h2 class="fs-2 m-0">{% block header %}Dashboard{% endblock %}</h2>
@@ -56,6 +60,42 @@
 
             <div class="container-fluid px-4">
                 {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Appearance</h6>
+                    <div class="d-grid gap-2">
+                        <div class="btn-group" role="group" aria-label="Theme selection">
+                            <input type="radio" class="btn-check" name="theme-options" id="theme-light"
+                                autocomplete="off" value="light" onclick="setTheme('light')">
+                            <label class="btn btn-outline-primary" for="theme-light"><i class="fas fa-sun me-1"></i>
+                                Light</label>
+
+                            <input type="radio" class="btn-check" name="theme-options" id="theme-dark"
+                                autocomplete="off" value="dark" onclick="setTheme('dark')">
+                            <label class="btn btn-outline-primary" for="theme-dark"><i class="fas fa-moon me-1"></i>
+                                Dark</label>
+
+                            <input type="radio" class="btn-check" name="theme-options" id="theme-auto"
+                                autocomplete="off" value="auto" onclick="setTheme('auto')">
+                            <label class="btn btn-outline-primary" for="theme-auto"><i class="fas fa-adjust me-1"></i>
+                                Auto</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -76,7 +116,48 @@
             window.location.href = '/login';
         }
 
-        // Auth Check (Simple client-side check, real auth is on backend)
+        // Theme Logic
+        function getPreferredTheme() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                return storedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function setTheme(theme) {
+            if (theme === 'auto') {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', 'light');
+                }
+                localStorage.removeItem('theme'); // Auto means no manual override
+            } else {
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                localStorage.setItem('theme', theme);
+            }
+            updateActiveTheme(theme);
+        }
+
+        function updateActiveTheme(theme) {
+            // Update radio buttons
+            const actualTheme = theme === 'auto' ? 'auto' : theme;
+            const btn = document.querySelector(`[name="theme-options"][value="${actualTheme}"]`);
+            if (btn) btn.checked = true;
+        }
+
+        // Init Theme
+        const savedTheme = localStorage.getItem('theme') || 'auto';
+        setTheme(savedTheme);
+
+        // Listen for system changes if auto
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (!localStorage.getItem('theme')) {
+                setTheme('auto');
+            }
+        });
+
         // Auth Check (Simple client-side check, real auth is on backend)
         const token = localStorage.getItem('token');
         const role = localStorage.getItem('role');

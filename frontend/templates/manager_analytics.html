@@ -4,12 +4,29 @@
 {% block header %}Analytics & AI Assistant{% endblock %}
 
 {% block content %}
+<!-- Analytics Graphs -->
 <div class="row my-4">
-    <!-- Chat Interface -->
-    <div class="col-lg-5">
-        <div class="bg-white shadow-sm rounded p-3">
+    <div class="col-lg-6 mb-3">
+        <div class="shadow-sm rounded p-3 h-100" style="background-color: var(--card-bg); color: var(--text-color);">
+            <h3 class="fs-5 border-bottom pb-2">Revenue Trend</h3>
+            <div id="revenue-chart"></div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-3">
+        <div class="shadow-sm rounded p-3 h-100" style="background-color: var(--card-bg); color: var(--text-color);">
+            <h3 class="fs-5 border-bottom pb-2">Net Income Analysis</h3>
+            <div id="income-chart"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Interface -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="shadow-sm rounded p-3" style="background-color: var(--card-bg); color: var(--text-color);">
             <h3 class="fs-5 border-bottom pb-2">AI Financial Advisor</h3>
-            <div class="chat-box mb-3" id="chat-messages" style="max-height: 400px; overflow-y: auto;">
+            <div class="chat-box mb-3" id="chat-messages"
+                style="max-height: 400px; min-height: 300px; overflow-y: auto;">
                 <div class="message bot-msg">Hello! I can help you analyze financial data. Ask me anything!</div>
             </div>
             <div id="status-indicator" class="text-muted small mb-2 fst-italic" style="height: 20px;"></div>
@@ -19,18 +36,6 @@
                         class="fas fa-chart-bar"></i></button>
                 <button class="btn btn-primary" onclick="sendMessage()">Send</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Analytics Graphs -->
-    <div class="col-lg-7">
-        <div class="bg-white shadow-sm rounded p-3 mb-3">
-            <h3 class="fs-5 border-bottom pb-2">Revenue Trend</h3>
-            <div id="revenue-chart"></div>
-        </div>
-        <div class="bg-white shadow-sm rounded p-3">
-            <h3 class="fs-5 border-bottom pb-2">Net Income Analysis</h3>
-            <div id="income-chart"></div>
         </div>
     </div>
 </div>
@@ -113,16 +118,19 @@
             graphDiv.id = graphId;
             graphDiv.style.width = '100%';
             graphDiv.style.height = '300px';
-            graphDiv.className = 'mt-2 mb-2 bg-light rounded';
+            graphDiv.className = 'mt-2 mb-2 rounded';
+            // Dark mode background for graph container?
+            // Actually let's keep it transparent or adaptive
             chatBox.appendChild(graphDiv);
 
             try {
+                const theme = getThemeColors();
                 const modernLayout = {
-                    font: { family: 'Inter, sans-serif', size: 12, color: '#6c757d' },
+                    font: { family: 'Inter, sans-serif', size: 12, color: theme.text },
                     plot_bgcolor: 'rgba(0,0,0,0)',
                     paper_bgcolor: 'rgba(0,0,0,0)',
-                    xaxis: { gridcolor: '#e9ecef' },
-                    yaxis: { gridcolor: '#e9ecef' },
+                    xaxis: { gridcolor: theme.grid },
+                    yaxis: { gridcolor: theme.grid },
                     margin: { t: 20, b: 40, l: 40, r: 20 },
                     height: 300
                 };
@@ -149,12 +157,17 @@
             alert("Please type what you want to graph (e.g. 'Net Income of Apple')");
             return;
         }
-
-        // Use the same send mechanism but could add a flag if backend supported it.
-        // For now, we just send it as a message, but in a real app, we'd hit a /graph endpoint.
-        // The user asked for a specific button, so let's simulate the intent.
         input.value = "Graph: " + message;
         sendMessage();
+    }
+
+    function getThemeColors() {
+        const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+        return {
+            text: isDark ? '#e0e0e0' : '#6c757d',
+            grid: isDark ? '#444' : '#e9ecef',
+            title: isDark ? '#fff' : '#333'
+        };
     }
 
     // Load Charts
@@ -166,24 +179,26 @@
             });
             const data = await response.json();
 
+            const theme = getThemeColors();
+
             // Common Layout Options for Modern Look
             const commonLayout = {
-                font: { family: 'Inter, sans-serif', size: 12, color: '#6c757d' },
+                font: { family: 'Inter, sans-serif', size: 12, color: theme.text },
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 xaxis: {
-                    gridcolor: '#e9ecef',
+                    gridcolor: theme.grid,
                     zeroline: false,
                     showline: true,
-                    linecolor: '#dee2e6',
-                    title: { text: 'Reporting Date', font: { size: 10, color: '#adb5bd' } },
-                    type: 'date' // Ensure date parsing
+                    linecolor: theme.grid,
+                    title: { text: 'Reporting Date', font: { size: 10, color: theme.text } },
+                    type: 'date'
                 },
                 yaxis: {
-                    gridcolor: '#e9ecef',
+                    gridcolor: theme.grid,
                     zeroline: false,
                     showline: false,
-                    tickprefix: '$', // Add dollar sign
+                    tickprefix: '$',
                 },
                 margin: { t: 40, r: 20, l: 60, b: 60 },
                 height: 350,
@@ -191,29 +206,24 @@
                 showlegend: false
             };
 
-            // Helper to format large numbers for hover
-            // We use Plotly's D3 formatting in hovertemplate
-
             // 1. Revenue Chart
             Plotly.newPlot('revenue-chart', [{
                 x: data.trend.dates,
                 y: data.trend.values,
                 type: 'scatter',
-                mode: 'lines+markers', // Add markers to see points
+                mode: 'lines+markers',
                 name: 'Total Revenue',
                 fill: 'tozeroy',
-                line: { shape: 'spline', width: 3, color: '#009d63' }, // SFA Green
+                line: { shape: 'spline', width: 3, color: '#009d63' },
                 fillcolor: 'rgba(0, 157, 99, 0.1)',
-                hovertemplate: '<b>%{x|%b %Y}</b><br>Revenue: $%{y:,.0f}<extra></extra>' // Custom hover
+                hovertemplate: '<b>%{x|%b %Y}</b><br>Revenue: $%{y:,.0f}<extra></extra>'
             }], {
                 ...commonLayout,
-                title: { text: 'Total Market Revenue (USD)', font: { size: 14, color: '#333' }, x: 0.05 },
+                title: { text: 'Total Market Revenue (USD)', font: { size: 14, color: theme.title }, x: 0.05 },
                 yaxis: { ...commonLayout.yaxis, title: { text: 'Amount (USD)', font: { size: 10 } } }
             });
 
             // 2. Net Income Chart
-            // If income_trend is missing, we shouldn't fake it with 0.8 * revenue.
-            // Backend now guarantees income_trend structure, so we use it.
             const incomeDates = data.income_trend ? data.income_trend.dates : [];
             const incomeValues = data.income_trend ? data.income_trend.values : [];
 
@@ -223,14 +233,14 @@
                 type: 'bar',
                 name: 'Net Income',
                 marker: {
-                    color: incomeValues.map(v => v >= 0 ? '#0d6efd' : '#dc3545'), // Blue for pos, Red for neg
+                    color: incomeValues.map(v => v >= 0 ? '#0d6efd' : '#dc3545'),
                     opacity: 0.8,
                     line: { width: 0 }
                 },
                 hovertemplate: '<b>%{x|%b %Y}</b><br>Net Income: $%{y:,.0f}<extra></extra>'
             }], {
                 ...commonLayout,
-                title: { text: 'Total Market Net Income (USD)', font: { size: 14, color: '#333' }, x: 0.05 },
+                title: { text: 'Total Market Net Income (USD)', font: { size: 14, color: theme.title }, x: 0.05 },
                 yaxis: { ...commonLayout.yaxis, title: { text: 'Net Income (USD)', font: { size: 10 } } }
             });
 
@@ -243,5 +253,18 @@
     }
 
     loadCharts();
+
+    // Listen for Theme Changes and Reload Charts
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
+                loadCharts();
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        attributes: true
+    });
 </script>
 {% endblock %}

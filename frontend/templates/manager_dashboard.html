@@ -6,7 +6,7 @@
 {% block content %}
 <div class="row justify-content-center my-4">
     <div class="col-lg-10">
-        <div class="card shadow-lg border-0" style="background: #1e293b; color: white;">
+        <div class="card shadow-lg border-0" style="background-color: var(--card-bg); color: var(--text-color);">
             <div class="card-body p-5">
 
                 <!-- Search & Filters (Inline Integration) -->
@@ -14,7 +14,7 @@
                     <div class="col-md-8 offset-md-4">
                         <div class="position-relative">
                             <!-- Custom Input Container -->
-                            <div class="d-flex align-items-center bg-dark border border-secondary rounded px-2"
+                            <div class="d-flex align-items-center bg-body-secondary border border-secondary rounded px-2"
                                 style="height: 50px; overflow: hidden;">
                                 <span class="text-secondary me-2 ps-2"><i class="fas fa-search"></i></span>
 
@@ -26,8 +26,9 @@
 
                                 <!-- Input -->
                                 <input type="text" id="company-filter"
-                                    class="form-control border-0 bg-transparent text-white shadow-none p-0 h-100"
-                                    placeholder="Search filters..." autocomplete="off" style="min-width: 100px;">
+                                    class="form-control border-0 bg-transparent shadow-none p-0 h-100"
+                                    placeholder="Search filters..." autocomplete="off"
+                                    style="min-width: 100px; color: var(--text-color);">
                             </div>
 
                             <!-- Suggestions Dropdown -->
@@ -39,8 +40,8 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
-                    <h2 class="card-title fw-bold mb-0 text-white"><i
-                            class="fas fa-satellite-dish me-3 text-success"></i>Live Financial Feed</h2>
+                    <h2 class="card-title fw-bold mb-0"><i class="fas fa-satellite-dish me-3 text-success"></i>Live
+                        Financial Feed</h2>
                     <div id="connection-status" class="text-success small fw-bold"><i
                             class="fas fa-circle me-1"></i>CONNECTED</div>
                 </div>
@@ -72,15 +73,17 @@
     const suggestionsBox = document.getElementById('suggestions-box');
     const filtersContainer = document.getElementById('active-filters');
 
-    searchInput.addEventListener('input', function () {
-        const query = this.value.trim();
-        if (!query) {
-            suggestionsBox.style.display = 'none';
-            return;
-        }
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => fetchSuggestions(query), 300);
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            const query = this.value.trim();
+            if (!query) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => fetchSuggestions(query), 300);
+        });
+    }
 
     // Update placeholder based on filters
     function updatePlaceholder() {
@@ -122,7 +125,8 @@
         let html = '';
         companies.forEach(company => {
             const safeName = company.replace(/'/g, "\\'");
-            html += `<button type="button" class="list-group-item list-group-item-action bg-dark text-white border-secondary list-item-hover" 
+            html += `<button type="button" class="list-group-item list-group-item-action list-item-hover" 
+                             style="background-color: var(--card-bg); color: var(--text-color); border-color: #555;"
                              onclick="selectCompany('${safeName}')">
                         ${company}
                      </button>`;
@@ -155,9 +159,9 @@
         filtersContainer.innerHTML = activeFilters.map(f => {
             const safeName = f.replace(/'/g, "\\'");
             return `
-            <div class="badge bg-secondary bg-opacity-25 border border-secondary text-white d-flex align-items-center gap-2 px-2 rounded-2 flex-shrink-0" style="height: 32px;">
+            <div class="badge bg-secondary bg-opacity-25 border border-secondary text-body d-flex align-items-center gap-2 px-2 rounded-2 flex-shrink-0" style="height: 32px;">
                 <span class="fw-normal" style="font-size: 0.85rem; max-width: 150px; overflow: hidden; text-overflow: ellipsis;">${f}</span>
-                <i class="fas fa-times text-secondary hover-text-white" role="button" onclick="removeFilter('${safeName}')" style="cursor: pointer;"></i>
+                <i class="fas fa-times text-secondary hover-text-body" role="button" onclick="removeFilter('${safeName}')" style="cursor: pointer;"></i>
             </div>
             `;
         }).join('');
@@ -219,8 +223,7 @@
                         if (activeFilters.length > 0) {
                             container.innerHTML = `<div class="py-5 text-muted">No data found for selected filters</div>`;
                         } else {
-                            // If no filters and no data, maybe empty DB or connection issue?
-                            // Usually validDB returns something.
+
                             if (!rotationInterval) container.innerHTML = `<div class="py-5 text-muted">Waiting for feed...</div>`;
                         }
                     }
@@ -268,11 +271,12 @@
             dateStr = dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         }
 
+        // Render HTML - using adapting classes
         const html = `
             <div class="fade-in-up">
                 <div style="min-height: 120px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
                     <h1 class="display-4 fw-bold mb-1 text-truncate" style="max-width: 90%;" title="${company.name}">${company.name}</h1>
-                    <p class="text-secondary fs-5 mb-0">REPORTING PERIOD: <span class="text-white">${dateStr}</span></p>
+                    <p class="text-secondary fs-5 mb-0">REPORTING PERIOD: <span class="fw-bold">${dateStr}</span></p>
                 </div>
 
                 <div class="my-4 d-flex justify-content-center">
@@ -287,7 +291,7 @@
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-3 border-end border-secondary">
                         <div class="text-info small text-uppercase fw-bold mb-2">Total Revenue</div>
-                        <div class="h2 fw-bold text-white">$${company.revenue}</div>
+                        <div class="h2 fw-bold">$${company.revenue}</div>
                     </div>
                     <div class="col-md-3 border-end border-secondary">
                         <div class="text-info small text-uppercase fw-bold mb-2">Net Income</div>
@@ -301,7 +305,7 @@
                     </div>
                 </div>
                 
-                 <div class="mt-4 badge bg-secondary bg-opacity-25 px-3 py-2 text-white">
+                 <div class="mt-4 badge bg-secondary bg-opacity-25 px-3 py-2 text-body">
                     STATUS: <span class="${statusColor}">${company.status}</span>
                 </div>
             </div>
@@ -325,7 +329,7 @@
 
 <style>
     .list-item-hover:hover {
-        background-color: #334155 !important;
+        background-color: var(--second-bg-color) !important;
         cursor: pointer;
     }
 
@@ -369,8 +373,8 @@
     }
 
     /* Hover effect for x icon */
-    .hover-text-white:hover {
-        color: white !important;
+    .hover-text-body:hover {
+        color: var(--text-color) !important;
     }
 </style>
 {% endblock %}
