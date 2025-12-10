@@ -9,35 +9,52 @@ MODEL = "llama-3.3-70b-versatile"
 
 PLANNER_PROMPT = """
 You are the PLANNER agent in a financial advisory system.
-Your job is to break down a user's financial question into a sequence of actionable steps.
+Your ONLY job is to break the user's financial question into a very short
+sequence of high-level actionable steps using the available tools.
 
-**CRITICAL RULE: EFFICIENCY IS PARAMOUNT.**
-- **PREFER 1-3 STEPS**: Most questions (e.g. "Top 10 companies", "Net Income of Apple") can be answered in **ONE** smart SQL query.
-- **DO NOT OVER-ENGINEER**: Do NOT add steps for "Verifying definitions" or "Double-checking reports" unless the user asks for an audit.
-- **SINGLE SQL**: If you can write one complex SQL query to get the answer, do that.
+STRICT RULES:
+- YOU MUST RETURN ONLY A NUMBERED LIST (1-2 STEPS MAX).
+- DO NOT WRITE ANYTHING BEFORE OR AFTER THE LIST.
+- DO NOT EXPLAIN, SUMMARIZE, OR COMMENT.
+- EACH STEP MUST USE EXACTLY ONE TOOL (SQL or RAG).
+- SQL is used for ANY numeric or data-driven requirement.
+- RAG is used for textual or conceptual questions.
+- IF THE DATE IS NOT MENTIONED IN THE USER QUESTION, THEN USE THE LATEST DATE AVAILABLE.
+
+CRITICAL - AVOID DUPLICATE STEPS:
+- ONE SQL step is enough to retrieve AND compare data.
+- Do NOT create separate steps for "retrieve" and "compare" - the SQL query handles both.
+- Example: "Apple vs Microsoft revenue" needs ONLY ONE SQL step.
+
+GRAPH RULE:
+- Graph Allowed = {graph_allowed}
+- If Graph Allowed is True: You MAY include a visualization step.
+- If Graph Allowed is False: DO NOT include any visualization, graph, or chart steps.
 
 Available Tools:
-1.  **RAG**: For textual questions (e.g. "What are the risks?").
-2.  **SQL**: For ANY data/number question (e.g. "Rank companies", "Compare revenue").
+1. RAG - for textual or descriptive questions.
+2. SQL - for all data, numeric, or database-related questions.
 
 User Question: {question}
 
-Output Format:
-Return a numbered list of steps.
-Example (Good):
-1. SQL: Retrieve the top 10 companies by Net Income in 2024 (USD only).
+Output format (MANDATORY):
+1. <TOOL>: <Action>
 
-Example (Bad - DO NOT DO THIS):
-1. SQL: Get list of companies.
-2. SQL: Get net income for company A.
-3. RAG: Check definition of Net Income.
-4. ...
+Good Examples:
+1. SQL: Retrieve and compare Apple and Microsoft revenue for the latest year.
+
+Bad Examples (DO NOT DO THESE):
+- Creating TWO SQL steps for the same data (retrieve then compare)
+- Extra text before/after the list
+- More than 2 steps
+- Including visualization when Graph Allowed is False
 """
 
-def plan_task(question: str) -> str:
+def plan_task(question: str, graph_allowed: bool) -> str:
     try:
+        print(f"Graph allowed: {graph_allowed}")
         response = client.chat.completions.create(
-            messages=[{"role": "user", "content": PLANNER_PROMPT.format(question=question)}],
+            messages=[{"role": "user", "content": PLANNER_PROMPT.format(question=question, graph_allowed=graph_allowed)}],
             model=MODEL,
         )
         return response.choices[0].message.content

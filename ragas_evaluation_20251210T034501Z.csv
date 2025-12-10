@@ -1,0 +1,11 @@
+index,query,ground_truth,chatbot_answer,answer_relevance,answer_correctness,context_recall,context_precision,faithfulness,overall,pass_fail
+1,Apple revenue,Apple Inc revenue (2025-03-31): $219.66B,Apple $219.66B 2025-03-31,0.5881,0.8747,0.7962,1.0,0.0,0.5955,FAIL
+2,Microsoft revenue,Microsoft Corp revenue (2025-03-31): $205.28B,Microsoft $205.28B 2025-03-31,0.5736,0.8558,0.7387,1.0,0.0,0.5764,FAIL
+3,Apple vs Microsoft revenue,"Apple: $219.66B, Microsoft: $205.28B. Apple has higher revenue.",Apple's revenue for 2025: $219.66B. Microsoft's revenue for 2025: $205.28B.,0.7862,0.8702,0.772,1.0,0.0,0.6292,FAIL
+4,Net income of Apple,Apple Inc net income (2025-03-31): $93.74B,Apple's net income for 2025: $61.11B.,0.7631,0.7677,0.755,1.0,0.5,0.7206,PASS
+5,Total assets of Microsoft,Microsoft Corp total assets: $512.16B,"Microsoft's total assets as of March 31, 2025: $562.62B.",0.8947,0.7365,0.9239,1.0,0.5,0.7729,PASS
+6,Compare Apple and Tesla revenue,"Apple: $219.66B, Tesla: $97.69B",Apple's revenue for 2025: $219.66B. Tesla's revenue for 2025: $19.34B.,0.7067,0.6708,0.8492,1.0,0.5,0.7039,PASS
+7,Top 5 companies by revenue,Should return list of top 5 companies sorted by revenue value descending,Data not available for this query.,0.0759,0.1284,0.3782,0.0,0.0,0.1229,FAIL
+8,Apple gross profit,Apple Inc gross profit: $92.96B,Apple's gross profit for 2025: $103.14B.,0.9122,0.7183,0.8906,1.0,0.5,0.7651,PASS
+9,Microsoft operating income,Microsoft Corp operating income: $94.20B,MICROSOFT CORP $94.20B 2025-03-31,0.4565,0.7412,0.6329,1.0,0.0,0.5032,FAIL
+10,Apple cash and equivalents,Apple Inc cash: $29.94B,Apple's cash and equivalents for 2025-03-31: $28.16B.,0.8176,0.6713,0.9503,1.0,0.5,0.7464,PASS

@@ -369,6 +369,9 @@
 
             this.pendingGraphData = graphJson;
             this.toggleEditMode(true);
+
+            // UX FIX: Scroll to graphs so user sees the slots!
+            this.container.scrollIntoView({ behavior: 'smooth', block: 'center' });
         },
 
         // Cache Graph Data (for implicit generation)
@@ -429,6 +432,30 @@
     let timerInterval;
     let lastRequestWasGraph = false;
 
+    // Session ID for isolating chat history per session
+    let chatSessionId = crypto.randomUUID();
+
+    // Request Graph from AI
+    async function requestGraph() {
+        const input = document.getElementById('user-input');
+        let message = input.value.trim();
+
+        // Caching Logic: If input is empty, and we have cached data, use it!
+        if (!message && graphManager.cachedGraphData) {
+            addMessage("Displaying graph for recent data...", 'user-msg'); // Artificial user msg
+            graphManager.handleNewIncomingGraph(graphManager.cachedGraphData);
+            return;
+        }
+
+        if (!message) {
+            alert("Please type what you want to graph (e.g. 'Net Income of Apple')");
+            return;
+        }
+        // KEY CHANGE: Add prefix
+        input.value = "[GRAPH_REQ] " + message;
+        sendMessage();
+    }
+
     async function sendMessage() {
         const input = document.getElementById('user-input');
         const statusDiv = document.getElementById('status-indicator');
@@ -462,14 +489,15 @@
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ message })
+                body: JSON.stringify({ message, session_id: chatSessionId })
             });
             const data = await response.json();
 
             clearInterval(timerInterval);
             statusDiv.textContent = `Replied in ${seconds} seconds.`;
 
-            addMessage(data.response, 'bot-msg');
+            // Pass chat_id to addMessage
+            addMessage(data.response, 'bot-msg', data.chat_id);
         } catch (error) {
             clearInterval(timerInterval);
             statusDiv.textContent = 'Error occurred.';
@@ -480,7 +508,7 @@
         }
     }
 
-    function addMessage(text, className) {
+    function addMessage(text, className, chatId = null) {
         if (!text) return;
         const div = document.createElement('div');
         div.className = `message ${className}`;
@@ -492,14 +520,23 @@
         if (text.includes('graph_data||')) {
             const parts = text.split('graph_data||');
             content = parts[0]; // The text before the graph data
-            try {
-                // Clean the trailing || if exists (though split should handle it if it's separator-like)
-                let jsonStr = parts[1];
-                if (jsonStr.endsWith('||')) jsonStr = jsonStr.slice(0, -2);
 
-                graphJson = JSON.parse(jsonStr);
+            try {
+                // Robust extraction: Treat everything after graph_data|| as the JSON candidate
+                // If the backend appended a trailing ||, we split by it to get the inner content.
+                let candidate = parts[1].trim();
+
+                // If it ends with || (or contains it as a closing tag), split again
+                if (candidate.endsWith('||')) {
+                    candidate = candidate.slice(0, -2);
+                } else if (candidate.includes('||')) {
+                    candidate = candidate.split('||')[0];
+                }
+
+                graphJson = JSON.parse(candidate);
             } catch (e) {
                 console.error("Failed to parse graph JSON", e);
+                console.log("Raw candidate was:", parts[1]);
             }
         }
 
@@ -513,6 +550,21 @@
         } else {
             // Fallback if marked didn't load
             div.innerHTML = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        }
+
+        // Add Feedback Buttons if it's a bot message and has a chat ID
+        if (className === 'bot-msg' && chatId) {
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.className = 'd-flex gap-2 mt-2';
+            feedbackDiv.innerHTML = `
+                <button class="btn btn-sm btn-outline-success p-1 date-rate-btn" onclick="rateMessage(${chatId}, 'like', this)" title="Good response">
+                    <i class="fas fa-thumbs-up"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger p-1 date-rate-btn" onclick="rateMessage(${chatId}, 'dislike', this)" title="Bad response">
+                    <i class="fas fa-thumbs-down"></i>
+                </button>
+            `;
+            div.appendChild(feedbackDiv);
         }
 
         const chatBox = document.getElementById('chat-messages');
@@ -539,40 +591,49 @@
         graphManager.saveState();
     }
 
-    function sendMessageToChat(msg) {
-        // Helper to add local system messages
-        const div = document.createElement('div');
-        div.className = 'message bot-msg';
-        div.innerHTML = msg;
-        document.getElementById('chat-messages').appendChild(div);
+    async function rateMessage(chatId, feedbackType, btnElement) {
+        const token = localStorage.getItem('token');
+        const parentDiv = btnElement.parentElement;
+        const allBtns = parentDiv.querySelectorAll('button');
 
-        // SAVE STATE
-        graphManager.saveState();
-    }
+        // Optimistic UI Update
+        allBtns.forEach(btn => btn.classList.remove('active'));
+        // If the clicked button was already active? (Toggle logic - "user clicks like then dislike")
+        // But for simplicity/clarity, clicking forces that state.
 
-    document.getElementById('user-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
+        // Visual toggle:
+        if (feedbackType === 'like') {
+            btnElement.classList.add('active');
+            // Ensure visual distinction (bootstrap outline buttons use active class or we can force style)
+            btnElement.classList.remove('btn-outline-success');
+            btnElement.classList.add('btn-success');
 
-    // Request Graph from AI
-    async function requestGraph() {
-        const input = document.getElementById('user-input');
-        let message = input.value.trim();
+            // Revert the other
+            const other = parentDiv.querySelector('.btn-outline-danger, .btn-danger');
+            if (other) {
+                other.classList.remove('btn-danger', 'active');
+                other.classList.add('btn-outline-danger');
+            }
+        } else {
+            btnElement.classList.add('active');
+            btnElement.classList.remove('btn-outline-danger');
+            btnElement.classList.add('btn-danger');
 
-        // Caching Logic: If input is empty, and we have cached data, use it!
-        if (!message && graphManager.cachedGraphData) {
-            addMessage("Displaying graph for recent data...", 'user-msg'); // Artificial user msg
-            graphManager.handleNewIncomingGraph(graphManager.cachedGraphData);
-            return;
+            const other = parentDiv.querySelector('.btn-outline-success, .btn-success');
+            if (other) {
+                other.classList.remove('btn-success', 'active');
+                other.classList.add('btn-outline-success');
+            }
         }
 
-        if (!message) {
-            alert("Please type what you want to graph (e.g. 'Net Income of Apple')");
-            return;
+        try {
+            await fetch(`/chat/feedback/${chatId}?feedback=${feedbackType}`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+        } catch (error) {
+            console.error("Feedback error:", error);
         }
-        // KEY CHANGE: Add prefix
-        input.value = "[GRAPH_REQ] " + message;
-        sendMessage();
     }
 
     function getThemeColors() {
@@ -699,6 +760,7 @@
     function resetDashboard() {
         if (confirm("Are you sure you want to reset the dashboard? This will clear your chat history and restore default graphs.")) {
             graphManager.clearState();
+            chatSessionId = crypto.randomUUID(); // New session
             location.reload(); // Simple reload to restore defaults
         }
     }

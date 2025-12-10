@@ -12,7 +12,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
     <!-- Plotly -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </head>
 
 <body>
@@ -22,6 +22,9 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
                 <i class="fas fa-chart-line me-2"></i>SFA
             </div>
+            <!-- Welcome Message Placeholder -->
+            <div id="user-welcome" class="text-center text-secondary mb-2 small fw-bold"></div>
+
             <div class="list-group list-group-flush my-3">
                 <a href="/manager"
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold {% if active_page == 'dashboard' %}active{% endif %}">
@@ -31,7 +34,6 @@
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold {% if active_page == 'analytics' %}active{% endif %}">
                     <i class="fas fa-chart-pie me-2"></i>Analytics & Chat
                 </a>
-                <!-- Admin Link -->
                 <!-- Admin Link -->
                 <a href="/admin" id="admin-link"
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold {% if active_page == 'admin' %}active{% endif %}">
@@ -171,6 +173,29 @@
         if (adminLink && role !== 'admin') {
             adminLink.style.display = 'none';
         }
+
+        // --- NEW: Fetch User Info for Welcome Message ---
+        async function fetchUserInfo() {
+            if (!token) return;
+            try {
+                const response = await fetch('/users/me', {
+                    headers: { 'Authorization': `Bearer ${token}` } // Sends the JWT "ID Card"
+                });
+                if (response.ok) {
+                    const user = await response.json();
+                    const welcomeDiv = document.getElementById('user-welcome');
+                    if (welcomeDiv) {
+                        welcomeDiv.textContent = `Welcome, ${user.username}`;
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to fetch user info", e);
+            }
+        }
+
+        // Call it immediately
+        fetchUserInfo();
+
     </script>
 </body>
 

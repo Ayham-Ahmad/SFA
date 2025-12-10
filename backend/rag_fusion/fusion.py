@@ -17,6 +17,7 @@ def generate_hyde_query(query: str) -> str:
     Please write a short, hypothetical financial report snippet that answers the following question.
     Question: {query}
     """
+    print(f"HyDE Query Starting...")
     
     try:
         response = client.chat.completions.create(
@@ -24,6 +25,7 @@ def generate_hyde_query(query: str) -> str:
             model="llama-3.3-70b-versatile",
         )
         return response.choices[0].message.content
+        print(f"HyDE Query Generated: {response.choices[0].message.content}")
     except Exception as e:
         print(f"HyDE generation failed: {e}")
         return query
@@ -37,6 +39,7 @@ def generate_multi_queries(query: str) -> List[str]:
     User Question: {query}
     Output ONLY the 3 queries, one per line.
     """
+    print(f"Multi-query Generation Starting...")
     
     try:
         response = client.chat.completions.create(
@@ -45,8 +48,9 @@ def generate_multi_queries(query: str) -> List[str]:
         )
         content = response.choices[0].message.content
         queries = [q.strip() for q in content.split('\n') if q.strip()]
+        print(f"Multi-query Generated: {queries}")  
         return queries[:3]
-    except Exception as e:
+    except Exception as e:          
         print(f"Multi-query generation failed: {e}")
         return [query]
 
@@ -57,6 +61,7 @@ def rag_fusion_search(query: str, n_results: int = 5):
     2. Retrieve documents for each.
     3. Deduplicate and rank results (simplified Reciprocal Rank Fusion).
     """
+    print(f"RAG Fusion Starting...")
     queries = generate_multi_queries(query)
     print(f"RAG Fusion Queries: {queries}")
     
@@ -70,4 +75,5 @@ def rag_fusion_search(query: str, n_results: int = 5):
             if key not in all_results:
                 all_results[key] = doc
     
+    print(f"RAG Fusion Results: {list(all_results.values())}")
     return list(all_results.values())
