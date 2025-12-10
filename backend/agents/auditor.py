@@ -5,11 +5,17 @@ import traceback
 
 load_dotenv()
 
+# ============================================
+# TESTING FLAG imported from config
+# ============================================
+from backend.config import TESTING
+
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 
+# Inline prompts (used when TESTING = False)
 # TEXT-ONLY prompt (no graph instructions) - CONCISE VERSION
-TEXT_PROMPT = """
+TEXT_PROMPT_INLINE = """
 You are a Financial Data Reporter. Give ONLY the essential facts.
 
 Question: {question}
@@ -38,7 +44,7 @@ GOOD EXAMPLE:
 """
 
 # GRAPH prompt - Plotly.js format with concise output
-GRAPH_PROMPT = """
+GRAPH_PROMPT_INLINE = """
 You generate Plotly.js charts from financial data.
 
 Question: {question}
@@ -73,7 +79,7 @@ RULES:
 - Values in "y" must be raw numbers, not strings
 """
 
-GRAPH_SELECTION_LOGIC = """
+GRAPH_SELECTION_LOGIC_INLINE = """
 
 When the user does NOT specify a chart type:
 1. Analyze the intent of the question based on:
@@ -97,6 +103,18 @@ If no match is found: default to a bar chart.
 Perform all reasoning internally and do NOT reveal it.
 
 """
+
+# ============================================
+# PROMPT SELECTION LOGIC
+# ============================================
+if TESTING:
+    from backend.prompts import TEXT_PROMPT, GRAPH_PROMPT, GRAPH_SELECTION_LOGIC
+    print(" ****** TEXT_PROMPT, GRAPH_PROMPT from prompts.py for testing")
+else:
+    TEXT_PROMPT = TEXT_PROMPT_INLINE
+    GRAPH_PROMPT = GRAPH_PROMPT_INLINE
+    GRAPH_SELECTION_LOGIC = GRAPH_SELECTION_LOGIC_INLINE
+    print(" ****** TEXT_PROMPT, GRAPH_PROMPT original")
 
 
 def audit_and_synthesize(question: str, context: str, graph_allowed: bool = False, interaction_id: str = None) -> str:

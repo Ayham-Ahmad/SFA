@@ -8,6 +8,12 @@ import traceback
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "llama-3.3-70b-versatile"
 
+# ============================================
+# TESTING FLAG imported from config
+# ============================================
+from backend.config import TESTING
+
+
 import re
 
 def extract_steps(plan: str):
@@ -60,7 +66,14 @@ def run_ramas_pipeline(question: str) -> str:
             pass
 
     # 1. Intent Classification
-    intent_prompt = f"""
+    if TESTING:
+        from backend.prompts import INTENT_PROMPT
+        print(" ****** INTENT_PROMPT from prompts.py for testing")
+        intent_prompt = INTENT_PROMPT.format(query=log_input_query)
+        # Note: prompts.py INTENT_PROMPT uses {query} input, while inline uses {log_input_query}
+    else:
+        print(" ****** INTENT_PROMPT original")
+        intent_prompt = f"""
     Classify the following user input into two categories:
     1. "CONVERSATIONAL": Greetings, small talk, questions about identity.
     2. "ANALYTICAL": Questions requiring data, numbers, financial info, companies, or database lookup.
@@ -69,6 +82,7 @@ def run_ramas_pipeline(question: str) -> str:
     
     Return ONLY one word: "CONVERSATIONAL" or "ANALYTICAL".
     """
+    
     try:
         classification = client.chat.completions.create(
             messages=[{"role": "user", "content": intent_prompt}],
@@ -89,7 +103,13 @@ def run_ramas_pipeline(question: str) -> str:
             # Log only the cleaned user query
             log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
             
-            chat_prompt = f"""
+            if TESTING:
+                from backend.prompts import CONVERSATIONAL_PROMPT
+                print(" ****** CONVERSATIONAL_PROMPT from prompts.py for testing")
+                chat_prompt = CONVERSATIONAL_PROMPT.format(query=log_input_query)
+            else:
+                print(" ****** CONVERSATIONAL_PROMPT original")
+                chat_prompt = f"""
             You are a helpful Financial AI Assistant. 
             User says: "{log_input_query}"
             Reply consistently, professionally, and briefly.
@@ -133,7 +153,16 @@ def run_ramas_pipeline(question: str) -> str:
         steps = extract_steps(plan)
         dlog(f"Extracted {len(steps)} steps: {steps}")  # DEBUG
         
-        for step in steps:
+        # Testing Log Data Structure
+        testing_log_entry = {
+            "interaction_id": interaction_id,
+            "timestamp": None, # Fill later if needed
+            "user_query": log_input_query,
+            "steps_context": [],
+            "final_answer": None
+        }
+        
+        for i, step in enumerate(steps):
             if step.strip():
                 # Remove markdown bolding like "**SQL**:"
                 clean_step = step.replace("**", "")
@@ -150,6 +179,21 @@ def run_ramas_pipeline(question: str) -> str:
                 
                 # Log Worker Step
                 log_agent_interaction(interaction_id, "Worker", "Tool Call", clean_step, result)
+                
+                # Capture for testing_log
+                if TESTING:
+                    step_type = "UNKNOWN"
+                    if "SQL" in clean_step.upper():
+                        step_type = "SQL"
+                    elif "RAG" in clean_step.upper():
+                        step_type = "RAG"
+                        
+                    testing_log_entry["steps_context"].append({
+                        "step_number": i + 1,
+                        "type": step_type,
+                        "tool_input": clean_step,
+                        "retrieved_context": result
+                    })
         
         # 3. Audit
         dlog("Auditing and Synthesizing...")
@@ -162,6 +206,39 @@ def run_ramas_pipeline(question: str) -> str:
         # safe_answer = sanitize_content(final_answer)
         
         dlog(f"Final Output: {final_answer[:100]}...")
+        
+        # Save to testing.json if TESTING is enabled
+        if TESTING:
+            try:
+                import json
+                from datetime import datetime
+                
+                testing_log_entry["final_answer"] = final_answer
+                testing_log_entry["timestamp"] = datetime.now().isoformat()
+                
+                testing_file_path = "testing.json"
+                
+                # Read existing data
+                if os.path.exists(testing_file_path):
+                    try:
+                        with open(testing_file_path, "r", encoding="utf-8") as f:
+                            data = json.load(f)
+                    except json.JSONDecodeError:
+                        data = []
+                else:
+                    data = []
+                
+                # Append new entry
+                data.append(testing_log_entry)
+                
+                # Write back
+                with open(testing_file_path, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=4, ensure_ascii=False)
+                    
+                print(f" ****** Logged interaction to {testing_file_path}")
+                
+            except Exception as e:
+                print(f"Error writing to testing.json: {e}")
         
         return final_answer
 

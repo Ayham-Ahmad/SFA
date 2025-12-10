@@ -4,10 +4,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# ============================================
+# TESTING FLAG imported from config
+# ============================================
+from backend.config import TESTING
+
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "llama-3.3-70b-versatile"
 
-PLANNER_PROMPT = """
+# Inline prompt (used when TESTING = False)
+PLANNER_PROMPT_INLINE = """
 You are the PLANNER agent in a financial advisory system.
 Your ONLY job is to break the user's financial question into a very short
 sequence of high-level actionable steps using the available tools.
@@ -49,6 +55,17 @@ Bad Examples (DO NOT DO THESE):
 - More than 2 steps
 - Including visualization when Graph Allowed is False
 """
+
+# ============================================
+# PROMPT SELECTION LOGIC
+# ============================================
+if TESTING:
+    from backend.prompts import PLANNER_PROMPT
+    print(" ****** PLANNER_PROMPT from prompts.py for testing")
+else:
+    PLANNER_PROMPT = PLANNER_PROMPT_INLINE
+    print(" ****** PLANNER_PROMPT original")
+
 
 def plan_task(question: str, graph_allowed: bool) -> str:
     try:

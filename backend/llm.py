@@ -8,7 +8,12 @@ load_dotenv()
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "qwen/qwen3-32b"
 
-CHAIN_OF_TABLES_PROMPT = """
+# ============================================
+# TESTING FLAG imported from config
+# ============================================
+from backend.config import TESTING
+
+CHAIN_OF_TABLES_PROMPT_INLINE = """
 You are a financial analyst AI capable of reasoning over tabular data using SQL.
 Your goal is to answer the user's question by generating and executing SQL queries against the 'financial_data.db'.
 
@@ -30,6 +35,14 @@ Constraint:
 User Question: {question}
 """
 
+if TESTING:
+    from backend.prompts import CHAIN_OF_TABLES_PROMPT
+    print(" ****** CHAIN_OF_TABLES_PROMPT from prompts.py for testing")
+else:
+    CHAIN_OF_TABLES_PROMPT = CHAIN_OF_TABLES_PROMPT_INLINE
+    print(" ****** CHAIN_OF_TABLES_PROMPT original")
+
+
 def run_chain_of_tables(question: str, model: str = MODEL) -> str:
     """
     Executes the Chain-of-Tables reasoning loop.
@@ -44,7 +57,18 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
     sample_companies = get_companies_for_prompt()
     
     # Step 1: Ask LLM to generate SQL
-    sql_generation_prompt = f"""
+    if TESTING:
+        from backend.prompts import SQL_GENERATION_PROMPT
+        print(" ****** SQL_GENERATION_PROMPT from prompts.py for testing")
+        # Note: prompts.py SQL_GENERATION_PROMPT expects {schema}, {available_tags}, and {question}
+        sql_generation_prompt = SQL_GENERATION_PROMPT.format(
+            schema=schema,
+            available_tags=available_tags,
+            question=question
+        )
+    else:
+        print(" ****** SQL_GENERATION_PROMPT original")
+        sql_generation_prompt = f"""
     You are a precise SQL generation model (Qwen). Your ONLY job is to write a valid SQLite query.
     
     Schema:

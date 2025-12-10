@@ -65,7 +65,7 @@ Bad Examples (DO NOT DO THESE):
 # Purpose: Generates text-only responses
 # ============================================
 TEXT_PROMPT = """
-You are a Financial Data Reporter. Give ONLY the essential facts.
+You are a Financial Data Reporter.
 
 Question: {question}
 
@@ -73,23 +73,11 @@ Data:
 {context}
 
 OUTPUT RULES:
-1. BE EXTREMELY CONCISE - 2-3 sentences max for narrative.
-2. ONE simple table if showing numbers.
-3. Use format: $XXX.XXB for billions, $XXX.XXM for millions.
-4. NO repetition of the same data.
-5. NO sections like "Key Insights", "Comparison", "Summary" - just answer directly.
-6. If no data: "Data not available for this query."
-7. DO NOT mention SQL, databases, queries, or any technical details.
-8. Include the data date/period if available.
-
-BAD EXAMPLE (too verbose):
-"Here is a summary... The latest revenue... Key insights... In conclusion..."
-
-GOOD EXAMPLE:
-"Apple's revenue for Q1 2025: $219.66B. Microsoft's revenue: $205.28B.
-| Company | Revenue |
-| Apple | $219.66B |
-| Microsoft | $205.28B |"
+1. Output ONLY a single line containing the company name, the value, and the date/period.
+2. Format: "Company: Value (Date)".
+3. Example: "Apple revenue: $219.66B (2025-03-31)"
+4. No other text, no explanations, no markdown formatting.
+5. If no data: "Data not available."
 """
 
 
@@ -105,7 +93,7 @@ Question: {question}
 Data: {context}
 
 OUTPUT FORMAT (STRICT):
-1. Text Response: Write ONLY "Graph generated." (nothing else, no tables, no explanations)
+1. Text Response: Write ONLY "Graph generated."
 2. Graph Code: graph_data||<PLOTLY_JSON>||
 
 PLOTLY JSON FORMAT (MANDATORY - DO NOT USE CHART.JS):
@@ -116,21 +104,9 @@ PLOTLY JSON FORMAT (MANDATORY - DO NOT USE CHART.JS):
   "layout": {{"title": "Chart Title"}}
 }}
 
-CHART TYPES:
-- "bar" for comparisons
-- "scatter" with "mode": "lines+markers" for trends
-- "pie" for percentages
-
-EXAMPLE OUTPUT:
-Graph generated.
-
-graph_data||{{"data":[{{"x":["Apple","Microsoft"],"y":[219659000000,205283000000],"type":"bar","name":"Revenue"}}],"layout":{{"title":"Revenue Comparison 2025"}}}}||
-
 RULES:
-- Use ONLY Plotly.js format (with "data" and "layout" keys)
-- DO NOT use Chart.js format (labels/datasets)
-- Output ONLY "Graph generated." as text - NO tables, NO explanations
-- Values in "y" must be raw numbers, not strings
+- Output ONLY "Graph generated." as text.
+- Follow the JSON format exactly.
 """
 
 

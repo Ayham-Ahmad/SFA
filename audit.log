@@ -312,3 +312,96 @@
 2025-12-10 11:13:56,970 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data?company=SONOS+INC', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
 2025-12-10 11:14:56,959 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data?company=SONOS+INC', 'status_code': 401, 'process_time': '0.0018s', 'client': '127.0.0.1'}
 2025-12-10 11:14:56,989 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+2025-12-10 22:16:52,393 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-12-10 22:16:52,669 - INFO - Use pytorch device_name: cpu
+2025-12-10 22:16:52,670 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-12-10 22:18:35,537 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+2025-12-10 22:18:35,608 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0639s', 'client': '127.0.0.1'}
+2025-12-10 22:18:38,658 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.1183s', 'client': '127.0.0.1'}
+2025-12-10 22:18:38,788 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.1059s', 'client': '127.0.0.1'}
+2025-12-10 22:18:38,868 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0538s', 'client': '127.0.0.1'}
+2025-12-10 22:18:41,938 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '2.9954s', 'client': '127.0.0.1'}
+2025-12-10 22:18:41,992 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0506s', 'client': '127.0.0.1'}
+2025-12-10 22:18:41,995 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0542s', 'client': '127.0.0.1'}
+2025-12-10 22:18:42,191 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+2025-12-10 22:18:46,579 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+2025-12-10 22:18:46,710 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0814s', 'client': '127.0.0.1'}
+2025-12-10 22:18:46,713 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0836s', 'client': '127.0.0.1'}
+2025-12-10 22:19:38,141 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:19:38,567 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:19:41,141 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:19:44,208 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:19:45,542 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:19:45,580 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '8.4387s', 'client': '127.0.0.1'}
+2025-12-10 22:20:14,303 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:14,591 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:16,745 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:17,990 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:18,016 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.9348s', 'client': '127.0.0.1'}
+2025-12-10 22:20:35,563 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+2025-12-10 22:20:35,677 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-10 22:20:39,395 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:39,675 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:42,301 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:43,436 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:20:43,460 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.2587s', 'client': '127.0.0.1'}
+2025-12-10 22:21:22,561 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-12-10 22:21:22,697 - INFO - Use pytorch device_name: cpu
+2025-12-10 22:21:22,697 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-12-10 22:22:10,843 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0015s', 'client': '127.0.0.1'}
+2025-12-10 22:22:10,861 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+2025-12-10 22:22:14,488 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0377s', 'client': '127.0.0.1'}
+2025-12-10 22:22:14,511 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0076s', 'client': '127.0.0.1'}
+2025-12-10 22:22:15,116 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.5219s', 'client': '127.0.0.1'}
+2025-12-10 22:22:15,123 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+2025-12-10 22:22:16,016 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+2025-12-10 22:22:16,200 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+2025-12-10 22:22:21,050 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:21,372 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:22,880 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:24,626 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:24,656 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.9729s', 'client': '127.0.0.1'}
+2025-12-10 22:22:35,207 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:35,552 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:37,912 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:39,053 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:22:39,078 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.0888s', 'client': '127.0.0.1'}
+2025-12-10 22:24:02,316 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:24:02,764 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:24:06,533 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:24:07,194 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:24:07,925 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 22:24:07,949 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.8582s', 'client': '127.0.0.1'}
+2025-12-10 23:04:52,817 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-12-10 23:04:52,935 - INFO - Use pytorch device_name: cpu
+2025-12-10 23:04:52,935 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-12-10 23:05:14,239 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+2025-12-10 23:05:14,253 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+2025-12-10 23:05:21,092 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0423s', 'client': '127.0.0.1'}
+2025-12-10 23:05:21,121 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0114s', 'client': '127.0.0.1'}
+2025-12-10 23:05:24,422 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '3.2073s', 'client': '127.0.0.1'}
+2025-12-10 23:05:24,434 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+2025-12-10 23:05:24,436 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0120s', 'client': '127.0.0.1'}
+2025-12-10 23:05:24,661 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+2025-12-10 23:05:35,715 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:05:36,260 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:05:39,975 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:05:40,442 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:05:40,950 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:05:40,990 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.6302s', 'client': '127.0.0.1'}
+2025-12-10 23:06:20,125 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:20,403 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:21,869 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:24,187 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:24,214 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.4053s', 'client': '127.0.0.1'}
+2025-12-10 23:06:51,601 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:52,013 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:58,001 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:58,930 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:06:58,956 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.5691s', 'client': '127.0.0.1'}
+2025-12-10 23:09:01,740 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:09:02,116 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:09:05,543 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:09:07,897 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:09:08,417 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-10 23:09:08,481 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.0332s', 'client': '127.0.0.1'}
