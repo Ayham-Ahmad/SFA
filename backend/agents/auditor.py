@@ -23,6 +23,13 @@ Question: {question}
 Data:
 {context}
 
+DATA SELECTION RULES (CRITICAL):
+1. If multiple values exist for the SAME date/year (e.g., multiple 2024 or 2025 entries):
+   - Use the FIRST/TOP value for each year (it's already sorted by date DESC)
+   - DO NOT sum or aggregate multiple values
+   - DO NOT use random middle values
+2. For year-over-year comparisons, pick ONE value per year consistently.
+
 OUTPUT RULES:
 1. BE EXTREMELY CONCISE - 2-3 sentences max for narrative.
 2. ONE simple table if showing numbers.
@@ -32,6 +39,7 @@ OUTPUT RULES:
 6. If no data: "Data not available for this query."
 7. DO NOT mention SQL, databases, queries, or any technical details.
 8. Include the data date/period if available.
+9. Use ONLY the values that appear in the data - DO NOT calculate or estimate.
 
 BAD EXAMPLE (too verbose):
 "Here is a summary... The latest revenue... Key insights... In conclusion..."
@@ -45,10 +53,23 @@ GOOD EXAMPLE:
 
 # GRAPH prompt - Plotly.js format with concise output
 GRAPH_PROMPT_INLINE = """
+**CRITICAL OVERRIDE INSTRUCTION:**
+You MUST generate a graph for THIS request. This is a MANDATORY graph generation task.
+Previous responses in the context are provided ONLY for reference and continuity.
+DO NOT let historical response patterns (e.g., previous table-only responses) influence your current output.
+Your ONLY task NOW is to create a Plotly.js chart using the data provided.
+
 You generate Plotly.js charts from financial data.
 
 Question: {question}
 Data: {context}
+
+DATA SELECTION RULES (CRITICAL):
+1. If multiple values exist for the SAME date/year:
+   - Use the FIRST/TOP value for each year (data is sorted by date DESC)
+   - DO NOT sum, aggregate, or estimate values
+   - Pick ONE consistent value per year/category
+2. Use ONLY values that actually appear in the data.
 
 OUTPUT FORMAT (STRICT):
 1. Text Response: Write ONLY "Graph generated." (nothing else, no tables, no explanations)
@@ -80,28 +101,28 @@ RULES:
 """
 
 GRAPH_SELECTION_LOGIC_INLINE = """
+I require a decision-making framework for selecting appropriate chart types based on user queries that do not specify a chart type. The output should include the following structured analysis:
 
-When the user does NOT specify a chart type:
-1. Analyze the intent of the question based on:
+1. An evaluation of the user's intent categorized under:
    - Profitability Flow
    - Comparative Analysis
    - Composition/Breakdown
    - Time Trend
 
-2. Select chart according to the Graph Decision Matrix:
+2. A recommended chart type based on the Graph Decision Matrix, considering:
+   - Bar/Column → for comparing categories or displaying time-based data.
+   - Line/Area → for illustrating time trends by date.
+   - Pie/Donut → for demonstrating part-to-whole relationships.
+   - Card → for showcasing a single KPI.
+   - Table → for presenting detailed granular values.
+   - Scatter → for analyzing the relationship between two numeric measures.
+   - Waterfall → for visualizing changes from start to end, highlighting contributions.
 
-- Bar/Column → Compare categories or for time-based bars.
-- Line/Area → Time trends by date.
-- Pie/Donut → Part-to-whole breakdown.
-- Card → Single KPI.
-- Table → Detailed granular values.
-- Scatter → Relationship between two numeric measures.
-- Waterfall → Changes from start to end (contributions).
+If no clear match is identified, default to recommending a bar chart.
 
-If no match is found: default to a bar chart.
+Ensure that all reasoning is conducted internally and not disclosed in the output.
 
-Perform all reasoning internally and do NOT reveal it.
-
+For context, I am focusing on generating visualizations that cater to an audience with varying levels of data literacy, and the final output should be straightforward and intuitive.
 """
 
 # ============================================
@@ -148,6 +169,25 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
         )
         content = response.choices[0].message.content
         print(f"Auditor Synthesizing Result: {content}")
+        
+        # Validation: If graph was required but not produced, BUILD IT PROGRAMMATICALLY
+        if graph_allowed and "graph_data||" not in content:
+            print(f"⚠️ WARNING: Graph generation was required but LLM didn't produce it. Building programmatically...")
+            
+            try:
+                from backend.tools.graph_builder import build_graph_from_context
+                
+                # Build graph from the context (SQL results)
+                graph_json = build_graph_from_context(context, question)
+                
+                if graph_json:
+                    print(f"✅ Graph built programmatically!")
+                    # Append graph data to content
+                    content = content.rstrip() + f"\n\ngraph_data||{graph_json}||"
+                else:
+                    print(f"❌ No graphable data found in context")
+            except Exception as e:
+                print(f"❌ Programmatic graph building failed: {e}")
         
         # Log output
         if interaction_id:

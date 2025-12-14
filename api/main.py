@@ -24,6 +24,11 @@ import os
 from backend.ticker_service import ticker_service
 from api.schemas import Token, TokenData, UserCreate, UserUpdate, ChatRequest, ChatFeedbackRequest
 from pydantic import BaseModel
+import asyncio
+from uuid import uuid4
+from asyncio import CancelledError
+import json
+from datetime import datetime
 
 # -----------------------------------------------------------------------------
 # Configuration & Setup
@@ -55,6 +60,47 @@ app.add_middleware(
 
 # Add Audit Middleware to log all incoming requests for security purposes
 app.add_middleware(AuditMiddleware)
+
+# Global dictionary to track active queries for cancellation support
+active_queries = {}
+
+# Global dictionary to track query progress (agent status)
+query_progress = {}  # {query_id: {"status": "planner"|"worker"|"auditor", "step": "details"}}
+
+# Helper function to log cancellations to agent_debug_log.json
+def _log_cancellation(query_id: str, question: str, reason: str):
+    """Log query cancellations to debug file"""
+    try:
+        log_entry = {
+            "interaction_id": query_id,
+            "timestamp": datetime.utcnow().isoformat(),
+            "event": "query_cancelled",
+            "reason": reason,
+            "question": question
+        }
+        
+        log_path = "agent_debug_log.json"
+        try:
+            with open(log_path, 'r', encoding='utf-8') as f:
+                logs = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            logs = []
+        
+        logs.append(log_entry)
+        
+        with open(log_path, 'w', encoding='utf-8') as f:
+            json.dump(logs, f, indent=4, ensure_ascii=False)
+    except Exception as e:
+        print(f"Failed to log cancellation: {e}")
+
+# Helper functions for progress tracking
+def set_query_progress(query_id: str, agent: str, step: str = ""):
+    """Update progress status for a query"""
+    query_progress[query_id] = {"agent": agent, "step": step}
+
+def clear_query_progress(query_id: str):
+    """Remove progress tracking for completed query"""
+    query_progress.pop(query_id, None)
 
 # -----------------------------------------------------------------------------
 # Authentication Endpoints
@@ -100,6 +146,7 @@ async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_c
     Handles message history context, RAG pipeline execution, and storing history.
     """
     start_time = time.time()
+    query_id = request.query_id if request.query_id else str(uuid4())
     
     # 1. Determine Interaction Type (Standard Query or Graph Request)
     itype = InteractionType.QUERY
@@ -124,13 +171,44 @@ async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_c
         # Reverse to chronological order (oldest -> newest)
         history_lines = []
         for ex in reversed(last_exchanges):
-            history_lines.append(f"Q: {ex.question} -> A: {ex.answer}")
+            # Strip graph data from historical answers to prevent context pollution
+            # This ensures the LLM doesn't learn patterns from previous graph/no-graph responses
+            answer_clean = ex.answer.split("graph_data||")[0].strip() if "graph_data||" in ex.answer else ex.answer
+            history_lines.append(f"Q: {ex.question} -> A: {answer_clean}")
         
         context_str = "\n".join(history_lines)
         full_context_query = f"Context:\n{context_str}\nUser Query: {request.message}"
     
-    # 4. Execute the RAG (Retrieval Augmented Generation) Pipeline
-    response = run_ramas_pipeline(full_context_query) #########################################
+    # 4. Execute the RAG Pipeline in a cancellable async task with 2-minute timeout
+    try:
+        # Initialize progress tracking
+        set_query_progress(query_id, "planner", "Analyzing question...")
+        
+        # Wrap the synchronous RAMAS pipeline in an async task
+        async def run_pipeline():
+            return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id)
+        
+        task = asyncio.create_task(run_pipeline())
+        active_queries[query_id] = task
+        
+        try:
+            # Add 2-minute timeout (120 seconds)
+            response = await asyncio.wait_for(task, timeout=120.0)
+        except asyncio.TimeoutError:
+            task.cancel()
+            response = "Query timed out after 2 minutes. Please try a more specific question."
+            # Log timeout to debug log
+            _log_cancellation(query_id, request.message, "timeout")
+        except CancelledError:
+            response = "Query cancelled by user."
+            # Log user cancellation to debug log
+            _log_cancellation(query_id, request.message, "user_cancelled")
+        finally:
+            active_queries.pop(query_id, None)
+            clear_query_progress(query_id)  # Clean up progress tracking
+    
+    except Exception as e:
+        response = f"An error occurred: {str(e)}"
     
     # Measure processing time
     end_time = time.time()
@@ -151,7 +229,26 @@ async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_c
     db.refresh(new_history) # Refresh to get the auto-generated ID
     
     # Return response and the ID (so frontend can use it for feedback)
-    return {"response": response, "chat_id": new_history.id}
+    return {"response": response, "chat_id": new_history.id, "query_id": query_id}
+
+@app.post("/chat/cancel/{query_id}")
+async def cancel_query(query_id: str, current_user: User = Depends(get_current_active_user)):
+    """
+    Cancel a running query by its query_id.
+    """
+    if query_id in active_queries:
+        active_queries[query_id].cancel()
+        return {"status": "cancelled", "query_id": query_id}
+    return {"status": "not_found", "query_id": query_id}
+
+@app.get("/chat/status/{query_id}")
+async def get_query_status(query_id: str, current_user: User = Depends(get_current_active_user)):
+    """
+    Get the current status of a running query (for progress indicator).
+    """
+    if query_id in query_progress:
+        return query_progress[query_id]
+    return {"status": "unknown", "agent": "initializing"}
 
 @app.post("/chat/feedback/{chat_id}")
 async def chat_feedback(chat_id: int, feedback: str, current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):

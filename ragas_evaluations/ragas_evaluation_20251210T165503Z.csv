@@ -1,0 +1,11 @@
+index,query,ground_truth,chatbot_answer,answer_relevance,answer_correctness,context_recall,context_precision,faithfulness,overall,pass_fail
+1,Apple revenue,Apple Inc revenue (2025-03-31): $219.66B,Apple revenue: $219.66B (2025-03-31),0.8963,0.9653,0.6164,1.0,0.0,0.6439,PASS
+2,Microsoft revenue,Microsoft Corp revenue (2025-03-31): $205.28B,Microsoft revenue: $205.28B (2025-03-31),0.8988,0.9596,0.6303,1.0,0.0,0.6457,PASS
+3,Apple vs Microsoft revenue,"Apple: $219.66B, Microsoft: $205.28B. Apple has higher revenue.",Apple revenue: $219.66B (2025-03-31)  Microsoft revenue: $205.28B (2025-03-31),0.8014,0.8855,0.6434,1.0,0.0,0.6103,PASS
+4,Net income of Apple,Apple Inc net income (2025-03-31): $61.11B,Apple: $61.11B (2025-03-31),0.4153,0.8501,0.612,1.0,0.0,0.518,FAIL
+5,Total assets of Microsoft,Microsoft Corp total assets: $562.62B,Microsoft: $562.62B (2025-03-31),0.4642,0.85,0.6491,1.0,0.0,0.5352,FAIL
+6,Compare Apple and Tesla revenue,"Apple: $219.66B, Tesla: $19.34B",Apple revenue: $219.66B (2025-03-31) Tesla revenue: $19.34B (2025-03-31),0.7189,0.85,0.6131,1.0,0.0,0.5789,PASS
+7,Top 5 companies by revenue,"Price T Rowe Group Inc ($1620.30B), Mckesson Corp ($359.05B), Apple Inc ($219.66B), Microsoft Corp ($205.28B), Costco Wholesale Corp /New ($189.08B)",Apple: $365.82B (2022-09-30)  Microsoft: $198.27B (2022-06-30)  Alphabet: $161.86B (2022-12-31)  Amazon: $121.24B (2022-12-31)  Facebook: $85.96B (2022-12-31),0.1561,0.4104,0.1956,1.0041,0.0,0.2734,FAIL
+8,Apple gross profit,Apple Inc gross profit: $103.14B,Apple gross profit: $103.14B (2025-03-31),0.946,0.9287,0.6907,1.0,0.0,0.6595,PASS
+9,Microsoft operating income,Microsoft Corp operating income: $94.20B,Microsoft operating income: $94.20B (2025-03-31),0.9237,0.9302,0.6105,1.0,0.0,0.6394,PASS
+10,Apple cash and equivalents,Apple Inc cash: $28.16B,Apple cash and equivalents: $28.16B (2025-03-31),0.886,0.8652,0.5704,1.0,0.0,0.6076,PASS

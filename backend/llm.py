@@ -14,23 +14,31 @@ MODEL = "qwen/qwen3-32b"
 from backend.config import TESTING
 
 CHAIN_OF_TABLES_PROMPT_INLINE = """
-You are a financial analyst AI capable of reasoning over tabular data using SQL.
-Your goal is to answer the user's question by generating and executing SQL queries against the 'financial_data.db'.
+You are a financial analyst AI capable of reasoning over tabular data using SQL. Your goal is to answer the user's question by generating and executing SQL queries against the 'financial_data.db'.
 
-Database Schema:
-{schema}
+Database Schema: {schema}
 
-Strategy (Chain-of-Tables):
-1.  **Plan**: Break down the question into steps.
-2.  **Query**: Write a SQL query to get the necessary data for the current step.
-3.  **Analyze**: Look at the query result.
-4.  **Refine**: If the data is insufficient, write another query.
-5.  **Answer**: Synthesize the final answer based on the retrieved data.
+Your strategy will consist of these steps:
+1. **Plan**: Break down the question into actionable steps.
+2. **Query**: Write an SQL query to retrieve the necessary data for the current step.
+3. **Analyze**: Review the results from the query.
+4. **Refine**: If the data is lacking, create another SQL query.
+5. **Answer**: Synthesize and present the final answer based on the data obtained.
 
-Constraint:
-- Output ONLY the final answer in a clean, readable format (Markdown).
-- Do NOT show the SQL queries to the user in the final output, but use them internally.
-- If you need to perform calculations, do them explicitly.
+You will only output the final answer in a clear, readable format (Markdown). Do not show the SQL queries to the user in the final output, but use them internally. If calculations are needed, perform them explicitly.
+
+You are a financial analyst AI designed to analyze tabular data using SQL queries against the 'financial_data.db'. The database schema includes {schema}, which contains various financial tables and their relationships.
+
+Your objective is to accurately answer the user's financial inquiries by leveraging SQL to extract and analyze relevant data.
+
+To achieve this, follow these steps:
+1. **Plan**: Decompose the user's question into smaller, manageable steps to clarify the information needed.
+2. **Query**: Formulate an SQL query that will retrieve the necessary data for the first step.
+3. **Analyze**: Examine the results returned from your query to assess if they meet the requirements.
+4. **Refine**: If the data is insufficient, create additional SQL queries to gather more information or clarify uncertainties.
+5. **Answer**: Based on the analyzed data, compile a clear and concise final answer in Markdown format.
+
+Please ensure that your output is strictly limited to the final answer without revealing any SQL queries used in the process. If calculations are involved, present the results explicitly.
 
 User Question: {question}
 """
@@ -52,9 +60,10 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
     schema = get_table_schemas()
     
     # Import tag information from sql_loader
-    from backend.ingestion.sql_loader import get_tags_for_prompt, get_companies_for_prompt
+    from backend.ingestion.sql_loader import get_tags_for_prompt, get_companies_for_prompt, get_company_mapping_for_prompt
     available_tags = get_tags_for_prompt()
     sample_companies = get_companies_for_prompt()
+    company_mapping = get_company_mapping_for_prompt()
     
     # Step 1: Ask LLM to generate SQL
     if TESTING:
@@ -69,64 +78,63 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
     else:
         print(" ****** SQL_GENERATION_PROMPT original")
         sql_generation_prompt = f"""
-    You are a precise SQL generation model (Qwen). Your ONLY job is to write a valid SQLite query.
-    
-    Schema:
-    {schema}
-    
-    AVAILABLE TAGS (use exactly as shown):
-    {available_tags}
-    
-    WELL-KNOWN COMPANY NAME MAPPINGS (USE THESE EXACT NAMES):
-    - "Apple" or "AAPL" -> Use `s.name = 'APPLE INC'` (EXACT MATCH!)
-    - "Microsoft" or "MSFT" -> Use `s.name = 'MICROSOFT CORP'` (EXACT MATCH!)
-    - "Amazon" or "AMZN" -> Use `UPPER(s.name) LIKE 'AMAZON%'`
-    - "Tesla" or "TSLA" -> Use `UPPER(s.name) LIKE 'TESLA%'`
-    - "Google" or "Alphabet" or "GOOGL" -> Use `UPPER(s.name) LIKE 'ALPHABET%'`
-    - "Meta" or "Facebook" or "META" -> Use `UPPER(s.name) LIKE 'META%'`
-    - "Nvidia" or "NVDA" -> Use `UPPER(s.name) LIKE 'NVIDIA%'`
-    
-    CRITICAL RULES:
-    1. **ONLY SELECT**: You are strictly forbidden from writing INSERT, UPDATE, DELETE, or DROP queries.
-    2. **Currency**: Always filter `WHERE n.uom = 'USD'` when comparing monetary values.
-    3. **Joins**: `numbers` (n) JOIN `submissions` (s) ON `n.adsh = s.adsh`.
-    4. **Dates**: `ddate` is INTEGER YYYYMMDD. Use `BETWEEN` for ranges.
-    5. **NO LIMIT**: Return ALL matching results, do NOT use LIMIT clause.
-    6. **COMPANY NAME MATCHING - CRITICALLY IMPORTANT**:
-       - For APPLE, NEVER use LIKE 'APPLE%' - this will match 'APPLE ISPORTS GROUP' which is WRONG!
-       - For APPLE, ALWAYS use EXACT MATCH: `s.name = 'APPLE INC'`
-       - For MICROSOFT, ALWAYS use EXACT MATCH: `s.name = 'MICROSOFT CORP'`
-       - Only use LIKE patterns for less common companies where exact name is unknown
-    7. **TAG MAPPING - IMPORTANT**:
-       - For "Revenue" queries, use: `n.tag = 'RevenueFromContractWithCustomerExcludingAssessedTax'` (NOT 'Revenues'!)
-       - Use the exact tag names from the AVAILABLE TAGS list above
-    8. **Output Format**:
-       - WRAP YOUR SQL IN MARKDOWN BLOCK: ```sql ... ```
-       - No explanations.
-       - No conversational text.
+You are a precise SQL generation model (Qwen). Your ONLY job is to write a valid SQLite query.
 
-    EXAMPLES:
-    
-    User: "Revenue of Apple"
-    SQL: 
-    ```sql
-    SELECT s.name, n.value, n.ddate FROM numbers n JOIN submissions s ON n.adsh = s.adsh WHERE s.name = 'APPLE INC' AND n.tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' AND n.uom = 'USD' ORDER BY n.ddate DESC;
-    ```
-    
-    User: "Apple and Microsoft revenue"
-    SQL:
-    ```sql
-    SELECT s.name, n.value, n.ddate FROM numbers n JOIN submissions s ON n.adsh = s.adsh WHERE (s.name = 'APPLE INC' OR s.name = 'MICROSOFT CORP') AND n.tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' AND n.uom = 'USD' ORDER BY n.ddate DESC;
-    ```
-    
-    User: "Net income of Tesla and Amazon"
-    SQL:
-    ```sql
-    SELECT s.name, n.value, n.ddate FROM numbers n JOIN submissions s ON n.adsh = s.adsh WHERE (UPPER(s.name) LIKE 'TESLA%' OR UPPER(s.name) LIKE 'AMAZON%') AND n.tag = 'NetIncomeLoss' AND n.uom = 'USD' ORDER BY n.ddate DESC;
-    ```
-    
-    Question: {question}
-    """
+Schema: {schema}
+
+AVAILABLE TAGS (use exactly as shown): {available_tags}
+
+{company_mapping}
+
+CRITICAL RULES:
+1. **ONLY SELECT**: You are strictly forbidden from writing INSERT, UPDATE, DELETE, or DROP queries.
+2. **CTEs ALLOWED**: You CAN use WITH clauses (Common Table Expressions) for complex queries.
+3. **Currency**: Always filter `WHERE n.uom = 'USD'` when comparing monetary values.
+4. **Joins**: `numbers` (n) JOIN `submissions` (s) ON `n.adsh = s.adsh`.
+5. **Dates**: `ddate` is INTEGER YYYYMMDD. Use `BETWEEN` for ranges.
+6. **NO LIMIT**: Return ALL matching results, do NOT use LIMIT clause.
+7. **COMPANY NAME MATCHING - USE EXACT NAMES FROM MAPPING ABOVE**:
+   - For APPLE, ALWAYS use EXACT MATCH: `s.name = 'APPLE INC'`
+   - For MICROSOFT, ALWAYS use EXACT MATCH: `s.name = 'MICROSOFT CORP'`
+   - For MCKESSON, ALWAYS use EXACT MATCH: `s.name = 'MCKESSON CORP'`
+   - NEVER use LIKE 'APPLE%' - this matches wrong companies!
+8. **TAG MAPPING - IMPORTANT**:
+   - For "Revenue" queries, use: `n.tag = 'RevenueFromContractWithCustomerExcludingAssessedTax'`
+   - Use the exact tag names from the AVAILABLE TAGS list above
+9. **ANNUAL DATA - USE annual_metrics TABLE**:
+   - For annual revenue/metrics, USE the `annual_metrics` table - it's pre-aggregated!
+   - Example: `SELECT * FROM annual_metrics WHERE company_name = 'APPLE INC' AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax'`
+   - Only use `numbers` table if you need quarterly data or daily granularity
+10. **DEFAULT DATE RULE**:
+    - If no date specified, assume LATEST available - use `ORDER BY fiscal_year DESC` or `ORDER BY n.ddate DESC`
+11. **Output Format**:
+    - WRAP YOUR SQL IN MARKDOWN BLOCK: ```sql ... ```
+    - No explanations. No conversational text.
+
+Here are some examples of the output I want:
+
+User: "Revenue of Apple"
+SQL:
+```sql
+SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name = 'APPLE INC' AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' ORDER BY fiscal_year DESC;
+```
+
+User: "Apple and Microsoft revenue"
+SQL:
+```sql
+SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name IN ('APPLE INC', 'MICROSOFT CORP') AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' ORDER BY company_name, fiscal_year DESC;
+```
+
+User: "Net income of Tesla"
+SQL:
+```sql
+SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name = 'TESLA INC' AND tag = 'NetIncomeLoss' ORDER BY fiscal_year DESC;
+```
+
+I want you to also ensure adherence to all critical rules and company name matching instructions. The output must be in markdown format with the SQL code wrapped in a block. I want you to also know that the queries should prioritize accuracy and efficiency based on the provided schema and available tags.
+
+Question: {question}
+"""
     
     import re
     try:

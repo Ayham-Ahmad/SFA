@@ -36,7 +36,7 @@ def extract_steps(plan: str):
     return steps
 
 
-def run_ramas_pipeline(question: str) -> str:
+def run_ramas_pipeline(question: str, query_id: str = None) -> str:
     """
     Orchestrates the RAMAS pipeline:
     1. Intent Classification: Skip pipeline for greetings.
@@ -44,6 +44,14 @@ def run_ramas_pipeline(question: str) -> str:
     3. Worker: Executes each step.
     4. Auditor: Synthesizes final answer.
     """
+    
+    # Import progress tracking (optional, won't crash if not available)
+    try:
+        from api.main import set_query_progress
+        has_progress = True
+    except:
+        has_progress = False
+        def set_query_progress(qid, agent, step): pass  # No-op fallback
 
     print(f"\n--- Starting RAMAS Pipeline for: {question} ---")
     
@@ -74,14 +82,12 @@ def run_ramas_pipeline(question: str) -> str:
     else:
         print(" ****** INTENT_PROMPT original")
         intent_prompt = f"""
-    Classify the following user input into two categories:
-    1. "CONVERSATIONAL": Greetings, small talk, questions about identity.
-    2. "ANALYTICAL": Questions requiring data, numbers, financial info, companies, or database lookup.
-    
-    Input: {log_input_query}
-    
-    Return ONLY one word: "CONVERSATIONAL" or "ANALYTICAL".
-    """
+I am currently working on classifying user inputs into specific categories to better understand their intent. The two categories are: "CONVERSATIONAL" for greetings, small talk, and identity questions, and "ANALYTICAL" for inquiries that require data, numbers, financial information, or database lookups. I find this task essential for streamlining responses based on user interaction.
+
+Now, I want you to classify the following user input into one of the two categories. Please analyze the input: {log_input_query}. Your classification should reflect whether it falls under "CONVERSATIONAL" or "ANALYTICAL" based on the provided definitions.
+
+The goal is to receive a clear classification of the user input, returning only one word: "CONVERSATIONAL" or "ANALYTICAL". This will help in tailoring the response appropriately according to the user's needs.
+"""
     
     try:
         classification = client.chat.completions.create(
@@ -110,10 +116,20 @@ def run_ramas_pipeline(question: str) -> str:
             else:
                 print(" ****** CONVERSATIONAL_PROMPT original")
                 chat_prompt = f"""
-            You are a helpful Financial AI Assistant. 
-            User says: "{log_input_query}"
-            Reply consistently, professionally, and briefly.
-            """
+You are a professional Financial AI Assistant with extensive knowledge in personal finance, investments, and financial planning. Your primary goal is to provide accurate and insightful responses to users' financial queries while maintaining a tone that is both approachable and authoritative.
+
+User says: "{log_input_query}"
+
+Reply with a concise and well-structured response that addresses the user's question directly, providing relevant information and recommendations where applicable.
+
+The response should be formatted in a clear and professional manner, starting with a brief acknowledgment of the user's query, followed by the main content of the answer, and concluding with any actionable suggestions or next steps.
+
+Please keep in mind the following details:
+- Ensure your responses are grounded in factual data and best practices in finance.
+- Avoid using jargon without explanations to ensure clarity for all users.
+
+Be cautious of providing overly complex answers that may confuse the user. Aim for brevity and clarity while ensuring that all relevant aspects of the query are addressed.
+"""
             
             reply = client.chat.completions.create(
                 messages=[{"role": "user", "content": chat_prompt}],
@@ -128,7 +144,10 @@ def run_ramas_pipeline(question: str) -> str:
             print(f"Conversational Error: {e}")
             return "Hello! How can I assist you today?"
 
-    # 1. Plan
+    # Step 2: Planner - Decompose the Question
+    if has_progress and query_id:
+        set_query_progress(query_id, "planner", "Breaking down question...")
+    
     try:
         from backend.d_log import dlog
         from backend.agent_debug_logger import log_agent_interaction
@@ -148,7 +167,10 @@ def run_ramas_pipeline(question: str) -> str:
         dlog(f"Plan Generated:\n{plan}")
         log_agent_interaction(interaction_id, "Planner", "Output", log_input_query, plan)
         
-        # 2. Work
+        # Step 3: Worker - Execute Steps
+        if has_progress and query_id:
+            set_query_progress(query_id, "worker", "Executing queries...")
+        
         context = ""
         steps = extract_steps(plan)
         dlog(f"Extracted {len(steps)} steps: {steps}")  # DEBUG
@@ -195,8 +217,10 @@ def run_ramas_pipeline(question: str) -> str:
                         "retrieved_context": result
                     })
         
-        # 3. Audit
-        dlog("Auditing and Synthesizing...")
+        # Step 4: Auditor - Synthesize Final Answer
+        if has_progress and query_id:
+            set_query_progress(query_id, "auditor", "Synthesizing answer...")
+        
         final_answer = audit_and_synthesize(question, context, graph_allowed, interaction_id=interaction_id)
         
         # NOTE: Auditor already logs its output internally

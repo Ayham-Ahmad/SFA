@@ -242,7 +242,9 @@
                 <input type="text" id="user-input" class="form-control" placeholder="Type your question...">
                 <button class="btn btn-outline-secondary" onclick="requestGraph()" title="Generate Graph"><i
                         class="fas fa-chart-bar"></i></button>
-                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                <button class="btn btn-danger" id="stop-btn" onclick="stopQuery()" style="display: none;"
+                    title="Stop Query"><i class="fas fa-stop"></i> Stop</button>
+                <button class="btn btn-primary" id="send-btn" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
@@ -431,6 +433,7 @@
     // Chat Logic
     let timerInterval;
     let lastRequestWasGraph = false;
+    let currentQueryId = null;
 
     // Session ID for isolating chat history per session
     let chatSessionId = crypto.randomUUID();
@@ -459,6 +462,8 @@
     async function sendMessage() {
         const input = document.getElementById('user-input');
         const statusDiv = document.getElementById('status-indicator');
+        const sendBtn = document.getElementById('send-btn');
+        const stopBtn = document.getElementById('stop-btn');
         const message = input.value.trim();
         if (!message) return;
 
@@ -472,39 +477,104 @@
         addMessage(message, 'user-msg');
         input.value = '';
         input.disabled = true; // Disable input while thinking
+        sendBtn.style.display = 'none'; // Hide send button
+        stopBtn.style.display = 'inline-block'; // Show stop button
+
+        // Generate query_id on frontend so we can poll immediately
+        currentQueryId = crypto.randomUUID();
 
         // Start Timer
         let seconds = 0;
-        statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Thinking... (0s)';
+        statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Starting...';
         timerInterval = setInterval(() => {
             seconds++;
-            statusDiv.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i>Thinking... (${seconds}s)`;
         }, 1000);
 
+        // Progress Polling - start immediately
+        const token = localStorage.getItem('token');
+        let progressInterval = setInterval(async () => {
+            try {
+                const progressRes = await fetch(`/chat/status/${currentQueryId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const progress = await progressRes.json();
+
+                if (progress.agent) {
+                    const agentName = progress.agent.charAt(0).toUpperCase() + progress.agent.slice(1);
+                    const step = progress.step || '';
+                    statusDiv.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i>${agentName} ${step} (${seconds}s)`;
+                }
+            } catch (e) {
+                // Progress endpoint failed, keep default message
+            }
+        }, 500);
+
         try {
-            const token = localStorage.getItem('token');
             const response = await fetch('/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ message, session_id: chatSessionId })
+                body: JSON.stringify({
+                    message,
+                    session_id: chatSessionId,
+                    query_id: currentQueryId  // Send query_id to backend
+                })
             });
             const data = await response.json();
 
             clearInterval(timerInterval);
-            statusDiv.textContent = `Replied in ${seconds} seconds.`;
+            clearInterval(progressInterval);
+
+            // Check if it was a timeout response
+            if (data.response && data.response.includes('timed out')) {
+                statusDiv.innerHTML = '<i class="fas fa-clock text-warning"></i> Query timed out.';
+            } else if (data.response && data.response.includes('cancelled')) {
+                statusDiv.innerHTML = '<i class="fas fa-hand-paper text-warning"></i> Query cancelled.';
+            } else {
+                statusDiv.textContent = `Replied in ${seconds} seconds.`;
+            }
 
             // Pass chat_id to addMessage
             addMessage(data.response, 'bot-msg', data.chat_id);
         } catch (error) {
             clearInterval(timerInterval);
+            clearInterval(progressInterval);
             statusDiv.textContent = 'Error occurred.';
             addMessage('Error: Could not get response.', 'bot-msg');
         } finally {
             input.disabled = false;
+            sendBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+            currentQueryId = null;
             input.focus();
+        }
+    }
+
+    async function stopQuery() {
+        if (!currentQueryId) return;
+
+        const statusDiv = document.getElementById('status-indicator');
+        const sendBtn = document.getElementById('send-btn');
+        const stopBtn = document.getElementById('stop-btn');
+
+        try {
+            const token = localStorage.getItem('token');
+            await fetch(`/chat/cancel/${currentQueryId}`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            clearInterval(timerInterval);
+            statusDiv.innerHTML = '<i class="fas fa-hand-paper text-warning"></i> Query stopped by user.';
+        } catch (error) {
+            console.error('Stop error:', error);
+        } finally {
+            sendBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+            document.getElementById('user-input').disabled = false;
+            currentQueryId = null;
         }
     }
 
@@ -573,6 +643,21 @@
 
         // Route Graph Data
         if (graphJson && className === 'bot-msg') {
+            // Check for empty graph data
+            try {
+                const graphData = JSON.parse(graphJson);
+                if (!graphData.data || graphData.data.length === 0) {
+                    const warnDiv = document.createElement('div');
+                    warnDiv.className = 'text-warning small ms-2 fst-italic';
+                    warnDiv.innerHTML = "<i class='fas fa-exclamation-triangle'></i> No data available to create a graph.";
+                    chatBox.appendChild(warnDiv);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                    return;
+                }
+            } catch (e) {
+                console.error('Graph JSON parse error:', e);
+            }
+
             if (lastRequestWasGraph) {
                 // EXPLICIT request: Jiggle and Place
                 graphManager.handleNewIncomingGraph(graphJson);

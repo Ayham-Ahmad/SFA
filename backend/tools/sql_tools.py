@@ -37,12 +37,17 @@ def execute_sql_query(query: str) -> str:
     Execute a read-only SQL query on the financial database.
     Returns the result as a markdown table string or error message.
     """
-    # Security check: only allow SELECT statements
-    if not query.strip().lower().startswith("select"):
+    normalized = query.strip().lower()
+    
+    # Security check: allow SELECT and CTEs (WITH ... SELECT)
+    if not (normalized.startswith("select") or normalized.startswith("with")):
         return "Error: Only SELECT statements are allowed."
     
-    if "drop" in query.lower() or "delete" in query.lower() or "update" in query.lower() or "insert" in query.lower():
-        return "Error: Unsafe SQL keywords detected."
+    # Block dangerous operations
+    unsafe_keywords = ["drop", "delete", "update", "insert", "alter", "create", "truncate"]
+    for keyword in unsafe_keywords:
+        if keyword in normalized:
+            return f"Error: Unsafe SQL keyword '{keyword}' detected."
 
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -88,6 +93,10 @@ def get_table_schemas() -> str:
                 col_str += "\n    * HINTS: 'ddate' is integer YYYYMMDD. 'uom' is Unit. 'tag' is the Concept Name.\n    * COMMON TAGS (Use EXACTLY): 'NetIncomeLoss', 'Revenues', 'GrossProfit', 'OperatingIncomeLoss', 'Assets', 'Liabilities', 'StockholdersEquity', 'CashAndCashEquivalentsAtCarryingValue', 'EarningsPerShareBasic', 'ProfitLoss'."
             elif table_name == 'submissions':
                 col_str += "\n    * HINTS: 'sic' is Industry Code. 'countryba' is Country. 'name' is Company Name (e.g. APPLE INC., MICROSOFT CORP)."
+            elif table_name == 'annual_metrics':
+                col_str += "\n    * RECOMMENDED TABLE FOR ANNUAL DATA! Pre-aggregated by company/year."
+                col_str += "\n    * HINTS: 'company_name' is SEC-official name. 'fiscal_year' is integer YYYY. 'value' is MAX value for that year."
+                col_str += "\n    * USE THIS TABLE for simple annual queries instead of complex GROUP BY on numbers table."
                 
             schemas.append(f"Table: {table_name}\nColumns: {col_str}")
             

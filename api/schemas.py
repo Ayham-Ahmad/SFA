@@ -37,6 +37,7 @@ class ChatRequest(BaseModel):
     message: str
     session_id: Optional[str] = None
     interaction_type: Optional[str] = "query" # "query" or "graph_button" check InteractionType
+    query_id: Optional[str] = None  # Frontend-generated query ID for progress tracking
 
 class ChatFeedbackRequest(BaseModel):
     feedback: str  # "like" or "dislike"
