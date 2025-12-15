@@ -17,12 +17,12 @@ Source Files:
 # Framework: Role, Input, Steps, Execution
 # ============================================
 PLANNER_PROMPT = """
-You are an expert financial planner with extensive knowledge of SEC financial data analysis. A user is seeking advice on their financial query, specifically regarding {question}. Your role is to clarify their financial query and provide a clear, step-by-step action plan to address their needs. Ensure that your steps are actionable and applicable to their situation.
+You are an expert financial planner with extensive knowledge of SEC financial data analysis. A user is seeking advice on their financial query, specifically regarding {question}. Your role is to clarify their financial query and provide a clear, step-by-step action plan to address their needs.
 
-Use data and insights from the SQL database (SEC financial filings) through RAG embeddings (financial tag descriptions), focusing on aspects such as revenue, net income, assets, liabilities, or stockholders equity. The user is particularly interested in understanding company financial metrics and how to optimize their financial decisions.
+Use data from the `swf` (Synthetic Weekly Financials) SQL table through RAG embeddings. The table contains weekly P&L data spanning 1934-2025 for a single synthetic company, including Revenue, Net Income, Costs, and other metrics.
 
 Break down the output into the following steps:
-1. Identify the key components of the user's financial question regarding {question} (e.g., companies, metrics, time periods).
+1. Identify the key components of the user's financial question (e.g., metrics, time periods).
 2. Recommend specific tools to retrieve the data: SQL for numeric data, RAG for conceptual explanations.
 
 STRICT RULES:
@@ -32,7 +32,7 @@ STRICT RULES:
 - EACH STEP MUST USE EXACTLY ONE TOOL (SQL or RAG).
 - SQL is used for ANY numeric or data-driven requirement.
 - RAG is used for textual or conceptual questions.
-- IF THE DATE IS NOT MENTIONED, USE THE LATEST DATE AVAILABLE.
+- IF THE DATE IS NOT MENTIONED, USE THE LATEST DATE AVAILABLE (2025).
 
 GRAPH RULE:
 - Graph Allowed = {graph_allowed}
@@ -44,16 +44,16 @@ Available Tools:
 2. SQL - for all data, numeric, or database-related questions.
 
 Your final output should be:
-A concise, numbered list of actionable steps (1-2 max) that can be executed to answer the user's question. Write in simple, clear format so that the system can easily parse and execute your recommendations.
+A concise, numbered list of actionable steps (1-2 max) that can be executed to answer the user's question.
 
 Output format (MANDATORY):
 1. <TOOL>: <Action>
 
 Good Example:
-1. SQL: Retrieve and compare Apple and Microsoft revenue for the latest year.
+1. SQL: Retrieve Revenue and Net Income for 2024 by quarter.
 
 Bad Examples (DO NOT DO THESE):
-- Creating TWO SQL steps for the same data (retrieve then compare)
+- Creating TWO SQL steps for the same data
 - Extra text before/after the list
 - More than 2 steps
 - Including visualization when Graph Allowed is False
@@ -66,19 +66,37 @@ Bad Examples (DO NOT DO THESE):
 # Purpose: Generates text-only responses
 # ============================================
 TEXT_PROMPT = """
-You are a Financial Data Reporter.
+You are a Financial Data Reporter. Give ONLY the essential facts.
 
 Question: {question}
 
 Data:
 {context}
 
+DATA HANDLING:
+1. The provided data is pre-cleaned and standardized.
+2. Use the values directly as they appear.
+3. If multiple periods appear, report them clearly (e.g. Q1, Q2, FY).
+
 OUTPUT RULES:
-1. Output ONLY a single line containing the company name, the value, and the date/period.
-2. Format: "Company: Value (Date)".
-3. Example: "Apple revenue: $219.66B (2025-03-31)"
-4. No other text, no explanations, no markdown formatting.
-5. If no data: "Data not available."
+1. BE EXTREMELY CONCISE - 2-3 sentences max for narrative.
+2. ONE simple table if showing numbers.
+3. Use format: $XXX.XXB for billions, $XXX.XXM for millions.
+4. NO repetition of the same data.
+5. NO sections like "Key Insights", "Comparison", "Summary" - just answer directly.
+6. If no data: "Data not available for this query."
+7. DO NOT mention SQL, databases, queries, or any technical details.
+8. Include the data date/period if available.
+9. Use ONLY the values that appear in the data - DO NOT calculate or estimate.
+
+BAD EXAMPLE (too verbose):
+"Here is a summary... The latest revenue... Key insights... In conclusion..."
+
+GOOD EXAMPLE:
+"Apple's revenue for FY 2024: $383.29B. Microsoft's revenue: $211.92B.
+| Company | Revenue |
+| Apple | $383.29B |
+| Microsoft | $211.92B |"
 """
 
 
@@ -88,13 +106,24 @@ OUTPUT RULES:
 # Purpose: Generates responses with Plotly.js graphs
 # ============================================
 GRAPH_PROMPT = """
+**CRITICAL OVERRIDE INSTRUCTION:**
+You MUST generate a graph for THIS request. This is a MANDATORY graph generation task.
+Previous responses in the context are provided ONLY for reference and continuity.
+DO NOT let historical response patterns (e.g., previous table-only responses) influence your current output.
+Your ONLY task NOW is to create a Plotly.js chart using the data provided.
+
 You generate Plotly.js charts from financial data.
 
 Question: {question}
 Data: {context}
 
+DATA HANDLING:
+1. The provided data is pre-cleaned and standardized.
+2. Use the values directly as they appear.
+3. Ensure 'x' axis labels reflect the Period (Year/Quarter).
+
 OUTPUT FORMAT (STRICT):
-1. Text Response: Write ONLY "Graph generated."
+1. Text Response: Write ONLY "Graph generated." (nothing else, no tables, no explanations)
 2. Graph Code: graph_data||<PLOTLY_JSON>||
 
 PLOTLY JSON FORMAT (MANDATORY - DO NOT USE CHART.JS):
@@ -105,9 +134,21 @@ PLOTLY JSON FORMAT (MANDATORY - DO NOT USE CHART.JS):
   "layout": {{"title": "Chart Title"}}
 }}
 
+CHART TYPES:
+- "bar" for comparisons
+- "scatter" with "mode": "lines+markers" for trends
+- "pie" for percentages
+
+EXAMPLE OUTPUT:
+Graph generated.
+
+graph_data||{{"data":[{{"x":["Apple","Microsoft"],"y":[219659000000,205283000000],"type":"bar","name":"Revenue"}}],"layout":{{"title":"Revenue Comparison 2025"}}}}||
+
 RULES:
-- Output ONLY "Graph generated." as text.
-- Follow the JSON format exactly.
+- Use ONLY Plotly.js format (with "data" and "layout" keys)
+- DO NOT use Chart.js format (labels/datasets)
+- Output ONLY "Graph generated." as text - NO tables, NO explanations
+- Values in "y" must be raw numbers, not strings
 """
 
 
@@ -188,65 +229,54 @@ User Question: {question}
 # Note: {available_tags}, {schema}, {company_mapping} are dynamically injected
 # ============================================
 SQL_GENERATION_PROMPT = """
-You are a precise SQL generation model (Qwen). Your ONLY job is to write a valid SQLite query.
+You are a precise SQL generation model. Your ONLY job is to write a valid SQLite query.
 
 Schema: {schema}
 
-AVAILABLE TAGS (use exactly as shown): {available_tags}
+THE PRIMARY TABLE IS: `swf` (Synthetic Weekly Financials)
+- Contains CLEAN, WEEKLY P&L data for a single synthetic company.
+- 76,953 rows spanning 1934-2025 (weekly resolution).
 
-WELL-KNOWN COMPANY NAME MAPPINGS (USE THESE EXACT NAMES):
-- "Apple" or "AAPL" -> Use `s.name = 'APPLE INC'` (EXACT MATCH!)
-- "Microsoft" or "MSFT" -> Use `s.name = 'MICROSOFT CORP'` (EXACT MATCH!)
-- "McKesson" -> Use `s.name = 'MCKESSON CORP'` (EXACT MATCH!)
-- "Amazon" or "AMZN" -> Use `UPPER(s.name) LIKE 'AMAZON%'`
-- "Tesla" or "TSLA" -> Use `UPPER(s.name) LIKE 'TESLA%'`
-- "Google" or "Alphabet" or "GOOGL" -> Use `UPPER(s.name) LIKE 'ALPHABET%'`
+COLUMN DEFINITIONS:
+| Column | Description |
+|--------|-------------|
+| yr | Year (1934-2025) |
+| qtr | Quarter (1-4) |
+| mo | Month in quarter (1-3) |
+| wk | Week in month (1-4) |
+| item | P&L line item ('Revenue', 'Net Income', etc.) |
+| val | Value in USD (positive for Revenue, negative for Costs) |
+
+AVAILABLE ITEMS: {available_tags}
 
 CRITICAL RULES:
-1. **ONLY SELECT**: You are strictly forbidden from writing INSERT, UPDATE, DELETE, or DROP queries.
-2. **CTEs ALLOWED**: You CAN use WITH clauses (Common Table Expressions) for complex queries.
-3. **Currency**: Always filter `WHERE n.uom = 'USD'` when comparing monetary values.
-4. **Joins**: `numbers` (n) JOIN `submissions` (s) ON `n.adsh = s.adsh`.
-5. **Dates**: `ddate` is INTEGER YYYYMMDD. Use `BETWEEN` for ranges.
-6. **NO LIMIT**: Return ALL matching results, do NOT use LIMIT clause.
-7. **COMPANY NAME MATCHING - USE EXACT NAMES FROM MAPPING ABOVE**:
-   - For APPLE, ALWAYS use EXACT MATCH: `s.name = 'APPLE INC'`
-   - For MICROSOFT, ALWAYS use EXACT MATCH: `s.name = 'MICROSOFT CORP'`
-   - NEVER use LIKE 'APPLE%' - this matches wrong companies!
-8. **TAG MAPPING - IMPORTANT**:
-   - For "Revenue" queries, use: `n.tag = 'RevenueFromContractWithCustomerExcludingAssessedTax'`
-   - Use the exact tag names from the AVAILABLE TAGS list above
-9. **ANNUAL DATA - USE annual_metrics TABLE**:
-   - For annual revenue/metrics, USE the `annual_metrics` table - it's pre-aggregated!
-   - Example: `SELECT * FROM annual_metrics WHERE company_name = 'APPLE INC' AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax'`
-   - Only use `numbers` table if you need quarterly data or daily granularity
-10. **DEFAULT DATE RULE**:
-    - If no date specified, assume LATEST available - use `ORDER BY fiscal_year DESC` or `ORDER BY n.ddate DESC`
-11. **Output Format**:
-    - WRAP YOUR SQL IN MARKDOWN BLOCK: ```sql ... ```
-    - No explanations. No conversational text.
+1. **TARGET TABLE**: ALWAYS query `swf` for financial metrics.
+2. **TIME FILTERING**: Use `yr`, `qtr`, `mo`, `wk` for time.
+3. **ITEM FILTERING**: Use `item = 'Revenue'`, `item = 'Net Income'`, etc.
+4. **VALUE COLUMN**: Use `val` for amounts.
+5. **AGGREGATION**: Use SUM(val), AVG(val) for totals.
+6. **ORDERING**: Default is `ORDER BY yr DESC, qtr DESC`.
 
-Here are some examples of the output I want:
+Output Format:
+- WRAP YOUR SQL IN MARKDOWN BLOCK: ```sql ... ```
+- No explanations.
 
-User: "Revenue of Apple"
-SQL:
+Examples:
+
+User: "Revenue for 2024"
 ```sql
-SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name = 'APPLE INC' AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' ORDER BY fiscal_year DESC;
+SELECT yr, qtr, SUM(val) as revenue FROM swf WHERE item = 'Revenue' AND yr = 2024 GROUP BY yr, qtr ORDER BY qtr;
 ```
 
-User: "Apple and Microsoft revenue"
-SQL:
+User: "Net Income trend last 5 years"
 ```sql
-SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name IN ('APPLE INC', 'MICROSOFT CORP') AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' ORDER BY company_name, fiscal_year DESC;
+SELECT yr, SUM(val) as net_income FROM swf WHERE item = 'Net Income' AND yr >= 2020 GROUP BY yr ORDER BY yr;
 ```
 
-User: "Net income of Tesla"
-SQL:
+User: "Loss quarters"
 ```sql
-SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name = 'TESLA INC' AND tag = 'NetIncomeLoss' ORDER BY fiscal_year DESC;
+SELECT yr, qtr, SUM(val) as net_income FROM swf WHERE item = 'Net Income' GROUP BY yr, qtr HAVING SUM(val) < 0;
 ```
-
-I want you to also ensure adherence to all critical rules and company name matching instructions. The output must be in markdown format with the SQL code wrapped in a block. The queries should prioritize accuracy and efficiency based on the provided schema and available tags.
 
 Question: {question}
 """

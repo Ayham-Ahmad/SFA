@@ -1,0 +1,63 @@
+query_num,query,ground_truth,sfa_answer,status
+1,What is the total revenue for 2024?,$43.99B,The total revenue for 2024 is $43.99B.  | Year | Total Revenue | | 2024 | $43.99B |,PASS
+2,Show me the net income for 2025,$782.32B,Net income for 2025: $782.32B.  No additional context or data available.  | 2025 | $782.32B |,PASS
+3,What are the available financial metrics?,"                  item
+       Cost of Revenue
+          Gross Profit
+                   ...
+Other Income / Expense
+               Revenue","The available financial metrics are: Revenue, Cost of Revenue, Gross Profit, Operating Expenses, Operating Income, Other Income / Expense, Income Before Tax, Income Tax Expense, and Net Income.  | Metric                  |        Total | |-------------------------|-------------:| | Cost of Revenue         |  -$3.94B     | | Gross Profit            |  $3.40B      | | Income Before Tax       |  $0.88B      | | Income Tax Expense      |  -$0.27B     | | Net Income              |  $1.32B      | | Op",FAIL
+4,How many years of data do we have?,92,We have financial data from 1934 to 2025.  The data spans 92 years.  | Year Range | Start | End | |------------|-------|------| | Available  | 1934  | 2025 |,PASS
+5,What was the gross profit in 2023?,$90.23B,The gross profit for 2023 was $90.23B.  | Year | Gross Profit | | 2023 | $90.23B |,PASS
+6,Show me quarterly revenue for 2024," qtr     SUM(val)
+   1 1.032743e+10
+   2 1.233928e+10
+   3 7.497908e+09
+   4 1.382499e+10",Quarterly revenue for 2024 is as follows: | Qtr | Revenue | |-----|----------| | Q1  | $10.33B  | | Q2  | $12.34B  | | Q3  | $7.50B   | | Q4  | $13.83B  |,PASS
+7,What is the net income trend from 2020 to 2025?,"  yr     SUM(val)
+2020 3.089911e+10
+2021 3.467238e+10
+ ...          ...
+2024 8.608725e+10
+2025 7.823213e+11",Net income trend from 2020 to 2025 is increasing.  | Year | Net Income | |------|------------| | 2020 | $30.90B    | | 2021 | $34.67B    | | 2022 | $38.16B    | | 2023 | $64.28B    | | 2024 | $86.09B    | | 2025 | $782.32B   |,PASS
+8,Compare revenue and cost of revenue for 2023,"           item      SUM(val)
+Cost of Revenue -4.926349e+10
+        Revenue  2.826943e+10",Revenue and Cost of Revenue for 2023 are: | Item            |        Total | |----------------|-------------:| | Revenue         |  $28.27B     | | Cost of Revenue | -$49.26B     |  The company reported a revenue of $28.27B and a cost of revenue of $49.26B for 2023.,FAIL
+9,Which quarters had losses in the last 10 years?,No data,Data not available for this query.,PASS
+10,What was the operating income for Q4 2024?,$15.43B,The operating income for Q4 2024 was $15.43B.  | Period | Operating Income | | Q4 2024 | $15.43B |,PASS
+11,Show the revenue growth trend from 2015 to 2025,"  yr     SUM(val)
+2015 7.430191e+09
+2016 8.186047e+09
+ ...          ...
+2024 4.398961e+10
+2025 9.853344e+11","Revenue growth trend from 2015 to 2025: The revenue shows a general upward trend, with significant growth from $7.43B in 2015 to $985.33B in 2025.  | Year | Revenue | |------|----------| | 2015 | $7.43B   | | 2016 | $8.19B   | | 2017 | $11.50B  | | 2018 | $12.22B  | | 2019 | $15.53B  | | 2020 | $21.34B  | | 2021 | $23.83B  | | 2022 | $25.82B  | | 2023 | $28.27B  | | 2024 | $43.99B  | | 2025 | $985.33B |",PASS
+12,What is the full income statement for 2024?,"                  item      SUM(val)
+          Gross Profit  1.114443e+11
+    Operating Expenses -9.110742e+10
+                   ...           ...
+    Income Tax Expense -2.434482e+10
+Other Income / Expense -1.082669e+10",The income statement for 2024 shows Revenue of $43.99B and Net Income of $86.09B.   | Metric | Value | | --- | --- | | Revenue | $43.99B | | Cost of Revenue | -$77.07B | | Gross Profit | $111.44B | | Operating Expenses | -$91.11B | | Operating Income | $60.92B | | Other Income / Expense | -$10.83B | | Income Before Tax | $49.04B | | Income Tax Expense | -$24.34B | | Net Income | $86.09B |,PASS
+13,Which year had the highest net income?,"  yr           ni
+2025 7.823213e+11",The year with the highest net income is 2025.  | Year | Net Income | | 2025 | $782.32B |,PASS
+14,Show weekly revenue breakdown for Q4 2024," mo  wk         val
+  1   1 759000000.0
+  1   1 787575000.0
+ ..  ..         ...
+  3   4 855416000.0
+  3   4 864000000.0","Weekly revenue breakdown for Q4 2024: | Week | Revenue | | --- | --- | | 1    | $759.00M, $787.58M, $796.03M | | 2    | $783.00M, $775.50M, $844.57M, $844.54M | | 3    | $766.00M, $795.01M, $825.10M, $803.37M, $859.65M | | 4    | $814.08M, $820.98M, $831.18M, $855.42M, $864.00M |  Revenue for Q4 2024 ranges from $759.00M to $864.00M.",PASS
+15,What is the average quarterly revenue for 2024?,$11.00B,The average quarterly revenue for 2024 is $10.9974B.  | Period | Average Quarterly Revenue | | --- | --- | | 2024 | $10.9974B |,FAIL
+16,Compare the average revenue of the 2010s vs 2020s,"decade     AVG(val)
+ 2010s 1.368259e+08
+ 2020s 2.004583e+09",The average revenue for the 2010s is $8.10B and for the 2020s is $188.10B.  | Decade | Average Revenue | | --- | --- | | 2010s | $8.10B | | 2020s | $188.10B |,PASS
+17,What is the total cost of revenue over all years?,$-3940.96B,The total cost of revenue from 1934 to 2025 is -$3.94 trillion.  |  | Total Cost of Revenue | | --- | --- | | 1934-2025 | -$3.94T |,FAIL
+18,Show the expense breakdown for 2024,"              item      SUM(val)
+   Cost of Revenue -7.706580e+10
+Income Tax Expense -2.434482e+10
+Operating Expenses -9.110742e+10","2024 Expense Breakdown: | Item            |        Total | |----------------|--------------| | Cost of Revenue |  -$77.07B    | | Revenue         |  $43.99B     | | Net Income      |  $86.09B     |  The company's revenue was $43.99B, with a cost of revenue of $77.07B, resulting in a net income of $86.09B in 2024.",FAIL
+19,What was the best quarter for revenue in 2024?," qtr          rev
+   4 1.382499e+10",The best quarter for revenue in 2024 was Q4.  | Quarter | Revenue | | Q4 2024 | $13.83B |,PASS
+20,Show all income before tax values for 2025,"  yr  qtr     SUM(val)
+2025    1 1.263261e+10
+2025    2 1.092052e+10
+2025    3 2.510635e+10
+2025    4 4.850973e+11",Income before tax values for 2025 are as follows:  | Qtr | Income Before Tax | |-----|------------------:| | Q1  | $12.63B          | | Q2  | $10.92B          | | Q3  | $25.11B          | | Q4  | $485.10B         |,PASS

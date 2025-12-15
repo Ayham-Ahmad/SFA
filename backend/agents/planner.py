@@ -14,12 +14,12 @@ MODEL = "llama-3.3-70b-versatile"
 
 # Inline prompt (used when TESTING = False)
 PLANNER_PROMPT_INLINE = """
-You are an expert financial planner with extensive knowledge of SEC financial data analysis. A user is seeking advice on their financial query, specifically regarding {question}. Your role is to clarify their financial query and provide a clear, step-by-step action plan to address their needs. Ensure that your steps are actionable and applicable to their situation.
+You are an expert financial planner with extensive knowledge of SEC financial data analysis. A user is seeking advice on their financial query, specifically regarding {question}. Your role is to clarify their financial query and provide a clear, step-by-step action plan.
 
-Use data and insights from the SQL database (SEC financial filings) through RAG embeddings (financial tag descriptions), focusing on aspects such as revenue, net income, assets, liabilities, or stockholders equity. The user is particularly interested in understanding company financial metrics and how to optimize their financial decisions.
+Use data from the `swf` (Synthetic Weekly Financials) SQL table through RAG embeddings. The table contains weekly P&L data spanning 1934-2025 for a single synthetic company, including Revenue, Net Income, Costs, and other metrics.
 
 Break down the output into the following steps:
-1. Identify the key components of the user's financial question regarding {question} (e.g., companies, metrics, time periods).
+1. Identify the key components of the user's financial question (e.g., metrics, time periods).
 2. Recommend specific tools to retrieve the data: SQL for numeric data, RAG for conceptual explanations.
 
 STRICT RULES:
@@ -29,7 +29,7 @@ STRICT RULES:
 - EACH STEP MUST USE EXACTLY ONE TOOL (SQL or RAG).
 - SQL is used for ANY numeric or data-driven requirement.
 - RAG is used for textual or conceptual questions.
-- IF THE DATE IS NOT MENTIONED, USE THE LATEST DATE AVAILABLE.
+- IF THE DATE IS NOT MENTIONED, USE THE LATEST DATE AVAILABLE (2025).
 
 GRAPH RULE:
 - Graph Allowed = {graph_allowed}
@@ -41,16 +41,16 @@ Available Tools:
 2. SQL - for all data, numeric, or database-related questions.
 
 Your final output should be:
-A concise, numbered list of actionable steps (1-2 max) that can be executed to answer the user's question. Write in simple, clear format so that the system can easily parse and execute your recommendations.
+A concise, numbered list of actionable steps (1-2 max) that can be executed to answer the user's question.
 
 Output format (MANDATORY):
 1. <TOOL>: <Action>
 
 Good Example:
-1. SQL: Retrieve and compare Apple and Microsoft revenue for the latest year.
+1. SQL: Retrieve Revenue and Net Income for 2024 by quarter.
 
 Bad Examples (DO NOT DO THESE):
-- Creating TWO SQL steps for the same data (retrieve then compare)
+- Creating TWO SQL steps for the same data
 - Extra text before/after the list
 - More than 2 steps
 - Including visualization when Graph Allowed is False

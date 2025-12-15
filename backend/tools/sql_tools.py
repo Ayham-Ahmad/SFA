@@ -60,6 +60,10 @@ def execute_sql_query(query: str) -> str:
         # Format financial values for readability
         if 'value' in df.columns:
             df['value'] = df['value'].apply(format_financial_value)
+        if 'value_usd' in df.columns:
+            df['value_usd'] = df['value_usd'].apply(format_financial_value)
+        if 'val' in df.columns:
+            df['val'] = df['val'].apply(format_financial_value)
         if 'ddate' in df.columns:
             df['ddate'] = df['ddate'].apply(format_date)
         
@@ -89,14 +93,18 @@ def get_table_schemas() -> str:
             col_str = ", ".join([f"{col[1]} ({col[2]})" for col in columns])
             
             # Add semantic hints for specific tables
-            if table_name == 'numbers':
-                col_str += "\n    * HINTS: 'ddate' is integer YYYYMMDD. 'uom' is Unit. 'tag' is the Concept Name.\n    * COMMON TAGS (Use EXACTLY): 'NetIncomeLoss', 'Revenues', 'GrossProfit', 'OperatingIncomeLoss', 'Assets', 'Liabilities', 'StockholdersEquity', 'CashAndCashEquivalentsAtCarryingValue', 'EarningsPerShareBasic', 'ProfitLoss'."
+            if table_name == 'swf':
+                col_str += "\n    * PRIMARY TABLE: Synthetic Weekly Financials (single company, weekly data, 1934-2025)."
+                col_str += "\n    * Columns: yr (year), qtr (quarter), mo (month), wk (week), item (P&L), val (USD)."
+                col_str += "\n    * Use for: ALL financial queries (Revenue, Net Income, Costs, etc.)"
+            elif table_name == 'numbers':
+                col_str += "\n    * LEGACY: Raw XBRL data. Use `swf` instead for queries."
             elif table_name == 'submissions':
-                col_str += "\n    * HINTS: 'sic' is Industry Code. 'countryba' is Country. 'name' is Company Name (e.g. APPLE INC., MICROSOFT CORP)."
+                col_str += "\n    * LEGACY: Company metadata. Not needed for `swf` queries."
             elif table_name == 'annual_metrics':
-                col_str += "\n    * RECOMMENDED TABLE FOR ANNUAL DATA! Pre-aggregated by company/year."
-                col_str += "\n    * HINTS: 'company_name' is SEC-official name. 'fiscal_year' is integer YYYY. 'value' is MAX value for that year."
-                col_str += "\n    * USE THIS TABLE for simple annual queries instead of complex GROUP BY on numbers table."
+                col_str += "\n    * LEGACY: Old aggregated table. Use `swf` instead."
+            elif table_name == 'income_statements':
+                col_str += "\n    * LEGACY: Multi-company P&L. Use `swf` for synthetic single-company data."
                 
             schemas.append(f"Table: {table_name}\nColumns: {col_str}")
             

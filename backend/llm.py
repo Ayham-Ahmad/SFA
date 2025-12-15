@@ -78,60 +78,76 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
     else:
         print(" ****** SQL_GENERATION_PROMPT original")
         sql_generation_prompt = f"""
-You are a precise SQL generation model (Qwen). Your ONLY job is to write a valid SQLite query.
+You are a precise SQL generation model. Your ONLY job is to write a valid SQLite query.
 
 Schema: {schema}
 
-AVAILABLE TAGS (use exactly as shown): {available_tags}
+THE PRIMARY TABLE IS: `swf` (Synthetic Weekly Financials)
+- Contains CLEAN, WEEKLY P&L data for a single synthetic company.
+- 76,953 rows spanning 1934-2025 (weekly resolution).
 
-{company_mapping}
+COLUMN DEFINITIONS:
+| Column | Description |
+|--------|-------------|
+| yr | Year (1934-2025) |
+| qtr | Quarter (1-4) |
+| mo | Month in quarter (1-3) |
+| wk | Week in month (1-4) |
+| item | P&L line item ('Revenue', 'Net Income', etc.) |
+| val | Value in USD (positive for Revenue, negative for Costs) |
+| drv | Derived flag (True if calculated) |
+| vf | Validation flag ('Pass' or 'Fail') |
+
+AVAILABLE ITEMS (use these exact strings for `item`):
+'Revenue', 'Cost of Revenue', 'Gross Profit', 'Operating Expenses', 'Operating Income', 'Other Income / Expense', 'Income Before Tax', 'Income Tax Expense', 'Net Income'
 
 CRITICAL RULES:
-1. **ONLY SELECT**: You are strictly forbidden from writing INSERT, UPDATE, DELETE, or DROP queries.
-2. **CTEs ALLOWED**: You CAN use WITH clauses (Common Table Expressions) for complex queries.
-3. **Currency**: Always filter `WHERE n.uom = 'USD'` when comparing monetary values.
-4. **Joins**: `numbers` (n) JOIN `submissions` (s) ON `n.adsh = s.adsh`.
-5. **Dates**: `ddate` is INTEGER YYYYMMDD. Use `BETWEEN` for ranges.
-6. **NO LIMIT**: Return ALL matching results, do NOT use LIMIT clause.
-7. **COMPANY NAME MATCHING - USE EXACT NAMES FROM MAPPING ABOVE**:
-   - For APPLE, ALWAYS use EXACT MATCH: `s.name = 'APPLE INC'`
-   - For MICROSOFT, ALWAYS use EXACT MATCH: `s.name = 'MICROSOFT CORP'`
-   - For MCKESSON, ALWAYS use EXACT MATCH: `s.name = 'MCKESSON CORP'`
-   - NEVER use LIKE 'APPLE%' - this matches wrong companies!
-8. **TAG MAPPING - IMPORTANT**:
-   - For "Revenue" queries, use: `n.tag = 'RevenueFromContractWithCustomerExcludingAssessedTax'`
-   - Use the exact tag names from the AVAILABLE TAGS list above
-9. **ANNUAL DATA - USE annual_metrics TABLE**:
-   - For annual revenue/metrics, USE the `annual_metrics` table - it's pre-aggregated!
-   - Example: `SELECT * FROM annual_metrics WHERE company_name = 'APPLE INC' AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax'`
-   - Only use `numbers` table if you need quarterly data or daily granularity
-10. **DEFAULT DATE RULE**:
-    - If no date specified, assume LATEST available - use `ORDER BY fiscal_year DESC` or `ORDER BY n.ddate DESC`
-11. **Output Format**:
-    - WRAP YOUR SQL IN MARKDOWN BLOCK: ```sql ... ```
-    - No explanations. No conversational text.
+1. **TARGET TABLE**: ALWAYS query `swf` for financial metrics. This is a SINGLE synthetic company (no company names).
+2. **TIME FILTERING**:
+   - Use `yr` for year (e.g., `yr = 2024`)
+   - Use `qtr` for quarter (e.g., `qtr = 4` for Q4)
+   - Use `mo` for month (1-3 within quarter)
+   - Use `wk` for week (1-4 within month)
+3. **ITEM FILTERING**: Use `item = 'Revenue'`, `item = 'Net Income'`, etc.
+4. **VALUE COLUMN**: Use `val` for amounts (already in USD).
+5. **AGGREGATION**: Use SUM(val), AVG(val), etc. for totals.
+6. **ORDERING**: Default is `ORDER BY yr DESC, qtr DESC`.
 
-Here are some examples of the output I want:
+Output Format:
+- WRAP YOUR SQL IN MARKDOWN BLOCK: ```sql ... ```
+- No explanations.
 
-User: "Revenue of Apple"
+Examples:
+
+User: "Revenue for 2024"
 SQL:
 ```sql
-SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name = 'APPLE INC' AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' ORDER BY fiscal_year DESC;
+SELECT yr, qtr, SUM(val) as revenue FROM swf WHERE item = 'Revenue' AND yr = 2024 GROUP BY yr, qtr ORDER BY qtr;
 ```
 
-User: "Apple and Microsoft revenue"
+User: "Net Income trend last 5 years"
 SQL:
 ```sql
-SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name IN ('APPLE INC', 'MICROSOFT CORP') AND tag = 'RevenueFromContractWithCustomerExcludingAssessedTax' ORDER BY company_name, fiscal_year DESC;
+SELECT yr, SUM(val) as net_income FROM swf WHERE item = 'Net Income' AND yr >= 2020 GROUP BY yr ORDER BY yr;
 ```
 
-User: "Net income of Tesla"
+User: "Compare Revenue and Costs in 2023"
 SQL:
 ```sql
-SELECT company_name, fiscal_year, value FROM annual_metrics WHERE company_name = 'TESLA INC' AND tag = 'NetIncomeLoss' ORDER BY fiscal_year DESC;
+SELECT item, SUM(val) as total FROM swf WHERE item IN ('Revenue', 'Cost of Revenue') AND yr = 2023 GROUP BY item;
 ```
 
-I want you to also ensure adherence to all critical rules and company name matching instructions. The output must be in markdown format with the SQL code wrapped in a block. I want you to also know that the queries should prioritize accuracy and efficiency based on the provided schema and available tags.
+User: "Weekly Revenue for Q4 2024"
+SQL:
+```sql
+SELECT yr, qtr, mo, wk, val FROM swf WHERE item = 'Revenue' AND yr = 2024 AND qtr = 4 ORDER BY mo, wk;
+```
+
+User: "Loss quarters (negative Net Income)"
+SQL:
+```sql
+SELECT yr, qtr, SUM(val) as net_income FROM swf WHERE item = 'Net Income' GROUP BY yr, qtr HAVING SUM(val) < 0 ORDER BY yr DESC;
+```
 
 Question: {question}
 """

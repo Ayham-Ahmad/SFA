@@ -23,12 +23,10 @@ Question: {question}
 Data:
 {context}
 
-DATA SELECTION RULES (CRITICAL):
-1. If multiple values exist for the SAME date/year (e.g., multiple 2024 or 2025 entries):
-   - Use the FIRST/TOP value for each year (it's already sorted by date DESC)
-   - DO NOT sum or aggregate multiple values
-   - DO NOT use random middle values
-2. For year-over-year comparisons, pick ONE value per year consistently.
+DATA HANDLING:
+1. The provided data is pre-cleaned weekly financial data (1934-2025).
+2. Use the values directly as they appear.
+3. If multiple periods appear, report them clearly (e.g. Q1, Q2, 2024).
 
 OUTPUT RULES:
 1. BE EXTREMELY CONCISE - 2-3 sentences max for narrative.
@@ -45,10 +43,10 @@ BAD EXAMPLE (too verbose):
 "Here is a summary... The latest revenue... Key insights... In conclusion..."
 
 GOOD EXAMPLE:
-"Apple's revenue for Q1 2025: $219.66B. Microsoft's revenue: $205.28B.
-| Company | Revenue |
-| Apple | $219.66B |
-| Microsoft | $205.28B |"
+"Revenue for 2024: $990.96M (Q4: $4.89B). Net Income trend is positive.
+| Year | Revenue |
+| 2024 | $990.96M |
+| 2023 | $850.12M |"
 """
 
 # GRAPH prompt - Plotly.js format with concise output
@@ -56,7 +54,7 @@ GRAPH_PROMPT_INLINE = """
 **CRITICAL OVERRIDE INSTRUCTION:**
 You MUST generate a graph for THIS request. This is a MANDATORY graph generation task.
 Previous responses in the context are provided ONLY for reference and continuity.
-DO NOT let historical response patterns (e.g., previous table-only responses) influence your current output.
+DO NOT let historical response patterns influence your current output.
 Your ONLY task NOW is to create a Plotly.js chart using the data provided.
 
 You generate Plotly.js charts from financial data.
@@ -64,12 +62,10 @@ You generate Plotly.js charts from financial data.
 Question: {question}
 Data: {context}
 
-DATA SELECTION RULES (CRITICAL):
-1. If multiple values exist for the SAME date/year:
-   - Use the FIRST/TOP value for each year (data is sorted by date DESC)
-   - DO NOT sum, aggregate, or estimate values
-   - Pick ONE consistent value per year/category
-2. Use ONLY values that actually appear in the data.
+DATA HANDLING:
+1. The provided data is weekly financial data (1934-2025).
+2. Use the values directly as they appear.
+3. Ensure 'x' axis labels reflect the Period (Year/Quarter).
 
 OUTPUT FORMAT (STRICT):
 1. Text Response: Write ONLY "Graph generated." (nothing else, no tables, no explanations)
@@ -91,7 +87,7 @@ CHART TYPES:
 EXAMPLE OUTPUT:
 Graph generated.
 
-graph_data||{{"data":[{{"x":["Apple","Microsoft"],"y":[219659000000,205283000000],"type":"bar","name":"Revenue"}}],"layout":{{"title":"Revenue Comparison 2025"}}}}||
+graph_data||{{"data":[{{"x":["2020","2021","2022","2023","2024"],"y":[500000000,650000000,780000000,850000000,990000000],"type":"bar","name":"Revenue"}}],"layout":{{"title":"Revenue Trend 2020-2024"}}}}||
 
 RULES:
 - Use ONLY Plotly.js format (with "data" and "layout" keys)
