@@ -1,113 +1,112 @@
+"""
+Ticker Service - Live Financial Feed
+Uses the swf (Single Weekly Financials) table for Revenue and Net Income data.
+"""
 import os
 import sqlite3
 import math
+
 
 class TickerService:
     def __init__(self, db_path):
         self.db_path = db_path
         self._current_index = 0
         self._cached_timeline = []
-        self._last_company_filter = None
 
-    def _fetch_raw_data(self):
-        """Fetch raw NIL and Revenue data from SQLite."""
+    def _fetch_data_from_swf(self):
+        """Fetch Revenue and Net Income data from swf table."""
         if not os.path.exists(self.db_path):
             return []
 
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         
+        # Query swf table for Revenue and Net Income grouped by period
         query = """
-        SELECT s.name, n.ddate, n.tag, n.value, n.uom
-        FROM submissions s
-        JOIN numbers n ON s.adsh = n.adsh
-        WHERE n.tag IN ('NetIncomeLoss', 'Revenues')
-        ORDER BY n.ddate ASC
+        SELECT yr, qtr, item, SUM(val) as total_val
+        FROM swf
+        WHERE item IN ('Net Income', 'Revenue')
+        GROUP BY yr, qtr, item
+        ORDER BY yr DESC, qtr DESC
+        LIMIT 200
         """
         try:
             rows = cursor.execute(query).fetchall()
         except Exception as e:
-            print(f"Error fetching live data: {e}")
+            print(f"Error fetching live data from swf: {e}")
             rows = []
         finally:
             conn.close()
             
         return rows
 
-    def _process_data(self, rows):
-        """Group raw rows into company timeline objects."""
-        company_map = {}
+    def _process_swf_data(self, rows):
+        """Convert swf rows into timeline format with Revenue and Net Income pairs."""
+        period_data = {}
         
         for row in rows:
-            name = row[0]
-            date = str(row[1])
-            tag = row[2]
-            try:
-                val = float(row[3])
-            except (ValueError, TypeError):
-                val = 0.0
+            yr = row[0]
+            qtr = row[1]
+            item = row[2]
+            val = row[3] or 0.0
             
-            uom = row[4]
-            if not uom: uom = "USD"
+            period_key = f"{yr} Q{qtr}"
             
-            if name not in company_map:
-                company_map[name] = {}
-            if date not in company_map[name]:
-                company_map[name][date] = {"income": None, "revenue": None, "currency": uom}
-                
-            if tag == 'NetIncomeLoss':
-                company_map[name][date]["income"] = val
-            elif tag == 'Revenues':
-                company_map[name][date]["revenue"] = val
-                company_map[name][date]["currency"] = uom
+            if period_key not in period_data:
+                period_data[period_key] = {"revenue": None, "net_income": None, "yr": yr, "qtr": qtr}
+            
+            if item == 'Revenue':
+                period_data[period_key]["revenue"] = val
+            elif item == 'Net Income':
+                period_data[period_key]["net_income"] = val
         
-        return company_map
+        return period_data
 
-    def _build_timeline(self, company_map):
-        """Flatten grouped data into a sorted timeline."""
+    def _build_timeline(self, period_data):
+        """Build timeline for rotating display."""
         timeline = []
-        for name, dates_dict in company_map.items():
-            for d, metrics in dates_dict.items():
-                inc = metrics["income"]
-                rev = metrics["revenue"]
-                curr = metrics.get("currency", "USD")
-                
-                margin = None
-                is_profit = False
-
-                if rev is not None and inc is not None and rev != 0:
-                    is_profit = inc > 0
-                    try:
-                        margin = (inc / rev) * 100
-                        if math.isinf(margin) or math.isnan(margin):
-                            margin = None
-                    except (OverflowError, ValueError):
-                        margin = None
-                
-                if inc is not None:
-                    is_profit = inc > 0
-
-                timeline.append({
-                    "name": name,
-                    "period": d,
-                    "net_income": inc,
-                    "revenue": rev,
-                    "margin": round(margin, 2) if margin is not None else None,
-                    "is_profit": is_profit,
-                    "currency": curr
-                })
         
-        # Sort chronologically
-        timeline.sort(key=lambda x: str(x["period"]))
+        for period_key, metrics in period_data.items():
+            rev = metrics["revenue"]
+            inc = metrics["net_income"]
+            
+            margin = None
+            is_profit = False
+            
+            if rev is not None and inc is not None and rev != 0:
+                is_profit = inc > 0
+                try:
+                    margin = (inc / rev) * 100
+                    if math.isinf(margin) or math.isnan(margin):
+                        margin = None
+                except (OverflowError, ValueError):
+                    margin = None
+            
+            if inc is not None:
+                is_profit = inc > 0
+            
+            timeline.append({
+                "name": "Financial Overview",  # Single company view
+                "period": period_key,
+                "net_income": inc,
+                "revenue": rev,
+                "margin": round(margin, 2) if margin is not None else None,
+                "is_profit": is_profit,
+                "yr": metrics["yr"],
+                "qtr": metrics["qtr"]
+            })
+        
+        # Sort by year and quarter descending (newest first)
+        timeline.sort(key=lambda x: (x["yr"], x["qtr"]), reverse=True)
         return timeline
 
     def _fmt_large_number(self, val):
         """Format numbers with B/M/K suffixes."""
-        if val is None: return "-"
+        if val is None:
+            return "-"
         
         abs_val = abs(val)
-        suffix = ""
-        formatted_num = val
+        prefix = "$"
         
         if abs_val >= 1_000_000_000_000:
             formatted_num = val / 1_000_000_000_000
@@ -122,32 +121,22 @@ class TickerService:
             formatted_num = val / 1_000
             suffix = "K"
         else:
-            return f"{val:,.2f}"
-            
+            return f"{prefix}{val:,.2f}"
+        
         s = f"{formatted_num:.1f}"
         if s.endswith(".0"):
             s = s[:-2]
-        return f"{s}{suffix}"
+        return f"{prefix}{s}{suffix}"
 
-    def get_batch(self, companies_filter=None, batch_size=5):
+    def get_batch(self, batch_size=5):
         """Get the next batch of ticker items, rotating continuously."""
         
-        # Simple caching/refresh strategy: Re-fetch if filter changes or first run
-        # In a real app, you might want a time-based TTL or dedicated background worker
-        if not self._cached_timeline or self._last_company_filter != companies_filter:
-            rows = self._fetch_raw_data()
-            company_map = self._process_data(rows)
-            timeline = self._build_timeline(company_map)
-            
-            # Filter
-            if companies_filter:
-                search_terms = [c.lower() for c in companies_filter if c.strip()]
-                if search_terms:
-                    timeline = [t for t in timeline if any(term in t["name"].lower() for term in search_terms)]
-            
-            self._cached_timeline = timeline
-            self._last_company_filter = companies_filter
-            self._current_index = 0 # Reset index on filter change
+        # Refresh cache if empty
+        if not self._cached_timeline:
+            rows = self._fetch_data_from_swf()
+            period_data = self._process_swf_data(rows)
+            self._cached_timeline = self._build_timeline(period_data)
+            self._current_index = 0
 
         if not self._cached_timeline:
             return []
@@ -159,22 +148,21 @@ class TickerService:
             idx = (self._current_index + i) % total_points
             item = self._cached_timeline[idx]
             
-            currency_badge = f" ({item['currency']})" if item['currency'] != "USD" else ""
-
             response_data.append({
                 "name": item["name"],
                 "period": item["period"],
-                "net_income": self._fmt_large_number(item['net_income']) + currency_badge,
-                "revenue": self._fmt_large_number(item['revenue']) + currency_badge,
+                "net_income": self._fmt_large_number(item['net_income']),
+                "revenue": self._fmt_large_number(item['revenue']),
                 "margin": f"{item['margin']}%" if item['margin'] is not None else "-",
                 "is_profit": item["is_profit"],
                 "status": "PROFIT" if item["is_profit"] else "LOSS"
             })
-            
+        
         # Rotate index
         self._current_index = (self._current_index + batch_size) % total_points
         
         return response_data
+
 
 # Singleton instance
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -407,45 +407,13 @@ async def login_page(request: Request):
 CURRENT_DATA_INDEX = 0
 
 @app.get("/api/manager/live-data")
-async def live_data(company: list[str] = Query(None), current_user: User = Depends(get_current_active_user)):
+async def live_data(current_user: User = Depends(get_current_active_user)):
     """
     Simulates a live data feed for the scrolling ticker.
-    Uses TickerService to fetch and rotate data.
+    Uses TickerService to fetch and rotate data from swf table.
     """
-    data = ticker_service.get_batch(companies_filter=company)
+    data = ticker_service.get_batch()
     return {"companies": data}
-
-@app.get("/api/companies/search")
-async def search_companies(q: str = "", current_user: User = Depends(get_current_active_user)):
-    """
-    Autocomplete endpoint for company search bar.
-    Returns list of distinct company names matching the query.
-    """
-    if not q:
-        return {"companies": []}
-        
-    
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    db_path = os.path.join(BASE_DIR, "data", "db", "financial_data.db")
-    
-    if not os.path.exists(db_path):
-        return {"companies": []}
-
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
-    
-    try:
-        # DB Search logic using LIKE for simple partial matching
-        query = "SELECT DISTINCT name FROM submissions WHERE name LIKE ? ORDER BY length(name) ASC, name ASC LIMIT 10"
-        rows = cursor.execute(query, (f"%{q}%",)).fetchall()
-        companies = [row[0] for row in rows]
-    except Exception as e:
-        print(f"Search error: {e}")
-        companies = []
-    finally:
-        conn.close()
-        
-    return {"companies": companies}
 
 @app.get("/manager", response_class=HTMLResponse)
 async def manager_dashboard(request: Request):
