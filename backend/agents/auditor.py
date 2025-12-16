@@ -53,8 +53,6 @@ GOOD EXAMPLE:
 GRAPH_PROMPT_INLINE = """
 **CRITICAL OVERRIDE INSTRUCTION:**
 You MUST generate a graph for THIS request. This is a MANDATORY graph generation task.
-Previous responses in the context are provided ONLY for reference and continuity.
-DO NOT let historical response patterns influence your current output.
 Your ONLY task NOW is to create a Plotly.js chart using the data provided.
 
 You generate Plotly.js charts from financial data.
@@ -62,10 +60,10 @@ You generate Plotly.js charts from financial data.
 Question: {question}
 Data: {context}
 
-DATA HANDLING:
-1. The provided data is weekly financial data (1934-2025).
-2. Use the values directly as they appear.
-3. Ensure 'x' axis labels reflect the Period (Year/Quarter).
+DATA SOURCES:
+1. P&L data (swf): Weekly financials (Revenue, Net Income, Costs) - use bar or line charts
+2. Stock data (stock_prices): Daily prices (open, close, volume) - use line, candlestick, or bar charts
+3. Metrics data: Margins, growth rates, variance - use bar or gauge charts
 
 OUTPUT FORMAT (STRICT):
 1. Text Response: Write ONLY "Graph generated." (nothing else, no tables, no explanations)
@@ -80,14 +78,13 @@ PLOTLY JSON FORMAT (MANDATORY - DO NOT USE CHART.JS):
 }}
 
 CHART TYPES:
-- "bar" for comparisons
-- "scatter" with "mode": "lines+markers" for trends
-- "pie" for percentages
+- "bar" for comparisons (Revenue, Costs, Volume)
+- "scatter" with "mode": "lines+markers" for trends (Price, Net Income over time)
+- "pie" for percentages (e.g., expense breakdown)
+- For stock OHLC: use "ohlc" or "candlestick" type with open, high, low, close arrays
 
-EXAMPLE OUTPUT:
-Graph generated.
-
-graph_data||{{"data":[{{"x":["2020","2021","2022","2023","2024"],"y":[500000000,650000000,780000000,850000000,990000000],"type":"bar","name":"Revenue"}}],"layout":{{"title":"Revenue Trend 2020-2024"}}}}||
+STOCK CHART EXAMPLE:
+graph_data||{{"data":[{{"x":["2020-01","2020-02"],"open":[100,105],"high":[110,115],"low":[95,100],"close":[105,110],"type":"candlestick","name":"Stock Price"}}],"layout":{{"title":"Stock Price Chart"}}}}||
 
 RULES:
 - Use ONLY Plotly.js format (with "data" and "layout" keys)

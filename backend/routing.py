@@ -73,62 +73,77 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
         except:
             pass
 
-    # 1. Intent Classification
-    if TESTING:
-        from backend.prompts import INTENT_PROMPT
-        print(" ****** INTENT_PROMPT from prompts.py for testing")
-        intent_prompt = INTENT_PROMPT.format(query=log_input_query)
-        # Note: prompts.py INTENT_PROMPT uses {query} input, while inline uses {log_input_query}
-    else:
-        print(" ****** INTENT_PROMPT original")
-        intent_prompt = f"""
-I am currently working on classifying user inputs into specific categories to better understand their intent. The two categories are: "CONVERSATIONAL" for greetings, small talk, and identity questions, and "ANALYTICAL" for inquiries that require data, numbers, financial information, or database lookups. I find this task essential for streamlining responses based on user interaction.
+    # ============================================
+    # LLM-BASED INTENT CLASSIFICATION (Multi-Label)
+    # ============================================
+    classification_prompt = f"""
+Classify this query into ONE OR MORE labels. Return ONLY the labels, comma-separated.
 
-Now, I want you to classify the following user input into one of the two categories. Please analyze the input: {log_input_query}. Your classification should reflect whether it falls under "CONVERSATIONAL" or "ANALYTICAL" based on the provided definitions.
+LABELS:
+- CONVERSATIONAL: Greetings, identity questions, non-financial chat ("Hello", "Who are you?")
+- DATA: Needs database lookup for numbers, metrics, trends ("Revenue for 2024", "Net income by quarter")
+- ADVISORY: Needs recommendation, strategy, decision guidance ("Should we expand?", "Is it safe to invest?")
 
-The goal is to receive a clear classification of the user input, returning only one word: "CONVERSATIONAL" or "ANALYTICAL". This will help in tailoring the response appropriately according to the user's needs.
-"""
-    
+RULES:
+1. If query asks for data AND wants advice based on it → return "DATA, ADVISORY"
+2. If query only asks for numbers/metrics → return "DATA"
+3. If query only asks for recommendation without specific data → return "ADVISORY"
+4. If query is just a greeting or non-financial → return "CONVERSATIONAL"
+
+EXAMPLES:
+"Hello" → CONVERSATIONAL
+"Revenue for 2024" → DATA
+"Should we increase salaries?" → ADVISORY
+"Based on 2024 revenue, should we expand?" → DATA, ADVISORY
+"What is net income and is it sustainable?" → DATA, ADVISORY
+"Is the company profitable enough to hire more staff?" → DATA, ADVISORY
+
+Query: "{log_input_query}"
+Labels:"""
+
     try:
-        classification = client.chat.completions.create(
-            messages=[{"role": "user", "content": intent_prompt}],
+        classification_response = client.chat.completions.create(
+            messages=[{"role": "user", "content": classification_prompt}],
             model=MODEL,
             temperature=0,
-            max_tokens=10
+            max_tokens=20
         ).choices[0].message.content.strip().upper()
+        
+        # Parse labels from response
+        labels = [l.strip() for l in classification_response.replace(",", " ").split() 
+                  if l.strip() in ["CONVERSATIONAL", "DATA", "ADVISORY"]]
+        
+        # Default to DATA if no valid labels found
+        if not labels:
+            labels = ["DATA"]
+            
     except Exception as e:
-        print(f"Intent Error: {e}")
-        classification = "ANALYTICAL"
+        print(f"Classification Error: {e}")
+        labels = ["DATA"]  # Default to data pipeline
+    
+    print(f"  → Intent Labels: {labels}")
 
-    if "CONVERSATIONAL" in classification:
+    # ============================================
+    # ROUTE BASED ON LABELS
+    # ============================================
+    
+    # Handle CONVERSATIONAL
+    if "CONVERSATIONAL" in labels and len(labels) == 1:
         try:
             from backend.agent_debug_logger import log_agent_interaction
             import uuid
             interaction_id = str(uuid.uuid4())
             
-            # Log only the cleaned user query
             log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
             
             if TESTING:
                 from backend.prompts import CONVERSATIONAL_PROMPT
-                print(" ****** CONVERSATIONAL_PROMPT from prompts.py for testing")
                 chat_prompt = CONVERSATIONAL_PROMPT.format(query=log_input_query)
             else:
-                print(" ****** CONVERSATIONAL_PROMPT original")
                 chat_prompt = f"""
-You are a professional Financial AI Assistant with extensive knowledge in personal finance, investments, and financial planning. Your primary goal is to provide accurate and insightful responses to users' financial queries while maintaining a tone that is both approachable and authoritative.
-
+You are a professional Financial AI Assistant. 
 User says: "{log_input_query}"
-
-Reply with a concise and well-structured response that addresses the user's question directly, providing relevant information and recommendations where applicable.
-
-The response should be formatted in a clear and professional manner, starting with a brief acknowledgment of the user's query, followed by the main content of the answer, and concluding with any actionable suggestions or next steps.
-
-Please keep in mind the following details:
-- Ensure your responses are grounded in factual data and best practices in finance.
-- Avoid using jargon without explanations to ensure clarity for all users.
-
-Be cautious of providing overly complex answers that may confuse the user. Aim for brevity and clarity while ensuring that all relevant aspects of the query are addressed.
+Reply with a concise, friendly response.
 """
             
             reply = client.chat.completions.create(
@@ -136,17 +151,41 @@ Be cautious of providing overly complex answers that may confuse the user. Aim f
                 model=MODEL
             ).choices[0].message.content
             
-            # Log the prompt template as "input" for the agent (better than full history), 
-            # Or just log the answer. Let's log the cleaned query as input to keep it simple as requested.
             log_agent_interaction(interaction_id, "ConversationalAgent", "Output", log_input_query, reply)
             return reply
         except Exception as e:
             print(f"Conversational Error: {e}")
             return "Hello! How can I assist you today?"
 
-    # Step 2: Planner - Decompose the Question
+    # Handle ADVISORY only (no data needed)
+    if labels == ["ADVISORY"]:
+        try:
+            from backend.agent_debug_logger import log_agent_interaction
+            from backend.agents.advisor import generate_advisory
+            import uuid
+            interaction_id = str(uuid.uuid4())
+            
+            log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
+            
+            if has_progress and query_id:
+                set_query_progress(query_id, "advisor", "Generating recommendation...")
+            
+            advisory_response = generate_advisory(log_input_query)
+            
+            log_agent_interaction(interaction_id, "AdvisorAgent", "Output", log_input_query, advisory_response)
+            return advisory_response
+            
+        except Exception as e:
+            print(f"Advisory Error: {e}")
+            traceback.print_exc()
+    
+    # Handle DATA or DATA+ADVISORY (need to run data pipeline first)
+    needs_data = "DATA" in labels
+    needs_advisory = "ADVISORY" in labels
+    
     if has_progress and query_id:
         set_query_progress(query_id, "planner", "Breaking down question...")
+
     
     try:
         from backend.d_log import dlog
@@ -230,6 +269,31 @@ Be cautious of providing overly complex answers that may confuse the user. Aim f
         # safe_answer = sanitize_content(final_answer)
         
         dlog(f"Final Output: {final_answer[:100]}...")
+        
+        # ============================================
+        # HYBRID: If DATA+ADVISORY, pass data to Advisor
+        # ============================================
+        if needs_advisory and needs_data:
+            try:
+                from backend.agents.advisor import generate_advisory
+                
+                if has_progress and query_id:
+                    set_query_progress(query_id, "advisor", "Generating recommendation...")
+                
+                # Pass the data context to advisor
+                advisory_response = generate_advisory(log_input_query, data_context=final_answer)
+                
+                log_agent_interaction(interaction_id, "AdvisorAgent", "Output", log_input_query, advisory_response)
+                
+                # Combine data answer with advisory recommendation
+                combined_response = f"{final_answer}\n\n---\n\n**Advisory Analysis:**\n\n{advisory_response}"
+                
+                dlog(f"Hybrid Response Generated (DATA + ADVISORY)")
+                return combined_response
+                
+            except Exception as e:
+                print(f"Hybrid Advisory Error: {e}")
+                # Return just the data answer if advisory fails
         
         # Save to testing.json if TESTING is enabled
         if TESTING:

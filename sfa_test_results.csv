@@ -1,0 +1,94 @@
+id,category,query,expected_source,status,response_preview
+1,P&L,What is the total revenue for 2024?,swf,PASS,"The total revenue for 2024 is $43.99B.
+
+| Period | Total Revenue |
+| --- | --- |
+| 2024 | $43.99B |"
+2,P&L,Show me net income for the last 3 years,swf,PASS,"Net income for the last 3 years is as follows:
+| Year | Net Income |
+|------|------------|
+| 2025 | $782.32B |
+| 2024 | $86.09B |
+| 2023 | $64.28B |"
+3,P&L,What was the cost of revenue in Q4 2023?,swf,PASS,"The cost of revenue for Q4 2023 was -$18.66B.
+
+| Period | Cost of Revenue |
+| Q4 2023 | -$18.66B |"
+4,P&L,Compare revenue and gross profit for 2024,swf,PASS,"Revenue for 2024: 
+| Qtr | Revenue  | Gross Profit |
+|-----|-----------|--------------|
+| Q1  | $10.33B   | $27.47B      |
+| Q2  | $12.34B   | $27.68B      |
+| Q3  | $7.50B    | $26.99B      |
+| Q4  |"
+5,P&L,What is the operating income for 2024?,swf,PASS,"The operating income for 2024 is:
+| Qtr | Operating Income |
+|-----|------------------|
+| Q1  | $15.48B         |
+| Q2  | $17.38B         |
+| Q3  | $12.63B         |
+| Q4  | $15.43B         |"
+6,Stock,What was the best closing price in 2020?,stock_prices,PASS,"The best closing price in 2020 was $411.55 on November 27, 2020.
+
+| Date       | Best Close |
+|:-----------|------------:|
+| 2020-11-27 |      $411.55 |"
+7,Stock,Show me stock volume for January 2015,stock_prices,PASS,"Stock volume for January 2015:
+| Date       | Volume   |
+|------------|----------|
+| 2015-01-01 | 1,456,204 |
+| 2015-01-02 | 2,894,058 |
+| 2015-01-05 | 2,099,786 |
+| 2015-01-06 | 3,672,197 |
+| 2015-01"
+8,Stock,What was the opening price on 2020-01-15?,stock_prices,PASS,"The opening price on 2020-01-15 is not available. The closest available opening price before that date was on 2020-01-14.
+
+| Date       | Open |
+|:-----------|------:|
+| 2020-01-14 |   391 |"
+9,Stock,Give me the average closing price for 2019,stock_prices,PASS,"The average closing price for 2019 is $380.33.
+
+| Average Closing Price 2019 |
+|--------------------------:|
+|              $380.33     |"
+10,Stock,What days had volume above 5 million in 2010?,stock_prices,PASS,"In 2010, there were two trading days with volume above 5 million.
+
+| Date       | Volume   |
+|------------|----------|
+| 2010-04-01 | 12.52M   |
+| 2010-11-26 | 5.08M    |"
+11,Metrics,What is the gross margin for 2024?,profitability_metrics,PASS,"The gross margin percentages for 2024 are as follows:
+
+| Quarter | Gross Margin % |
+| --- | --- |
+| Q1 2024 | 265.96 |
+| Q2 2024 | 224.29 |
+| Q3 2024 | 359.95 |
+| Q4 2024 | 212.02 |"
+12,Metrics,Is net income growing?,growth_metrics,PASS,"Net income for 2025 is $782.32B. The trend is growing for Q2, Q3, and Q4, with growth rates of 149.24%, 19.38%, and 2376.28%, respectively.
+
+| Qtr | Growth Rate QoQ | Trend    |
+|-----:|--------------"
+13,Metrics,Are we on target for revenue?,variance_analysis,PASS,"Revenue for 2025: $985.33B. 
+No target data available for comparison. 
+| Year | Total Revenue |
+| 2025 | $985.33B |"
+14,Metrics,What is the operating margin trend?,profitability_metrics,PASS,"The operating margin trend for 2025 is as follows:
+| Qtr | Operating Margin (%) |
+|-----|---------------------:|
+| Q1  |                 123.95 |
+| Q2  |                  83.28 |
+| Q3  |              "
+15,Advisory,What is the best way to improve our profit?,ADVISORY,PASS,"1. **Key Insight:** The company is experiencing exceptional revenue and net income growth, with strong profit margins and efficient operations.
+2. **Assessment:** This is a very positive situation, in"
+16,Advisory,Should we reduce costs?,ADVISORY,PASS,"1. **Key Insight:** The company is experiencing exceptional revenue and net income growth, with strong margins indicating efficient operations and pricing power.
+2. **Assessment:** This is a positive "
+17,Advisory,How can we improve our margins?,ADVISORY,PASS,"1. **Key Insight:** The company is experiencing exceptional revenue and net income growth, with strong margins indicating efficient operations and pricing power.
+2. **Assessment:** This is a positive "
+18,Advisory,What strategy should we use for revenue growth?,ADVISORY,PASS,"1. **Key Insight:** The company is experiencing extremely high revenue growth of 5590.38% quarter-over-quarter, with strong profitability indicators such as a gross margin of 288.44% and a net margin "
+19,Non-Financial,"Hello, who are you?",CONVERSATIONAL,PASS,"**Introduction and Acknowledgment**
+Hello, and thank you for reaching out. I'm glad you asked about my identity and purpose.
+
+**Main Content**
+I am a professional Financial AI Assistant, designed to p"
+20,Non-Financial,What's the weather?,CONVERSATIONAL,PASS,Data not available for this query.
