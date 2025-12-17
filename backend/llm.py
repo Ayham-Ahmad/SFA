@@ -62,8 +62,8 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
     # Import tag information from sql_loader
     from backend.ingestion.sql_loader import get_tags_for_prompt, get_companies_for_prompt, get_company_mapping_for_prompt
     available_tags = get_tags_for_prompt()
-    sample_companies = get_companies_for_prompt()
-    company_mapping = get_company_mapping_for_prompt()
+    # sample_companies = get_companies_for_prompt()
+    # company_mapping = get_company_mapping_for_prompt()
     
     # Step 1: Ask LLM to generate SQL
     if TESTING:
@@ -77,96 +77,84 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
         )
     else:
         print(" ****** SQL_GENERATION_PROMPT original")
-        sql_generation_prompt = f"""
-You are a precise SQL generation model. Your ONLY job is to write a valid SQLite query.
+        sql_generation_prompt = f"""You are a precise SQL generator for a financial database.
 
-Schema: {schema}
+===== CRITICAL DATA RULES =====
 
-===== AVAILABLE DATA SOURCES =====
+1. THIS IS SYNTHETIC DATA - There are NO company names in the database.
+2. Do NOT query for specific companies like Apple, Microsoft, Amazon, etc.
+3. If the user asks about a specific company, the data does NOT exist.
+4. The `swf` table contains aggregated synthetic P&L data, NOT company-specific data.
 
-1. `swf` - PRIMARY P&L TABLE (Weekly Financials)
-   - Columns: yr, qtr, mo, wk, item, val
-   - Items: 'Revenue', 'Net Income', 'Cost of Revenue', 'Gross Profit', 'Operating Income', etc.
-   - Use for: Revenue, profit, cost, income statement queries
+===== AVAILABLE TABLES =====
 
-2. `stock_prices` - STOCK DATA TABLE (Daily Prices)
-   - Columns: date, symbol, open, high, low, close, volume, yr, mo, day, daily_return
-   - Use for: Stock price, volume, trading queries
-   
-3. `financial_targets` - BUDGET TABLE
-   - Columns: yr, qtr, metric, target_value, source
-   - Use for: Budget vs actual comparisons
+TABLE: swf (Primary P&L Data)
+- Columns: yr, qtr, mo, wk, item, val
+- Items: 'Revenue', 'Net Income', 'Cost of Revenue', 'Gross Profit', 'Operating Income', 'Operating Expenses', 'Income Tax Expense', 'Other Income / Expense', 'Income Before Tax'
+- Use for: Revenue, profit, cost questions
 
-4. `profitability_metrics` - VIEW (Quarterly Margins)
-   - Columns: yr, qtr, gross_margin_pct, operating_margin_pct, net_margin_pct
-   - Use for: Margin queries, efficiency analysis
+TABLE: stock_prices (Daily Stock Data)  
+- Columns: date, symbol, open, high, low, close, volume, yr, mo, day, daily_return
+- Use for: Stock price, open, close, volume questions
 
-5. `variance_analysis` - VIEW (Budget vs Actual)
-   - Columns: yr, qtr, metric, actual_value, target_value, variance_pct, status
-   - Use for: Variance questions, "are we on target?"
+TABLE: stock_metrics (Derived Stock Metrics)
+- Columns: yr, mo, avg_close, max_high, min_low, total_volume, intraday_volatility_pct
+- Use for: Volatility, monthly summaries
 
-6. `growth_metrics` - VIEW (QoQ Growth)
-   - Columns: yr, qtr, item, growth_rate_qoq, trend
-   - Use for: Growth rate, trend analysis
+VIEW: profitability_metrics (Margins)
+- Columns: yr, qtr, gross_margin_pct, operating_margin_pct, net_margin_pct
+- Use for: Margin questions
 
-===== QUERY ROUTING RULES =====
+VIEW: variance_analysis (Budget vs Actual)
+- Columns: yr, qtr, metric, actual_value, target_value, variance_pct, status
+- Use for: Budget, target questions
 
-| Question Type | Use Table/View |
-|---------------|----------------|
-| Revenue, Net Income, Costs | `swf` |
-| Operating expenses, tax expense | `swf` (item LIKE '%Expense%') |
-| Stock price, close, open, volume | `stock_prices` |
-| Stock volatility | `stock_metrics` (intraday_volatility_pct column) |
-| Budget, target, on track | `variance_analysis` or `financial_targets` |
-| Margin, gross margin, net margin | `profitability_metrics` |
-| Growth rate, growing, declining | `growth_metrics` |
+VIEW: growth_metrics (Growth Rates)
+- Columns: yr, qtr, item, growth_rate_qoq, trend
+- Use for: Growth rate questions
+
+===== SQL GENERATION RULES =====
+
+1. Match question to correct table based on keywords
+2. For P&L items (revenue, income, costs) → use `swf` table
+3. For stock prices (open, close, high, low) → use `stock_prices` table
+4. For volatility → use `stock_metrics` table
+5. For margins → use `profitability_metrics` view
+6. For budgets/targets → use `variance_analysis` view
+7. For growth → use `growth_metrics` view
+8. Always include ORDER BY for time-series data
+9. Use SUM() or AVG() for aggregations
+10. Filter by year using `yr = YYYY`
 
 ===== EXAMPLES =====
 
-User: "Revenue for 2024"
+"Revenue for 2024" →
 ```sql
-SELECT yr, qtr, SUM(val) as revenue FROM swf WHERE item = 'Revenue' AND yr = 2024 GROUP BY yr, qtr ORDER BY qtr;
+SELECT yr, qtr, SUM(val) as revenue FROM swf WHERE item = 'Revenue' AND yr = 2024 GROUP BY yr, qtr ORDER BY qtr
 ```
 
-User: "Operating expenses for 2024"
+"Open vs close price 2020" →
 ```sql
-SELECT yr, qtr, item, SUM(val) as expense FROM swf WHERE item LIKE '%Expense%' AND yr = 2024 GROUP BY yr, qtr, item;
+SELECT date, open, close FROM stock_prices WHERE yr = 2020 ORDER BY date
 ```
 
-User: "Stock volatility in 2020"
+"Stock volatility in 2020" →
 ```sql
-SELECT yr, AVG(intraday_volatility_pct) as avg_volatility FROM stock_metrics WHERE yr = 2020 GROUP BY yr;
+SELECT yr, mo, intraday_volatility_pct FROM stock_metrics WHERE yr = 2020 ORDER BY mo
 ```
 
-User: "Best closing price in 2020"
+"Gross margin 2024" →
 ```sql
-SELECT MAX(close) as best_close, date FROM stock_prices WHERE yr = 2020;
+SELECT yr, qtr, gross_margin_pct FROM profitability_metrics WHERE yr = 2024 ORDER BY qtr
 ```
 
-User: "What is the gross margin for 2024?"
+===== OUTPUT FORMAT =====
+
 ```sql
-SELECT yr, qtr, gross_margin_pct FROM profitability_metrics WHERE yr = 2024;
+YOUR_QUERY_HERE
 ```
 
-User: "Are we on target for revenue?"
-```sql
-SELECT yr, qtr, metric, actual_value, target_value, variance_pct, status FROM variance_analysis WHERE metric = 'Revenue' ORDER BY yr DESC, qtr DESC LIMIT 4;
-```
-
-User: "Is net income growing?"
-```sql
-SELECT yr, qtr, growth_rate_qoq, trend FROM growth_metrics WHERE item = 'Net Income' ORDER BY yr DESC, qtr DESC LIMIT 8;
-```
-
-User: "Stock volume above 1 million in 2015"
-```sql
-SELECT date, volume, close FROM stock_prices WHERE yr = 2015 AND volume > 1000000;
-```
-
-===== OUTPUT RULES =====
-- WRAP SQL IN: ```sql ... ```
-- No explanations.
-- Use appropriate table/view based on question type.
+No explanations. Only the SQL query wrapped in code blocks.
 
 Question: {question}
 """

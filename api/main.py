@@ -144,71 +144,103 @@ async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_c
     """
     Main endpoint for interacting with the AI Financial Advisor.
     Handles message history context, RAG pipeline execution, and storing history.
+    
+    For graph requests (interaction_type='graph'), uses dedicated graph pipeline
+    that builds charts programmatically without LLM involvement.
     """
     start_time = time.time()
     query_id = request.query_id if request.query_id else str(uuid4())
     
-    # 1. Determine Interaction Type (Standard Query or Graph Request)
+    # 1. Determine Interaction Type
     itype = InteractionType.QUERY
-    if request.interaction_type == "graph_button":
+    is_graph_request = request.interaction_type == "graph"
+    if is_graph_request:
         itype = InteractionType.GRAPH_BUTTON
 
     # 2. Retrieve Chat History for Context
-    # Fetching the *last two* interactions to provide conversational context to the LLM
     query_builder = db.query(ChatHistory).filter(ChatHistory.user_id == current_user.id)
     
-    # Filter by session if provided to keep context tight
     if request.session_id:
          query_builder = query_builder.filter(ChatHistory.session_id == request.session_id)
          
-    # Get the most recent 2 entries
     last_exchanges = query_builder.order_by(ChatHistory.timestamp.desc()).limit(2).all()
 
     full_context_query = request.message
     
     # 3. Inject Context
     if last_exchanges:
-        # Reverse to chronological order (oldest -> newest)
         history_lines = []
         for ex in reversed(last_exchanges):
-            # Strip graph data from historical answers to prevent context pollution
-            # This ensures the LLM doesn't learn patterns from previous graph/no-graph responses
             answer_clean = ex.answer.split("graph_data||")[0].strip() if "graph_data||" in ex.answer else ex.answer
             history_lines.append(f"Q: {ex.question} -> A: {answer_clean}")
         
         context_str = "\n".join(history_lines)
         full_context_query = f"Context:\n{context_str}\nUser Query: {request.message}"
     
-    # 4. Execute the RAG Pipeline in a cancellable async task with 2-minute timeout
+    # 4. Execute the appropriate pipeline
+    response_text = ""
+    chart_data = None  # New: contains chart_type, labels, values, title
+    
     try:
-        # Initialize progress tracking
         set_query_progress(query_id, "planner", "Analyzing question...")
         
-        # Wrap the synchronous RAMAS pipeline in an async task
-        async def run_pipeline():
-            return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id)
-        
-        task = asyncio.create_task(run_pipeline())
-        active_queries[query_id] = task
-        
-        try:
-            # Add 2-minute timeout (120 seconds)
-            response = await asyncio.wait_for(task, timeout=120.0)
-        except asyncio.TimeoutError:
-            task.cancel()
-            response = "Query timed out after 2 minutes. Please try a more specific question."
-            # Log timeout to debug log
-            _log_cancellation(query_id, request.message, "timeout")
-        except CancelledError:
-            response = "Query cancelled by user."
-            # Log user cancellation to debug log
-            _log_cancellation(query_id, request.message, "user_cancelled")
-        finally:
-            active_queries.pop(query_id, None)
-            clear_query_progress(query_id)  # Clean up progress tracking
+        if is_graph_request:
+            # Use NEW clean graph pipeline (returns raw data, frontend renders)
+            from backend.graph_pipeline import run_graph_pipeline
+            
+            async def run_pipeline():
+                return await asyncio.to_thread(run_graph_pipeline, request.message, query_id)
+            
+            task = asyncio.create_task(run_pipeline())
+            active_queries[query_id] = task
+            
+            try:
+                result = await asyncio.wait_for(task, timeout=120.0)
+                
+                # Graph pipeline returns: {success, chart_type, labels, values, title, message}
+                response_text = result.get("message", "")
+                
+                if result.get("success"):
+                    chart_data = {
+                        "chart_type": result.get("chart_type"),
+                        "labels": result.get("labels"),
+                        "values": result.get("values"),
+                        "title": result.get("title")
+                    }
+                    
+            except asyncio.TimeoutError:
+                task.cancel()
+                response_text = "Query timed out. Please try a simpler question."
+                _log_cancellation(query_id, request.message, "timeout")
+            except CancelledError:
+                response_text = "Query cancelled by user."
+                _log_cancellation(query_id, request.message, "user_cancelled")
+            finally:
+                active_queries.pop(query_id, None)
+                clear_query_progress(query_id)
+        else:
+            # Use standard RAMAS pipeline for text responses
+            async def run_pipeline():
+                return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id)
+            
+            task = asyncio.create_task(run_pipeline())
+            active_queries[query_id] = task
+            
+            try:
+                response_text = await asyncio.wait_for(task, timeout=120.0)
+            except asyncio.TimeoutError:
+                task.cancel()
+                response_text = "Query timed out after 2 minutes. Please try a more specific question."
+                _log_cancellation(query_id, request.message, "timeout")
+            except CancelledError:
+                response_text = "Query cancelled by user."
+                _log_cancellation(query_id, request.message, "user_cancelled")
+            finally:
+                active_queries.pop(query_id, None)
+                clear_query_progress(query_id)
     
     except Exception as e:
-        response = f"An error occurred: {str(e)}"
+        response_text = f"An error occurred: {str(e)}"
     
     # Measure processing time
     end_time = time.time()
@@ -219,17 +251,23 @@ async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_c
         user_id=current_user.id,
         session_id=request.session_id,
         question=request.message,
-        answer=response,
+        answer=response_text,
         interaction_type=itype,
         response_time_seconds=duration,
-        user_feedback=None # Feedback is null until user rates it
+        user_feedback=None
     )
     db.add(new_history)
     db.commit()
-    db.refresh(new_history) # Refresh to get the auto-generated ID
+    db.refresh(new_history)
     
-    # Return response and the ID (so frontend can use it for feedback)
-    return {"response": response, "chat_id": new_history.id, "query_id": query_id}
+    # 6. Return structured response
+    # For graph requests: include chart_data with raw data for frontend templates
+    return {
+        "response": response_text,
+        "chart_data": chart_data,  # {chart_type, labels, values, title} or None
+        "chat_id": new_history.id,
+        "query_id": query_id
+    }
 
 @app.post("/chat/cancel/{query_id}")
 async def cancel_query(query_id: str, current_user: User = Depends(get_current_active_user)):

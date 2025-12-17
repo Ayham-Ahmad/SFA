@@ -363,12 +363,26 @@
 
         // Incoming Graph Request Handler
         handleNewIncomingGraph(graphJson) {
-            // Robustness check: Do not add if data is empty
-            if (!graphJson.data || graphJson.data.length === 0 || (graphJson.data[0].x && graphJson.data[0].x.length === 0)) {
-                console.warn("Received empty graph data. Skipping.");
+            console.log("[GraphManager] Received graph data:", graphJson);
+
+            // Robustness check: Ensure we have valid Plotly data
+            if (!graphJson || !graphJson.data || graphJson.data.length === 0) {
+                console.warn("[GraphManager] Empty or invalid graph data. Skipping.");
                 return;
             }
 
+            // Check first trace has data (could be x/y for bar/line or labels/values for pie)
+            const firstTrace = graphJson.data[0];
+            const hasData = (firstTrace.x && firstTrace.x.length > 0) ||
+                (firstTrace.y && firstTrace.y.length > 0) ||
+                (firstTrace.labels && firstTrace.labels.length > 0);
+
+            if (!hasData) {
+                console.warn("[GraphManager] First trace has no data. Skipping.");
+                return;
+            }
+
+            console.log("[GraphManager] Valid graph - starting placement mode");
             this.pendingGraphData = graphJson;
             this.toggleEditMode(true);
 
@@ -430,6 +444,119 @@
         }
     };
 
+    // ========================================
+    // HARDCODED CHART TEMPLATES
+    // Beautiful, consistent Plotly charts
+    // ========================================
+    function buildChartFromTemplate(chartData) {
+        const { chart_type, labels, values, title } = chartData;
+
+        // Color palette for charts
+        const colors = {
+            primary: '#4CAF50',      // Green
+            secondary: '#2196F3',    // Blue
+            accent: '#FF9800',       // Orange
+            danger: '#f44336',       // Red
+            purple: '#9C27B0',
+            gradient: ['#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107']
+        };
+
+        // Common layout settings
+        const commonLayout = {
+            title: { text: title, font: { size: 16, color: '#333' } },
+            margin: { l: 50, r: 30, t: 50, b: 50 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            font: { family: 'system-ui, -apple-system, sans-serif' }
+        };
+
+        switch (chart_type) {
+            case 'bar':
+                return {
+                    data: [{
+                        x: labels,
+                        y: values,
+                        type: 'bar',
+                        marker: {
+                            color: colors.gradient.slice(0, values.length),
+                            line: { color: '#fff', width: 1 }
+                        },
+                        hovertemplate: '%{x}<br>$%{y:,.2f}<extra></extra>'
+                    }],
+                    layout: {
+                        ...commonLayout,
+                        xaxis: { tickangle: -45, tickfont: { size: 10 } },
+                        yaxis: { title: 'USD', gridcolor: 'rgba(0,0,0,0.1)' }
+                    }
+                };
+
+            case 'line':
+                return {
+                    data: [{
+                        x: labels,
+                        y: values,
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        line: { color: colors.secondary, width: 3, shape: 'spline' },
+                        marker: { size: 8, color: colors.secondary },
+                        fill: 'tozeroy',
+                        fillcolor: 'rgba(33, 150, 243, 0.1)',
+                        hovertemplate: '%{x}<br>$%{y:,.2f}<extra></extra>'
+                    }],
+                    layout: {
+                        ...commonLayout,
+                        xaxis: { tickangle: -45, tickfont: { size: 10 } },
+                        yaxis: { title: 'USD', gridcolor: 'rgba(0,0,0,0.1)' }
+                    }
+                };
+
+            case 'pie':
+                return {
+                    data: [{
+                        labels: labels,
+                        values: values,
+                        type: 'pie',
+                        hole: 0.4,
+                        marker: { colors: colors.gradient },
+                        textinfo: 'label+percent',
+                        textposition: 'outside',
+                        hovertemplate: '%{label}<br>$%{value:,.2f}<br>%{percent}<extra></extra>'
+                    }],
+                    layout: {
+                        ...commonLayout,
+                        showlegend: false
+                    }
+                };
+
+            case 'scatter':
+                return {
+                    data: [{
+                        x: labels.map((_, i) => i + 1),
+                        y: values,
+                        type: 'scatter',
+                        mode: 'markers',
+                        marker: {
+                            size: 12,
+                            color: values,
+                            colorscale: 'Viridis',
+                            showscale: true
+                        },
+                        text: labels,
+                        hovertemplate: '%{text}<br>$%{y:,.2f}<extra></extra>'
+                    }],
+                    layout: {
+                        ...commonLayout,
+                        xaxis: { title: 'Index' },
+                        yaxis: { title: 'Value', gridcolor: 'rgba(0,0,0,0.1)' }
+                    }
+                };
+
+            default:
+                // Default to bar chart
+                return buildChartFromTemplate({ ...chartData, chart_type: 'bar' });
+        }
+    }
+
     // Chat Logic
     let timerInterval;
     let lastRequestWasGraph = false;
@@ -441,22 +568,118 @@
     // Request Graph from AI
     async function requestGraph() {
         const input = document.getElementById('user-input');
+        const statusDiv = document.getElementById('status-indicator');
+        const sendBtn = document.getElementById('send-btn');
+        const stopBtn = document.getElementById('stop-btn');
         let message = input.value.trim();
 
         // Caching Logic: If input is empty, and we have cached data, use it!
         if (!message && graphManager.cachedGraphData) {
-            addMessage("Displaying graph for recent data...", 'user-msg'); // Artificial user msg
+            addMessage("Displaying graph for recent data...", 'user-msg');
             graphManager.handleNewIncomingGraph(graphManager.cachedGraphData);
             return;
         }
 
         if (!message) {
-            alert("Please type what you want to graph (e.g. 'Net Income of Apple')");
+            alert("Please type what you want to graph (e.g. 'Net Income for 2024')");
             return;
         }
-        // KEY CHANGE: Add prefix
-        input.value = "[GRAPH_REQ] " + message;
-        sendMessage();
+
+        // Add user message to chat
+        addMessage(message, 'user-msg');
+        input.value = '';
+        input.disabled = true;
+        sendBtn.style.display = 'none';
+        stopBtn.style.display = 'inline-block';
+
+        currentQueryId = crypto.randomUUID();
+
+        // Start Timer
+        let seconds = 0;
+        statusDiv.innerHTML = '<i class="fas fa-chart-bar fa-spin me-2"></i>Preparing graph...';
+        timerInterval = setInterval(() => { seconds++; }, 1000);
+
+        const token = localStorage.getItem('token');
+
+        // Progress polling
+        let progressInterval = setInterval(async () => {
+            try {
+                const progressRes = await fetch(`/chat/status/${currentQueryId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const progress = await progressRes.json();
+                if (progress.agent) {
+                    const agentName = progress.agent.charAt(0).toUpperCase() + progress.agent.slice(1);
+                    const step = progress.step || '';
+                    statusDiv.innerHTML = `<i class="fas fa-chart-bar fa-spin me-2"></i>${agentName} ${step} (${seconds}s)`;
+                }
+            } catch (e) { }
+        }, 500);
+
+        try {
+            // Send request with interaction_type: 'graph'
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    message,
+                    session_id: chatSessionId,
+                    query_id: currentQueryId,
+                    interaction_type: 'graph'
+                })
+            });
+            const data = await response.json();
+            console.log("[Graph Debug] API Response:", data);
+
+            clearInterval(timerInterval);
+            clearInterval(progressInterval);
+
+            // Handle NEW graph response format: chart_data = {chart_type, labels, values, title}
+            if (data.chart_data && data.chart_data.labels && data.chart_data.values) {
+                console.log("[Graph Debug] chart_data received:", data.chart_data);
+                statusDiv.innerHTML = '<i class="fas fa-check text-success me-2"></i>Graph ready! Click a slot above.';
+
+                // Add bot message
+                addMessage(data.response, 'bot-msg', data.chat_id);
+
+                try {
+                    // Build Plotly chart from hardcoded template
+                    const plotlyData = buildChartFromTemplate(data.chart_data);
+                    console.log("[Graph Debug] Plotly data built:", plotlyData);
+
+                    // Scroll to graph space
+                    document.getElementById('graphs-space').scrollIntoView({ behavior: 'smooth' });
+
+                    // Cache and trigger graph placement mode
+                    graphManager.cachedGraphData = plotlyData;
+                    graphManager.handleNewIncomingGraph(plotlyData);
+                } catch (templateErr) {
+                    console.error("[Graph Debug] Template error:", templateErr);
+                    addMessage("Error building chart: " + templateErr.message, 'bot-msg');
+                }
+            } else {
+                // No data available
+                console.log("[Graph Debug] No chart_data in response");
+                statusDiv.innerHTML = '<i class="fas fa-exclamation-triangle text-warning me-2"></i>No graph data.';
+                addMessage(data.response || "No data available for this query.", 'bot-msg', data.chat_id);
+            }
+
+        } catch (error) {
+            console.error("[Graph Debug] Fetch error:", error);
+            clearInterval(timerInterval);
+            clearInterval(progressInterval);
+            statusDiv.textContent = 'Error occurred.';
+            addMessage('Error: Could not generate graph. Check console for details.', 'bot-msg');
+        } finally {
+            input.disabled = false;
+            sendBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+            currentQueryId = null;
+            input.focus();
+        }
     }
 
     async function sendMessage() {
@@ -466,13 +689,6 @@
         const stopBtn = document.getElementById('stop-btn');
         const message = input.value.trim();
         if (!message) return;
-
-        // Determine if this was a graph request
-        if (input.value.includes('[GRAPH_REQ]')) {
-            lastRequestWasGraph = true;
-        } else {
-            lastRequestWasGraph = false;
-        }
 
         addMessage(message, 'user-msg');
         input.value = '';

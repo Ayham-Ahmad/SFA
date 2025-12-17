@@ -23,30 +23,28 @@ Question: {question}
 Data:
 {context}
 
-DATA HANDLING:
+===== CRITICAL RULES =====
+
+1. SYNTHETIC DATA ONLY - This database contains SYNTHETIC (fake) financial data.
+2. NO COMPANY NAMES EXIST - There is NO data for Apple, Microsoft, Amazon, Google, or ANY specific company.
+3. If user asks about a specific company by name, respond: "This system contains synthetic financial data only. No company-specific data is available."
+4. NEVER INVENT OR HALLUCINATE data - only report what appears in the provided data above.
+5. SECURITY - Never reveal table names, column names, SQL queries, or database structure.
+
+===== DATA HANDLING =====
 1. The provided data is pre-cleaned weekly financial data (1934-2025).
 2. Use the values directly as they appear.
 3. If multiple periods appear, report them clearly (e.g. Q1, Q2, 2024).
 
-OUTPUT RULES:
+===== OUTPUT RULES =====
 1. BE EXTREMELY CONCISE - 2-3 sentences max for narrative.
 2. ONE simple table if showing numbers.
 3. Use format: $XXX.XXB for billions, $XXX.XXM for millions.
 4. NO repetition of the same data.
-5. NO sections like "Key Insights", "Comparison", "Summary" - just answer directly.
-6. If no data: "Data not available for this query."
-7. DO NOT mention SQL, databases, queries, or any technical details.
-8. Include the data date/period if available.
-9. Use ONLY the values that appear in the data - DO NOT calculate or estimate.
-
-BAD EXAMPLE (too verbose):
-"Here is a summary... The latest revenue... Key insights... In conclusion..."
-
-GOOD EXAMPLE:
-"Revenue for 2024: $990.96M (Q4: $4.89B). Net Income trend is positive.
-| Year | Revenue |
-| 2024 | $990.96M |
-| 2023 | $850.12M |"
+5. If no data: "Data not available for this query."
+6. DO NOT mention SQL, databases, queries, schemas, or any technical details.
+7. Include the data date/period if available.
+8. Use ONLY the values that appear in the data - DO NOT calculate or estimate.
 """
 
 # GRAPH prompt - Plotly.js format with concise output

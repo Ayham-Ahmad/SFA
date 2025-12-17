@@ -20,23 +20,33 @@ FAST_MODEL = "llama-3.1-8b-instant"  # Fast model for simple classification
 
 def detect_chart_type(question: str, data_summary: str) -> str:
     """
-    Ask LLM to determine the best chart type for the data.
+    Use LLM to select the best chart type based on the Graph Decision Matrix.
+    Chart building is still programmatic - LLM only selects the type.
+    
     Returns one of: 'bar', 'line', 'pie', 'scatter'
     """
-    prompt = f"""Based on this question and data, what is the BEST chart type?
+    prompt = f"""Based on this question and data, recommend the BEST chart type using the Graph Decision Matrix.
 
 Question: {question}
 Data: {data_summary[:300]}
 
-RESPOND WITH ONLY ONE WORD from: bar, line, pie, scatter
+GRAPH DECISION MATRIX:
+- Bar/Column → for comparing categories or displaying time-based data (e.g., revenue by company, costs by department)
+- Line/Area → for illustrating time trends by date (e.g., revenue over quarters, stock price over months)
+- Pie/Donut → for demonstrating part-to-whole relationships (e.g., expense breakdown, market share percentages)
+- Scatter → for analyzing relationships between two numeric measures (e.g., price vs volume correlation)
 
-Rules:
-- "bar" for comparing categories/companies
-- "line" for time trends (multiple years/dates)
-- "pie" for showing parts of a whole (percentages)
-- "scatter" for correlations between two metrics
+INTENT ANALYSIS:
+- Comparative Analysis → Bar
+- Time Trend → Line
+- Composition/Breakdown → Pie
+- Correlation → Scatter
 
-Answer (ONE WORD ONLY):"""
+If no clear match is identified, default to Bar.
+
+RESPOND WITH ONLY ONE WORD: bar, line, pie, or scatter
+
+Answer:"""
 
     try:
         response = client.chat.completions.create(
