@@ -71,20 +71,30 @@ def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
     """
     from backend.llm import run_chain_of_tables
     
+    print(f"\n[GraphPipeline] ========== GRAPH QUERY START ==========")
+    print(f"[GraphPipeline] Question: {question}")
+    
     # run_chain_of_tables generates SQL internally and returns formatted results
     result = run_chain_of_tables(question)
     
     if not result:
-        print("[GraphPipeline] No result from chain_of_tables")
+        print("[GraphPipeline] ERROR: No result from chain_of_tables")
         return None
+    
+    print(f"[GraphPipeline] Result length: {len(result)} chars")
+    print(f"[GraphPipeline] Full result:\n{result[:1000]}")
     
     # Check for error or no data signals
     if "Error" in result or "NO_DATA_FOUND" in result:
-        print(f"[GraphPipeline] Query returned error or no data")
+        print(f"[GraphPipeline] ERROR: Query returned error or no data signal")
         return None
     
-    print(f"[GraphPipeline] Got result: {result[:200]}...")
+    # Check if result contains a markdown table
+    if '|' not in result:
+        print(f"[GraphPipeline] ERROR: No markdown table found in result")
+        return None
     
+    print(f"[GraphPipeline] ========== GRAPH QUERY SUCCESS ==========\n")
     return {"result": result}
 
 
@@ -93,15 +103,19 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     Parse markdown table result into lists of labels and values.
     Returns: {labels: [], values: [], columns: []}
     """
+    print(f"[GraphPipeline] Parsing result text (first 500 chars):\n{result_text[:500]}")
+    
     lines = result_text.strip().split('\n')
     table_lines = [l for l in lines if l.strip().startswith('|')]
     
     if len(table_lines) < 2:
+        print("[GraphPipeline] No valid table found")
         return None
     
     # Parse header
     header = table_lines[0]
-    columns = [c.strip() for c in header.split('|') if c.strip()]
+    columns = [c.strip().lower() for c in header.split('|') if c.strip()]
+    print(f"[GraphPipeline] Columns found: {columns}")
     
     # Skip separator line
     data_start = 1
@@ -116,18 +130,68 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
             rows.append(cells)
     
     if not rows:
+        print("[GraphPipeline] No data rows found")
         return None
     
-    # Extract labels (first column) and values (last numeric column)
-    labels = [row[0] for row in rows]
+    print(f"[GraphPipeline] Found {len(rows)} data rows")
     
-    # Find best value column (last column with numeric-looking data)
-    values = []
+    # Smart label detection: prefer qtr, then date, then first column
+    label_col_idx = 0
+    for i, col in enumerate(columns):
+        if 'qtr' in col or 'quarter' in col:
+            label_col_idx = i
+            break
+        elif 'date' in col or 'month' in col or 'mo' == col:
+            label_col_idx = i
+    
+    # If first column is 'yr' and second is 'qtr', combine them
+    combine_yr_qtr = False
+    if len(columns) >= 2 and 'yr' in columns[0] and 'qtr' in columns[1]:
+        combine_yr_qtr = True
+    
+    # Extract labels
+    labels = []
+    for row in rows:
+        if combine_yr_qtr:
+            labels.append(f"Q{row[1]} {row[0]}")  # e.g., "Q1 2024"
+        else:
+            labels.append(row[label_col_idx])
+    
+    # Find best value column: prefer actual_value, revenue, etc over variance
+    # Priority: actual_value > revenue > value > anything numeric
+    preferred_cols = ['actual_value', 'revenue', 'value', 'val', 'close', 'total']
     value_col_idx = len(columns) - 1
     
+    # First try to find preferred columns
+    for preferred in preferred_cols:
+        for i, col in enumerate(columns):
+            if preferred in col:
+                value_col_idx = i
+                break
+        else:
+            continue
+        break
+    else:
+        # Fallback: find last numeric column that's not a percentage
+        for i in range(len(columns) - 1, -1, -1):
+            col_name = columns[i]
+            if col_name in ['yr', 'qtr', 'mo', 'wk', 'date', 'quarter', 'month', 'status', 'metric']:
+                continue
+            if 'pct' in col_name or 'percent' in col_name:
+                continue  # Skip percentage columns
+            value_col_idx = i
+            break
+    
+    print(f"[GraphPipeline] Using label col {label_col_idx} ({columns[label_col_idx]}), value col {value_col_idx} ({columns[value_col_idx]})")
+    
+    # Extract values
+    values = []
     for row in rows:
         val = parse_numeric(row[value_col_idx])
         values.append(val)
+    
+    print(f"[GraphPipeline] Extracted labels: {labels[:5]}...")
+    print(f"[GraphPipeline] Extracted values: {values[:5]}...")
     
     return {
         "labels": labels,
