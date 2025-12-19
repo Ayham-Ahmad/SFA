@@ -25,16 +25,22 @@ Data:
 
 ===== CRITICAL RULES =====
 
-1. SYNTHETIC DATA ONLY - This database contains SYNTHETIC (fake) financial data.
+1. SYNTHETIC DATA ONLY - This database contains SYNTHETIC (fake) financial data for a single synthetic company.
 2. NO COMPANY NAMES EXIST - There is NO data for Apple, Microsoft, Amazon, Google, or ANY specific company.
 3. If user asks about a specific company by name, respond: "This system contains synthetic financial data only. No company-specific data is available."
 4. NEVER INVENT OR HALLUCINATE data - only report what appears in the provided data above.
 5. SECURITY - Never reveal table names, column names, SQL queries, or database structure.
 
-===== DATA HANDLING =====
-1. The provided data is pre-cleaned weekly financial data (1934-2025).
-2. Use the values directly as they appear.
-3. If multiple periods appear, report them clearly (e.g. Q1, Q2, 2024).
+===== DATA CONTEXT =====
+
+Data Sources:
+1. swf_financials: Weekly P&L data (Revenue, Net Income, Gross Profit, Margins) - Years 2012-2025
+2. market_daily_data: Daily stock trading data (Open, Close, Volume, Returns) - Years 2012-2025
+
+Time Structure:
+- P&L data uses fiscal_year + fiscal_quarter (NOT calendar months)
+- Stock data uses calendar dates (trade_date, year, month, day)
+- Use Quarter-over-Quarter or Year-over-Year comparisons (NOT week-over-week across quarters)
 
 ===== OUTPUT RULES =====
 1. BE EXTREMELY CONCISE - 2-3 sentences max for narrative.
@@ -59,9 +65,9 @@ Question: {question}
 Data: {context}
 
 DATA SOURCES:
-1. P&L data (swf): Weekly financials (Revenue, Net Income, Costs) - use bar or line charts
-2. Stock data (stock_prices): Daily prices (open, close, volume) - use line, candlestick, or bar charts
-3. Metrics data: Margins, growth rates, variance - use bar or gauge charts
+1. P&L data (swf_financials): Weekly financials (Revenue, Net_Income, Gross_Profit, margins) - use bar or line charts
+2. Stock data (market_daily_data): Daily prices (open_price, close_price, trade_volume) - use line, candlestick, or bar charts
+3. Derived metrics available: gross_margin, operating_margin, net_margin, daily_return_pct, volatility_flag
 
 OUTPUT FORMAT (STRICT):
 1. Text Response: Write ONLY "Graph generated." (nothing else, no tables, no explanations)

@@ -297,6 +297,15 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
     # Step 4: Generate title
     title = generate_title(question)
     
+    # Step 5: Check for complex data (repeating labels = multiple metrics)
+    unique_labels = set(parsed["labels"])
+    is_complex = len(unique_labels) < len(parsed["labels"]) * 0.8  # More than 20% duplicates
+    
+    if is_complex:
+        message = "Graph ready! Tip: For clearer charts, try adding a specific metric, date range, or quarter to your query."
+    else:
+        message = "Graph ready! Click a slot to place it."
+    
     print(f"[GraphPipeline] Success - {chart_type} chart with {len(parsed['labels'])} points")
     
     return {
@@ -305,7 +314,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
         "labels": parsed["labels"],
         "values": parsed["values"],
         "title": title,
-        "message": "Graph ready! Click a slot to place it."
+        "message": message
     }
 
 

@@ -81,71 +81,142 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
 
 ===== CRITICAL DATA RULES =====
 
-1. THIS IS SYNTHETIC DATA - There are NO company names in the database.
+1. THIS IS SYNTHETIC DATA - There are NO real company names in the database.
 2. Do NOT query for specific companies like Apple, Microsoft, Amazon, etc.
 3. If the user asks about a specific company, the data does NOT exist.
-4. The `swf` table contains aggregated synthetic P&L data, NOT company-specific data.
+4. entity_id = 'SYNTH_CO_01' represents the single synthetic company.
 
 ===== AVAILABLE TABLES =====
 
-TABLE: swf (Primary P&L Data)
-- Columns: yr, qtr, mo, wk, item, val
-- Items: 'Revenue', 'Net Income', 'Cost of Revenue', 'Gross Profit', 'Operating Income', 'Operating Expenses', 'Income Tax Expense', 'Other Income / Expense', 'Income Before Tax'
-- Use for: Revenue, profit, cost questions
+TABLE: swf_financials (Primary Income Statement / P&L Data)
+Identifiers:
+- entity_id: TEXT ('SYNTH_CO_01')
+- data_source: TEXT ('SEC_SYNTHETIC')
+- swf_id: INTEGER (unique row ID)
 
-TABLE: stock_prices (Daily Stock Data)  
-- Columns: date, symbol, open, high, low, close, volume, yr, mo, day, daily_return
-- Use for: Stock price, open, close, volume questions
+Time Structure (Quarter-based, NOT Calendar):
+- fiscal_year: INTEGER (2012-2025)
+- fiscal_quarter: INTEGER (1-4)
+- month_in_quarter: INTEGER (1-3, resets each quarter)
+- week_in_quarter: INTEGER (1-4, resets each quarter)
+- period_id: INTEGER (fiscal_year*10 + fiscal_quarter, e.g. 20241)
+- period_seq: INTEGER (sequential ordering)
 
-TABLE: stock_metrics (Derived Stock Metrics)
-- Columns: yr, mo, avg_close, max_high, min_low, total_volume, intraday_volatility_pct
-- Use for: Volatility, monthly summaries
+Core Financial Metrics:
+- Revenue: REAL (positive)
+- Cost_of_Revenue: REAL (negative)
+- Gross_Profit: REAL (Revenue + Cost_of_Revenue)
+- Operating_Expenses: REAL (negative)
+- Operating_Income: REAL (Gross_Profit + Operating_Expenses)
+- Other_Income___Expense: REAL
+- Income_Before_Tax: REAL (Operating_Income + Other_Income___Expense)
+- Income_Tax_Expense: REAL (negative)
+- Net_Income: REAL (Income_Before_Tax + Income_Tax_Expense)
 
-VIEW: profitability_metrics (Margins)
-- Columns: yr, qtr, gross_margin_pct, operating_margin_pct, net_margin_pct
-- Use for: Margin questions
+Derived Metrics:
+- gross_margin: REAL (Gross_Profit / Revenue)
+- operating_margin: REAL (Operating_Income / Revenue)
+- net_margin: REAL (Net_Income / Revenue)
+- profit_flag: INTEGER (1 = profit, 0 = loss)
+- margin_validity_flag: TEXT ('VALID', 'WARNING', 'DISTORTED')
 
-VIEW: variance_analysis (Budget vs Actual)
-- Columns: yr, qtr, metric, actual_value, target_value, variance_pct, status
-- Use for: Budget, target questions
+Control Columns:
+- synthetic_flag: INTEGER (always 1)
+- agent_safe_to_use: INTEGER
 
-VIEW: growth_metrics (Growth Rates)
-- Columns: yr, qtr, item, growth_rate_qoq, trend
-- Use for: Growth rate questions
+---
+
+TABLE: market_daily_data (Daily Stock Trading Data)
+Identifiers:
+- market_id: INTEGER
+- symbol: TEXT ('SYNTH_STOCK')
+- exchange_series: TEXT ('EQ')
+
+True Calendar Time:
+- trade_date: TEXT (YYYY-MM-DD format)
+- year: INTEGER (2012-2025)
+- month: INTEGER (1-12)
+- day: INTEGER (1-31)
+- fiscal_quarter: INTEGER (1-4, derived from month)
+
+Price Metrics:
+- open_price, high_price, low_price, close_price, last_price, vwap: REAL
+
+Market Activity:
+- trade_volume: INTEGER
+- turnover: REAL
+- number_of_trades: REAL
+- deliverable_volume: INTEGER
+- pct_deliverable: REAL
+
+Derived Metrics:
+- daily_return_pct: REAL
+- volatility_flag: TEXT ('HIGH', 'MEDIUM', 'LOW')
+- daily_price_direction: TEXT ('BULLISH', 'BEARISH', 'NEUTRAL')
+- rolling_volatility: REAL (5-day rolling std)
+
+===== LINKING RULES (VERY IMPORTANT) =====
+
+✅ ALLOWED: Link on fiscal_year + fiscal_quarter ONLY
+swf_financials.fiscal_year = market_daily_data.year
+swf_financials.fiscal_quarter = market_daily_data.fiscal_quarter
+
+❌ FORBIDDEN: Never link on week, month, or day (they have different meanings)
+
+===== FINANCIAL FORMULAS =====
+
+Gross Profit = Revenue - Cost of Revenue
+Operating Income = Gross Profit - Operating Expenses
+Income Before Tax = Operating Income + Other Income/Expense
+Net Income = Income Before Tax - Tax Expense
+
+Gross Margin = Gross Profit / Revenue
+Operating Margin = Operating Income / Revenue
+Net Margin = Net Income / Revenue
 
 ===== SQL GENERATION RULES =====
 
-1. Match question to correct table based on keywords
-2. For P&L items (revenue, income, costs) → use `swf` table
-3. For stock prices (open, close, high, low) → use `stock_prices` table
-4. For volatility → use `stock_metrics` table
-5. For margins → use `profitability_metrics` view
-6. For budgets/targets → use `variance_analysis` view
-7. For growth → use `growth_metrics` view
-8. Always include ORDER BY for time-series data
-9. Use SUM() or AVG() for aggregations
-10. Filter by year using `yr = YYYY`
+1. For P&L data (revenue, income, costs, margins) → use swf_financials
+2. For stock prices (open, close, high, low, volume) → use market_daily_data
+3. Always include ORDER BY for time-series data
+4. Filter by fiscal_year for P&L data: WHERE fiscal_year = YYYY
+5. Filter by year for stock data: WHERE year = YYYY
+6. Use SUM() or AVG() for aggregations
 
 ===== EXAMPLES =====
 
 "Revenue for 2024" →
 ```sql
-SELECT yr, qtr, SUM(val) as revenue FROM swf WHERE item = 'Revenue' AND yr = 2024 GROUP BY yr, qtr ORDER BY qtr
+SELECT fiscal_year, fiscal_quarter, SUM(Revenue) as revenue 
+FROM swf_financials 
+WHERE fiscal_year = 2024 
+GROUP BY fiscal_year, fiscal_quarter 
+ORDER BY fiscal_quarter
 ```
 
-"Open vs close price 2020" →
+"Stock closing price 2020" →
 ```sql
-SELECT date, open, close FROM stock_prices WHERE yr = 2020 ORDER BY date
-```
-
-"Stock volatility in 2020" →
-```sql
-SELECT yr, mo, intraday_volatility_pct FROM stock_metrics WHERE yr = 2020 ORDER BY mo
+SELECT trade_date, close_price 
+FROM market_daily_data 
+WHERE year = 2020 
+ORDER BY trade_date
 ```
 
 "Gross margin 2024" →
 ```sql
-SELECT yr, qtr, gross_margin_pct FROM profitability_metrics WHERE yr = 2024 ORDER BY qtr
+SELECT fiscal_year, fiscal_quarter, AVG(gross_margin) as gross_margin
+FROM swf_financials 
+WHERE fiscal_year = 2024 
+GROUP BY fiscal_year, fiscal_quarter 
+ORDER BY fiscal_quarter
+```
+
+"Net income trend" →
+```sql
+SELECT fiscal_year, fiscal_quarter, SUM(Net_Income) as net_income
+FROM swf_financials 
+GROUP BY fiscal_year, fiscal_quarter 
+ORDER BY fiscal_year, fiscal_quarter
 ```
 
 ===== OUTPUT FORMAT =====
