@@ -82,141 +82,98 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
 ===== CRITICAL DATA RULES =====
 
 1. THIS IS SYNTHETIC DATA - There are NO real company names in the database.
-2. Do NOT query for specific companies like Apple, Microsoft, Amazon, etc.
-3. If the user asks about a specific company, the data does NOT exist.
-4. entity_id = 'SYNTH_CO_01' represents the single synthetic company.
+2. The core financial entity is a SINGLE VIRTUAL COMPANY (market median).
+3. Do NOT query for specific companies like Apple, Microsoft, Amazon.
+4. Always filter by year/quarter when possible.
 
 ===== AVAILABLE TABLES =====
 
 TABLE: swf_financials (Primary Income Statement / P&L Data)
-Identifiers:
-- entity_id: TEXT ('SYNTH_CO_01')
-- data_source: TEXT ('SEC_SYNTHETIC')
-- swf_id: INTEGER (unique row ID)
+- Represents: ONE virtual company (no tickers/symbols)
+- Granularity: Quarterly (4 rows per year)
+- Range: 2012-2025
 
-Time Structure (Quarter-based, NOT Calendar):
-- fiscal_year: INTEGER (2012-2025)
-- fiscal_quarter: INTEGER (1-4)
-- month_in_quarter: INTEGER (1-3, resets each quarter)
-- week_in_quarter: INTEGER (1-4, resets each quarter)
-- period_id: INTEGER (fiscal_year*10 + fiscal_quarter, e.g. 20241)
-- period_seq: INTEGER (sequential ordering)
+Columns:
+- year: INTEGER (2012-2025)
+- quarter: INTEGER (1-4)
+- revenue: REAL (USD)
+- cost_of_revenue: REAL
+- gross_profit: REAL
+- operating_expenses: REAL
+- operating_income: REAL
+- other_income_expense: REAL
+- income_before_tax: REAL
+- income_tax_expense: REAL
+- net_income: REAL
 
-Core Financial Metrics:
-- Revenue: REAL (positive)
-- Cost_of_Revenue: REAL (negative)
-- Gross_Profit: REAL (Revenue + Cost_of_Revenue)
-- Operating_Expenses: REAL (negative)
-- Operating_Income: REAL (Gross_Profit + Operating_Expenses)
-- Other_Income___Expense: REAL
-- Income_Before_Tax: REAL (Operating_Income + Other_Income___Expense)
-- Income_Tax_Expense: REAL (negative)
-- Net_Income: REAL (Income_Before_Tax + Income_Tax_Expense)
+- gross_margin: REAL (decimal, e.g. 0.10 = 10%)
+- operating_margin: REAL
+- net_margin: REAL
 
-Derived Metrics:
-- gross_margin: REAL (Gross_Profit / Revenue)
-- operating_margin: REAL (Operating_Income / Revenue)
-- net_margin: REAL (Net_Income / Revenue)
-- profit_flag: INTEGER (1 = profit, 0 = loss)
-- margin_validity_flag: TEXT ('VALID', 'WARNING', 'DISTORTED')
-
-Control Columns:
-- synthetic_flag: INTEGER (always 1)
-- agent_safe_to_use: INTEGER
+- data_coverage_flag: TEXT ('COMPLETE', 'PARTIAL')
+- margin_validity_flag: TEXT ('VALID', 'ZERO_REVENUE')
 
 ---
 
-TABLE: market_daily_data (Daily Stock Trading Data)
-Identifiers:
-- market_id: INTEGER
-- symbol: TEXT ('SYNTH_STOCK')
-- exchange_series: TEXT ('EQ')
+TABLE: market_daily_data (Market Signals)
+- Represents: Daily market returns and volatility
+- Granularity: Daily
 
-True Calendar Time:
-- trade_date: TEXT (YYYY-MM-DD format)
-- year: INTEGER (2012-2025)
-- month: INTEGER (1-12)
-- day: INTEGER (1-31)
-- fiscal_quarter: INTEGER (1-4, derived from month)
-
-Price Metrics:
-- open_price, high_price, low_price, close_price, last_price, vwap: REAL
-
-Market Activity:
-- trade_volume: INTEGER
-- turnover: REAL
-- number_of_trades: REAL
-- deliverable_volume: INTEGER
-- pct_deliverable: REAL
-
-Derived Metrics:
+Columns:
+- trade_date: TEXT (YYYY-MM-DD)
+- year: INTEGER
+- fiscal_quarter: INTEGER (1-4)
 - daily_return_pct: REAL
+- rolling_volatility: REAL (risk metric)
 - volatility_flag: TEXT ('HIGH', 'MEDIUM', 'LOW')
-- daily_price_direction: TEXT ('BULLISH', 'BEARISH', 'NEUTRAL')
-- rolling_volatility: REAL (5-day rolling std)
 
-===== LINKING RULES (VERY IMPORTANT) =====
+===== LINKING RULES (CRITICAL) =====
 
-✅ ALLOWED: Link on fiscal_year + fiscal_quarter ONLY
-swf_financials.fiscal_year = market_daily_data.year
-swf_financials.fiscal_quarter = market_daily_data.fiscal_quarter
+To combine financial vs market data, you MUST join on:
+swf_financials.year = market_daily_data.year
+AND swf_financials.quarter = market_daily_data.fiscal_quarter
 
-❌ FORBIDDEN: Never link on week, month, or day (they have different meanings)
-
-===== FINANCIAL FORMULAS =====
-
-Gross Profit = Revenue - Cost of Revenue
-Operating Income = Gross Profit - Operating Expenses
-Income Before Tax = Operating Income + Other Income/Expense
-Net Income = Income Before Tax - Tax Expense
-
-Gross Margin = Gross Profit / Revenue
-Operating Margin = Operating Income / Revenue
-Net Margin = Net Income / Revenue
+NOTE: Since market data is daily, you must AGGREGATE it (e.g., AVG, MAX) when joining with quarterly financials.
 
 ===== SQL GENERATION RULES =====
 
-1. For P&L data (revenue, income, costs, margins) → use swf_financials
-2. For stock prices (open, close, high, low, volume) → use market_daily_data
-3. Always include ORDER BY for time-series data
-4. Filter by fiscal_year for P&L data: WHERE fiscal_year = YYYY
-5. Filter by year for stock data: WHERE year = YYYY
-6. Use SUM() or AVG() for aggregations
+1. For P&L / Margins → Use `swf_financials`
+2. For Volatility / Returns → Use `market_daily_data`
+3. For "Correlation" or "Combined" → JOIN tables on year/quarter
+4. DO NOT invent columns. Use exact names above.
 
 ===== EXAMPLES =====
 
 "Revenue for 2024" →
 ```sql
-SELECT fiscal_year, fiscal_quarter, SUM(Revenue) as revenue 
+SELECT year, quarter, revenue 
 FROM swf_financials 
-WHERE fiscal_year = 2024 
-GROUP BY fiscal_year, fiscal_quarter 
-ORDER BY fiscal_quarter
+WHERE year = 2024 
+ORDER BY quarter;
 ```
 
-"Stock closing price 2020" →
+"Market volatility in 2023" →
 ```sql
-SELECT trade_date, close_price 
+SELECT year, fiscal_quarter, AVG(rolling_volatility) as avg_volatility 
 FROM market_daily_data 
-WHERE year = 2020 
-ORDER BY trade_date
+WHERE year = 2023 
+GROUP BY year, fiscal_quarter 
+ORDER BY fiscal_quarter;
 ```
 
-"Gross margin 2024" →
+"Compare gross margin and market volatility" →
 ```sql
-SELECT fiscal_year, fiscal_quarter, AVG(gross_margin) as gross_margin
-FROM swf_financials 
-WHERE fiscal_year = 2024 
-GROUP BY fiscal_year, fiscal_quarter 
-ORDER BY fiscal_quarter
-```
-
-"Net income trend" →
-```sql
-SELECT fiscal_year, fiscal_quarter, SUM(Net_Income) as net_income
-FROM swf_financials 
-GROUP BY fiscal_year, fiscal_quarter 
-ORDER BY fiscal_year, fiscal_quarter
+SELECT 
+    t1.year, 
+    t1.quarter, 
+    t1.gross_margin, 
+    AVG(t2.rolling_volatility) as avg_market_volatility
+FROM swf_financials t1
+JOIN market_daily_data t2 
+    ON t1.year = t2.year AND t1.quarter = t2.fiscal_quarter
+WHERE t1.year >= 2023
+GROUP BY t1.year, t1.quarter
+ORDER BY t1.year, t1.quarter;
 ```
 
 ===== OUTPUT FORMAT =====
@@ -224,7 +181,6 @@ ORDER BY fiscal_year, fiscal_quarter
 ```sql
 YOUR_QUERY_HERE
 ```
-
 No explanations. Only the SQL query wrapped in code blocks.
 
 Question: {question}

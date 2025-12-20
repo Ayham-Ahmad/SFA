@@ -7,7 +7,7 @@ from typing import Dict, Any, List
 # File where all interactions will be stored (use absolute path for reliability)
 import pathlib
 _PROJECT_ROOT = pathlib.Path(__file__).parent.parent.resolve()
-DEBUG_FILE_PATH = str(_PROJECT_ROOT / "agent_debug_log.json")
+DEBUG_FILE_PATH = str(_PROJECT_ROOT / "debug.json")
 
 def log_agent_interaction(interaction_id: str, agent_name: str, step_type: str, input_data: Any, output_data: Any):
     """

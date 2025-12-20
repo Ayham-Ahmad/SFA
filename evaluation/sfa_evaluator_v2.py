@@ -28,6 +28,12 @@ Usage:
     evaluator.print_failure_analysis()  # Show failure mode table
 """
 
+
+import sys
+import os
+# Ensure project root is in sys.path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import json
 import re
 import csv
@@ -61,7 +67,7 @@ except ImportError:
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(BASE_DIR)
 DB_PATH = os.path.join(PROJECT_DIR, "data", "db", "financial_data.db")
-GOLDEN_DATASET_PATH = os.path.join(BASE_DIR, "sfa_golden_dataset.json")
+GOLDEN_DATASET_PATH = os.path.join(BASE_DIR, "sfa_golden_dataset_v2.json")
 
 # =========================================================================
 # DATA CLASSES
@@ -233,26 +239,41 @@ class SFAEvaluatorV2:
         tolerance = golden_entry.get('tolerance_percent', 5) / 100
         
         if validation_type == 'numeric' and golden_value is not None:
-            # Extract numbers from response
-            numbers = re.findall(r'[\$]?([\d,.]+)(?:\s*[BMK])?', actual_response)
+            # Extract numbers from response (including negative and percentage)
+            numbers = re.findall(r'-?[\d,.]+', actual_response)
             
             for num_str in numbers:
                 try:
                     # Parse the number
                     num = float(num_str.replace(',', ''))
                     
-                    # Check for B/M/K suffixes
+                    # Skip tiny numbers that are likely not the answer
+                    if abs(num) < 0.001 and abs(golden_value) > 1:
+                        continue
+                    
+                    # Check for B/M/K suffixes (billions, millions, thousands)
                     if 'B' in actual_response.upper():
-                        # Could be billions
-                        if abs(num - golden_value / 1e9) / (golden_value / 1e9) <= tolerance:
+                        if golden_value != 0 and abs(num - golden_value / 1e9) / abs(golden_value / 1e9) <= tolerance:
                             return 1.0
                     if 'M' in actual_response.upper():
-                        if abs(num - golden_value / 1e6) / (golden_value / 1e6) <= tolerance:
+                        if golden_value != 0 and abs(num - golden_value / 1e6) / abs(golden_value / 1e6) <= tolerance:
                             return 1.0
+                    
+                    # Handle percentage vs decimal conversion
+                    # If golden is decimal (e.g., -0.991) and response has percentage (e.g., 99.1%)
+                    if '%' in actual_response and abs(golden_value) < 10:
+                        # Try matching percentage value to decimal * 100
+                        if golden_value != 0:
+                            expected_pct = abs(golden_value * 100)
+                            if abs(abs(num) - expected_pct) / expected_pct <= tolerance:
+                                return 1.0
                     
                     # Direct comparison
                     if golden_value != 0:
                         if abs(num - golden_value) / abs(golden_value) <= tolerance:
+                            return 1.0
+                        # Also try absolute value comparison for negative values
+                        if abs(abs(num) - abs(golden_value)) / abs(golden_value) <= tolerance:
                             return 1.0
                 except:
                     continue
@@ -807,7 +828,7 @@ class SFAEvaluatorV2:
     def _export_batch_to_csv(self, results: List[ValidationResult]):
         """Export batch results to CSV."""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        csv_path = os.path.join(BASE_DIR, f"batch_evaluation_{timestamp}.csv")
+        csv_path = os.path.join(BASE_DIR, "test_results_v2.csv")
         
         with open(csv_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)

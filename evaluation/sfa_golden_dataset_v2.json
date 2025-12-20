@@ -1,0 +1,642 @@
+[
+    {
+        "id": 1,
+        "query": "What was the total revenue in 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(revenue) FROM swf_financials WHERE year = 2024",
+        "golden_answer": "Database returns: 2893787000.0 (plus context from other columns if any)",
+        "golden_value": 2893787000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 2,
+        "query": "What was the net income in 2023?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(net_income) FROM swf_financials WHERE year = 2023",
+        "golden_answer": "Database returns: -6499871500.0 (plus context from other columns if any)",
+        "golden_value": -6499871500.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 3,
+        "query": "What was the gross profit in Q1 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT gross_profit FROM swf_financials WHERE year = 2024 AND quarter = 1",
+        "golden_answer": "Database returns: 6940500.0 (plus context from other columns if any)",
+        "golden_value": 6940500.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 4,
+        "query": "What is the operating margin for Q2 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT operating_margin FROM swf_financials WHERE year = 2024 AND quarter = 2",
+        "golden_answer": "Database returns: -1.0279013433164501 (plus context from other columns if any)",
+        "golden_value": -1.0279013433164501,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 5,
+        "query": "What was the cost of revenue in 2022?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(cost_of_revenue) FROM swf_financials WHERE year = 2022",
+        "golden_answer": "Database returns: -1695245000.0 (plus context from other columns if any)",
+        "golden_value": -1695245000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 6,
+        "query": "What was the average market volatility in 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT AVG(rolling_volatility) FROM market_daily_data WHERE strftime('%Y', trade_date) = '2024'",
+        "golden_answer": "Database returns: 1.7461894112945056 (plus context from other columns if any)",
+        "golden_value": 1.7461894112945056,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 7,
+        "query": "What was the daily return on 2024-12-31?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT daily_return_pct FROM market_daily_data WHERE trade_date = '2024-12-31'",
+        "golden_answer": "Database returns: 0.01 or 1% (daily return percentage)",
+        "golden_value": 0.01,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 8,
+        "query": "What was table net margin for 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT AVG(net_margin) FROM swf_financials WHERE year=2024",
+        "golden_answer": "Database returns: -2.9790901599655637 (plus context from other columns if any)",
+        "golden_value": -2.9790901599655637,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 9,
+        "query": "Show me the revenue for 2015.",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(revenue) FROM swf_financials WHERE year = 2015",
+        "golden_answer": "Database returns: 520870000.0 (plus context from other columns if any)",
+        "golden_value": 520870000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 10,
+        "query": "What is the total operating expenses for 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(operating_expenses) FROM swf_financials WHERE year = 2024",
+        "golden_answer": "Database returns: -2897422000.0 (plus context from other columns if any)",
+        "golden_value": -2897422000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 1
+    },
+    {
+        "id": 11,
+        "query": "Compare the revenue of 2023 and 2024.",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, SUM(revenue) FROM swf_financials WHERE year IN (2023, 2024) GROUP BY year",
+        "golden_answer": "Database returns: 2023 (plus context from other columns if any)",
+        "golden_value": "2023",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 12,
+        "query": "Was the net margin higher in 2023 or 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, AVG(net_margin) FROM swf_financials WHERE year IN (2023, 2024) GROUP BY year",
+        "golden_answer": "Database returns: 2023 (plus context from other columns if any)",
+        "golden_value": "2023",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 13,
+        "query": "Compare the average volatility in 2023 versus 2024.",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT strftime('%Y', trade_date) as yr, AVG(rolling_volatility) FROM market_daily_data WHERE yr IN ('2023', '2024') GROUP BY yr",
+        "golden_answer": "Database returns: 2023 (plus context from other columns if any)",
+        "golden_value": "2023",
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 14,
+        "query": "Did gross profit increase from Q1 2024 to Q2 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT quarter, gross_profit FROM swf_financials WHERE year=2024 AND quarter IN (1,2)",
+        "golden_answer": "Database returns: 1 (plus context from other columns if any)",
+        "golden_value": "1",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 15,
+        "query": "What is the average yearly revenue from 2020 to 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT AVG(annual_rev) FROM (SELECT year, SUM(revenue) as annual_rev FROM swf_financials WHERE year BETWEEN 2020 AND 2024 GROUP BY year)",
+        "golden_answer": "Database returns: 1853005200.0 (plus context from other columns if any)",
+        "golden_value": 1853005200.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 16,
+        "query": "Compare operating expenses between 2022 and 2024.",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, SUM(operating_expenses) FROM swf_financials WHERE year IN (2022, 2024) GROUP BY year",
+        "golden_answer": "Database returns: 2022 (plus context from other columns if any)",
+        "golden_value": "2022",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 17,
+        "query": "What is the ratio of cost of revenue to revenue in 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(cost_of_revenue)/SUM(revenue) FROM swf_financials WHERE year=2024",
+        "golden_answer": "Database returns: -0.9910078039606923 (plus context from other columns if any)",
+        "golden_value": -0.9910078039606923,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 18,
+        "query": "Compare the highest volatility in 2023 vs 2024.",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT strftime('%Y', trade_date) as yr, MAX(rolling_volatility) FROM market_daily_data WHERE yr IN ('2023', '2024') GROUP BY yr",
+        "golden_answer": "Comparison of max volatility between 2023 and 2024",
+        "golden_value": "comparison",
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 19,
+        "query": "Is the average net margin positive for the last 3 years (2023-2025)?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT AVG(net_margin) FROM swf_financials WHERE year BETWEEN 2023 AND 2025",
+        "golden_answer": "Database returns: -2.6751226385765556 (plus context from other columns if any)",
+        "golden_value": -2.6751226385765556,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 20,
+        "query": "Compare total net loss between 2020 and 2021.",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, SUM(net_income) FROM swf_financials WHERE year IN (2020, 2021) GROUP BY year",
+        "golden_answer": "Database returns: 2020 (plus context from other columns if any)",
+        "golden_value": "2020",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 21,
+        "query": "Plot the revenue trend from 2020 to 2025.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, quarter, revenue FROM swf_financials WHERE year BETWEEN 2020 AND 2025 ORDER BY year, quarter",
+        "golden_answer": "Graph generated with 24 data points.",
+        "golden_value": 24,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 22,
+        "query": "Show me a graph of net income over the last 5 years.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, SUM(net_income) FROM swf_financials WHERE year >= 2021 GROUP BY year ORDER BY year",
+        "golden_answer": "Graph generated with 5 data points.",
+        "golden_value": 5,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 23,
+        "query": "Plot the daily stock price for 2024.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT trade_date, close_price FROM market_daily_data WHERE strftime('%Y', trade_date) = '2024' ORDER BY trade_date",
+        "golden_answer": "Graph generated with 245 data points.",
+        "golden_value": 245,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 24,
+        "query": "Visualize the volatility trend in Q1 2024.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT trade_date, rolling_volatility FROM market_daily_data WHERE trade_date BETWEEN '2024-01-01' AND '2024-03-31' ORDER BY trade_date",
+        "golden_answer": "Graph generated with 62 data points.",
+        "golden_value": 62,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 25,
+        "query": "Graph the gross margin vs operating margin for 2024.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT quarter, gross_margin, operating_margin FROM swf_financials WHERE year=2024 ORDER BY quarter",
+        "golden_answer": "Graph generated with 4 data points.",
+        "golden_value": 4,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 26,
+        "query": "Show a bar chart of quarterly revenue in 2023.",
+        "category": "graph",
+        "difficulty": "easy",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT quarter, revenue FROM swf_financials WHERE year=2023 ORDER BY quarter",
+        "golden_answer": "Graph generated with 4 data points.",
+        "golden_value": 4,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 1
+    },
+    {
+        "id": 27,
+        "query": "Plot operating expenses trend 2022-2024.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, SUM(operating_expenses) FROM swf_financials WHERE year BETWEEN 2022 AND 2024 GROUP BY year",
+        "golden_answer": "Graph generated with 3 data points.",
+        "golden_value": 3,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 28,
+        "query": "Visualize net income vs revenue for 2024.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT quarter, net_income, revenue FROM swf_financials WHERE year=2024 ORDER BY quarter",
+        "golden_answer": "Graph generated with 4 data points.",
+        "golden_value": 4,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 29,
+        "query": "Graph the daily return percentage for January 2024.",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT trade_date, daily_return_pct FROM market_daily_data WHERE trade_date LIKE '2024-01-%' ORDER BY trade_date",
+        "golden_answer": "Graph generated with 23 data points.",
+        "golden_value": 23,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 1
+    },
+    {
+        "id": 30,
+        "query": "Plot the correlation between revenue and net income.",
+        "category": "graph",
+        "difficulty": "hard",
+        "intent_type": "GRAPH",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT revenue, net_income FROM swf_financials ORDER BY year, quarter",
+        "golden_answer": "Graph generated with 56 data points.",
+        "golden_value": 56,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 31,
+        "query": "What was the revenue and average volatility for 2024?",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(s.revenue), AVG(m.rolling_volatility) FROM swf_financials s JOIN market_daily_data m ON s.year = strftime('%Y', m.trade_date) WHERE s.year = 2024",
+        "golden_answer": "Database returns: 708977815000.0 (plus context from other columns if any)",
+        "golden_value": 708977815000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 32,
+        "query": "Show me revenue for 2023 and 2024, and calculate the growth rate.",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT year, SUM(revenue) FROM swf_financials WHERE year IN (2023, 2024) GROUP BY year",
+        "golden_answer": "Database returns: 2023 (plus context from other columns if any)",
+        "golden_value": "2023",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 33,
+        "query": "Compare the quarterly net margin in 2024 with the stock volatility in the same period.",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT s.quarter, s.net_margin, AVG(m.rolling_volatility) FROM swf_financials s JOIN market_daily_data m ON s.year = strftime('%Y', m.trade_date) WHERE s.year=2024 GROUP BY s.quarter",
+        "golden_answer": "Database returns: 1 (plus context from other columns if any)",
+        "golden_value": "1",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 34,
+        "query": "Did we have a profit in 2024 despite the high volatility?",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(net_income), AVG(rolling_volatility) FROM swf_financials s JOIN market_daily_data m ON s.year = strftime('%Y', m.trade_date) WHERE s.year=2024",
+        "golden_answer": "Database returns: -2112119152500.0 (plus context from other columns if any)",
+        "golden_value": -2112119152500.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 35,
+        "query": "List the quarterly revenues for 2024 and the average stock price for each quarter.",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT s.quarter, s.revenue, AVG(m.close_price) FROM swf_financials s JOIN market_daily_data m ON s.year = strftime('%Y', m.trade_date) WHERE s.year=2024 GROUP BY s.quarter",
+        "golden_answer": "Database returns: 1 (plus context from other columns if any)",
+        "golden_value": "1",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "numeric",
+        "expected_steps": 2
+    },
+    {
+        "id": 36,
+        "query": "How can we improve our net margin based on 2024 performance?",
+        "category": "advisory",
+        "difficulty": "hard",
+        "intent_type": "ADVISORY",
+        "golden_tool": "Analysis",
+        "golden_sql": "SELECT gross_margin, operating_margin, net_margin FROM swf_financials WHERE year=2024 ORDER BY quarter DESC LIMIT 1",
+        "golden_answer": "Advisor provides strategic advice based on fetched metrics.",
+        "golden_value": "Advisory Context",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 37,
+        "query": "Is our current profitability sustainable given the market conditions?",
+        "category": "advisory",
+        "difficulty": "hard",
+        "intent_type": "ADVISORY",
+        "golden_tool": "Analysis",
+        "golden_sql": "SELECT s.net_margin, AVG(m.rolling_volatility) FROM swf_financials s JOIN market_daily_data m ON s.year = strftime('%Y', m.trade_date) WHERE s.year=2024 GROUP BY s.quarter",
+        "golden_answer": "Advisor provides strategic advice based on fetched metrics.",
+        "golden_value": "Advisory Context",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 38,
+        "query": "Based on our cost structure, should we focus on cutting costs or growing revenue?",
+        "category": "advisory",
+        "difficulty": "hard",
+        "intent_type": "ADVISORY",
+        "golden_tool": "Analysis",
+        "golden_sql": "SELECT revenue, cost_of_revenue, operating_expenses FROM swf_financials WHERE year=2024 ORDER BY quarter DESC LIMIT 4",
+        "golden_answer": "Advisor provides strategic advice based on fetched metrics.",
+        "golden_value": "Advisory Context",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 39,
+        "query": "Evaluate our financial health for 2025.",
+        "category": "advisory",
+        "difficulty": "hard",
+        "intent_type": "ADVISORY",
+        "golden_tool": "Analysis",
+        "golden_sql": "SELECT * FROM swf_financials WHERE year=2025",
+        "golden_answer": "Advisor provides strategic advice based on fetched metrics.",
+        "golden_value": "Advisory Context",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    },
+    {
+        "id": 40,
+        "query": "Provide a strategic outlook based on the last 3 years of performance.",
+        "category": "advisory",
+        "difficulty": "hard",
+        "intent_type": "ADVISORY",
+        "golden_tool": "Analysis",
+        "golden_sql": "SELECT year, SUM(revenue), SUM(net_income) FROM swf_financials WHERE year BETWEEN 2023 AND 2025 GROUP BY year",
+        "golden_answer": "Advisor provides strategic advice based on fetched metrics.",
+        "golden_value": "Advisory Context",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "validation_type": "semantic",
+        "expected_steps": 2
+    }
+]

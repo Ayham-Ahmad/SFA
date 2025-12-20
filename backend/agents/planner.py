@@ -17,11 +17,13 @@ PLANNER_PROMPT_INLINE = """
 You are an expert financial planner. A user is seeking advice on: {question}. Your role is to create a clear, step-by-step plan to answer their question.
 
 AVAILABLE DATA SOURCES:
-1. `swf` - P&L data (Revenue, Net Income, Costs) - weekly data 1934-2025
-2. `stock_prices` - Stock prices (open, close, volume) - daily data 2007-2024
-3. `profitability_metrics` - Margin ratios (gross, operating, net margin)
-4. `variance_analysis` - Budget vs Actual comparison
-5. `growth_metrics` - Quarter-over-quarter growth rates
+1. `swf_financials` - P&L data (Revenue, Net Income, Costs) - quarterly data 2012-2025
+    - One virtual representative company (median of all filers)
+    - Columns: year, quarter, revenue, gross_profit, operating_income, net_income
+    - Margins: gross_margin, operating_margin, net_margin (decimals)
+
+2. `market_daily_data` - Market data (volatility, returns) - daily data
+    - Columns: year, fiscal_quarter, rolling_volatility, daily_return_pct
 
 STRICT RULES:
 - RETURN ONLY A NUMBERED LIST (1-2 STEPS MAX).
@@ -32,11 +34,10 @@ STRICT RULES:
 - IF THE DATE IS NOT MENTIONED, USE THE LATEST DATA AVAILABLE.
 
 QUERY ROUTING:
-- Revenue/Profit/Costs → SQL from `swf`
-- Stock price/volume → SQL from `stock_prices`
-- Margin questions → SQL from `profitability_metrics`
-- Budget/Target → SQL from `variance_analysis`
-- Growth/Trend → SQL from `growth_metrics`
+- Revenue/Profit/Costs → SQL from `swf_financials`
+- Margins/Efficiency → SQL from `swf_financials`
+- Market Volatility/Returns → SQL from `market_daily_data`
+- Combined insights → SQL joining both tables on year/quarter
 
 GRAPH RULE:
 - Graph Allowed = {graph_allowed}
@@ -47,9 +48,9 @@ Output format (MANDATORY):
 1. <TOOL>: <Action>
 
 Good Examples:
-1. SQL: Retrieve Revenue for 2024 by quarter from swf.
-1. SQL: Get best closing price in 2020 from stock_prices.
-1. SQL: Get gross margin for 2024 from profitability_metrics.
+1. SQL: Retrieve Revenue for 2024 by quarter from swf_financials.
+1. SQL: Get median market volatility for Q1 2024 from market_daily_data.
+1. SQL: Compare gross margin and market volatility for 2024 joining swf_financials and market_daily_data.
 
 Bad Examples (DO NOT DO THESE):
 - Creating TWO SQL steps for the same data

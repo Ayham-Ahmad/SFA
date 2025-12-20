@@ -23,13 +23,14 @@ DB_PATH = 'data/db/financial_data.db'
 # ============================================
 
 def get_latest_profitability_metrics():
-    """Get the most recent profitability metrics."""
+    """Get the most recent profitability metrics from swf_financials."""
     try:
         conn = sqlite3.connect(DB_PATH)
+        # CHANGED: Query swf_financials directly
         result = conn.execute("""
-            SELECT yr, qtr, gross_margin_pct, operating_margin_pct, net_margin_pct
-            FROM profitability_metrics
-            ORDER BY yr DESC, qtr DESC
+            SELECT year, quarter, gross_margin, operating_margin, net_margin, revenue, cost_of_revenue
+            FROM swf_financials
+            ORDER BY year DESC, quarter DESC
             LIMIT 1
         """).fetchone()
         conn.close()
@@ -38,216 +39,41 @@ def get_latest_profitability_metrics():
             return {
                 "yr": result[0],
                 "qtr": result[1],
-                "gross_margin_pct": result[2],
-                "operating_margin_pct": result[3],
-                "net_margin_pct": result[4]
+                "gross_margin_pct": result[2] * 100 if result[2] is not None else 0, # Convert decimal to %
+                "operating_margin_pct": result[3] * 100 if result[3] is not None else 0,
+                "net_margin_pct": result[4] * 100 if result[4] is not None else 0,
+                "latest_revenue": result[5] if result[5] is not None else 0,
+                "latest_cost": result[6] if result[6] is not None else 0
             }
         return None
     except Exception as e:
         print(f"Error getting profitability: {e}")
         return None
 
-def get_latest_growth_metrics():
-    """Get the most recent growth metrics."""
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        
-        # Get revenue growth
-        revenue = conn.execute("""
-            SELECT yr, qtr, growth_rate_qoq, trend
-            FROM growth_metrics
-            WHERE item = 'Revenue'
-            ORDER BY yr DESC, qtr DESC
-            LIMIT 1
-        """).fetchone()
-        
-        # Get net income growth
-        net_income = conn.execute("""
-            SELECT yr, qtr, growth_rate_qoq, trend
-            FROM growth_metrics
-            WHERE item = 'Net Income'
-            ORDER BY yr DESC, qtr DESC
-            LIMIT 1
-        """).fetchone()
-        
-        conn.close()
-        
-        return {
-            "revenue_growth_qoq": revenue[2] if revenue else None,
-            "revenue_trend": revenue[3] if revenue else None,
-            "net_income_growth_qoq": net_income[2] if net_income else None,
-            "net_income_trend": net_income[3] if net_income else None
-        }
-    except Exception as e:
-        print(f"Error getting growth: {e}")
-        return None
 
-def get_latest_variance():
-    """Get the most recent variance analysis."""
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        results = conn.execute("""
-            SELECT metric, variance_pct, status
-            FROM variance_analysis
-            WHERE yr = (SELECT MAX(yr) FROM variance_analysis)
-              AND qtr = (SELECT MAX(qtr) FROM variance_analysis WHERE yr = (SELECT MAX(yr) FROM variance_analysis))
-            ORDER BY ABS(variance_pct) DESC
-            LIMIT 5
-        """).fetchall()
-        conn.close()
-        
-        return [{"metric": r[0], "variance_pct": r[1], "status": r[2]} for r in results]
-    except Exception as e:
-        print(f"Error getting variance: {e}")
-        return []
-
-# ============================================
-# RULE MATCHING FUNCTIONS
-# ============================================
-
-def evaluate_profitability_rules(metrics: dict) -> list:
-    """Evaluate profitability rules against current metrics."""
-    findings = []
-    
-    if not metrics:
-        return findings
-    
-    for rule_name, rule in PROFITABILITY_RULES.items():
-        metric_value = metrics.get(rule['metric'])
-        if metric_value is not None:
-            condition = rule['condition']
-            matched = False
-            
-            if condition.startswith('>'):
-                threshold = float(condition[1:].strip())
-                matched = metric_value > threshold
-            elif condition.startswith('<'):
-                threshold = float(condition[1:].strip())
-                matched = metric_value < threshold
-            elif 'BETWEEN' in condition:
-                parts = condition.replace('BETWEEN', '').replace('AND', ',').split(',')
-                low, high = float(parts[0].strip()), float(parts[1].strip())
-                matched = low <= metric_value <= high
-            
-            if matched:
-                findings.append({
-                    "rule": rule_name,
-                    "metric": rule['metric'],
-                    "value": metric_value,
-                    "severity": rule['severity'],
-                    "insight": rule['insight'],
-                    "recommendation": rule['recommendation']
-                })
-    
-    return findings
-
-def evaluate_growth_rules(metrics: dict) -> list:
-    """Evaluate growth rules against current metrics."""
-    findings = []
-    
-    if not metrics:
-        return findings
-    
-    # Map our metrics to rule metrics
-    rule_map = {
-        "revenue_growth_qoq": metrics.get("revenue_growth_qoq"),
-        "net_income_growth_qoq": metrics.get("net_income_growth_qoq")
-    }
-    
-    for rule_name, rule in GROWTH_RULES.items():
-        metric_name = rule['metric']
-        
-        # Match rule metric to our data
-        if 'revenue' in metric_name.lower():
-            metric_value = rule_map.get("revenue_growth_qoq")
-        elif 'net_income' in metric_name.lower() or 'profit' in metric_name.lower():
-            metric_value = rule_map.get("net_income_growth_qoq")
-        else:
-            continue
-        
-        if metric_value is not None:
-            condition = rule['condition']
-            matched = False
-            
-            if condition.startswith('>'):
-                threshold = float(condition[1:].strip())
-                matched = metric_value > threshold
-            elif condition.startswith('<'):
-                threshold = float(condition[1:].strip())
-                matched = metric_value < threshold
-            elif 'BETWEEN' in condition:
-                parts = condition.replace('BETWEEN', '').replace('AND', ',').split(',')
-                low, high = float(parts[0].strip()), float(parts[1].strip())
-                matched = low <= metric_value <= high
-            
-            if matched:
-                findings.append({
-                    "rule": rule_name,
-                    "metric": metric_name,
-                    "value": metric_value,
-                    "severity": rule['severity'],
-                    "insight": rule['insight'],
-                    "recommendation": rule['recommendation']
-                })
-    
-    return findings
-
-# ============================================
-# ADVISOR AGENT MAIN FUNCTION
-# ============================================
-
-def generate_advisory(question: str, data_context: str = None) -> str:
+def generate_advisory(question: str, data_context: str = None, interaction_id: str = None) -> str:
     """
-    Generate financial advisory based on question and data.
-    
-    Args:
-        question: The user's advisory question
-        data_context: Optional SQL results or context
-        
-    Returns:
-        Advisory recommendation string
+    Generates an advisory response using the latest financial metrics.
     """
-    print(f"\n[Advisor] Generating advisory for: {question}")
+    # 1. Get latest metrics
+    metrics = get_latest_profitability_metrics()
     
-    # Gather current metrics
-    profitability = get_latest_profitability_metrics()
-    growth = get_latest_growth_metrics()
-    variance = get_latest_variance()
-    
-    # Evaluate rules
-    findings = []
-    findings.extend(evaluate_profitability_rules(profitability))
-    findings.extend(evaluate_growth_rules(growth))
-    
-    # Build context for LLM
-    metrics_summary = f"""
-CURRENT FINANCIAL STATUS (Latest Quarter):
-- Gross Margin: {profitability.get('gross_margin_pct', 'N/A')}%
-- Operating Margin: {profitability.get('operating_margin_pct', 'N/A')}%
-- Net Margin: {profitability.get('net_margin_pct', 'N/A')}%
-- Revenue Growth (QoQ): {growth.get('revenue_growth_qoq', 'N/A')}%
-- Net Income Growth (QoQ): {growth.get('net_income_growth_qoq', 'N/A')}%
-"""
-    
-    # Add variance info
-    if variance:
-        metrics_summary += "\nBUDGET VARIANCE (Top Items):\n"
-        for v in variance[:3]:
-            metrics_summary += f"- {v['metric']}: {v['variance_pct']}% ({v['status']})\n"
-    
-    # Add findings
-    findings_text = ""
-    if findings:
-        findings_text = "\nKEY FINDINGS:\n"
-        for f in findings[:5]:  # Top 5 findings
-            findings_text += f"- [{f['severity'].upper()}] {f['insight']}\n"
-            findings_text += f"  → {f['recommendation']}\n"
-    
-    # Add data context if provided
-    context_text = ""
+    if metrics:
+        metrics_summary = (
+            f"Period: {metrics['yr']} Q{metrics['qtr']}\\n"
+            f"Gross Margin: {metrics['gross_margin_pct']:.1f}%\\n"
+            f"Operating Margin: {metrics['operating_margin_pct']:.1f}%\\n"
+            f"Net Margin: {metrics['net_margin_pct']:.1f}%\\n"
+            f"Latest Revenue: ${metrics.get('latest_revenue', 0)/1e9:.2f}B\\n"
+            f"Latest Cost of Revenue: ${metrics.get('latest_cost', 0)/1e9:.2f}B"
+        )
+    else:
+        metrics_summary = "No recent data available."
+        
+    # Append provided context if any
     if data_context:
-        context_text = f"\nADDITIONAL DATA:\n{data_context[:500]}"
-    
+        metrics_summary += f"\\n\\nADDITIONAL CONTEXT FROM AUDITOR:\\n{data_context}"
+
     # Build advisory prompt - PROFESSIONAL & CAUTIOUS
     advisory_prompt = f"""
 You are a Professional Financial Advisor providing cautious, well-reasoned recommendations.
@@ -255,12 +81,14 @@ You are a Professional Financial Advisor providing cautious, well-reasoned recom
 USER QUESTION: {question}
 
 AVAILABLE DATA (treat with appropriate skepticism):
+AVAILABLE DATA (treat with appropriate skepticism):
 {metrics_summary}
+*Note: Revenue/Cost figures are for the MOST RECENT QUARTER only. Do not assume they are annual averages unless stated.*
 
 DATA CONTEXT:
-- This data is from weekly synthetic financials spanning 1934-2025
-- Short-term volatility should be interpreted carefully given weekly granularity
-- Aggregated metrics may mask recent performance variations
+- This data is for a single VIRTUAL COMPANY (market-representative median)
+- Aggregated from all SEC filers (2012-2025)
+- Quarterly granularity (Q1 2012 - Q4 2025)
 
 ===== HARD RULES FOR DATA ANOMALIES =====
 

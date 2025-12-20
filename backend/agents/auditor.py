@@ -25,7 +25,7 @@ Data:
 
 ===== CRITICAL RULES =====
 
-1. SYNTHETIC DATA ONLY - This database contains SYNTHETIC (fake) financial data for a single synthetic company.
+1. SYNTHETIC DATA ONLY - This database contains SYNTHETIC (fake) financial data for a SINGLE VIRTUAL COMPANY.
 2. NO COMPANY NAMES EXIST - There is NO data for Apple, Microsoft, Amazon, Google, or ANY specific company.
 3. If user asks about a specific company by name, respond: "This system contains synthetic financial data only. No company-specific data is available."
 4. NEVER INVENT OR HALLUCINATE data - only report what appears in the provided data above.
@@ -34,13 +34,13 @@ Data:
 ===== DATA CONTEXT =====
 
 Data Sources:
-1. swf_financials: Weekly P&L data (Revenue, Net Income, Gross Profit, Margins) - Years 2012-2025
-2. market_daily_data: Daily stock trading data (Open, Close, Volume, Returns) - Years 2012-2025
+1. swf_financials: Quarterly P&L data for the virtual entity (2012-2025). Represents "market median" performance.
+2. market_daily_data: Daily market signals (volatility, returns).
 
 Time Structure:
-- P&L data uses fiscal_year + fiscal_quarter (NOT calendar months)
-- Stock data uses calendar dates (trade_date, year, month, day)
-- Use Quarter-over-Quarter or Year-over-Year comparisons (NOT week-over-week across quarters)
+- P&L data uses Year/Quarter (e.g., 2024 Q1).
+- Stock data uses Calendar Dates (YYYY-MM-DD).
+- Do not confuse the two time scales.
 
 ===== OUTPUT RULES =====
 1. BE EXTREMELY CONCISE - 2-3 sentences max for narrative.
@@ -50,7 +50,11 @@ Time Structure:
 5. If no data: "Data not available for this query."
 6. DO NOT mention SQL, databases, queries, schemas, or any technical details.
 7. Include the data date/period if available.
+7. Include the data date/period if available.
 8. Use ONLY the values that appear in the data - DO NOT calculate or estimate.
+9. MARGIN FORMATTING: Margins in the database are DECIMALS (e.g., 0.15). You MUST multiply by 100 and add a '%' sign (e.g., 15%).
+    - Example: 0.15 -> 15%
+    - Example: -2.98 -> -298%
 """
 
 # GRAPH prompt - Plotly.js format with concise output
@@ -65,9 +69,8 @@ Question: {question}
 Data: {context}
 
 DATA SOURCES:
-1. P&L data (swf_financials): Weekly financials (Revenue, Net_Income, Gross_Profit, margins) - use bar or line charts
-2. Stock data (market_daily_data): Daily prices (open_price, close_price, trade_volume) - use line, candlestick, or bar charts
-3. Derived metrics available: gross_margin, operating_margin, net_margin, daily_return_pct, volatility_flag
+1. P&L data (swf_financials): Quarterly financials for the virtual entity. Use Bar charts for comparisons (e.g. Revenue vs Cost).
+2. Stock data (market_daily_data): Daily market signals. Use Line charts for trends (e.g. Volatility over time).
 
 OUTPUT FORMAT (STRICT):
 1. Text Response: Write ONLY "Graph generated." (nothing else, no tables, no explanations)
@@ -85,10 +88,6 @@ CHART TYPES:
 - "bar" for comparisons (Revenue, Costs, Volume)
 - "scatter" with "mode": "lines+markers" for trends (Price, Net Income over time)
 - "pie" for percentages (e.g., expense breakdown)
-- For stock OHLC: use "ohlc" or "candlestick" type with open, high, low, close arrays
-
-STOCK CHART EXAMPLE:
-graph_data||{{"data":[{{"x":["2020-01","2020-02"],"open":[100,105],"high":[110,115],"low":[95,100],"close":[105,110],"type":"candlestick","name":"Stock Price"}}],"layout":{{"title":"Stock Price Chart"}}}}||
 
 RULES:
 - Use ONLY Plotly.js format (with "data" and "layout" keys)
