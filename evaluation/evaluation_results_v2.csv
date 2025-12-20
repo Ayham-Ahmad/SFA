@@ -1,0 +1,3 @@
+Timestamp,Query_ID,Query,Category,Difficulty,Tool_Accuracy,SQL_Validity,Value_Accuracy,Semantic_Similarity,Overall_Score,Passed,Graph_Generated,Error
+2025-12-19T18:17:09.209273,1,What was the total revenue in 2024?,structured,easy,0.000,0.000,0.000,0.000,0.000,False,False,No module named 'backend'
+2025-12-19T18:22:00.455395,1,What was the total revenue in 2024?,structured,easy,0.000,0.000,1.000,0.927,0.578,False,False,

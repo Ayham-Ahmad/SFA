@@ -1,0 +1,958 @@
+[
+    {
+        "id": 1,
+        "query": "What was the total revenue in 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Revenue) FROM swf_financials WHERE fiscal_year = 2024",
+        "golden_answer": "The total revenue in 2024 was $43.99B.",
+        "golden_value": 43989611364.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 2,
+        "query": "What is the net income for 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Net_Income) FROM swf_financials WHERE fiscal_year = 2024",
+        "golden_answer": "The net income for 2024 was $86.09B.",
+        "golden_value": 86087249000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Net_Income",
+            "fiscal_year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 3,
+        "query": "What was the revenue in Q1 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Revenue) FROM swf_financials WHERE fiscal_year = 2024 AND fiscal_quarter = 1",
+        "golden_answer": "Revenue in Q1 2024 was $10.33B.",
+        "golden_value": 10327428364.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 4,
+        "query": "What was the average stock price in 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT AVG(close_price) FROM market_daily_data WHERE year = 2024",
+        "golden_answer": "The average stock price in 2024 was $380.33.",
+        "golden_value": 380.33,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "close_price",
+            "year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 5,
+        "query": "What was the gross profit in 2024?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Gross_Profit) FROM swf_financials WHERE fiscal_year = 2024",
+        "golden_answer": "The gross profit in 2024 was $111.44B.",
+        "golden_value": 111444334000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Gross_Profit",
+            "fiscal_year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 6,
+        "query": "What was the revenue in 2023?",
+        "category": "structured",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Revenue) FROM swf_financials WHERE fiscal_year = 2023",
+        "golden_answer": "The total revenue in 2023 was $28.27B.",
+        "golden_value": 28269428000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 7,
+        "query": "Show me the revenue by quarter for 2024",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT fiscal_quarter, SUM(Revenue) FROM swf_financials WHERE fiscal_year = 2024 GROUP BY fiscal_quarter ORDER BY fiscal_quarter",
+        "golden_answer": "Revenue by quarter in 2024: Q1: $10.33B, Q2: $12.34B, Q3: $7.50B, Q4: $13.82B.",
+        "golden_value": [
+            [
+                1,
+                10327428364.0
+            ],
+            [
+                2,
+                12339283000.0
+            ],
+            [
+                3,
+                7497908000.0
+            ],
+            [
+                4,
+                13824992000.0
+            ]
+        ],
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "multi_row",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 8,
+        "query": "What was the highest stock price in 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT MAX(close_price) FROM market_daily_data WHERE year = 2024",
+        "golden_answer": "The highest stock price in 2024 was $426.40.",
+        "golden_value": 426.4,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "close_price",
+            "year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 1,
+        "expected_steps": 1
+    },
+    {
+        "id": 9,
+        "query": "What was the lowest stock price in 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT MIN(close_price) FROM market_daily_data WHERE year = 2024",
+        "golden_answer": "The lowest stock price in 2024 was $323.50.",
+        "golden_value": 323.5,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "close_price",
+            "year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 1,
+        "expected_steps": 1
+    },
+    {
+        "id": 10,
+        "query": "What was the total trading volume in 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(trade_volume) FROM market_daily_data WHERE year = 2024",
+        "golden_answer": "The total trading volume in 2024 was 920,558,313 shares.",
+        "golden_value": 920558313,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "trade_volume",
+            "year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 11,
+        "query": "Compare revenue between 2023 and 2024",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT fiscal_year, SUM(Revenue) FROM swf_financials WHERE fiscal_year IN (2023, 2024) GROUP BY fiscal_year",
+        "golden_answer": "Revenue: 2023 was $28.27B, 2024 was $43.99B (55.6% growth).",
+        "golden_value": {
+            "2023": 28269428000.0,
+            "2024": 43989611364.0,
+            "growth_percent": 55.61
+        },
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year"
+        ],
+        "validation_type": "comparison",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 12,
+        "query": "What was the net income in Q2 2024?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Net_Income) FROM swf_financials WHERE fiscal_year = 2024 AND fiscal_quarter = 2",
+        "golden_answer": "Net income in Q2 2024 was $17.22B.",
+        "golden_value": 17218011000.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Net_Income",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 13,
+        "query": "What quarter had the highest revenue in 2024?",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT fiscal_quarter, SUM(Revenue) as rev FROM swf_financials WHERE fiscal_year = 2024 GROUP BY fiscal_quarter ORDER BY rev DESC LIMIT 1",
+        "golden_answer": "Q4 2024 had the highest revenue at $13.82B.",
+        "golden_value": [
+            4,
+            13824992000.0
+        ],
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "ranked",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 14,
+        "query": "What quarter had the lowest revenue in 2024?",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT fiscal_quarter, SUM(Revenue) as rev FROM swf_financials WHERE fiscal_year = 2024 GROUP BY fiscal_quarter ORDER BY rev ASC LIMIT 1",
+        "golden_answer": "Q3 2024 had the lowest revenue at $7.50B.",
+        "golden_value": [
+            3,
+            7497908000.0
+        ],
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "ranked",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 15,
+        "query": "What was the revenue growth from 2022 to 2023?",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT fiscal_year, SUM(Revenue) FROM swf_financials WHERE fiscal_year IN (2022, 2023) GROUP BY fiscal_year",
+        "golden_answer": "Revenue grew 9.5% from $25.82B in 2022 to $28.27B in 2023.",
+        "golden_value": {
+            "2022": 25816939215.0,
+            "2023": 28269428000.0,
+            "growth_percent": 9.5
+        },
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year"
+        ],
+        "validation_type": "comparison",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 16,
+        "query": "What was the average gross margin in 2024?",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT AVG(gross_margin) FROM swf_financials WHERE fiscal_year = 2024",
+        "golden_answer": "The average gross margin in 2024 was 154.1%.",
+        "golden_value": 1.541,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "gross_margin",
+            "fiscal_year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 10,
+        "expected_steps": 1
+    },
+    {
+        "id": 17,
+        "query": "What was the net income in 2022?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Net_Income) FROM swf_financials WHERE fiscal_year = 2022",
+        "golden_answer": "The net income in 2022 was $38.16B.",
+        "golden_value": 38161447128.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Net_Income",
+            "fiscal_year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 18,
+        "query": "Show me the monthly average stock prices for 2024",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT month, AVG(close_price) FROM market_daily_data WHERE year = 2024 GROUP BY month ORDER BY month",
+        "golden_answer": "Monthly avg stock prices 2024: Jan $375.97, Feb $337.77, Mar $358.79, Apr $386.42, May $387.42, Jun $417.29, Jul $401.39, Aug $364.32, Sep $382.82, Oct $403.84, Nov $377.26, Dec $369.17.",
+        "golden_value": [
+            [
+                1,
+                375.97
+            ],
+            [
+                2,
+                337.77
+            ],
+            [
+                3,
+                358.79
+            ],
+            [
+                4,
+                386.42
+            ],
+            [
+                5,
+                387.42
+            ],
+            [
+                6,
+                417.29
+            ],
+            [
+                7,
+                401.39
+            ],
+            [
+                8,
+                364.32
+            ],
+            [
+                9,
+                382.82
+            ],
+            [
+                10,
+                403.84
+            ],
+            [
+                11,
+                377.26
+            ],
+            [
+                12,
+                369.17
+            ]
+        ],
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "close_price",
+            "year",
+            "month"
+        ],
+        "validation_type": "multi_row",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 19,
+        "query": "What was the stock price on January 2, 2024?",
+        "category": "structured",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT close_price FROM market_daily_data WHERE year = 2024 AND month = 1 AND day = 2",
+        "golden_answer": "The closing stock price on January 2, 2024 was $381.30.",
+        "golden_value": 381.3,
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "close_price",
+            "year",
+            "month",
+            "day"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 1,
+        "expected_steps": 1
+    },
+    {
+        "id": 20,
+        "query": "What was the revenue in 2019?",
+        "category": "structured",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "golden_sql": "SELECT SUM(Revenue) FROM swf_financials WHERE fiscal_year = 2019",
+        "golden_answer": "The total revenue in 2019 was $15.53B.",
+        "golden_value": 15526172934.0,
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year"
+        ],
+        "validation_type": "numeric",
+        "tolerance_percent": 5,
+        "expected_steps": 1
+    },
+    {
+        "id": 21,
+        "query": "Show me a chart of revenue by quarter for 2024",
+        "category": "graph",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "bar",
+        "golden_sql": "SELECT fiscal_quarter, SUM(Revenue) FROM swf_financials WHERE fiscal_year = 2024 GROUP BY fiscal_quarter",
+        "golden_answer": "Graph generated showing revenue by quarter for 2024.",
+        "golden_value": [
+            [
+                1,
+                10327428364.0
+            ],
+            [
+                2,
+                12339283000.0
+            ],
+            [
+                3,
+                7497908000.0
+            ],
+            [
+                4,
+                13824992000.0
+            ]
+        ],
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "graph_data",
+        "expected_steps": 1
+    },
+    {
+        "id": 22,
+        "query": "Create a line chart of stock prices in 2024",
+        "category": "graph",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "line",
+        "golden_sql": "SELECT trade_date, close_price FROM market_daily_data WHERE year = 2024 ORDER BY trade_date",
+        "golden_answer": "Line chart generated showing stock price trend in 2024.",
+        "golden_value": "time_series_data",
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "close_price",
+            "trade_date",
+            "year"
+        ],
+        "validation_type": "graph_exists",
+        "expected_steps": 1
+    },
+    {
+        "id": 23,
+        "query": "Show me a bar chart comparing revenue between 2022, 2023, and 2024",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "bar",
+        "golden_sql": "SELECT fiscal_year, SUM(Revenue) FROM swf_financials WHERE fiscal_year IN (2022, 2023, 2024) GROUP BY fiscal_year",
+        "golden_answer": "Bar chart showing revenue comparison: 2022: $25.82B, 2023: $28.27B, 2024: $43.99B.",
+        "golden_value": {
+            "2022": 25816939215.0,
+            "2023": 28269428000.0,
+            "2024": 43989611364.0
+        },
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year"
+        ],
+        "validation_type": "graph_data",
+        "expected_steps": 1
+    },
+    {
+        "id": 24,
+        "query": "Create a chart showing monthly trading volume for 2024",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "bar",
+        "golden_sql": "SELECT month, SUM(trade_volume) FROM market_daily_data WHERE year = 2024 GROUP BY month ORDER BY month",
+        "golden_answer": "Chart generated showing monthly trading volume for 2024.",
+        "golden_value": "monthly_volume_data",
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "trade_volume",
+            "year",
+            "month"
+        ],
+        "validation_type": "graph_exists",
+        "expected_steps": 1
+    },
+    {
+        "id": 25,
+        "query": "Visualize the net income trend from 2020 to 2024",
+        "category": "graph",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "line",
+        "golden_sql": "SELECT fiscal_year, SUM(Net_Income) FROM swf_financials WHERE fiscal_year BETWEEN 2020 AND 2024 GROUP BY fiscal_year ORDER BY fiscal_year",
+        "golden_answer": "Line chart showing net income trend from 2020 to 2024.",
+        "golden_value": "yearly_trend_data",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Net_Income",
+            "fiscal_year"
+        ],
+        "validation_type": "graph_exists",
+        "expected_steps": 1
+    },
+    {
+        "id": 26,
+        "query": "Show me a pie chart of revenue distribution by quarter in 2024",
+        "category": "graph",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "pie",
+        "golden_sql": "SELECT fiscal_quarter, SUM(Revenue) FROM swf_financials WHERE fiscal_year = 2024 GROUP BY fiscal_quarter",
+        "golden_answer": "Pie chart showing revenue distribution: Q1: 23.5%, Q2: 28.0%, Q3: 17.0%, Q4: 31.4%.",
+        "golden_value": [
+            [
+                1,
+                10327428364.0
+            ],
+            [
+                2,
+                12339283000.0
+            ],
+            [
+                3,
+                7497908000.0
+            ],
+            [
+                4,
+                13824992000.0
+            ]
+        ],
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "graph_data",
+        "expected_steps": 1
+    },
+    {
+        "id": 27,
+        "query": "Create a chart showing stock price high and low by month in 2024",
+        "category": "graph",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "bar",
+        "golden_sql": "SELECT month, MAX(close_price), MIN(close_price) FROM market_daily_data WHERE year = 2024 GROUP BY month ORDER BY month",
+        "golden_answer": "Chart showing monthly high and low stock prices for 2024.",
+        "golden_value": "monthly_range_data",
+        "required_tables": [
+            "market_daily_data"
+        ],
+        "required_columns": [
+            "close_price",
+            "year",
+            "month"
+        ],
+        "validation_type": "graph_exists",
+        "expected_steps": 1
+    },
+    {
+        "id": 28,
+        "query": "Show me the 5-year revenue trend from 2019 to 2024",
+        "category": "graph",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "line",
+        "golden_sql": "SELECT fiscal_year, SUM(Revenue) FROM swf_financials WHERE fiscal_year BETWEEN 2019 AND 2024 GROUP BY fiscal_year ORDER BY fiscal_year",
+        "golden_answer": "Line chart showing 5-year revenue trend: 2019: $15.53B, 2020: $21.34B, 2021: $23.83B, 2022: $25.82B, 2023: $28.27B, 2024: $43.99B.",
+        "golden_value": {
+            "2019": 15526172934.0,
+            "2020": 21341692570.0,
+            "2021": 23828243064.0,
+            "2022": 25816939215.0,
+            "2023": 28269428000.0,
+            "2024": 43989611364.0
+        },
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "fiscal_year"
+        ],
+        "validation_type": "graph_data",
+        "expected_steps": 1
+    },
+    {
+        "id": 29,
+        "query": "Create a dual-axis chart showing revenue and net income for 2024 quarters",
+        "category": "graph",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "combo",
+        "golden_sql": "SELECT fiscal_quarter, SUM(Revenue), SUM(Net_Income) FROM swf_financials WHERE fiscal_year = 2024 GROUP BY fiscal_quarter ORDER BY fiscal_quarter",
+        "golden_answer": "Dual-axis chart showing revenue and net income by quarter in 2024.",
+        "golden_value": "dual_series_data",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "Revenue",
+            "Net_Income",
+            "fiscal_year",
+            "fiscal_quarter"
+        ],
+        "validation_type": "graph_exists",
+        "expected_steps": 1
+    },
+    {
+        "id": 30,
+        "query": "Visualize the gross profit margin trend over the last 3 years",
+        "category": "graph",
+        "difficulty": "hard",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "requires_graph": true,
+        "graph_type": "line",
+        "golden_sql": "SELECT fiscal_year, AVG(gross_margin) FROM swf_financials WHERE fiscal_year BETWEEN 2022 AND 2024 GROUP BY fiscal_year ORDER BY fiscal_year",
+        "golden_answer": "Line chart showing gross margin trend from 2022 to 2024.",
+        "golden_value": "margin_trend_data",
+        "required_tables": [
+            "swf_financials"
+        ],
+        "required_columns": [
+            "gross_margin",
+            "fiscal_year"
+        ],
+        "validation_type": "graph_exists",
+        "expected_steps": 1
+    },
+    {
+        "id": 31,
+        "query": "What is the financial outlook based on recent performance?",
+        "category": "advisory",
+        "difficulty": "easy",
+        "intent_type": "ADVISORY",
+        "golden_tool": "ADVISORY",
+        "requires_data": true,
+        "golden_answer": "Based on the 55.6% revenue growth from 2023 to 2024, the financial outlook appears positive. Strong quarterly performance especially in Q4 indicates healthy momentum.",
+        "validation_type": "semantic",
+        "expected_elements": [
+            "growth",
+            "performance",
+            "positive",
+            "outlook"
+        ],
+        "expected_steps": 1
+    },
+    {
+        "id": 32,
+        "query": "Should I invest based on the 2024 financial data?",
+        "category": "advisory",
+        "difficulty": "medium",
+        "intent_type": "ADVISORY",
+        "golden_tool": "ADVISORY",
+        "requires_data": true,
+        "golden_answer": "I can provide analysis but not investment advice. 2024 shows strong growth with revenue at $43.99B and net income at $86.09B. Consider consulting a financial advisor.",
+        "validation_type": "semantic",
+        "expected_elements": [
+            "not investment advice",
+            "growth",
+            "consult",
+            "advisor"
+        ],
+        "expected_steps": 1
+    },
+    {
+        "id": 33,
+        "query": "Analyze the revenue trend and recommend next steps",
+        "category": "advisory",
+        "difficulty": "medium",
+        "intent_type": "DATA, ADVISORY",
+        "golden_tool": "SQL, ADVISORY",
+        "requires_data": true,
+        "golden_answer": "Revenue has grown consistently: $15.53B (2019) \u00e2\u2020\u2019 $43.99B (2024). Recommendation: Continue current strategies while monitoring Q3 performance which showed weakness at $7.50B.",
+        "validation_type": "semantic",
+        "expected_elements": [
+            "trend",
+            "growth",
+            "recommendation",
+            "Q3"
+        ],
+        "expected_steps": 2
+    },
+    {
+        "id": 34,
+        "query": "What are the key strengths and weaknesses from the 2024 financial data?",
+        "category": "advisory",
+        "difficulty": "hard",
+        "intent_type": "DATA, ADVISORY",
+        "golden_tool": "SQL, ADVISORY",
+        "requires_data": true,
+        "golden_answer": "Strengths: 55.6% revenue growth, strong Q4 at $13.82B. Weaknesses: Q3 underperformance at $7.50B, potential seasonality concerns.",
+        "validation_type": "semantic",
+        "expected_elements": [
+            "strengths",
+            "weaknesses",
+            "Q4",
+            "Q3",
+            "growth"
+        ],
+        "expected_steps": 2
+    },
+    {
+        "id": 35,
+        "query": "Provide a risk assessment based on stock volatility in 2024",
+        "category": "advisory",
+        "difficulty": "hard",
+        "intent_type": "DATA, ADVISORY",
+        "golden_tool": "SQL, ADVISORY",
+        "requires_data": true,
+        "golden_answer": "Stock price ranged from $323.50 to $426.40 in 2024 (32% range). Monthly variations show June peak at $417.29 and February low at $337.77. Moderate volatility suggests balanced risk profile.",
+        "validation_type": "semantic",
+        "expected_elements": [
+            "volatility",
+            "range",
+            "risk",
+            "price"
+        ],
+        "expected_steps": 2
+    },
+    {
+        "id": 36,
+        "query": "Hello, who are you?",
+        "category": "conversational",
+        "difficulty": "easy",
+        "intent_type": "CONVERSATIONAL",
+        "golden_tool": "NONE",
+        "golden_answer": "Hello! I'm your Financial AI Assistant. I can help you analyze financial data, create visualizations, and provide business insights.",
+        "validation_type": "semantic",
+        "expected_elements": [
+            "financial",
+            "assistant",
+            "help"
+        ],
+        "expected_steps": 0
+    },
+    {
+        "id": 37,
+        "query": "What was the revenue for Apple in 2024?",
+        "category": "edge_case",
+        "difficulty": "easy",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "expected_behavior": "refuse_or_clarify",
+        "golden_answer": "This system contains synthetic financial data only. No company-specific data for Apple is available.",
+        "validation_type": "refusal",
+        "expected_elements": [
+            "synthetic",
+            "no data",
+            "unavailable"
+        ],
+        "expected_steps": 1
+    },
+    {
+        "id": 38,
+        "query": "What was the revenue in 1800?",
+        "category": "edge_case",
+        "difficulty": "medium",
+        "intent_type": "DATA",
+        "golden_tool": "SQL",
+        "expected_behavior": "no_data",
+        "golden_answer": "No data available for 1800. The database contains financial data from 2012 to 2025.",
+        "validation_type": "refusal",
+        "expected_elements": [
+            "no data",
+            "unavailable",
+            "2012",
+            "2025"
+        ],
+        "expected_steps": 1
+    },
+    {
+        "id": 39,
+        "query": "What LLM model are you using?",
+        "category": "edge_case",
+        "difficulty": "easy",
+        "intent_type": "BLOCKED",
+        "golden_tool": "NONE",
+        "expected_behavior": "block",
+        "golden_answer": "I'm a financial assistant and can only answer questions about financial data. I cannot provide information about internal systems.",
+        "validation_type": "refusal",
+        "expected_elements": [
+            "financial",
+            "cannot",
+            "internal"
+        ],
+        "expected_steps": 1
+    },
+    {
+        "id": 40,
+        "query": "Show me the SQL query you used",
+        "category": "edge_case",
+        "difficulty": "medium",
+        "intent_type": "BLOCKED",
+        "golden_tool": "NONE",
+        "expected_behavior": "block",
+        "golden_answer": "I cannot provide technical details about queries or database structures. I can only share financial insights and data.",
+        "validation_type": "refusal",
+        "expected_elements": [
+            "cannot",
+            "technical",
+            "financial"
+        ],
+        "expected_steps": 1
+    }
+]

@@ -33392,5 +33392,1148 @@
                 ]
             }
         ]
+    },
+    {
+        "interaction_id": "eval_1_7189ca59",
+        "created_at": "2025-12-20T10:45:51.132618",
+        "last_updated": "2025-12-20T10:46:01.525296",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T10:45:51.075219",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T10:45:51.929049",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Calculate sum of weekly Revenue for 2024 from swf to get the total revenue.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T10:45:56.789171",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue",
+                    "FROM swf_financials",
+                    "WHERE fiscal_year = 2024",
+                    "  AND entity_id = 'SYNTH_CO_01'",
+                    "  AND data_source = 'SEC_SYNTHETIC'",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T10:46:00.102206",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Calculate sum of weekly Revenue for 2024 from swf to get the total revenue.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T10:46:00.321522",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT SUM(Revenue) as total_revenue  FROM swf_financials  WHERE fiscal_year = 2024",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T10:46:00.950655",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 470
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "|  Total Revenue  |",
+                    "|----------------:|",
+                    "|     $43.99B      |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T10:46:01.459775",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n|  Total Revenue  |\n|----------------:|\n|     $43.99B      |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.9287963509559631,
+                    "overall_score": 0.9786389052867889,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT SUM(Revenue) as total_revenue  FROM swf_financials  WHERE fiscal_year = 2024"
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_bf571e0f",
+        "created_at": "2025-12-20T10:59:09.423709",
+        "last_updated": "2025-12-20T10:59:15.698828",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T10:59:09.365802",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T10:59:10.218069",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Sum the weekly Revenue values from the result of step 1 to get the total annual Revenue for 2024.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T10:59:12.538460",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T10:59:14.594456",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Sum the weekly Revenue values from the result of step 1 to get the total annual Revenue for 2024.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) AS total_annual_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_annual_revenue |",
+                    "|-----------------------:|",
+                    "|            4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T10:59:14.815903",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT SUM(Revenue) AS total_annual_revenue  FROM swf_financials  WHERE fiscal_year = 2024",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T10:59:15.279583",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 432
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "| Total Revenue |",
+                    "|---------------:|",
+                    "| $43.99B        |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T10:59:15.603066",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n| Total Revenue |\n|---------------:|\n| $43.99B        |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.9269839525222778,
+                    "overall_score": 0.9780951857566833,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT SUM(Revenue) AS total_annual_revenue  FROM swf_financials  WHERE fiscal_year = 2024",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 2,
+                    "unique_steps": 2
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_2b3927df",
+        "created_at": "2025-12-20T11:05:23.023986",
+        "last_updated": "2025-12-20T11:05:36.152410",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T11:05:22.969180",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T11:05:23.695922",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Sum the weekly revenues retrieved in step 1 to get the total revenue for 2024.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:05:29.754679",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:05:35.147533",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Sum the weekly revenues retrieved in step 1 to get the total revenue for 2024.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) AS total_revenue_2024",
+                    "FROM swf_financials",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue_2024 |",
+                    "|---------------------:|",
+                    "|          4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:05:35.282437",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT SUM(Revenue) AS total_revenue_2024 FROM swf_financials WHERE fiscal_year = 2024",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:05:35.789617",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 422
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "| Total Revenue 2024 |",
+                    "|--------------------:|",
+                    "| $43.99B            |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:05:36.066235",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n| Total Revenue 2024 |\n|--------------------:|\n| $43.99B            |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.9225432872772217,
+                    "overall_score": 0.9767629861831664,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT SUM(Revenue) AS total_revenue_2024 FROM swf_financials WHERE fiscal_year = 2024",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 2,
+                    "unique_steps": 2
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_16f8683e",
+        "created_at": "2025-12-20T11:08:21.410665",
+        "last_updated": "2025-12-20T11:08:26.575571",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T11:08:21.371222",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T11:08:22.147048",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Sum the weekly revenues from the result of step 1 to get the total revenue for 2024.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:08:24.280799",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:08:25.598358",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Sum the weekly revenues from the result of step 1 to get the total revenue for 2024.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) AS total_revenue_2024",
+                    "FROM swf_financials",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue_2024 |",
+                    "|---------------------:|",
+                    "|          4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:08:25.755886",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT SUM(Revenue) AS total_revenue_2024 FROM swf_financials WHERE fiscal_year = 2024",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:08:26.198441",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 422
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "| Total Revenue 2024 |",
+                    "|--------------------:|",
+                    "| $43.99B            |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:08:26.500605",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n| Total Revenue 2024 |\n|--------------------:|\n| $43.99B            |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.9225432872772217,
+                    "overall_score": 0.9767629861831664,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT SUM(Revenue) AS total_revenue_2024 FROM swf_financials WHERE fiscal_year = 2024",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 2,
+                    "unique_steps": 2
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_2c37e8e9",
+        "created_at": "2025-12-20T11:12:25.623079",
+        "last_updated": "2025-12-20T11:12:31.907864",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T11:12:25.568288",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T11:12:26.351810",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Calculate the sum of weekly revenues for 2024 from the result of step 1.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:12:29.180884",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT fiscal_year, SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024 ",
+                    "GROUP BY fiscal_year",
+                    "",
+                    "Database Results:",
+                    "|   fiscal_year |   total_revenue |",
+                    "|--------------:|----------------:|",
+                    "|          2024 |     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:12:30.705115",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Calculate the sum of weekly revenues for 2024 from the result of step 1.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT fiscal_year, fiscal_quarter, SUM(Revenue) as weekly_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024 ",
+                    "GROUP BY fiscal_year, fiscal_quarter ",
+                    "ORDER BY fiscal_quarter",
+                    "",
+                    "Database Results:",
+                    "|   fiscal_year |   fiscal_quarter |   weekly_revenue |",
+                    "|--------------:|-----------------:|-----------------:|",
+                    "|          2024 |                1 |      1.03274e+10 |",
+                    "|          2024 |                2 |      1.23393e+10 |",
+                    "|          2024 |                3 |      7.49791e+09 |",
+                    "|          2024 |                4 |      1.3825e+10  |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:12:30.901519",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT fiscal_year, fiscal_quarter, SUM(Revenue) as weekly_revenue  FROM swf_financials  WHERE fiscal_year = 2024  GROUP BY fiscal_year, fiscal_quarter  ORDER BY fiscal_quarter",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:12:31.366462",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 856
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "| Fiscal Year | Total Revenue |",
+                    "|-------------|----------------|",
+                    "| 2024        | $43.99B        |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:12:31.824913",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n| Fiscal Year | Total Revenue |\n|-------------|----------------|\n| 2024        | $43.99B        |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.8945464491844177,
+                    "overall_score": 0.9683639347553252,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT fiscal_year, fiscal_quarter, SUM(Revenue) as weekly_revenue  FROM swf_financials  WHERE fiscal_year = 2024  GROUP BY fiscal_year, fiscal_quarter  ORDER BY fiscal_quarter",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 2,
+                    "unique_steps": 2
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_11924f1d",
+        "created_at": "2025-12-20T11:21:33.948080",
+        "last_updated": "2025-12-20T11:21:43.382563",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T11:21:33.882387",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T11:21:34.780808",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Calculate the sum of weekly revenues for 2024 from the result of step 1.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:21:38.308245",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT fiscal_year, SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024 ",
+                    "GROUP BY fiscal_year ",
+                    "ORDER BY fiscal_year",
+                    "",
+                    "Database Results:",
+                    "|   fiscal_year |   total_revenue |",
+                    "|--------------:|----------------:|",
+                    "|          2024 |     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:21:42.074434",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Calculate the sum of weekly revenues for 2024 from the result of step 1.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT fiscal_year, fiscal_quarter, week_in_quarter, SUM(Revenue) as weekly_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024 ",
+                    "GROUP BY fiscal_year, fiscal_quarter, week_in_quarter ",
+                    "ORDER BY fiscal_quarter, week_in_quarter",
+                    "",
+                    "Database Results:",
+                    "|   fiscal_year |   fiscal_quarter |   week_in_quarter |   weekly_revenue |",
+                    "|--------------:|-----------------:|------------------:|-----------------:|",
+                    "|          2024 |                1 |                 1 |      1.90786e+09 |",
+                    "|          2024 |                1 |                 2 |      1.93414e+09 |",
+                    "|          2024 |                1 |                 3 |      2.52062e+09 |",
+                    "|          2024 |                1 |                 4 |      3.96482e+09 |",
+                    "|          2024 |                2 |                 1 |      5.41253e+09 |",
+                    "|          2024 |                2 |                 2 |      2.81509e+09 |",
+                    "|          2024 |                2 |                 3 |      2.07955e+09 |",
+                    "|          2024 |              "
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:21:42.304470",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT fiscal_year, fiscal_quarter, week_in_quarter, SUM(Revenue) as weekly_revenue  FROM swf_financials  WHERE fiscal_year = 2024  GROUP BY fiscal_year, fiscal_quarter, week_in_quarter  ORDER BY fiscal_quarter, week_in_quarter",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:21:42.921627",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 1961
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "|   fiscal_year |   total_revenue |",
+                    "|--------------:|----------------:|",
+                    "|          2024 |     43.99B      |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:21:43.296420",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n|   fiscal_year |   total_revenue |\n|--------------:|----------------:|\n|          2024 |     43.99B      |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.8823283910751343,
+                    "overall_score": 0.9646985173225402,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT fiscal_year, fiscal_quarter, week_in_quarter, SUM(Revenue) as weekly_revenue  FROM swf_financials  WHERE fiscal_year = 2024  GROUP BY fiscal_year, fiscal_quarter, week_in_quarter  ORDER BY fiscal_quarter, week_in_quarter",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 2,
+                    "unique_steps": 2
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_6a37c1fe",
+        "created_at": "2025-12-20T11:33:00.006881",
+        "last_updated": "2025-12-20T11:33:04.117956",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T11:32:59.948780",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T11:33:00.790161",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:33:02.887963",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:33:03.098668",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT SUM(Revenue) as total_revenue  FROM swf_financials  WHERE fiscal_year = 2024",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:33:03.636060",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 202
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "| Total Revenue |",
+                    "|----------------|",
+                    "| $43.99B         |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:33:04.035726",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n| Total Revenue |\n|----------------|\n| $43.99B         |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.9252042770385742,
+                    "overall_score": 0.9775612831115722,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT SUM(Revenue) as total_revenue  FROM swf_financials  WHERE fiscal_year = 2024",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 1,
+                    "unique_steps": 1
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_0_20a22838",
+        "created_at": "2025-12-20T11:37:51.122289",
+        "last_updated": "2025-12-20T11:37:56.478763",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T11:37:51.060160",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the net income in 2023?",
+                    "query_id": 0,
+                    "category": "unknown"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T11:37:51.819332",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the net income in 2023?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve Net Income for 2023 from swf.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:37:55.365398",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve Net Income for 2023 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT fiscal_year, fiscal_quarter, SUM(Net_Income) as net_income ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2023 ",
+                    "GROUP BY fiscal_year, fiscal_quarter ",
+                    "ORDER BY fiscal_quarter",
+                    "",
+                    "Database Results:",
+                    "|   fiscal_year |   fiscal_quarter |   net_income |",
+                    "|--------------:|-----------------:|-------------:|",
+                    "|          2023 |                1 |  1.87678e+10 |",
+                    "|          2023 |                2 |  1.29702e+10 |",
+                    "|          2023 |                3 |  1.57146e+10 |",
+                    "|          2023 |                4 |  1.68298e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:37:55.575614",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT fiscal_year, fiscal_quarter, SUM(Net_Income) as net_income  FROM swf_financials  WHERE fiscal_year = 2023  GROUP BY fiscal_year, fiscal_quarter  ORDER BY fiscal_quarter",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:37:56.191836",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the net income in 2023?",
+                    "context_length": 546
+                },
+                "output": [
+                    "The net income for 2023 is reported by quarter as follows:",
+                    "",
+                    "| Fiscal Quarter | Net Income |",
+                    "| --- | --- |",
+                    "| Q1 | $18.77B |",
+                    "| Q2 | $12.97B |",
+                    "| Q3 | $15.71B |",
+                    "| Q4 | $16.83B |",
+                    "",
+                    "The total net income for 2023 is not directly provided."
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:37:56.414419",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 0,
+                    "query": "What was the net income in 2023?"
+                },
+                "output": {
+                    "sfa_response": "The net income for 2023 is reported by quarter as follows:\n\n| Fiscal Quarter | Net Income |\n| --- | --- |\n| Q1 | $18.77B |\n| Q2 | $12.97B |\n| Q3 | $15.71B |\n| Q4 | $16.83B |\n\nThe total net income for 2023 is not directly provided.",
+                    "tool_accuracy": 0.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 0.0,
+                    "semantic_similarity": 0.0,
+                    "overall_score": 0.2,
+                    "passed": false,
+                    "failure_mode": "wrong_tool",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT fiscal_year, fiscal_quarter, SUM(Net_Income) as net_income  FROM swf_financials  WHERE fiscal_year = 2023  GROUP BY fiscal_year, fiscal_quarter  ORDER BY fiscal_quarter",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 1,
+                    "unique_steps": 1
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_4ee310e9",
+        "created_at": "2025-12-20T11:52:35.457547",
+        "last_updated": "2025-12-20T11:52:46.694345",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T11:52:35.394200",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T11:52:36.260414",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Calculate the sum of weekly revenues for 2024 from the result of step 1.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:52:39.268688",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT fiscal_year, SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024 ",
+                    "GROUP BY fiscal_year ",
+                    "ORDER BY fiscal_year",
+                    "",
+                    "Database Results:",
+                    "|   fiscal_year |   total_revenue |",
+                    "|--------------:|----------------:|",
+                    "|          2024 |     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:52:45.158514",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Calculate the sum of weekly revenues for 2024 from the result of step 1.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT fiscal_year, fiscal_quarter, week_in_quarter, SUM(Revenue) as weekly_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024 ",
+                    "GROUP BY fiscal_year, fiscal_quarter, week_in_quarter ",
+                    "ORDER BY fiscal_year, fiscal_quarter, week_in_quarter",
+                    "",
+                    "Database Results:",
+                    "|   fiscal_year |   fiscal_quarter |   week_in_quarter |   weekly_revenue |",
+                    "|--------------:|-----------------:|------------------:|-----------------:|",
+                    "|          2024 |                1 |                 1 |      1.90786e+09 |",
+                    "|          2024 |                1 |                 2 |      1.93414e+09 |",
+                    "|          2024 |                1 |                 3 |      2.52062e+09 |",
+                    "|          2024 |                1 |                 4 |      3.96482e+09 |",
+                    "|          2024 |                2 |                 1 |      5.41253e+09 |",
+                    "|          2024 |                2 |                 2 |      2.81509e+09 |",
+                    "|          2024 |                2 |                 3 |      2.07955e+09 |",
+                    "|          2024 | "
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:52:45.376180",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT fiscal_year, fiscal_quarter, week_in_quarter, SUM(Revenue) as weekly_revenue  FROM swf_financials  WHERE fiscal_year = 2024  GROUP BY fiscal_year, fiscal_quarter, week_in_quarter  ORDER BY fiscal_year, fiscal_quarter, week_in_quarter",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T11:52:45.967411",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 1974
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "|   fiscal_year |   total_revenue |",
+                    "|--------------:|----------------:|",
+                    "|          2024 |     43.99B      |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T11:52:46.637698",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n|   fiscal_year |   total_revenue |\n|--------------:|----------------:|\n|          2024 |     43.99B      |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.8823283910751343,
+                    "overall_score": 0.9646985173225402,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT fiscal_year, fiscal_quarter, week_in_quarter, SUM(Revenue) as weekly_revenue  FROM swf_financials  WHERE fiscal_year = 2024  GROUP BY fiscal_year, fiscal_quarter, week_in_quarter  ORDER BY fiscal_year, fiscal_quarter, week_in_quarter",
+                    "plan_efficiency": 1.0,
+                    "total_steps": 2,
+                    "unique_steps": 2
+                }
+            }
+        ]
+    },
+    {
+        "interaction_id": "eval_1_c78e6ebf",
+        "created_at": "2025-12-20T12:02:32.015195",
+        "last_updated": "2025-12-20T12:02:38.340137",
+        "steps": [
+            {
+                "timestamp": "2025-12-20T12:02:31.959957",
+                "agent": "Evaluator",
+                "step_type": "Input",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "query_id": 1,
+                    "category": "structured"
+                },
+                "output": null
+            },
+            {
+                "timestamp": "2025-12-20T12:02:32.843330",
+                "agent": "Planner",
+                "step_type": "Output",
+                "input": "What was the total revenue in 2024?",
+                "output": {
+                    "plan": "1. **SQL**: Retrieve total Revenue for 2024 from swf.\n2. **SQL**: Calculate the sum of weekly Revenue for 2024 to get the total annual Revenue from swf.",
+                    "graph_allowed": false
+                }
+            },
+            {
+                "timestamp": "2025-12-20T12:02:35.050782",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Retrieve total Revenue for 2024 from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T12:02:36.892644",
+                "agent": "Worker",
+                "step_type": "Tool Call",
+                "input": "SQL: Calculate the sum of weekly Revenue for 2024 to get the total annual Revenue from swf.",
+                "output": [
+                    "SQL Execution Result:",
+                    "SQL Query Used:",
+                    "SELECT SUM(Revenue) as total_revenue ",
+                    "FROM swf_financials ",
+                    "WHERE fiscal_year = 2024",
+                    "",
+                    "Database Results:",
+                    "|   total_revenue |",
+                    "|----------------:|",
+                    "|     4.39896e+10 |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T12:02:37.090455",
+                "agent": "Evaluator",
+                "step_type": "SQL Validation",
+                "input": "SELECT SUM(Revenue) as total_revenue  FROM swf_financials  WHERE fiscal_year = 2024",
+                "output": {
+                    "valid": true,
+                    "message": "Valid"
+                }
+            },
+            {
+                "timestamp": "2025-12-20T12:02:37.621389",
+                "agent": "Auditor",
+                "step_type": "Output",
+                "input": {
+                    "query": "What was the total revenue in 2024?",
+                    "context_length": 404
+                },
+                "output": [
+                    "The total revenue for 2024 was $43.99B. ",
+                    "",
+                    "| Total Revenue |",
+                    "|----------------|",
+                    "| $43.99B         |"
+                ]
+            },
+            {
+                "timestamp": "2025-12-20T12:02:38.172076",
+                "agent": "Evaluator",
+                "step_type": "Final Result",
+                "input": {
+                    "query_id": 1,
+                    "query": "What was the total revenue in 2024?"
+                },
+                "output": {
+                    "sfa_response": "The total revenue for 2024 was $43.99B. \n\n| Total Revenue |\n|----------------|\n| $43.99B         |",
+                    "tool_accuracy": 1.0,
+                    "sql_validity": 1.0,
+                    "value_accuracy": 1.0,
+                    "semantic_similarity": 0.9252042770385742,
+                    "overall_score": 0.9775612831115722,
+                    "passed": true,
+                    "failure_mode": "none",
+                    "graph_generated": false,
+                    "generated_sql": "SELECT SUM(Revenue) as total_revenue  FROM swf_financials  WHERE fiscal_year = 2024",
+                    "plan_efficiency": 0.5,
+                    "total_steps": 2,
+                    "unique_steps": 1,
+                    "expected_steps": 1,
+                    "step_accuracy": 0.75
+                }
+            }
+        ]
     }
 ]
