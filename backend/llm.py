@@ -68,50 +68,25 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
         )
     else:
         print(" ****** SQL_GENERATION_PROMPT original")
+        # Get dynamic schema from database
+        from backend.schema_utils import get_full_schema_context
+        dynamic_schema = get_full_schema_context()
+        
         sql_generation_prompt = f"""You are an expert SQL generator for a financial analytics database.
 
 IMPORTANT CONTEXT:
 - The data represents ONE virtual, market-level entity.
 - There are NO individual companies.
-- Queries must be time-based (year / quarter).
+- Queries must be time-based (year / quarter / trade_date).
 
-AVAILABLE TABLES:
-
-swf_financials
-- year (INTEGER)
-- quarter (INTEGER)
-- revenue
-- cost_of_revenue
-- gross_profit
-- operating_expenses
-- operating_income
-- other_income_expense
-- income_before_tax
-- income_tax_expense
-- net_income
-- gross_margin
-- operating_margin
-- net_margin
-
-market_daily_data
-- trade_date (YYYY-MM-DD)
-- year
-- fiscal_quarter
-- daily_return_pct
-- rolling_volatility
-
-JOIN RULE (ONLY IF NEEDED):
-swf_financials.year = market_daily_data.year
-AND swf_financials.quarter = market_daily_data.fiscal_quarter
-
-When joining:
-- ALWAYS aggregate market data (AVG, MAX, MIN).
+{dynamic_schema}
 
 RULES:
-- Do NOT invent columns.
+- Do NOT invent columns - use ONLY columns listed above.
 - Do NOT reference companies.
 - Use ORDER BY for time series.
-- Prefer clarity over cleverness.
+- For stock prices, use market_daily_data (open_price, close_price, high_price, low_price).
+- For financial data, use swf_financials (revenue, net_income, etc).
 
 OUTPUT:
 Return ONLY valid SQL wrapped in ```sql```.

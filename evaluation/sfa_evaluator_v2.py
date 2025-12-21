@@ -64,6 +64,18 @@ except ImportError:
     EMBEDDER_AVAILABLE = False
     print("Warning: sentence-transformers not installed. Semantic similarity will use fallback.")
 
+# FaithfulnessAuditor for hallucination detection (local Groq-based)
+try:
+    from evaluation.faithfulness_auditor import FaithfulnessAuditor
+    AUDITOR_AVAILABLE = True
+except ImportError:
+    try:
+        from faithfulness_auditor import FaithfulnessAuditor
+        AUDITOR_AVAILABLE = True
+    except ImportError:
+        AUDITOR_AVAILABLE = False
+        print("Warning: FaithfulnessAuditor not available. Kill-switch disabled.")
+
 # RAGAS for hallucination detection in advisory queries
 try:
     from ragas import evaluate as ragas_evaluate
@@ -193,6 +205,17 @@ class SFAEvaluatorV2:
         
         # Valid tools mapping
         self.valid_tools = {"SQL", "RAG", "ADVISORY", "NONE"}
+        
+        # Initialize FaithfulnessAuditor for hallucination detection
+        if AUDITOR_AVAILABLE:
+            self.auditor = FaithfulnessAuditor()
+            if self.auditor.is_available():
+                print("FaithfulnessAuditor ready (Kill-Switch ENABLED).")
+            else:
+                print("FaithfulnessAuditor initialized but no API key.")
+        else:
+            self.auditor = None
+            print("FaithfulnessAuditor not available (Kill-Switch DISABLED).")
         
         print(f"Loaded {len(self.golden_dataset)} golden queries from dataset.")
     
@@ -802,7 +825,7 @@ Score:"""
                     result.semantic_similarity = raw_semantic
                     print(f"Semantic Similarity: {result.semantic_similarity:.2f}")
                 
-                # 7b. RAGAS Evaluation for Advisory queries (Faithfulness check)
+                # 7b. Faithfulness Evaluation for Advisory queries (Kill-Switch)
                 category = golden_entry.get('category', '').lower()
                 intent_type = golden_entry.get('intent_type', '').upper()
                 
@@ -813,16 +836,17 @@ Score:"""
                         # Split context into retrievable chunks
                         retrieved_contexts = [ctx.strip() for ctx in context.split('\n\n') if ctx.strip()]
                     
-                    if retrieved_contexts:
-                        ragas_scores = self.evaluate_ragas(query, result.actual_response, retrieved_contexts)
-                        result.faithfulness = ragas_scores.get('faithfulness', 0.5)
-                        result.answer_relevancy = ragas_scores.get('answer_relevancy', 0.5)
+                    if retrieved_contexts and self.auditor:
+                        # Use modular FaithfulnessAuditor
+                        audit_result = self.auditor.evaluate(query, result.actual_response, retrieved_contexts)
+                        result.faithfulness = audit_result.get('faithfulness', 0.5)
+                        result.answer_relevancy = self.calculate_semantic_similarity(query, result.actual_response)
                         
                         # Flag potential hallucination if faithfulness is low
                         if result.faithfulness < 0.5:
                             print(f"⚠️ Low Faithfulness ({result.faithfulness:.2f}) - Potential hallucination")
                     else:
-                        print("No contexts available for RAGAS - using semantic only")
+                        print("No contexts available or auditor disabled - using semantic only")
             
             # 8. Detect failure mode
             result.failure_mode = self._detect_failure_mode(result, golden_entry)
@@ -849,11 +873,21 @@ Score:"""
                 weights['semantic'] * result.semantic_similarity
             )
             
-            # Pass/Fail Logic (REVISED):
-            # PRIMARY: Value Accuracy >= 0.5 means correct data was returned - this is the CORE requirement
-            # SECONDARY: Overall score is still computed for reporting purposes
-            # Rationale: The SFA's main job is returning accurate data. Process metrics are secondary.
-            result.passed = result.value_accuracy >= 0.5 or result.overall_score >= 0.7
+            # ============================================================
+            # KILL-SWITCH: Enforce truthfulness for Advisory queries
+            # ============================================================
+            # If faithfulness is below threshold, FORCE FAIL regardless of other scores
+            category = golden_entry.get('category', '').lower() if golden_entry else ''
+            if category == 'advisory' and result.faithfulness < 0.5:
+                result.overall_score = 0.0
+                result.passed = False
+                result.failure_mode = "hallucination"
+                print(f"🚫 KILL-SWITCH TRIGGERED: Faithfulness {result.faithfulness:.2f} < 0.5")
+            else:
+                # Normal Pass/Fail Logic (REVISED):
+                # PRIMARY: Value Accuracy >= 0.5 means correct data was returned
+                # SECONDARY: Overall score is still computed for reporting purposes
+                result.passed = result.value_accuracy >= 0.5 or result.overall_score >= 0.7
             
             print(f"\n--- RESULT ---")
             print(f"Overall Score: {result.overall_score:.2f}")
