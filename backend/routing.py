@@ -247,9 +247,11 @@ Labels:"""
                 chat_prompt = CONVERSATIONAL_PROMPT.format(query=log_input_query)
             else:
                 chat_prompt = f"""
-You are a professional Financial AI Assistant. 
-User says: "{log_input_query}"
-Reply with a concise, friendly response.
+You are a professional financial assistant.
+
+Reply briefly and politely to the user's message.
+
+User: "{log_input_query}"
 """
             
             reply = client.chat.completions.create(
@@ -335,12 +337,27 @@ Reply with a concise, friendly response.
                 clean_step = step.replace("**", "")
                 dlog(f"Executing Step: {clean_step}")
                 
-                try:
-                    result = execute_step(clean_step)
-                    dlog(f"Step Result: {result[:200]}...") # Log summary
-                except Exception as step_err:
-                    result = f"Error executing step: {step_err}"
-                    dlog(f"Step Error: {result}")
+                # Check if this is an ADVISORY step from Planner
+                if "ADVISORY:" in clean_step.upper():
+                    # Route directly to Advisor agent
+                    try:
+                        from backend.agents.advisor import generate_advisory
+                        result = generate_advisory(log_input_query, data_context=context, interaction_id=interaction_id)
+                        dlog(f"Advisory Result: {result[:200]}...")
+                        log_agent_interaction(interaction_id, "AdvisorAgent", "Output", clean_step, result)
+                        # For advisory, return immediately without going to auditor
+                        return result
+                    except Exception as adv_err:
+                        result = f"Error executing advisory: {adv_err}"
+                        dlog(f"Advisory Error: {result}")
+                else:
+                    # Standard SQL/RAG step
+                    try:
+                        result = execute_step(clean_step)
+                        dlog(f"Step Result: {result[:200]}...") # Log summary
+                    except Exception as step_err:
+                        result = f"Error executing step: {step_err}"
+                        dlog(f"Step Error: {result}")
                 
                 context += f"\nStep: {step}\nResult: {result}\n"
                 
@@ -354,6 +371,8 @@ Reply with a concise, friendly response.
                         step_type = "SQL"
                     elif "RAG" in clean_step.upper():
                         step_type = "RAG"
+                    elif "ADVISORY" in clean_step.upper():
+                        step_type = "ADVISORY"
                         
                     testing_log_entry["steps_context"].append({
                         "step_number": i + 1,
@@ -378,8 +397,11 @@ Reply with a concise, friendly response.
         
         # ============================================
         # HYBRID: If DATA+ADVISORY, pass data to Advisor
+        # NCA: Skip Advisory if Auditor returned no data
         # ============================================
-        if needs_advisory and needs_data:
+        data_unavailable = "data not available" in final_answer.lower() or "no data" in final_answer.lower()
+        
+        if needs_advisory and needs_data and not data_unavailable:
             try:
                 from backend.agents.advisor import generate_advisory
                 

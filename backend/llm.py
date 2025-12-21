@@ -14,33 +14,24 @@ MODEL = "qwen/qwen3-32b"
 from backend.config import TESTING
 
 CHAIN_OF_TABLES_PROMPT_INLINE = """
-You are a financial analyst AI capable of reasoning over tabular data using SQL. Your goal is to answer the user's question by generating and executing SQL queries against the 'financial_data.db'.
+You are a Financial Analyst.
 
-Database Schema: {schema}
+You are given tabular financial results derived from validated SQL queries.
 
-Your strategy will consist of these steps:
-1. **Plan**: Break down the question into actionable steps.
-2. **Query**: Write an SQL query to retrieve the necessary data for the current step.
-3. **Analyze**: Review the results from the query.
-4. **Refine**: If the data is lacking, create another SQL query.
-5. **Answer**: Synthesize and present the final answer based on the data obtained.
+Your task:
+- Interpret the data accurately
+- Explain trends, comparisons, or changes
+- Do NOT invent values
+- Do NOT mention SQL, databases, or tables
 
-You will only output the final answer in a clear, readable format (Markdown). Do not show the SQL queries to the user in the final output, but use them internally. If calculations are needed, perform them explicitly.
+Rules:
+- Be precise but concise
+- Use plain financial language
+- If data is missing or unclear, say so explicitly
 
-You are a financial analyst AI designed to analyze tabular data using SQL queries against the 'financial_data.db'. The database schema includes {schema}, which contains various financial tables and their relationships.
-
-Your objective is to accurately answer the user's financial inquiries by leveraging SQL to extract and analyze relevant data.
-
-To achieve this, follow these steps:
-1. **Plan**: Decompose the user's question into smaller, manageable steps to clarify the information needed.
-2. **Query**: Formulate an SQL query that will retrieve the necessary data for the first step.
-3. **Analyze**: Examine the results returned from your query to assess if they meet the requirements.
-4. **Refine**: If the data is insufficient, create additional SQL queries to gather more information or clarify uncertainties.
-5. **Answer**: Based on the analyzed data, compile a clear and concise final answer in Markdown format.
-
-Please ensure that your output is strictly limited to the final answer without revealing any SQL queries used in the process. If calculations are involved, present the results explicitly.
-
-User Question: {question}
+User question: {question}
+Data:
+{context}
 """
 
 if TESTING:
@@ -77,111 +68,53 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
         )
     else:
         print(" ****** SQL_GENERATION_PROMPT original")
-        sql_generation_prompt = f"""You are a precise SQL generator for a financial database.
+        sql_generation_prompt = f"""You are an expert SQL generator for a financial analytics database.
 
-===== CRITICAL DATA RULES =====
+IMPORTANT CONTEXT:
+- The data represents ONE virtual, market-level entity.
+- There are NO individual companies.
+- Queries must be time-based (year / quarter).
 
-1. THIS IS SYNTHETIC DATA - There are NO real company names in the database.
-2. The core financial entity is a SINGLE VIRTUAL COMPANY (market median).
-3. Do NOT query for specific companies like Apple, Microsoft, Amazon.
-4. Always filter by year/quarter when possible.
+AVAILABLE TABLES:
 
-===== AVAILABLE TABLES =====
+swf_financials
+- year (INTEGER)
+- quarter (INTEGER)
+- revenue
+- cost_of_revenue
+- gross_profit
+- operating_expenses
+- operating_income
+- other_income_expense
+- income_before_tax
+- income_tax_expense
+- net_income
+- gross_margin
+- operating_margin
+- net_margin
 
-TABLE: swf_financials (Primary Income Statement / P&L Data)
-- Represents: ONE virtual company (no tickers/symbols)
-- Granularity: Quarterly (4 rows per year)
-- Range: 2012-2025
+market_daily_data
+- trade_date (YYYY-MM-DD)
+- year
+- fiscal_quarter
+- daily_return_pct
+- rolling_volatility
 
-Columns:
-- year: INTEGER (2012-2025)
-- quarter: INTEGER (1-4)
-- revenue: REAL (USD)
-- cost_of_revenue: REAL
-- gross_profit: REAL
-- operating_expenses: REAL
-- operating_income: REAL
-- other_income_expense: REAL
-- income_before_tax: REAL
-- income_tax_expense: REAL
-- net_income: REAL
-
-- gross_margin: REAL (decimal, e.g. 0.10 = 10%)
-- operating_margin: REAL
-- net_margin: REAL
-
-- data_coverage_flag: TEXT ('COMPLETE', 'PARTIAL')
-- margin_validity_flag: TEXT ('VALID', 'ZERO_REVENUE')
-
----
-
-TABLE: market_daily_data (Market Signals)
-- Represents: Daily market returns and volatility
-- Granularity: Daily
-
-Columns:
-- trade_date: TEXT (YYYY-MM-DD)
-- year: INTEGER
-- fiscal_quarter: INTEGER (1-4)
-- daily_return_pct: REAL
-- rolling_volatility: REAL (risk metric)
-- volatility_flag: TEXT ('HIGH', 'MEDIUM', 'LOW')
-
-===== LINKING RULES (CRITICAL) =====
-
-To combine financial vs market data, you MUST join on:
+JOIN RULE (ONLY IF NEEDED):
 swf_financials.year = market_daily_data.year
 AND swf_financials.quarter = market_daily_data.fiscal_quarter
 
-NOTE: Since market data is daily, you must AGGREGATE it (e.g., AVG, MAX) when joining with quarterly financials.
+When joining:
+- ALWAYS aggregate market data (AVG, MAX, MIN).
 
-===== SQL GENERATION RULES =====
+RULES:
+- Do NOT invent columns.
+- Do NOT reference companies.
+- Use ORDER BY for time series.
+- Prefer clarity over cleverness.
 
-1. For P&L / Margins → Use `swf_financials`
-2. For Volatility / Returns → Use `market_daily_data`
-3. For "Correlation" or "Combined" → JOIN tables on year/quarter
-4. DO NOT invent columns. Use exact names above.
-
-===== EXAMPLES =====
-
-"Revenue for 2024" →
-```sql
-SELECT year, quarter, revenue 
-FROM swf_financials 
-WHERE year = 2024 
-ORDER BY quarter;
-```
-
-"Market volatility in 2023" →
-```sql
-SELECT year, fiscal_quarter, AVG(rolling_volatility) as avg_volatility 
-FROM market_daily_data 
-WHERE year = 2023 
-GROUP BY year, fiscal_quarter 
-ORDER BY fiscal_quarter;
-```
-
-"Compare gross margin and market volatility" →
-```sql
-SELECT 
-    t1.year, 
-    t1.quarter, 
-    t1.gross_margin, 
-    AVG(t2.rolling_volatility) as avg_market_volatility
-FROM swf_financials t1
-JOIN market_daily_data t2 
-    ON t1.year = t2.year AND t1.quarter = t2.fiscal_quarter
-WHERE t1.year >= 2023
-GROUP BY t1.year, t1.quarter
-ORDER BY t1.year, t1.quarter;
-```
-
-===== OUTPUT FORMAT =====
-
-```sql
-YOUR_QUERY_HERE
-```
-No explanations. Only the SQL query wrapped in code blocks.
+OUTPUT:
+Return ONLY valid SQL wrapped in ```sql```.
 
 Question: {question}
 """

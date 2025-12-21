@@ -5392,3 +5392,344 @@
 2025-12-20 19:08:28,191 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-20 19:08:28,347 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/c5d37be1-7ae1-4e87-9693-71cce06ce257', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
 2025-12-20 19:08:28,418 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.5827s', 'client': '127.0.0.1'}
+2025-12-20 22:56:37,843 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:38,333 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:39,551 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:41,607 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:42,199 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:42,483 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:42,836 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:44,243 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:44,672 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:46,002 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:46,283 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:46,707 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:50,599 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:51,162 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:51,825 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:53,536 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:53,834 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:54,225 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:54,567 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:54,947 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:57,368 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:56:59,446 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-20 22:57:00,155 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:14,543 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:15,040 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:16,778 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:18,045 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:18,780 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:19,390 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:19,878 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:21,387 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:38,028 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:38,736 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:39,189 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:39,849 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:49,053 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:51,273 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:51,872 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:52,419 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:52,985 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:16:54,052 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:00,707 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:01,483 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:01,822 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:02,340 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:04,736 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:07,120 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:07,968 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:08,346 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:08,887 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:14,697 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:15,093 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:15,093 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:17:19,627 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:20,437 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:20,817 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:21,299 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:21,563 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:21,563 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:17:24,714 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:24,994 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:24,995 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:17:29,741 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:30,595 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:30,967 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:31,437 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:31,695 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:31,697 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:17:37,055 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:37,301 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:37,302 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:17:42,437 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:43,887 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:44,249 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:44,863 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:45,118 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:45,120 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:17:46,839 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:47,098 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:47,100 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:17:52,197 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:52,847 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:53,220 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:53,720 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:53,942 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:17:53,944 - INFO - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2025-12-21 11:17:57,639 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:59,219 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:17:59,591 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:18:00,123 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:18:00,332 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:18:00,332 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:18:11,550 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:18:13,244 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:18:13,617 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:18:14,188 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:18:27,736 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:18:29,456 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:38:21,452 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:38:22,113 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:38:23,273 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:38:25,127 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:38:25,967 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:35,999 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:36,531 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:37,963 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:39,219 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:40,293 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:40,662 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:41,112 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:42,280 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:44,100 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:44,736 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:45,143 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:45,599 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:48,505 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:53,052 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:53,922 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:54,465 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:55,014 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:57,723 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:41:59,886 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:00,648 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:01,113 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:01,659 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:05,985 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:07,771 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:09,396 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:09,980 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:10,565 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:14,635 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:14,904 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:42:14,905 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:42:23,723 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:25,122 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:25,545 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:26,150 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:26,408 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:42:26,410 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:42:33,089 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:33,404 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:42:33,404 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:42:38,363 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:43,903 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:44,311 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:44,883 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:47,340 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:47,625 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:42:47,626 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:42:52,685 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:55,856 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:56,260 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:56,878 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:58,026 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:42:58,334 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:42:58,335 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:43:02,925 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:04,013 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:04,396 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:04,956 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:05,280 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:05,281 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:43:07,852 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:08,147 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:08,148 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:43:12,602 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:13,567 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:13,950 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:14,467 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:14,779 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:14,781 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:43:17,580 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:17,872 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:17,873 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:43:22,472 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:23,655 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:24,123 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:24,686 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:24,961 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:24,962 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:43:26,876 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:27,111 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:27,112 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:43:31,085 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:32,154 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:32,570 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:33,115 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:33,412 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:33,413 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:43:38,565 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:38,843 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:38,845 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:43:43,577 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:44,869 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:45,334 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:46,021 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:46,301 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:46,301 - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2025-12-21 11:43:49,585 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:49,852 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 11:43:49,852 - INFO - Retrying request to /openai/v1/chat/completions in 3.000000 seconds
+2025-12-21 11:43:54,566 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 11:43:58,370 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:11:11,218 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-12-21 12:11:11,642 - INFO - Use pytorch device_name: cpu
+2025-12-21 12:11:11,642 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-12-21 12:11:49,214 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+2025-12-21 12:11:49,234 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0076s', 'client': '127.0.0.1'}
+2025-12-21 12:14:36,323 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.2125s', 'client': '127.0.0.1'}
+2025-12-21 12:14:36,373 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0176s', 'client': '127.0.0.1'}
+2025-12-21 12:14:36,572 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0386s', 'client': '127.0.0.1'}
+2025-12-21 12:14:36,582 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+2025-12-21 12:14:38,376 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0140s', 'client': '127.0.0.1'}
+2025-12-21 12:14:38,683 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+2025-12-21 12:14:43,243 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+2025-12-21 12:14:43,397 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0579s', 'client': '127.0.0.1'}
+2025-12-21 12:14:43,406 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0097s', 'client': '127.0.0.1'}
+2025-12-21 12:14:55,078 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 12:14:55,583 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0037s', 'client': '127.0.0.1'}
+2025-12-21 12:14:56,080 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:14:56,083 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0080s', 'client': '127.0.0.1'}
+2025-12-21 12:14:56,560 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:14:56,657 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:14:57,659 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:14:58,171 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:14:58,648 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 12:14:59,301 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+2025-12-21 12:14:59,576 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:15:00,076 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 12:15:00,577 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 12:15:00,796 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:01,075 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/72b59909-1352-4840-b346-96ae745171c9', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:15:01,206 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:01,263 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '6.6930s', 'client': '127.0.0.1'}
+2025-12-21 12:15:04,299 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:04,440 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/27d6339f-2c59-435d-8669-8355c5306a1e', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:15:04,842 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:04,943 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/27d6339f-2c59-435d-8669-8355c5306a1e', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+2025-12-21 12:15:05,509 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:05,658 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/27d6339f-2c59-435d-8669-8355c5306a1e', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:15:06,649 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/27d6339f-2c59-435d-8669-8355c5306a1e', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 12:15:06,832 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:07,267 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:07,326 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.3959s', 'client': '127.0.0.1'}
+2025-12-21 12:15:11,691 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:11,922 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+2025-12-21 12:15:12,070 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:12,656 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+2025-12-21 12:15:13,654 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 12:15:14,579 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:14,657 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 12:15:15,462 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:15:15,922 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+2025-12-21 12:15:16,427 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+2025-12-21 12:15:16,928 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 12:15:17,392 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:17,429 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+2025-12-21 12:15:17,873 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:17,918 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '6.5009s', 'client': '127.0.0.1'}
+2025-12-21 12:15:17,927 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/8e67764e-5b98-4a0f-abce-812076e8ed7d', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+2025-12-21 12:15:23,553 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:23,815 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/979dd176-667b-4295-98a5-24b7636255cd', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+2025-12-21 12:15:23,963 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:24,658 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/979dd176-667b-4295-98a5-24b7636255cd', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 12:15:25,661 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/979dd176-667b-4295-98a5-24b7636255cd', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:15:25,948 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:26,661 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/979dd176-667b-4295-98a5-24b7636255cd', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:15:27,661 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/979dd176-667b-4295-98a5-24b7636255cd', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 12:15:28,660 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/979dd176-667b-4295-98a5-24b7636255cd', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 12:15:29,648 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/979dd176-667b-4295-98a5-24b7636255cd', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:15:29,890 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:30,392 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:30,438 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.1389s', 'client': '127.0.0.1'}
+2025-12-21 12:15:41,098 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:41,314 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0037s', 'client': '127.0.0.1'}
+2025-12-21 12:15:41,437 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:42,659 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+2025-12-21 12:15:42,682 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:43,661 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 12:15:44,534 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+2025-12-21 12:15:44,812 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+2025-12-21 12:15:45,311 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 12:15:45,439 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:45,813 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+2025-12-21 12:15:46,020 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:46,314 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:15:46,815 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+2025-12-21 12:15:47,314 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:15:47,787 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:15:47,826 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.0215s', 'client': '127.0.0.1'}
+2025-12-21 12:15:47,835 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/efdeb9a0-bd6a-4f6f-a238-c5c53089cf74', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+2025-12-21 12:16:02,526 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:16:02,761 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 12:16:02,835 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:16:03,262 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+2025-12-21 12:16:03,768 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:16:03,979 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:16:04,260 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:16:04,769 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 12:16:05,261 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:16:05,762 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:16:06,261 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:16:06,761 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:16:07,255 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:16:07,262 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 12:16:07,752 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:16:07,764 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/4ffbfcf5-e4ad-48ed-a0d6-a5b75baa1088', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+2025-12-21 12:16:07,797 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.5403s', 'client': '127.0.0.1'}
+2025-12-21 12:16:49,653 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/7dfa01d5-9e19-4d32-8769-9b52cbe3a58b', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+2025-12-21 12:16:49,891 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/7dfa01d5-9e19-4d32-8769-9b52cbe3a58b', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:16:50,397 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/7dfa01d5-9e19-4d32-8769-9b52cbe3a58b', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 12:16:50,897 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/7dfa01d5-9e19-4d32-8769-9b52cbe3a58b', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:16:51,126 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:16:51,398 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/7dfa01d5-9e19-4d32-8769-9b52cbe3a58b', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 12:16:51,403 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:16:51,430 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.5430s', 'client': '127.0.0.1'}
+2025-12-21 12:17:03,480 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d8b862e-67df-48c2-910b-9af8ca574c1a', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 12:17:03,980 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d8b862e-67df-48c2-910b-9af8ca574c1a', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 12:17:04,425 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:04,491 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d8b862e-67df-48c2-910b-9af8ca574c1a', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+2025-12-21 12:17:04,686 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:04,700 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '1.7278s', 'client': '127.0.0.1'}
+2025-12-21 12:17:14,942 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:15,199 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/20804444-7240-4ace-be1e-de91925bc35c', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:17:15,361 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:15,702 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/20804444-7240-4ace-be1e-de91925bc35c', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+2025-12-21 12:17:16,660 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/20804444-7240-4ace-be1e-de91925bc35c', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 12:17:16,968 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:17,659 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/20804444-7240-4ace-be1e-de91925bc35c', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 12:17:18,574 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:18,619 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.9312s', 'client': '127.0.0.1'}
+2025-12-21 12:17:21,246 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:21,414 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-12-21 12:17:21,486 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fd5620b4-5247-482d-a2ea-a0e7884fef28', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+2025-12-21 12:17:21,849 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:21,988 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fd5620b4-5247-482d-a2ea-a0e7884fef28', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+2025-12-21 12:17:22,487 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fd5620b4-5247-482d-a2ea-a0e7884fef28', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 12:17:22,986 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fd5620b4-5247-482d-a2ea-a0e7884fef28', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 12:17:23,496 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fd5620b4-5247-482d-a2ea-a0e7884fef28', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 12:17:23,606 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 12:17:23,643 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.6622s', 'client': '127.0.0.1'}

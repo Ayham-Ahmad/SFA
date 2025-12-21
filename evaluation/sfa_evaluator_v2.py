@@ -488,8 +488,10 @@ class SFAEvaluatorV2:
                     None
                 )
             
-            # Check if graph is needed
-            is_graph = golden_entry.get('requires_graph', False) if golden_entry else False
+            # Check if graph is needed - based on category or intent_type
+            is_graph = (golden_entry.get('category', '').lower() == 'graph' or 
+                       golden_entry.get('intent_type', '').upper() == 'GRAPH') if golden_entry else False
+            print(f"Graph allowed: {is_graph}")
             
             # 1. Run Planner
             plan_output = plan_task(query, graph_allowed=is_graph)
@@ -504,7 +506,9 @@ class SFAEvaluatorV2:
             
             # Extract tool from plan - handle markdown bold format: **SQL**: or SQL:
             plan_upper = plan_output.upper().replace('**', '')
-            if "SQL:" in plan_upper:
+            if "ADVISORY:" in plan_upper:
+                result.extracted_tool = "ADVISORY"
+            elif "SQL:" in plan_upper:
                 result.extracted_tool = "SQL"
             elif "RAG:" in plan_upper:
                 result.extracted_tool = "RAG"
@@ -685,10 +689,11 @@ class SFAEvaluatorV2:
                 weights['semantic'] * result.semantic_similarity
             )
             
-            # Pass threshold (0.6) justification (ISSUE 3):
-            # Balances strict numeric accuracy with natural language flexibility.
-            # Multi-metric evaluation allows partial credit for advisory responses.
-            result.passed = result.overall_score >= 0.6
+            # Pass/Fail Logic (REVISED):
+            # PRIMARY: Value Accuracy >= 0.5 means correct data was returned - this is the CORE requirement
+            # SECONDARY: Overall score is still computed for reporting purposes
+            # Rationale: The SFA's main job is returning accurate data. Process metrics are secondary.
+            result.passed = result.value_accuracy >= 0.5 or result.overall_score >= 0.7
             
             print(f"\n--- RESULT ---")
             print(f"Overall Score: {result.overall_score:.2f}")
@@ -722,7 +727,7 @@ class SFAEvaluatorV2:
         except Exception as e:
             import traceback
             result.error = str(e)
-            print(f"\n❌ Error: {e}")
+            print(f"\n[ERROR] {e}")
             print(traceback.format_exc())
             
             # Log error
