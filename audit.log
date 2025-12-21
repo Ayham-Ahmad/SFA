@@ -5733,3 +5733,75 @@
 2025-12-21 12:17:23,496 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fd5620b4-5247-482d-a2ea-a0e7884fef28', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
 2025-12-21 12:17:23,606 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2025-12-21 12:17:23,643 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.6622s', 'client': '127.0.0.1'}
+2025-12-21 14:10:58,077 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-12-21 14:10:58,461 - INFO - Use pytorch device_name: cpu
+2025-12-21 14:10:58,461 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-12-21 14:11:22,193 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+2025-12-21 14:11:22,330 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.1260s', 'client': '127.0.0.1'}
+2025-12-21 14:11:22,754 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+2025-12-21 14:11:28,068 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.1909s', 'client': '127.0.0.1'}
+2025-12-21 14:11:28,207 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.1124s', 'client': '127.0.0.1'}
+2025-12-21 14:11:28,447 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.1759s', 'client': '127.0.0.1'}
+2025-12-21 14:11:28,584 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0489s', 'client': '127.0.0.1'}
+2025-12-21 14:11:28,596 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0075s', 'client': '127.0.0.1'}
+2025-12-21 14:11:29,922 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0731s', 'client': '127.0.0.1'}
+2025-12-21 14:11:30,372 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+2025-12-21 14:11:39,042 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+2025-12-21 14:11:39,328 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+2025-12-21 14:11:39,826 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 14:11:40,326 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+2025-12-21 14:11:40,826 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 14:11:41,328 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 14:11:41,821 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+2025-12-21 14:11:42,324 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 14:11:42,818 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 14:11:43,332 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 14:11:43,818 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:11:44,332 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 14:11:44,830 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 14:11:45,331 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 14:11:45,828 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 14:11:46,332 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 14:11:46,832 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+2025-12-21 14:11:47,322 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 14:11:47,831 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:11:48,328 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:11:48,827 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 14:11:49,326 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 14:11:49,828 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:11:50,330 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:11:50,725 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:11:50,830 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3c9729c5-a609-493a-b723-a2270e8d8bc6', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:11:51,122 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:11:51,150 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '12.8345s', 'client': '127.0.0.1'}
+2025-12-21 14:12:00,285 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:00,550 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 14:12:00,794 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:01,049 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:12:01,547 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:12:02,048 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 14:12:02,548 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+2025-12-21 14:12:02,997 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:03,053 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+2025-12-21 14:12:03,548 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+2025-12-21 14:12:04,048 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 14:12:04,548 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+2025-12-21 14:12:05,049 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9bfc622e-cdb9-4a5b-bff3-19609aaa4866', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+2025-12-21 14:12:05,144 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:05,225 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.1865s', 'client': '127.0.0.1'}
+2025-12-21 14:12:40,568 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:40,832 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+2025-12-21 14:12:41,035 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:41,336 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+2025-12-21 14:12:41,830 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+2025-12-21 14:12:42,332 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+2025-12-21 14:12:42,821 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+2025-12-21 14:12:43,333 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 14:12:43,833 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+2025-12-21 14:12:44,332 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+2025-12-21 14:12:44,365 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:44,831 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+2025-12-21 14:12:45,331 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 14:12:45,832 - INFO - Request: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/6182e86b-efb3-4549-92eb-3d88ad81de41', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+2025-12-21 14:12:45,860 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-21 14:12:45,939 - INFO - Request: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.6205s', 'client': '127.0.0.1'}

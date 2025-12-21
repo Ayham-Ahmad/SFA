@@ -34,6 +34,10 @@ import os
 # Ensure project root is in sys.path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Load environment variables from .env
+from dotenv import load_dotenv
+load_dotenv()
+
 import json
 import re
 import csv
@@ -59,6 +63,50 @@ try:
 except ImportError:
     EMBEDDER_AVAILABLE = False
     print("Warning: sentence-transformers not installed. Semantic similarity will use fallback.")
+
+# RAGAS for hallucination detection in advisory queries
+try:
+    from ragas import evaluate as ragas_evaluate
+    from ragas.metrics import faithfulness, answer_relevancy
+    from datasets import Dataset
+    RAGAS_AVAILABLE = True
+    
+    # Configure RAGAS to use Groq instead of OpenAI
+    try:
+        from langchain_groq import ChatGroq
+        from ragas.llms import LangchainLLMWrapper
+        from ragas.embeddings import LangchainEmbeddingsWrapper
+        from langchain_huggingface import HuggingFaceEmbeddings
+        import os
+        
+        # Get Groq API key from environment
+        groq_key = os.getenv("GROQ_API_KEY")
+        if groq_key:
+            # Create Groq LLM wrapper for RAGAS
+            groq_llm = ChatGroq(
+                model="llama-3.3-70b-versatile",
+                api_key=groq_key,
+                temperature=0
+            )
+            RAGAS_LLM = LangchainLLMWrapper(groq_llm)
+            
+            # Use local embeddings (already loaded by sentence-transformers)
+            RAGAS_EMBEDDINGS = LangchainEmbeddingsWrapper(
+                HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+            )
+            GROQ_RAGAS_READY = True
+            print("RAGAS configured with Groq LLM (llama-3.3-70b-versatile)")
+        else:
+            GROQ_RAGAS_READY = False
+            print("Warning: GROQ_API_KEY not found. RAGAS will fail closed.")
+    except ImportError as e:
+        GROQ_RAGAS_READY = False
+        print(f"Warning: langchain-groq not available ({e}). RAGAS will fail closed.")
+        
+except ImportError:
+    RAGAS_AVAILABLE = False
+    GROQ_RAGAS_READY = False
+    print("Warning: RAGAS not available. Advisory faithfulness checks disabled.")
 
 # =========================================================================
 # CONFIGURATION
@@ -112,6 +160,10 @@ class ValidationResult:
     error: str = ""
     timestamp: str = ""
     validation_type: str = ""  # numeric, semantic, refusal, graph_exists
+    
+    # RAGAS scores (Advisory queries only)
+    faithfulness: float = 0.0         # Is response supported by context?
+    answer_relevancy: float = 0.0     # Is response relevant to question?
 
 
 # =========================================================================
@@ -206,23 +258,33 @@ class SFAEvaluatorV2:
     
     def extract_sql_from_trace(self, execution_trace: str) -> str:
         """Extract SQL query from worker execution trace."""
-        # The worker (llm.py) returns: "SQL Query Used:\n{sql}\n\nDatabase Results:\n..."
+        # 1. Try markdown SQL blocks FIRST (Qwen often outputs these)
+        markdown_pattern = r"```sql\s*(.*?)\s*```"
+        match = re.search(markdown_pattern, execution_trace, re.DOTALL | re.IGNORECASE)
+        if match:
+            sql = match.group(1).strip()
+            if sql:
+                return sql
+        
+        # 2. Standard formats
         patterns = [
-            r"SQL Query Used:\s*(SELECT\s+.+?)(?:\n\nDatabase|\n\nNO_DATA|$)",  # Primary pattern
-            r"Generated SQL:\s*(SELECT\s+.+?)(?:\n|$)",  # Debug log pattern
-            r"(SELECT\s+[\w\s,.*()]+\s+FROM\s+\w+[^;]*)",  # Generic SELECT
-            r"```sql\s*(.*?)\s*```",  # Markdown code block
+            r"SQL Query Used:\s*(SELECT\s+.+?)(?:\n\nDatabase|\n\nNO_DATA|$)",
+            r"Generated SQL:\s*(SELECT\s+.+?)(?:\n|$)",
         ]
         
         for pattern in patterns:
             match = re.search(pattern, execution_trace, re.IGNORECASE | re.DOTALL)
             if match:
-                sql = match.group(1).strip() if match.lastindex else match.group(0).strip()
-                # Clean up the SQL
-                sql = sql.replace('\n', ' ').strip()
-                if sql and sql.upper().startswith('SELECT'):
+                sql = match.group(1).strip().replace('\n', ' ')
+                if sql.upper().startswith('SELECT'):
                     return sql
         
+        # 3. Fallback: Raw SELECT with semicolon termination
+        raw_pattern = r"(SELECT\s+.*?(?:;|$))"
+        match = re.search(raw_pattern, execution_trace, re.DOTALL | re.IGNORECASE)
+        if match:
+            return match.group(1).strip()
+            
         return ""
     
     # =========================================================================
@@ -323,6 +385,82 @@ class SFAEvaluatorV2:
             intersection = len(actual_words & golden_words)
             union = len(actual_words | golden_words)
             return intersection / union if union > 0 else 0.0
+    
+    # =========================================================================
+    # RAGAS EVALUATION (Advisory/Unstructured Queries)
+    # =========================================================================
+    
+    def evaluate_ragas(self, query: str, response: str, retrieved_contexts: List[str]) -> Dict:
+        """
+        Groq-Compatible Hallucination Check (Custom Local Auditor).
+        Replaces RAGAS library to avoid Groq's 'n=1' parameter error.
+        
+        Uses a simple prompt to assess faithfulness of advisory responses.
+        
+        Args:
+            query: The user's question
+            response: The generated answer
+            retrieved_contexts: List of context strings used to generate the answer
+        
+        Returns:
+            Dict with 'faithfulness' and 'answer_relevancy' scores (0.0-1.0)
+        """
+        if not retrieved_contexts:
+            return {"faithfulness": 0.0, "answer_relevancy": 0.0}
+
+        context_str = "\n".join(retrieved_contexts)
+        
+        # Simple, high-impact prompt for Groq/Llama
+        audit_prompt = f"""You are a Financial Auditor. Compare the PREMISE to the ANSWER.
+
+PREMISE:
+{context_str}
+
+ANSWER:
+{response}
+
+Does the ANSWER contain any numerical facts or claims NOT supported by the PREMISE?
+Reply ONLY with a score between 0.0 (Hallucinated/Unsupported) and 1.0 (Completely Faithful).
+Score:"""
+
+        try:
+            # Use the existing Groq client from backend
+            import os
+            from groq import Groq
+            
+            groq_key = os.getenv("GROQ_API_KEY")
+            if not groq_key:
+                print("⚠️ GROQ_API_KEY not set - faithfulness check skipped")
+                return {"faithfulness": 0.5, "answer_relevancy": self.calculate_semantic_similarity(query, response)}
+            
+            client = Groq(api_key=groq_key)
+            
+            audit_response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[{"role": "user", "content": audit_prompt}],
+                temperature=0,
+                max_tokens=10
+            )
+            
+            audit_score_raw = audit_response.choices[0].message.content
+            
+            # Extract score from response
+            score_matches = re.findall(r"(\d+\.?\d*)", audit_score_raw)
+            if score_matches:
+                faithfulness_score = min(1.0, max(0.0, float(score_matches[0])))
+            else:
+                faithfulness_score = 0.5  # Neutral if can't parse
+                
+            print(f"Custom Auditor - Faithfulness: {faithfulness_score:.2f}")
+            
+        except Exception as e:
+            print(f"⚠️ Custom Auditor error: {e}")
+            faithfulness_score = 0.0  # Fail safe
+
+        return {
+            "faithfulness": faithfulness_score,
+            "answer_relevancy": self.calculate_semantic_similarity(query, response)
+        }
     
     # =========================================================================
     # FAILURE MODE ANALYSIS
@@ -663,6 +801,28 @@ class SFAEvaluatorV2:
                 else:
                     result.semantic_similarity = raw_semantic
                     print(f"Semantic Similarity: {result.semantic_similarity:.2f}")
+                
+                # 7b. RAGAS Evaluation for Advisory queries (Faithfulness check)
+                category = golden_entry.get('category', '').lower()
+                intent_type = golden_entry.get('intent_type', '').upper()
+                
+                if category == 'advisory' or intent_type == 'ADVISORY':
+                    # Collect contexts from execution traces
+                    retrieved_contexts = []
+                    if context:
+                        # Split context into retrievable chunks
+                        retrieved_contexts = [ctx.strip() for ctx in context.split('\n\n') if ctx.strip()]
+                    
+                    if retrieved_contexts:
+                        ragas_scores = self.evaluate_ragas(query, result.actual_response, retrieved_contexts)
+                        result.faithfulness = ragas_scores.get('faithfulness', 0.5)
+                        result.answer_relevancy = ragas_scores.get('answer_relevancy', 0.5)
+                        
+                        # Flag potential hallucination if faithfulness is low
+                        if result.faithfulness < 0.5:
+                            print(f"⚠️ Low Faithfulness ({result.faithfulness:.2f}) - Potential hallucination")
+                    else:
+                        print("No contexts available for RAGAS - using semantic only")
             
             # 8. Detect failure mode
             result.failure_mode = self._detect_failure_mode(result, golden_entry)
