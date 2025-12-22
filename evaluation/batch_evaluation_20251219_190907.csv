@@ -1,6 +1,0 @@
-Query_ID,Query,Category,Difficulty,Tool_Accuracy,SQL_Validity,Value_Accuracy,Semantic_Similarity,Overall_Score,Passed,Graph_Generated,Error
-1,What was the total revenue in 2024?,structured,easy,1.000,1.000,1.000,0.927,0.978,True,False,
-2,What is the net income for 2024?,structured,easy,1.000,1.000,1.000,0.794,0.938,True,False,
-3,What was the revenue in Q1 2024?,structured,easy,1.000,1.000,1.000,0.870,0.961,True,False,
-4,What was the average stock price in 2024?,structured,easy,1.000,1.000,1.000,0.939,0.982,True,False,
-5,What was the gross profit in 2024?,structured,easy,1.000,1.000,0.000,0.764,0.629,True,False,

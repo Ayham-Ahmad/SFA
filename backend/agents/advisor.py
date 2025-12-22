@@ -9,6 +9,7 @@ import os
 import sqlite3
 import json
 from dotenv import load_dotenv
+from backend.sfa_logger import log_system_debug, log_system_error
 
 load_dotenv()
 
@@ -47,7 +48,7 @@ def get_latest_profitability_metrics():
             }
         return None
     except Exception as e:
-        print(f"Error getting profitability: {e}")
+        log_system_error(f"Error getting profitability: {e}")
         return None
 
 
@@ -111,11 +112,11 @@ Data summary:
         )
         
         recommendation = response.choices[0].message.content
-        print(f"[Advisor] Generated recommendation")
+        log_system_debug(f"[Advisor] Generated recommendation")
         return recommendation
         
     except Exception as e:
-        print(f"[Advisor] Error: {e}")
+        log_system_error(f"[Advisor] Error: {e}")
         # Fallback to cautious response
         return """**Assessment:** Unable to fully analyze this question at the moment due to system limitations.
 
@@ -124,21 +125,3 @@ Data summary:
 **Risk Considerations:** Any financial decision should consider current market conditions and company-specific factors not captured in historical data.
 
 **Suggested Next Steps:** Request a detailed analysis of relevant metrics for the most recent 4-8 quarters."""
-
-
-if __name__ == "__main__":
-    # Test the advisor
-    print("=" * 60)
-    print("ADVISOR AGENT TEST")
-    print("=" * 60)
-    
-    test_questions = [
-        "What is the best way to raise our profit?",
-        "How can we improve our margins?",
-        "Are we on track with our budget?",
-    ]
-    
-    for q in test_questions:
-        print(f"\n--- Question: {q} ---")
-        result = generate_advisory(q)
-        print(result)

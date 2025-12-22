@@ -1,0 +1,161 @@
+[2025-12-22 11:50:19,477] [DEBUG] [sfa_system] Planner - Graph allowed: True
+[2025-12-22 11:50:20,066] [DEBUG] [sfa_system] Planner - Graph allowed: False
+[2025-12-22 11:50:20,506] [DEBUG] [sfa_system] Planner - Graph allowed: False
+[2025-12-22 11:50:20,752] [DEBUG] [sfa_system] Worker executing step: SQL: SELECT year, revenue FROM swf_financials WHERE year = 2024
+[2025-12-22 11:50:20,752] [DEBUG] [sfa_system] Worker executing step_clean: SQL: SELECT year, revenue FROM swf_financials WHERE year = 2024
+[2025-12-22 11:50:20,752] [DEBUG] [sfa_system] Worker executing SQL: SELECT year, revenue FROM swf_financials WHERE year = 2024
+[2025-12-22 11:50:26,227] [DEBUG] [sfa_system] Generated SQL: SELECT year, revenue 
+FROM swf_financials 
+WHERE year = 2024
+[2025-12-22 11:50:26,255] [DEBUG] [sfa_system] DB Result Sample: |   year |     revenue |
+|-------:|------------:|
+|   2024 | 6.4652e+08  |
+|   2024 | 6.8115e+08  |
+|   2024 | 7.5204e+08  |
+|   2024 | 8.14078e+08 |...
+[2025-12-22 11:50:26,256] [DEBUG] [sfa_system] Worker executing step: UNKNOWN_TOOL: do something
+[2025-12-22 11:50:26,257] [DEBUG] [sfa_system] Worker executing step_clean: UNKNOWN_TOOL: do something
+[2025-12-22 11:50:26,442] [DEBUG] [sfa_system] [GraphPipeline] LLM selected: line
+[2025-12-22 11:50:26,443] [DEBUG] [sfa_system] [GraphPipeline] Starting for: Revenue trend 2020 2023
+[2025-12-22 11:50:26,445] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-22 11:50:26,445] [DEBUG] [sfa_system] [GraphPipeline] Question: Revenue trend 2020 2023
+[2025-12-22 11:50:29,309] [DEBUG] [sfa_system] Generated SQL: SELECT year, SUM(revenue) AS total_revenue
+FROM swf_financials
+WHERE year BETWEEN 2020 AND 2023
+GROUP BY year
+ORDER BY year
+[2025-12-22 11:50:29,312] [DEBUG] [sfa_system] DB Result Sample: |   year |   total_revenue |
+|-------:|----------------:|
+|   2020 |     1.12758e+09 |
+|   2021 |     1.36437e+09 |
+|   2022 |     1.68903e+09 |
+|   2023 |     2.19026e+09 |...
+[2025-12-22 11:50:29,312] [DEBUG] [sfa_system] [GraphPipeline] Result length: 332 chars
+[2025-12-22 11:50:29,312] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-22 11:50:29,313] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, SUM(revenue) AS total_revenue
+FROM swf_financials
+WHERE year BETWEEN 2020 AND 2023
+GROUP BY year
+ORDER BY year
+
+Database Results:
+|   year |   total_revenue |
+|-------:|----------------:|
+|   2020 |     1.12758e+09 |
+|   2021 |     1.36437e+09 |
+|   2022 |     1.68903e+09 |
+|   2023 |     2.19026e+09 |
+[2025-12-22 11:50:29,314] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'total_revenue']
+[2025-12-22 11:50:29,315] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-22 11:50:29,315] [DEBUG] [sfa_system] [GraphPipeline] Using label col 0 (year), value col 1 (total_revenue)
+[2025-12-22 11:50:29,316] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2020', '2021', '2022', '2023']...
+[2025-12-22 11:50:29,316] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [1127580000.0, 1364370000.0, 1689030000.0, 2190260000.0]...
+[2025-12-22 11:50:29,493] [DEBUG] [sfa_system] [GraphPipeline] LLM selected: line
+[2025-12-22 11:50:29,493] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points
+[2025-12-22 11:50:31,303] [DEBUG] [sfa_system] [Advisor] Generated recommendation
+[2025-12-22 11:50:33,011] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Hello, who are you? ---
+[2025-12-22 11:50:33,232] [INFO] [sfa_system]   → Intent Labels: ['CONVERSATIONAL']
+[2025-12-22 11:50:33,473] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: What was the total revenue in 2023? ---
+[2025-12-22 11:50:33,653] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-22 11:50:33,671] [DEBUG] [sfa_system] Planner - Graph allowed: False
+[2025-12-22 11:50:33,977] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve total revenue for 2023 from swf_financials.
+2. **SQL**: Calculate the sum of quarterly revenues for 2023.
+[2025-12-22 11:50:33,996] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve total revenue for 2023 from swf_financials.', '**SQL**: Calculate the sum of quarterly revenues for 2023.']
+[2025-12-22 11:50:33,997] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve total revenue for 2023 from swf_financials.
+[2025-12-22 11:50:33,997] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve total revenue for 2023 from swf_financials.
+[2025-12-22 11:50:33,999] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve total revenue for 2023 from swf_financials.
+[2025-12-22 11:50:33,999] [DEBUG] [sfa_system] Worker executing SQL: Retrieve total revenue for 2023 from swf_financials.
+[2025-12-22 11:50:35,032] [DEBUG] [sfa_system] Generated SQL: SELECT SUM(revenue) AS total_revenue_2023
+FROM swf_financials
+WHERE year = 2023
+[2025-12-22 11:50:35,035] [DEBUG] [sfa_system] DB Result Sample: |   total_revenue_2023 |
+|---------------------:|
+|          2.19026e+09 |...
+[2025-12-22 11:50:35,036] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT SUM(revenue) AS total_revenue_2023
+FROM swf_financials
+WHERE year = 2023
+
+Database Results:
+|   total_revenue_2023 |
+|---------------------:|
+|          2....
+[2025-12-22 11:50:35,036] [DEBUG] [sfa_system] Executing Step: SQL: Calculate the sum of quarterly revenues for 2023.
+[2025-12-22 11:50:35,039] [DEBUG] [sfa_system] Worker executing step: SQL: Calculate the sum of quarterly revenues for 2023.
+[2025-12-22 11:50:35,039] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Calculate the sum of quarterly revenues for 2023.
+[2025-12-22 11:50:35,040] [DEBUG] [sfa_system] Worker executing SQL: Calculate the sum of quarterly revenues for 2023.
+[2025-12-22 11:50:41,195] [DEBUG] [sfa_system] Generated SQL: SELECT SUM(revenue) AS total_revenue_2023
+FROM swf_financials
+WHERE year = 2023
+[2025-12-22 11:50:41,199] [DEBUG] [sfa_system] DB Result Sample: |   total_revenue_2023 |
+|---------------------:|
+|          2.19026e+09 |...
+[2025-12-22 11:50:41,199] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT SUM(revenue) AS total_revenue_2023
+FROM swf_financials
+WHERE year = 2023
+
+Database Results:
+|   total_revenue_2023 |
+|---------------------:|
+|          2....
+[2025-12-22 11:50:41,201] [DEBUG] [sfa_system] Auditor Synthesizing: What was the total revenue in 2023?
+[2025-12-22 11:50:41,221] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: What was the total revenue in 2023?
+Data:
+
+Step: **SQL**: Retrieve total revenue for 2023 from swf_financials.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT SUM(revenue) AS total_revenue_2023
+FROM swf_financials
+WHERE year = 2023
+
+Database Results:
+|   total_revenue_2023 |
+|---------------------:|
+|          2.19026e+09 |
+
+Step: **SQL**: Calculate the sum of quarterly revenues for 2023.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT SUM(revenue) AS total_revenue_2023
+FROM swf_financials
+WHERE year = 2023
+
+Database Results:
+|   total_revenue_2023 |
+|---------------------:|
+|          2.19026e+09 |
+
+
+[2025-12-22 11:50:41,516] [DEBUG] [sfa_system] Auditor Synthesizing Result: The total revenue in 2023 was $2.19B. 
+This value is directly provided and no further calculations are needed. 
+
+No additional table is required.
+[2025-12-22 11:50:41,538] [DEBUG] [sfa_system] Final Output: The total revenue in 2023 was $2.19B. 
+This value is directly provided and no further calculations a...
+[2025-12-22 11:50:41,542] [INFO] [sfa_system] System Tests Passed: 15 tests run.

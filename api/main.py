@@ -29,6 +29,7 @@ from uuid import uuid4
 from asyncio import CancelledError
 import json
 from datetime import datetime
+from backend.sfa_logger import log_agent_interaction, log_system_error, log_system_info
 
 # -----------------------------------------------------------------------------
 # Configuration & Setup
@@ -67,31 +68,19 @@ active_queries = {}
 # Global dictionary to track query progress (agent status)
 query_progress = {}  # {query_id: {"status": "planner"|"worker"|"auditor", "step": "details"}}
 
-# Helper function to log cancellations to agent_debug_log.json
+# Helper function to log cancellations to agent_debug_log key
 def _log_cancellation(query_id: str, question: str, reason: str):
     """Log query cancellations to debug file"""
     try:
-        log_entry = {
-            "interaction_id": query_id,
-            "timestamp": datetime.utcnow().isoformat(),
-            "event": "query_cancelled",
-            "reason": reason,
-            "question": question
-        }
-        
-        log_path = "agent_debug_log.json"
-        try:
-            with open(log_path, 'r', encoding='utf-8') as f:
-                logs = json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            logs = []
-        
-        logs.append(log_entry)
-        
-        with open(log_path, 'w', encoding='utf-8') as f:
-            json.dump(logs, f, indent=4, ensure_ascii=False)
+        log_agent_interaction(
+            interaction_id=query_id,
+            agent_name="System",
+            task="Cancellation",
+            input_data={"question": question, "reason": reason},
+            output_data="Cancelled"
+        )
     except Exception as e:
-        print(f"Failed to log cancellation: {e}")
+        log_system_error(f"Failed to log cancellation: {e}")
 
 # Helper functions for progress tracking
 def set_query_progress(query_id: str, agent: str, step: str = ""):
@@ -241,6 +230,7 @@ async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_c
     
     except Exception as e:
         response_text = f"An error occurred: {str(e)}"
+        log_system_error(f"Chat Endpoint Error: {e}")
     
     # Measure processing time
     end_time = time.time()
@@ -334,10 +324,7 @@ async def dashboard_metrics(current_user: User = Depends(get_current_active_user
     except Exception as e:
         # Deep logging for debug purposes if analytics fail
         import traceback
-        with open("debug_error.log", "w") as f:
-            f.write(str(e))
-            f.write("\n")
-            traceback.print_exc(file=f)
+        log_system_error(f"Dashboard Metrics Error: {e}\n{traceback.format_exc()}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # -----------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 from backend.rag_fusion.fusion import rag_fusion_search
 from backend.llm import run_chain_of_tables
 import re
+from backend.sfa_logger import log_system_debug
 
 WORKER_MODEL = "qwen/qwen3-32b"
 
@@ -19,28 +20,26 @@ def execute_step(step: str) -> str:
     """
     global _current_interaction_id
     
-    print(f"Worker executing step: {step}")
+    log_system_debug(f"Worker executing step: {step}")
     original_step = step.strip()
-    print(f"Worker executing original_step: {original_step}")
-
+    
     # Normalize for detection (but keep original for extraction)
     step_upper = original_step.upper()
-    print(f"Worker executing original_step_upper: {step_upper}")
 
     # Remove list numbering like "1. " or "2) "
     step_clean = re.sub(r"^\s*\d+[\.\\)]\s*", "", original_step).strip()
-    print(f"Worker executing step_clean: {step_clean}")
+    log_system_debug(f"Worker executing step_clean: {step_clean}")
 
     if step_upper.startswith("RAG:"):
         query = step_clean.split(":", 1)[1].strip()
-        print(f"Worker executing RAG: {query}")
+        log_system_debug(f"Worker executing RAG: {query}")
 
         results = rag_fusion_search(query, n_results=3)
         return "RAG Results:\n" + "\n".join([f"- {r['content']}" for r in results])
 
     elif step_upper.startswith("SQL:"):
         query = step_clean.split(":", 1)[1].strip()
-        print(f"Worker executing SQL: {query}")
+        log_system_debug(f"Worker executing SQL: {query}")
 
         result = run_chain_of_tables(query, model=WORKER_MODEL)
         

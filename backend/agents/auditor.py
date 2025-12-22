@@ -2,13 +2,10 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 import traceback
+from backend.sfa_logger import log_system_debug, log_system_error, log_system_info, log_agent_interaction
+from backend.config import TESTING
 
 load_dotenv()
-
-# ============================================
-# TESTING FLAG imported from config
-# ============================================
-from backend.config import TESTING
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
@@ -79,12 +76,10 @@ Default → Line
 # ============================================
 if TESTING:
     from backend.prompts import TEXT_PROMPT, GRAPH_PROMPT, GRAPH_SELECTION_LOGIC
-    print(" ****** TEXT_PROMPT, GRAPH_PROMPT from prompts.py for testing")
 else:
     TEXT_PROMPT = TEXT_PROMPT_INLINE
     GRAPH_PROMPT = GRAPH_PROMPT_INLINE
     GRAPH_SELECTION_LOGIC = GRAPH_SELECTION_LOGIC_INLINE
-    print(" ****** TEXT_PROMPT, GRAPH_PROMPT original")
 
 
 def audit_and_synthesize(question: str, context: str, graph_allowed: bool = False, interaction_id: str = None) -> str:
@@ -92,10 +87,9 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
     Synthesizes the final answer from gathered context.
     """
     try:
-        print(f"\nAuditor Synthesizing: {question}")
+        log_system_debug(f"Auditor Synthesizing: {question}")
         # Log input
         if interaction_id:
-            from backend.agent_debug_logger import log_agent_interaction
             log_agent_interaction(interaction_id, "Auditor", "Input", {
                 "question": question,
                 "context_provided": context
@@ -104,10 +98,10 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
         # CONDITIONAL: Use different prompts based on request type
         if graph_allowed:
             full_prompt = GRAPH_PROMPT.format(question=question, context=context) + "\n" + GRAPH_SELECTION_LOGIC
-            print(f"Auditor Synthesizing with Graph: {full_prompt}")
+            log_system_debug(f"Auditor Synthesizing with Graph: {full_prompt}")
         else:
             full_prompt = TEXT_PROMPT.format(question=question, context=context)
-            print(f"Auditor Synthesizing without Graph: {full_prompt}")
+            log_system_debug(f"Auditor Synthesizing without Graph: {full_prompt}")
         
         # Call the LLM
         response = client.chat.completions.create(
@@ -117,11 +111,11 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
             max_tokens=2000
         )
         content = response.choices[0].message.content
-        print(f"Auditor Synthesizing Result: {content}")
+        log_system_debug(f"Auditor Synthesizing Result: {content}")
         
         # Validation: If graph was required but not produced, BUILD IT PROGRAMMATICALLY
         if graph_allowed and "graph_data||" not in content:
-            print(f"⚠️ WARNING: Graph generation was required but LLM didn't produce it. Building programmatically...")
+            log_system_info(f"⚠️ WARNING: Graph generation was required but LLM didn't produce it. Building programmatically...")
             
             try:
                 from backend.tools.graph_builder import build_graph_from_context
@@ -130,26 +124,25 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
                 graph_json = build_graph_from_context(context, question)
                 
                 if graph_json:
-                    print(f"✅ Graph built programmatically!")
+                    log_system_info(f"✅ Graph built programmatically!")
                     # Append graph data to content
                     content = content.rstrip() + f"\n\ngraph_data||{graph_json}||"
                 else:
-                    print(f"❌ No graphable data found in context")
+                    log_system_info(f"❌ No graphable data found in context")
             except Exception as e:
-                print(f"❌ Programmatic graph building failed: {e}")
+                log_system_error(f"❌ Programmatic graph building failed: {e}")
         
         # Log output
         if interaction_id:
-            from backend.agent_debug_logger import log_agent_interaction
             log_agent_interaction(interaction_id, "Auditor", "Output", None, content)
         
         # If graph not allowed, strip any graph data from response
         if not graph_allowed and "graph_data||" in content:
             content = content.split("graph_data||")[0].strip()
-            print(f"Auditor Synthesizing Result without Graph: {content}")
+            log_system_debug(f"Auditor Synthesizing Result without Graph: {content}")
         
         return content
         
     except Exception as e:
-        print(f"AUDITOR EXCEPTION: {traceback.format_exc()}")
+        log_system_error(f"AUDITOR EXCEPTION: {traceback.format_exc()}")
         return f"Error auditing result: {e}"

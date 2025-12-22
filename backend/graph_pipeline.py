@@ -15,6 +15,7 @@ import json
 from typing import Dict, Any, Optional, List
 from groq import Groq
 from dotenv import load_dotenv
+from backend.sfa_logger import log_system_debug, log_system_error
 
 load_dotenv()
 
@@ -54,13 +55,13 @@ RESPOND WITH ONLY ONE WORD: bar, line, pie, or scatter"""
         chart_type = response.choices[0].message.content.strip().lower()
         
         if chart_type in ['bar', 'line', 'pie', 'scatter']:
-            print(f"[GraphPipeline] LLM selected: {chart_type}")
+            log_system_debug(f"[GraphPipeline] LLM selected: {chart_type}")
             return chart_type
         
-        print(f"[GraphPipeline] Invalid type '{chart_type}', defaulting to bar")
+        log_system_debug(f"[GraphPipeline] Invalid type '{chart_type}', defaulting to bar")
         return 'bar'
     except Exception as e:
-        print(f"[GraphPipeline] Chart type selection failed: {e}")
+        log_system_error(f"[GraphPipeline] Chart type selection failed: {e}")
         return 'bar'
 
 
@@ -71,30 +72,29 @@ def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
     """
     from backend.llm import run_chain_of_tables
     
-    print(f"\n[GraphPipeline] ========== GRAPH QUERY START ==========")
-    print(f"[GraphPipeline] Question: {question}")
+    log_system_debug(f"========== GRAPH QUERY START ==========")
+    log_system_debug(f"[GraphPipeline] Question: {question}")
     
     # run_chain_of_tables generates SQL internally and returns formatted results
     result = run_chain_of_tables(question)
     
     if not result:
-        print("[GraphPipeline] ERROR: No result from chain_of_tables")
+        log_system_error("[GraphPipeline] ERROR: No result from chain_of_tables")
         return None
     
-    print(f"[GraphPipeline] Result length: {len(result)} chars")
-    print(f"[GraphPipeline] Full result:\n{result[:1000]}")
+    log_system_debug(f"[GraphPipeline] Result length: {len(result)} chars")
     
     # Check for error or no data signals
     if "Error" in result or "NO_DATA_FOUND" in result:
-        print(f"[GraphPipeline] ERROR: Query returned error or no data signal")
+        log_system_error(f"[GraphPipeline] ERROR: Query returned error or no data signal")
         return None
     
     # Check if result contains a markdown table
     if '|' not in result:
-        print(f"[GraphPipeline] ERROR: No markdown table found in result")
+        log_system_error(f"[GraphPipeline] ERROR: No markdown table found in result")
         return None
     
-    print(f"[GraphPipeline] ========== GRAPH QUERY SUCCESS ==========\n")
+    log_system_debug(f"========== GRAPH QUERY SUCCESS ==========")
     return {"result": result}
 
 
@@ -103,19 +103,19 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     Parse markdown table result into lists of labels and values.
     Returns: {labels: [], values: [], columns: []}
     """
-    print(f"[GraphPipeline] Parsing result text (first 500 chars):\n{result_text[:500]}")
+    log_system_debug(f"[GraphPipeline] Parsing result text (first 500 chars):\n{result_text[:500]}")
     
     lines = result_text.strip().split('\n')
     table_lines = [l for l in lines if l.strip().startswith('|')]
     
     if len(table_lines) < 2:
-        print("[GraphPipeline] No valid table found")
+        log_system_error("[GraphPipeline] No valid table found")
         return None
     
     # Parse header
     header = table_lines[0]
     columns = [c.strip().lower() for c in header.split('|') if c.strip()]
-    print(f"[GraphPipeline] Columns found: {columns}")
+    log_system_debug(f"[GraphPipeline] Columns found: {columns}")
     
     # Skip separator line
     data_start = 1
@@ -130,10 +130,10 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
             rows.append(cells)
     
     if not rows:
-        print("[GraphPipeline] No data rows found")
+        log_system_error("[GraphPipeline] No data rows found")
         return None
     
-    print(f"[GraphPipeline] Found {len(rows)} data rows")
+    log_system_debug(f"[GraphPipeline] Found {len(rows)} data rows")
     
     # Smart label detection: prefer qtr, then date, then first column
     label_col_idx = 0
@@ -182,7 +182,7 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
             value_col_idx = i
             break
     
-    print(f"[GraphPipeline] Using label col {label_col_idx} ({columns[label_col_idx]}), value col {value_col_idx} ({columns[value_col_idx]})")
+    log_system_debug(f"[GraphPipeline] Using label col {label_col_idx} ({columns[label_col_idx]}), value col {value_col_idx} ({columns[value_col_idx]})")
     
     # Extract values
     values = []
@@ -190,8 +190,8 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
         val = parse_numeric(row[value_col_idx])
         values.append(val)
     
-    print(f"[GraphPipeline] Extracted labels: {labels[:5]}...")
-    print(f"[GraphPipeline] Extracted values: {values[:5]}...")
+    log_system_debug(f"[GraphPipeline] Extracted labels: {labels[:5]}...")
+    log_system_debug(f"[GraphPipeline] Extracted values: {values[:5]}...")
     
     return {
         "labels": labels,
@@ -262,7 +262,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
         "message": "..."
     }
     """
-    print(f"\n[GraphPipeline] Starting for: {question}")
+    log_system_debug(f"[GraphPipeline] Starting for: {question}")
     
     # Step 1: Get data via SQL
     query_result = execute_graph_query(question)
@@ -306,7 +306,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
     else:
         message = "Graph ready! Click a slot to place it."
     
-    print(f"[GraphPipeline] Success - {chart_type} chart with {len(parsed['labels'])} points")
+    log_system_debug(f"[GraphPipeline] Success - {chart_type} chart with {len(parsed['labels'])} points")
     
     return {
         "success": True,
@@ -316,9 +316,3 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
         "title": title,
         "message": message
     }
-
-
-# Test function
-if __name__ == "__main__":
-    result = run_graph_pipeline("Revenue for 2024")
-    print(json.dumps(result, indent=2))

@@ -2,16 +2,14 @@ from groq import Groq
 import os
 from .tools.sql_tools import execute_sql_query, get_table_schemas
 from dotenv import load_dotenv
+import re
+from backend.sfa_logger import log_system_debug, log_system_error
+from backend.config import TESTING
 
 load_dotenv()
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "qwen/qwen3-32b"
-
-# ============================================
-# TESTING FLAG imported from config
-# ============================================
-from backend.config import TESTING
 
 CHAIN_OF_TABLES_PROMPT_INLINE = """
 You are a Financial Analyst.
@@ -36,10 +34,8 @@ Data:
 
 if TESTING:
     from backend.prompts import CHAIN_OF_TABLES_PROMPT
-    print(" ****** CHAIN_OF_TABLES_PROMPT from prompts.py for testing")
 else:
     CHAIN_OF_TABLES_PROMPT = CHAIN_OF_TABLES_PROMPT_INLINE
-    print(" ****** CHAIN_OF_TABLES_PROMPT original")
 
 
 def run_chain_of_tables(question: str, model: str = MODEL) -> str:
@@ -51,15 +47,12 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
     schema = get_table_schemas()
     
     # Import tag information from sql_loader
-    from backend.ingestion.sql_loader import get_tags_for_prompt, get_companies_for_prompt, get_company_mapping_for_prompt
+    from backend.ingestion.sql_loader import get_tags_for_prompt
     available_tags = get_tags_for_prompt()
-    # sample_companies = get_companies_for_prompt()
-    # company_mapping = get_company_mapping_for_prompt()
     
     # Step 1: Ask LLM to generate SQL
     if TESTING:
         from backend.prompts import SQL_GENERATION_PROMPT
-        print(" ****** SQL_GENERATION_PROMPT from prompts.py for testing")
         # Note: prompts.py SQL_GENERATION_PROMPT expects {schema}, {available_tags}, and {question}
         sql_generation_prompt = SQL_GENERATION_PROMPT.format(
             schema=schema,
@@ -67,7 +60,6 @@ def run_chain_of_tables(question: str, model: str = MODEL) -> str:
             question=question
         )
     else:
-        print(" ****** SQL_GENERATION_PROMPT original")
         # Get dynamic schema from database
         from backend.schema_utils import get_full_schema_context
         dynamic_schema = get_full_schema_context()
@@ -94,7 +86,6 @@ Return ONLY valid SQL wrapped in ```sql```.
 Question: {question}
 """
     
-    import re
     try:
         # Generate SQL
         response = client.chat.completions.create(
@@ -129,8 +120,7 @@ Question: {question}
         # Strip trailing semicolon for driver compatibility
         sql_query = sql_query.strip().rstrip(";")
             
-        from backend.d_log import dlog
-        dlog(f"Generated SQL: {sql_query}")
+        log_system_debug(f"Generated SQL: {sql_query}")
         
         # Execute SQL
         query_result = execute_sql_query(sql_query)
@@ -138,11 +128,11 @@ Question: {question}
         if len(query_result) > 15000:
             query_result = query_result[:12000] + "\n...(Truncated for token limits)"
             
-        dlog(f"DB Result Sample: {query_result[:200]}...")
+        log_system_debug(f"DB Result Sample: {query_result[:200]}...")
         
         # KEY CHANGE: Handle Empty Data Explicitly
         if not query_result or "[]" in query_result or query_result.strip() == "":
-            dlog("NO DATA FOUND from SQL execution.")
+            log_system_debug("NO DATA FOUND from SQL execution.")
             return f"SQL Query Used:\n{sql_query}\n\nNO_DATA_FOUND_SIGNAL"
             
         # KEY CHANGE: Return raw result directly with SQL query for debugging.
@@ -150,6 +140,5 @@ Question: {question}
         return f"SQL Query Used:\n{sql_query}\n\nDatabase Results:\n{query_result}"
         
     except Exception as e:
-        from backend.d_log import dlog
-        dlog(f"Chain-of-Tables Error: {e}")
+        log_system_error(f"Chain-of-Tables Error: {e}")
         return f"Error in Chain-of-Tables: {e}"

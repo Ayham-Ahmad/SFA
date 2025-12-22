@@ -1,3 +1,0 @@
-Timestamp,Query,Pipeline_Success,PVS,DCR,Steps_Extracted,Valid_Steps,CoTA,QED,RRF_Score,Fusion_Gain,SQL_Executed,RAG_Executed,FCS,NCA,Has_Data,Response_Length,Error
-2025-12-19T17:39:11.954469,What was the revenue in 2024?,True,0.000,0.000,0,0,1.000,0.000,0.000,0.000,True,False,Entailment,1,True,115,
-2025-12-19T17:45:36.408422,What was the revenue in 2024?,True,1.000,1.000,2,2,1.000,0.000,0.000,0.000,True,False,Entailment,1,True,94,

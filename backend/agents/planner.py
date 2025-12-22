@@ -1,13 +1,10 @@
 from groq import Groq
 import os
 from dotenv import load_dotenv
+from backend.sfa_logger import log_system_debug, log_system_error
+from backend.config import TESTING
 
 load_dotenv()
-
-# ============================================
-# TESTING FLAG imported from config
-# ============================================
-from backend.config import TESTING
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 MODEL = "llama-3.3-70b-versatile"
@@ -66,19 +63,18 @@ User question: {question}
 # ============================================
 if TESTING:
     from backend.prompts import PLANNER_PROMPT
-    print(" ****** PLANNER_PROMPT from prompts.py for testing")
 else:
     PLANNER_PROMPT = PLANNER_PROMPT_INLINE
-    print(" ****** PLANNER_PROMPT original")
 
 
 def plan_task(question: str, graph_allowed: bool) -> str:
     try:
-        print(f"Graph allowed: {graph_allowed}")
+        log_system_debug(f"Planner - Graph allowed: {graph_allowed}")
         response = client.chat.completions.create(
             messages=[{"role": "user", "content": PLANNER_PROMPT.format(question=question, graph_allowed=graph_allowed)}],
             model=MODEL,
         )
         return response.choices[0].message.content
     except Exception as e:
+        log_system_error(f"Error planning task: {e}")
         return f"Error planning task: {e}"
