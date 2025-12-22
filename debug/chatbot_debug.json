@@ -101,5 +101,605 @@
         ]
       }
     ]
+  },
+  {
+    "interaction_id": "f936f353-ea1a-4100-bf7e-a521364c6261",
+    "created_at": "2025-12-22T12:06:52.165375",
+    "last_updated": "2025-12-22T12:06:52.430982",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:06:52.144614",
+        "agent": "User",
+        "task": "Input",
+        "input": "Hello, who are you?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:06:52.411631",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "Hello, who are you?",
+        "output": "Hello, I'm a financial assistant, here to help with any financial questions or concerns you may have. How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "2ae78b9f-c445-46ed-b959-99f09a841647",
+    "created_at": "2025-12-22T12:06:52.645085",
+    "last_updated": "2025-12-22T12:06:56.628590",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:06:52.645085",
+        "agent": "User",
+        "task": "Input",
+        "input": "What was the total revenue in 2023?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:06:53.130888",
+        "agent": "Planner",
+        "task": "Output",
+        "input": "What was the total revenue in 2023?",
+        "output": [
+          "1. **SQL**: Retrieve the total revenue for 2023 from swf_financials.",
+          "2. **SQL**: Calculate the sum of quarterly revenues for 2023 from the retrieved data."
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:06:54.444932",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Retrieve the total revenue for 2023 from swf_financials.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue_2023",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue_2023 |",
+          "|---------------------:|",
+          "|          2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:06:56.266174",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Calculate the sum of quarterly revenues for 2023 from the retrieved data.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue_2023",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue_2023 |",
+          "|---------------------:|",
+          "|          2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:06:56.268716",
+        "agent": "Auditor",
+        "task": "Input",
+        "input": {
+          "question": "What was the total revenue in 2023?",
+          "context_provided": "\nStep: **SQL**: Retrieve the total revenue for 2023 from swf_financials.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue_2023\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue_2023 |\n|---------------------:|\n|          2.19026e+09 |\n\nStep: **SQL**: Calculate the sum of quarterly revenues for 2023 from the retrieved data.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue_2023\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue_2023 |\n|---------------------:|\n|          2.19026e+09 |\n"
+        },
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:06:56.619885",
+        "agent": "Auditor",
+        "task": "Output",
+        "input": null,
+        "output": [
+          "The total revenue in 2023 was $2.19B. ",
+          "",
+          "No additional table is required. ",
+          "The revenue figure is directly provided."
+        ]
+      }
+    ]
+  },
+  {
+    "interaction_id": "23bb34a9-a34b-429a-bc70-96a031411c2e",
+    "created_at": "2025-12-22T12:08:22.613964",
+    "last_updated": "2025-12-22T12:08:22.867153",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:08:22.612945",
+        "agent": "User",
+        "task": "Input",
+        "input": "Hello, who are you?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:08:22.849306",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "Hello, who are you?",
+        "output": "Hello, I'm a financial assistant, here to help with any financial questions or concerns you may have. How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "fbe67948-8378-4c34-9875-062cafac1dbb",
+    "created_at": "2025-12-22T12:08:23.040108",
+    "last_updated": "2025-12-22T12:08:25.746330",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:08:23.039086",
+        "agent": "User",
+        "task": "Input",
+        "input": "What was the total revenue in 2023?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:08:23.371900",
+        "agent": "Planner",
+        "task": "Output",
+        "input": "What was the total revenue in 2023?",
+        "output": [
+          "1. **SQL**: Retrieve total revenue for 2023 from swf_financials.",
+          "2. **SQL**: Calculate the sum of quarterly revenues in 2023 to get the total revenue."
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:08:24.394036",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Retrieve total revenue for 2023 from swf_financials.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue |",
+          "|----------------:|",
+          "|     2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:08:25.434530",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Calculate the sum of quarterly revenues in 2023 to get the total revenue.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue_2023",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue_2023 |",
+          "|---------------------:|",
+          "|          2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:08:25.437258",
+        "agent": "Auditor",
+        "task": "Input",
+        "input": {
+          "question": "What was the total revenue in 2023?",
+          "context_provided": "\nStep: **SQL**: Retrieve total revenue for 2023 from swf_financials.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue |\n|----------------:|\n|     2.19026e+09 |\n\nStep: **SQL**: Calculate the sum of quarterly revenues in 2023 to get the total revenue.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue_2023\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue_2023 |\n|---------------------:|\n|          2.19026e+09 |\n"
+        },
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:08:25.727865",
+        "agent": "Auditor",
+        "task": "Output",
+        "input": null,
+        "output": [
+          "The total revenue in 2023 was $2.19B. ",
+          "",
+          "No additional table is necessary. ",
+          "The revenue is already provided in a single value."
+        ]
+      }
+    ]
+  },
+  {
+    "interaction_id": "782072f3-36ff-4b76-95e6-f90ec4b59b0a",
+    "created_at": "2025-12-22T12:11:01.441484",
+    "last_updated": "2025-12-22T12:11:01.695581",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:11:01.440857",
+        "agent": "User",
+        "task": "Input",
+        "input": "Hello, who are you?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:11:01.675721",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "Hello, who are you?",
+        "output": "Hello, I'm a financial assistant, here to help with any financial questions or concerns you may have. How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "92eb93a3-66a0-4ae6-98d6-35f46947a392",
+    "created_at": "2025-12-22T12:11:01.885983",
+    "last_updated": "2025-12-22T12:11:04.689178",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:11:01.884469",
+        "agent": "User",
+        "task": "Input",
+        "input": "What was the total revenue in 2023?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:11:02.205824",
+        "agent": "Planner",
+        "task": "Output",
+        "input": "What was the total revenue in 2023?",
+        "output": [
+          "1. **SQL**: Retrieve total revenue for 2023 from swf_financials.",
+          "2. **SQL**: Sum the quarterly revenue values to get the total revenue for 2023."
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:11:03.438349",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Retrieve total revenue for 2023 from swf_financials.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue_2023",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue_2023 |",
+          "|---------------------:|",
+          "|          2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:11:04.338388",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Sum the quarterly revenue values to get the total revenue for 2023.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue_2023",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue_2023 |",
+          "|---------------------:|",
+          "|          2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:11:04.341161",
+        "agent": "Auditor",
+        "task": "Input",
+        "input": {
+          "question": "What was the total revenue in 2023?",
+          "context_provided": "\nStep: **SQL**: Retrieve total revenue for 2023 from swf_financials.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue_2023\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue_2023 |\n|---------------------:|\n|          2.19026e+09 |\n\nStep: **SQL**: Sum the quarterly revenue values to get the total revenue for 2023.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue_2023\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue_2023 |\n|---------------------:|\n|          2.19026e+09 |\n"
+        },
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:11:04.670083",
+        "agent": "Auditor",
+        "task": "Output",
+        "input": null,
+        "output": [
+          "The total revenue in 2023 was $2.19B. ",
+          "This value is directly obtained from the provided results. ",
+          "",
+          "No additional table is required."
+        ]
+      }
+    ]
+  },
+  {
+    "interaction_id": "a015af9a-b126-456e-a172-a1db0bcb3909",
+    "created_at": "2025-12-22T12:14:52.851526",
+    "last_updated": "2025-12-22T12:14:53.086641",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:14:52.850491",
+        "agent": "User",
+        "task": "Input",
+        "input": "Hello, who are you?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:14:53.065887",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "Hello, who are you?",
+        "output": "Hello. I'm a professional financial assistant, here to help with any financial questions or concerns you may have. How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "2bdff739-df91-4e54-9217-5d475a780161",
+    "created_at": "2025-12-22T12:14:53.262496",
+    "last_updated": "2025-12-22T12:14:56.294109",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:14:53.261484",
+        "agent": "User",
+        "task": "Input",
+        "input": "What was the total revenue in 2023?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:14:53.574049",
+        "agent": "Planner",
+        "task": "Output",
+        "input": "What was the total revenue in 2023?",
+        "output": [
+          "1. **SQL**: Retrieve total revenue for 2023 from swf_financials.",
+          "2. **SQL**: Calculate the sum of quarterly revenues for 2023."
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:14:54.645209",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Retrieve total revenue for 2023 from swf_financials.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue |",
+          "|----------------:|",
+          "|     2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:14:55.980356",
+        "agent": "Worker",
+        "task": "Tool Call",
+        "input": "SQL: Calculate the sum of quarterly revenues for 2023.",
+        "output": [
+          "SQL Execution Result:",
+          "SQL Query Used:",
+          "SELECT SUM(revenue) AS total_revenue_2023",
+          "FROM swf_financials",
+          "WHERE year = 2023",
+          "",
+          "Database Results:",
+          "|   total_revenue_2023 |",
+          "|---------------------:|",
+          "|          2.19026e+09 |"
+        ]
+      },
+      {
+        "timestamp": "2025-12-22T12:14:55.984425",
+        "agent": "Auditor",
+        "task": "Input",
+        "input": {
+          "question": "What was the total revenue in 2023?",
+          "context_provided": "\nStep: **SQL**: Retrieve total revenue for 2023 from swf_financials.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue |\n|----------------:|\n|     2.19026e+09 |\n\nStep: **SQL**: Calculate the sum of quarterly revenues for 2023.\nResult: SQL Execution Result:\nSQL Query Used:\nSELECT SUM(revenue) AS total_revenue_2023\nFROM swf_financials\nWHERE year = 2023\n\nDatabase Results:\n|   total_revenue_2023 |\n|---------------------:|\n|          2.19026e+09 |\n"
+        },
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:14:56.276283",
+        "agent": "Auditor",
+        "task": "Output",
+        "input": null,
+        "output": [
+          "The total revenue in 2023 was $2.19B. ",
+          "This value is derived from the sum of revenues for that year. ",
+          "No additional breakdown is available."
+        ]
+      }
+    ]
+  },
+  {
+    "interaction_id": "e1f8cf5e-1619-4ee9-b3d8-c86eea3464b0",
+    "created_at": "2025-12-22T12:24:52.093532",
+    "last_updated": "2025-12-22T12:24:52.327297",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:24:52.092532",
+        "agent": "User",
+        "task": "Input",
+        "input": "Hi, I am testing persistence.",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:24:52.306111",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "Hi, I am testing persistence.",
+        "output": "Hello, I'm happy to chat with you, even if it's a test. How can I assist you today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "b6b60a8b-827b-4a9a-907f-5f43a6743d59",
+    "created_at": "2025-12-22T12:24:52.532509",
+    "last_updated": "2025-12-22T12:24:52.846667",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:24:52.531993",
+        "agent": "User",
+        "task": "Input",
+        "input": "My name is Ayham.",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:24:52.829216",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "My name is Ayham.",
+        "output": "Nice to meet you, Ayham. How can I assist you with your financial needs today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "5633d828-248d-464a-a1ae-cc44fc847cd8",
+    "created_at": "2025-12-22T12:24:53.114097",
+    "last_updated": "2025-12-22T12:24:53.380712",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:24:53.114097",
+        "agent": "User",
+        "task": "Input",
+        "input": "What is my name?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:24:53.380712",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "What is my name?",
+        "output": "I don't have that information available. Could you please remind me or provide your name so I can better assist you with your financial inquiries?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "838d2376-3675-483a-ba08-280a9aa1f9f3",
+    "created_at": "2025-12-22T12:25:47.135188",
+    "last_updated": "2025-12-22T12:25:47.471553",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:25:47.134584",
+        "agent": "User",
+        "task": "Input",
+        "input": "Hi, I am testing persistence.",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:25:47.451304",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "Hi, I am testing persistence.",
+        "output": "Hello, I'm happy to help with any financial questions you may have when you're ready."
+      }
+    ]
+  },
+  {
+    "interaction_id": "d3ae585a-b448-4cf9-97ed-401bcf44b711",
+    "created_at": "2025-12-22T12:25:47.799401",
+    "last_updated": "2025-12-22T12:25:48.007294",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:25:47.798891",
+        "agent": "User",
+        "task": "Input",
+        "input": "My name is Ayham.",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:25:48.006298",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "My name is Ayham.",
+        "output": "Hello Ayham, nice to meet you. How can I assist you with your financial needs today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "155317dc-5904-4730-85cc-9e49d8294014",
+    "created_at": "2025-12-22T12:25:49.225497",
+    "last_updated": "2025-12-22T12:25:49.596218",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:25:49.224497",
+        "agent": "User",
+        "task": "Input",
+        "input": "What is my name?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:25:49.595613",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "What is my name?",
+        "output": "I don't have that information. I'm a financial assistant, and our conversation just started. Could you please introduce yourself so I can assist you better?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "8290b421-9ff0-4ddd-9d77-c8ae11ca7058",
+    "created_at": "2025-12-22T12:26:48.078781",
+    "last_updated": "2025-12-22T12:26:48.380493",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:26:48.077241",
+        "agent": "User",
+        "task": "Input",
+        "input": "Hi, I am testing persistence.",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:26:48.355408",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "Hi, I am testing persistence.",
+        "output": "Hello. That's an interesting approach. How can I assist you today with your financial needs?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "7d1370e8-8297-4a4b-b744-4bd0e88af5e5",
+    "created_at": "2025-12-22T12:26:48.697812",
+    "last_updated": "2025-12-22T12:26:48.955738",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:26:48.696788",
+        "agent": "User",
+        "task": "Input",
+        "input": "My name is Ayham.",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:26:48.955738",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "My name is Ayham.",
+        "output": "Hello Ayham, nice to meet you. How can I assist you with your financial needs today?"
+      }
+    ]
+  },
+  {
+    "interaction_id": "4e5ae6ed-c1cd-40cd-b0ac-bcb4b59a2ef8",
+    "created_at": "2025-12-22T12:26:50.284424",
+    "last_updated": "2025-12-22T12:26:50.601004",
+    "steps": [
+      {
+        "timestamp": "2025-12-22T12:26:50.284424",
+        "agent": "User",
+        "task": "Input",
+        "input": "What is my name?",
+        "output": null
+      },
+      {
+        "timestamp": "2025-12-22T12:26:50.583406",
+        "agent": "ConversationalAgent",
+        "task": "Output",
+        "input": "What is my name?",
+        "output": "Hello Ayham, nice to meet you. How can I assist you with your financial needs today?"
+      }
+    ]
   }
 ]

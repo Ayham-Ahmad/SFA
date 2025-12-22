@@ -1,6 +1,7 @@
 """
 Analytics Metrics Module
-Fetches key financial metrics for the dashboard using swf and stock_prices tables.
+========================
+Fetches key financial metrics for the dashboard using swf_financials table.
 """
 import sqlite3
 import pandas as pd
@@ -16,7 +17,7 @@ DB_PATH = os.path.join(BASE_DIR, "data", "db", "financial_data.db")
 def get_key_metrics() -> Dict[str, Any]:
     """
     Fetch key financial metrics for the dashboard.
-    Uses swf table for revenue and net income totals.
+    Uses swf_financials table for revenue and net income totals.
     """
     try:
         if not os.path.exists(DB_PATH):
@@ -24,27 +25,23 @@ def get_key_metrics() -> Dict[str, Any]:
 
         conn = sqlite3.connect(DB_PATH)
         
-        # Get the latest year's total revenue from swf
-        revenue_query = """
-        SELECT yr, SUM(val) as total_rev 
-        FROM swf 
-        WHERE item = 'Revenue' 
-        GROUP BY yr 
-        ORDER BY yr DESC 
-        LIMIT 1
-        """
-        rev_result = conn.execute(revenue_query).fetchone()
-        latest_year = rev_result[0] if rev_result else None
-        total_revenue = rev_result[1] if rev_result else 0
+        # Get the latest year's total revenue from swf_financials
+        # Since it's quarterly, we sum the quarters for the latest year found
+        latest_year_query = "SELECT MAX(year) FROM swf_financials"
+        latest_year = conn.execute(latest_year_query).fetchone()[0]
         
-        # Get the latest year's total net income from swf
-        income_query = """
-        SELECT SUM(val) 
-        FROM swf 
-        WHERE item = 'Net Income' AND yr = ?
+        if not latest_year:
+            conn.close()
+            return {"total_revenue": 0, "total_net_income": 0, "latest_year": None}
+            
+        metrics_query = """
+        SELECT SUM(revenue), SUM(net_income)
+        FROM swf_financials
+        WHERE year = ?
         """
-        income_result = conn.execute(income_query, (latest_year,)).fetchone() if latest_year else None
-        total_net_income = income_result[0] if income_result and income_result[0] else 0
+        result = conn.execute(metrics_query, (latest_year,)).fetchone()
+        total_revenue = result[0] if result and result[0] else 0
+        total_net_income = result[1] if result and result[1] else 0
         
         conn.close()
         
@@ -54,14 +51,14 @@ def get_key_metrics() -> Dict[str, Any]:
             "latest_year": latest_year
         }
     except Exception as e:
-        print(f"Error fetching metrics: {e}")
+        # Fallback to empty if fails
         return {"total_revenue": 0, "total_net_income": 0, "latest_year": None}
 
 
 def get_revenue_trend() -> Dict[str, Any]:
     """
     Get quarterly Revenue trend data for plotting.
-    Uses swf table grouped by year and quarter.
+    Uses swf_financials table.
     """
     try:
         if not os.path.exists(DB_PATH):
@@ -70,11 +67,9 @@ def get_revenue_trend() -> Dict[str, Any]:
         conn = sqlite3.connect(DB_PATH)
         
         query = """
-        SELECT yr, qtr, SUM(val) as total_rev 
-        FROM swf 
-        WHERE item = 'Revenue'
-        GROUP BY yr, qtr
-        ORDER BY yr, qtr
+        SELECT year, quarter, revenue
+        FROM swf_financials
+        ORDER BY year, quarter
         """
         df = pd.read_sql_query(query, conn)
         conn.close()
@@ -83,24 +78,21 @@ def get_revenue_trend() -> Dict[str, Any]:
             return {"dates": [], "values": []}
 
         # Create period labels like "2024 Q1"
-        dates = [f"{int(row['yr'])} Q{int(row['qtr'])}" for _, row in df.iterrows()]
-        
-        # Clean values
-        values = [0.0 if pd.isna(x) or math.isinf(x) else float(x) for x in df['total_rev'].tolist()]
+        dates = [f"{int(row['year'])} Q{int(row['quarter'])}" for _, row in df.iterrows()]
+        values = [float(x) if x is not None else 0.0 for x in df['revenue'].tolist()]
         
         return {
             "dates": dates,
             "values": values
         }
     except Exception as e:
-        print(f"Error fetching revenue trend: {e}")
         return {"dates": [], "values": []}
 
 
 def get_income_trend() -> Dict[str, Any]:
     """
     Get quarterly Net Income trend data for plotting.
-    Uses swf table grouped by year and quarter.
+    Uses swf_financials table.
     """
     try:
         if not os.path.exists(DB_PATH):
@@ -109,11 +101,9 @@ def get_income_trend() -> Dict[str, Any]:
         conn = sqlite3.connect(DB_PATH)
         
         query = """
-        SELECT yr, qtr, SUM(val) as total_income
-        FROM swf 
-        WHERE item = 'Net Income'
-        GROUP BY yr, qtr
-        ORDER BY yr, qtr
+        SELECT year, quarter, net_income
+        FROM swf_financials
+        ORDER BY year, quarter
         """
         df = pd.read_sql_query(query, conn)
         conn.close()
@@ -122,15 +112,12 @@ def get_income_trend() -> Dict[str, Any]:
             return {"dates": [], "values": []}
 
         # Create period labels like "2024 Q1"
-        dates = [f"{int(row['yr'])} Q{int(row['qtr'])}" for _, row in df.iterrows()]
-        
-        # Clean values
-        values = [0.0 if pd.isna(x) or math.isinf(x) else float(x) for x in df['total_income'].tolist()]
+        dates = [f"{int(row['year'])} Q{int(row['quarter'])}" for _, row in df.iterrows()]
+        values = [float(x) if x is not None else 0.0 for x in df['net_income'].tolist()]
             
         return {
             "dates": dates,
             "values": values
         }
     except Exception as e:
-        print(f"Error fetching income trend: {e}")
         return {"dates": [], "values": []}

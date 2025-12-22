@@ -1,17 +1,13 @@
-import logging
 import time
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-
-# Configure Logging
-logging.basicConfig(
-    filename="audit.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger("audit")
+from backend.sfa_logger import log_system_info
 
 class AuditMiddleware(BaseHTTPMiddleware):
+    """
+    Middleware to log all incoming HTTP requests for auditing and security.
+    Uses centralized sfa_logger for consistent logging.
+    """
     async def dispatch(self, request: Request, call_next):
         start_time = time.time()
         
@@ -29,6 +25,7 @@ class AuditMiddleware(BaseHTTPMiddleware):
             "client": request.client.host if request.client else "unknown"
         }
         
-        logger.info(f"Request: {log_data}")
+        # Log to system.log via sfa_logger
+        log_system_info(f"HTTP Audit: {log_data}")
         
         return response

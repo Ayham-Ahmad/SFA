@@ -373,6 +373,7 @@ async def update_user(user_id: int, user: UserCreate, current_user: User = Depen
         db_user.password_hash = get_password_hash(user.password)
         
     db.commit()
+    db.refresh(db_user)
     return db_user
 
 @app.delete("/api/users/{user_id}")

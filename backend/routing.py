@@ -159,16 +159,19 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
         question = question.replace("[GRAPH_REQ]", "").strip()
         log_system_info(f"Graph Generation AUTHORIZED for: {question}")
     
-    # Parse Input for Logging (Strip Context if present)
+    # Parse Input for Logging (Strip Context if present for clean logs, but keep original for LLM)
     log_input_query = question
     if "User Query:" in question:
         try:
-            # Extract just the last part: "User Query: ..."
+            # Extract just the last part for clean logging
             parts = question.split("User Query:")
             if len(parts) > 1:
                 log_input_query = parts[-1].strip()
         except:
             pass
+
+    # Use full context for classification if it's there
+    input_for_classification = question 
 
     # ============================================
     # LLM-BASED INTENT CLASSIFICATION (Multi-Label)
@@ -190,7 +193,7 @@ RULES:
 5. If query is just a greeting → return "CONVERSATIONAL"
 6. "Give me SQL for revenue" is DATA (user wants data), NOT BLOCKED
 
-Query: "{log_input_query}"
+Query: "{input_for_classification}"
 Labels:"""
 
     try:
@@ -239,7 +242,7 @@ You are a professional financial assistant.
 
 Reply briefly and politely to the user's message.
 
-User: "{log_input_query}"
+User: "{input_for_classification}"
 """
             
             reply = client.chat.completions.create(
