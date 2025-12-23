@@ -27,42 +27,62 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 FAST_MODEL = "llama-3.1-8b-instant"
 
 
-def select_chart_type(question: str, data_description: str) -> str:
+def get_chart_metadata(question: str, data_description: str) -> dict:
     """
-    Use LLM to select the best chart type based on the question.
-    Returns one of: 'bar', 'line', 'pie', 'scatter'
+    Use LLM to select chart type AND generate appropriate title.
+    Returns: {"chart_type": "bar|line|pie|scatter", "title": "..."}
     """
-    prompt = f"""Select the best chart type for this financial question and data.
+    prompt = f"""Analyze this financial data request and return chart metadata.
 
 Question: {question}
-Data: {data_description}
+Data Sample: {data_description}
 
-CHART SELECTION RULES:
-- bar: Compare categories (companies, quarters, items)
-- line: Show trends over time (yearly, quarterly, monthly)
-- pie: Show parts of a whole (expense breakdown, percentages)
-- scatter: Show correlation between two metrics
+CHART TYPE RULES:
+- bar: Compare categories (companies, quarters, expense items)
+- line: Show trends over time (yearly, quarterly, monthly data)
+- pie: Show parts of a whole (expense breakdown, portfolio allocation)
+- scatter: Show correlation between two numeric metrics
 
-RESPOND WITH ONLY ONE WORD: bar, line, pie, or scatter"""
+TITLE RULES:
+- Be specific: Include the metric name (Gross Income, Net Revenue, Stock Price)
+- Include time period if mentioned in the question
+- Keep it concise (max 6 words)
+- Do NOT use generic titles like "Financial Analysis"
+
+RESPOND WITH ONLY THIS JSON FORMAT (no markdown, no explanation):
+{{"chart_type": "bar", "title": "Your Specific Title Here"}}
+"""
 
     try:
         response = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model=FAST_MODEL,
             temperature=0,
-            max_tokens=10
+            max_tokens=100
         )
-        chart_type = response.choices[0].message.content.strip().lower()
+        result_text = response.choices[0].message.content.strip()
         
-        if chart_type in ['bar', 'line', 'pie', 'scatter']:
-            log_system_debug(f"[GraphPipeline] LLM selected: {chart_type}")
-            return chart_type
+        # Parse JSON response
+        import re
+        json_match = re.search(r'\{.*\}', result_text, re.DOTALL)
+        if json_match:
+            metadata = json.loads(json_match.group())
+            chart_type = metadata.get("chart_type", "bar").lower()
+            title = metadata.get("title", "Financial Analysis")
+            
+            # Validate chart_type
+            if chart_type not in ['bar', 'line', 'pie', 'scatter']:
+                chart_type = 'bar'
+            
+            log_system_debug(f"[GraphPipeline] LLM metadata: type={chart_type}, title={title}")
+            return {"chart_type": chart_type, "title": title}
         
-        log_system_debug(f"[GraphPipeline] Invalid type '{chart_type}', defaulting to bar")
-        return 'bar'
+        log_system_debug(f"[GraphPipeline] Failed to parse JSON, using defaults")
+        return {"chart_type": "bar", "title": "Financial Analysis"}
+        
     except Exception as e:
-        log_system_error(f"[GraphPipeline] Chart type selection failed: {e}")
-        return 'bar'
+        log_system_error(f"[GraphPipeline] Metadata generation failed: {e}")
+        return {"chart_type": "bar", "title": "Financial Analysis"}
 
 
 def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
@@ -135,27 +155,60 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     
     log_system_debug(f"[GraphPipeline] Found {len(rows)} data rows")
     
-    # Smart label detection: prefer qtr, then date, then first column
-    label_col_idx = 0
+    # ==========================================
+    # SMART LABEL DETECTION
+    # ==========================================
+    
+    # Find year and quarter columns (support multiple naming conventions)
+    year_col_idx = None
+    qtr_col_idx = None
+    date_col_idx = None
+    
+    year_patterns = ['yr', 'year', 'fiscal_year', 'fy']
+    qtr_patterns = ['qtr', 'quarter', 'fiscal_quarter', 'q']
+    date_patterns = ['date', 'month', 'mo', 'period', 'time']
+    
     for i, col in enumerate(columns):
-        if 'qtr' in col or 'quarter' in col:
-            label_col_idx = i
-            break
-        elif 'date' in col or 'month' in col or 'mo' == col:
-            label_col_idx = i
+        col_lower = col.lower()
+        # Check for year column
+        if year_col_idx is None:
+            for pattern in year_patterns:
+                if pattern == col_lower or col_lower.startswith(pattern):
+                    year_col_idx = i
+                    break
+        # Check for quarter column
+        if qtr_col_idx is None:
+            for pattern in qtr_patterns:
+                if pattern == col_lower or col_lower.startswith(pattern):
+                    qtr_col_idx = i
+                    break
+        # Check for date column
+        if date_col_idx is None:
+            for pattern in date_patterns:
+                if pattern in col_lower:
+                    date_col_idx = i
+                    break
     
-    # If first column is 'yr' and second is 'qtr', combine them
-    combine_yr_qtr = False
-    if len(columns) >= 2 and 'yr' in columns[0] and 'qtr' in columns[1]:
-        combine_yr_qtr = True
+    log_system_debug(f"[GraphPipeline] Column detection: year_col={year_col_idx}, qtr_col={qtr_col_idx}, date_col={date_col_idx}")
     
-    # Extract labels
+    # Extract labels with smart combining
     labels = []
     for row in rows:
-        if combine_yr_qtr:
-            labels.append(f"Q{row[1]} {row[0]}")  # e.g., "Q1 2024"
+        # Priority 1: Combine year + quarter if both exist
+        if year_col_idx is not None and qtr_col_idx is not None:
+            year_val = row[year_col_idx]
+            qtr_val = row[qtr_col_idx]
+            # Format: "2024 Q3" or "Q3 2024"
+            labels.append(f"{year_val} Q{qtr_val}")
+        # Priority 2: Use date column if available
+        elif date_col_idx is not None:
+            labels.append(row[date_col_idx])
+        # Priority 3: Use quarter column alone
+        elif qtr_col_idx is not None:
+            labels.append(f"Q{row[qtr_col_idx]}")
+        # Priority 4: Use first column as fallback
         else:
-            labels.append(row[label_col_idx])
+            labels.append(row[0])
     
     # Find best value column: prefer actual_value, revenue, etc over variance
     # Priority: actual_value > revenue > value > anything numeric
@@ -182,7 +235,7 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
             value_col_idx = i
             break
     
-    log_system_debug(f"[GraphPipeline] Using label col {label_col_idx} ({columns[label_col_idx]}), value col {value_col_idx} ({columns[value_col_idx]})")
+    log_system_debug(f"[GraphPipeline] Using value col {value_col_idx} ({columns[value_col_idx]})")
     
     # Extract values
     values = []
@@ -228,26 +281,6 @@ def parse_numeric(value_str: str) -> float:
         return 0.0
 
 
-def generate_title(question: str) -> str:
-    """Generate chart title from question."""
-    q = question.lower()
-    
-    if 'revenue' in q:
-        return 'Revenue Analysis'
-    elif 'income' in q or 'profit' in q:
-        return 'Net Income Analysis'
-    elif 'expense' in q or 'cost' in q:
-        return 'Expense Analysis'
-    elif 'stock' in q or 'price' in q:
-        return 'Stock Price Analysis'
-    elif 'margin' in q:
-        return 'Margin Analysis'
-    elif 'growth' in q:
-        return 'Growth Analysis'
-    else:
-        return 'Financial Analysis'
-
-
 def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
     """
     Main graph pipeline function.
@@ -290,14 +323,13 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
             "title": ""
         }
     
-    # Step 3: Select chart type
+    # Step 3: Get chart type and title from LLM
     data_desc = f"Labels: {parsed['labels'][:5]}, Values: {parsed['values'][:5]}"
-    chart_type = select_chart_type(question, data_desc)
+    metadata = get_chart_metadata(question, data_desc)
+    chart_type = metadata["chart_type"]
+    title = metadata["title"]
     
-    # Step 4: Generate title
-    title = generate_title(question)
-    
-    # Step 5: Check for complex data (repeating labels = multiple metrics)
+    # Step 4: Check for complex data (repeating labels = multiple metrics)
     unique_labels = set(parsed["labels"])
     is_complex = len(unique_labels) < len(parsed["labels"]) * 0.8  # More than 20% duplicates
     

@@ -120,8 +120,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
     
-    # Return token and user role
-    return {"access_token": access_token, "token_type": "bearer", "role": user.role}
+    # Return token, user role and username
+    return {"access_token": access_token, "token_type": "bearer", "role": user.role, "username": user.username}
 
 
 # -----------------------------------------------------------------------------
@@ -303,6 +303,29 @@ async def chat_feedback(chat_id: int, feedback: str, current_user: User = Depend
         
     db.commit()
     return {"status": "success", "feedback": chat_entry.user_feedback}
+
+@app.get("/chat/history")
+async def get_chat_history(session_id: str = None, current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    """
+    Retrieve the chat history for the current user's specific session.
+    If session_id is provided, returns only messages from that session.
+    If session_id is not provided or has no messages, returns empty list.
+    """
+    if not session_id:
+        return []  # No session specified = no history to return
+    
+    history = db.query(ChatHistory).filter(
+        ChatHistory.user_id == current_user.id,
+        ChatHistory.session_id == session_id
+    ).order_by(ChatHistory.timestamp.asc()).all()
+    
+    return [{
+        "id": h.id,
+        "question": h.question,
+        "answer": h.answer,
+        "timestamp": h.timestamp.isoformat(),
+        "user_feedback": h.user_feedback
+    } for h in history]
 
 # -----------------------------------------------------------------------------
 # Analytics & Dashboard Data Endpoints

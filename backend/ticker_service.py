@@ -22,15 +22,22 @@ class TickerService:
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         
-        # Query swf_financials table
+        # Query to get the latest year first
+        year_query = "SELECT MAX(year) FROM swf_financials"
+        
+        # Then fetch all quarters for that year in order
         query = """
         SELECT year, quarter, revenue, net_income, net_margin
         FROM swf_financials
-        ORDER BY year DESC, quarter DESC
-        LIMIT 50
+        WHERE year = ({})
+        ORDER BY quarter ASC
         """
         try:
-            rows = cursor.execute(query).fetchall()
+            latest_year = cursor.execute(year_query).fetchone()[0]
+            if latest_year:
+                rows = cursor.execute(query.format(year_query)).fetchall()
+            else:
+                rows = []
         except Exception as e:
             rows = []
         finally:
@@ -96,25 +103,18 @@ class TickerService:
             s = s[:-2]
         return f"{prefix}{s}{suffix}"
 
-    def get_batch(self, batch_size=5):
-        """Get the next batch of ticker items, rotating continuously."""
+    def get_batch(self):
+        """Get all ticker items for the current year."""
         
-        # Refresh cache if empty
-        if not self._cached_timeline:
-            rows = self._fetch_data_from_db()
-            self._cached_timeline = self._build_timeline(rows)
-            self._current_index = 0
+        # Refresh cache
+        rows = self._fetch_data_from_db()
+        self._cached_timeline = self._build_timeline(rows)
 
         if not self._cached_timeline:
             return []
 
-        total_points = len(self._cached_timeline)
         response_data = []
-        
-        for i in range(batch_size):
-            idx = (self._current_index + i) % total_points
-            item = self._cached_timeline[idx]
-            
+        for item in self._cached_timeline:
             response_data.append({
                 "name": item["name"],
                 "period": item["period"],
@@ -124,9 +124,6 @@ class TickerService:
                 "is_profit": item["is_profit"],
                 "status": "PROFIT" if item["is_profit"] else "LOSS"
             })
-        
-        # Rotate index
-        self._current_index = (self._current_index + batch_size) % total_points
         
         return response_data
 
