@@ -194,7 +194,9 @@ async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_c
                         "chart_type": result.get("chart_type"),
                         "labels": result.get("labels"),
                         "values": result.get("values"),
-                        "title": result.get("title")
+                        "title": result.get("title"),
+                        "is_percentage": result.get("is_percentage", False),
+                        "y_axis_title": result.get("y_axis_title", "USD")
                     }
                     
             except asyncio.TimeoutError:

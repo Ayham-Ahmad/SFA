@@ -1,20 +1,29 @@
+"""
+RAMAS Pipeline Router
+=====================
+Orchestrates the RAMAS (Reasoning and Multi-Agent System) pipeline.
+"""
 from backend.agents.planner import plan_task
 from backend.agents.worker import execute_step, set_interaction_id as set_worker_interaction_id
 from backend.agents.auditor import audit_and_synthesize
-from groq import Groq
-import os
+from backend.utils.llm_client import groq_client, get_model
 import traceback
 import re
 import uuid
 from backend.sfa_logger import log_system_info, log_system_error, log_system_debug, log_agent_interaction
-from backend.config import TESTING
 
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
+MODEL = get_model("default")
+
 
 def extract_steps(plan: str):
     """
     Extract numbered or bullet steps regardless of formatting.
+    
+    Args:
+        plan: Plan text from planner
+        
+    Returns:
+        List of step strings
     """
     lines = re.split(r"\n|(?=\d+[\.\)]\s)", plan)
     steps = []
@@ -36,9 +45,15 @@ def run_graph_pipeline(question: str, query_id: str = None) -> dict:
     """
     Dedicated pipeline for graph generation requests.
     Flow: Planner → Worker (SQL) → Programmatic Graph Builder
-    Returns: {response, graph_data, has_data}
     
     This does NOT use LLM for graph generation - uses graph_builder.py programmatically.
+    
+    Args:
+        question: User's question
+        query_id: Optional query ID for progress tracking
+        
+    Returns:
+        {response, graph_data, has_data}
     """
     from backend.tools.graph_builder import build_graph_from_context
     
@@ -140,6 +155,13 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
     2. Planner: Decomposes question.
     3. Worker: Executes each step.
     4. Auditor: Synthesizes final answer.
+    
+    Args:
+        question: User's question (may include context prefixes)
+        query_id: Optional query ID for progress tracking
+        
+    Returns:
+        Final response string
     """
     
     # Import progress tracking (optional, won't crash if not available)
@@ -148,7 +170,7 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
         has_progress = True
     except:
         has_progress = False
-        def set_query_progress(qid, agent, step): pass  # No-op fallback
+        def set_query_progress(qid, agent, step): pass
 
     log_system_info(f"--- Starting RAMAS Pipeline for: {question} ---")
     
@@ -159,18 +181,16 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
         question = question.replace("[GRAPH_REQ]", "").strip()
         log_system_info(f"Graph Generation AUTHORIZED for: {question}")
     
-    # Parse Input for Logging (Strip Context if present for clean logs, but keep original for LLM)
+    # Parse Input for Logging
     log_input_query = question
     if "User Query:" in question:
         try:
-            # Extract just the last part for clean logging
             parts = question.split("User Query:")
             if len(parts) > 1:
                 log_input_query = parts[-1].strip()
         except:
             pass
 
-    # Use full context for classification if it's there
     input_for_classification = question 
 
     # ============================================
@@ -197,7 +217,7 @@ Query: "{input_for_classification}"
 Labels:"""
 
     try:
-        classification_response = client.chat.completions.create(
+        classification_response = groq_client.chat.completions.create(
             messages=[{"role": "user", "content": classification_prompt}],
             model=MODEL,
             temperature=0,
@@ -214,7 +234,7 @@ Labels:"""
             
     except Exception as e:
         log_system_error(f"Classification Error: {e}")
-        labels = ["DATA"]  # Default to data pipeline
+        labels = ["DATA"]
     
     log_system_info(f"  → Intent Labels: {labels}")
 
@@ -230,14 +250,9 @@ Labels:"""
     if "CONVERSATIONAL" in labels and len(labels) == 1:
         try:
             interaction_id = str(uuid.uuid4())
-            
             log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
             
-            if TESTING:
-                from backend.prompts import CONVERSATIONAL_PROMPT
-                chat_prompt = CONVERSATIONAL_PROMPT.format(query=log_input_query)
-            else:
-                chat_prompt = f"""
+            chat_prompt = f"""
 You are a professional financial assistant.
 
 Reply briefly and politely to the user's message.
@@ -245,7 +260,7 @@ Reply briefly and politely to the user's message.
 User: "{input_for_classification}"
 """
             
-            reply = client.chat.completions.create(
+            reply = groq_client.chat.completions.create(
                 messages=[{"role": "user", "content": chat_prompt}],
                 model=MODEL
             ).choices[0].message.content
@@ -330,7 +345,7 @@ User: "{input_for_classification}"
                     # Standard SQL/RAG step
                     try:
                         result = execute_step(clean_step)
-                        log_system_debug(f"Step Result: {result[:200]}...") # Log summary
+                        log_system_debug(f"Step Result: {result[:200]}...")
                     except Exception as step_err:
                         result = f"Error executing step: {step_err}"
                         log_system_error(f"Step Error: {result}")
@@ -350,7 +365,6 @@ User: "{input_for_classification}"
         
         # ============================================
         # HYBRID: If DATA+ADVISORY, pass data to Advisor
-        # NCA: Skip Advisory if Auditor returned no data
         # ============================================
         data_unavailable = "data not available" in final_answer.lower() or "no data" in final_answer.lower()
         
@@ -374,7 +388,6 @@ User: "{input_for_classification}"
                 
             except Exception as e:
                 log_system_error(f"Hybrid Advisory Error: {e}")
-                # Return just the data answer if advisory fails
         
         return final_answer
 

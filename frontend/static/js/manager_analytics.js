@@ -510,21 +510,30 @@ function buildChartFromTemplate(chartData) {
     const palette = getFinancialPalette(theme);
     const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
 
-    const { template, chart_type, labels, values, title, yLabel } = chartData;
+    const { template, chart_type, labels, values, title, yLabel, is_percentage, y_axis_title } = chartData;
     const templateKey = template || chart_type; // Support both old and new format
+
+    // Determine axis formatting based on is_percentage flag
+    const isPercentage = is_percentage === true;
+    const tickPrefix = isPercentage ? '' : '$';
+    const tickSuffix = isPercentage ? '%' : '';
+    const hoverValueFormat = isPercentage ? '%{y:.1f}%' : '$%{y:,.0f}';
 
     const baseLayout = {
         title: { text: title, font: { size: 14, color: theme.text } },
         xaxis: {
+            type: 'category',  // Force categorical to prevent "2024.5" interpolation
             showgrid: false,
             tickfont: { size: 9, color: theme.text },
             tickangle: -45,
             nticks: 8,  // Show max 8 labels to avoid clutter
-            tickmode: 'auto'
+            categoryorder: 'array',  // Preserve label order from data
+            categoryarray: labels    // Use exact labels as categories
         },
         yaxis: {
-            title: yLabel || '',
-            tickprefix: '$',
+            title: y_axis_title || yLabel || '',
+            tickprefix: tickPrefix,
+            ticksuffix: tickSuffix,
             separatethousands: true,
             gridcolor: theme.grid,
             tickfont: { size: 10, color: theme.text }
@@ -540,6 +549,22 @@ function buildChartFromTemplate(chartData) {
         },
         margin: { l: 60, r: 20, t: 50, b: 60 }
     };
+
+    // ======= PERCENTAGE DATA (Line chart for margin/rate trends) =======
+    if (isPercentage || templateKey === 'line') {
+        return {
+            data: [{
+                x: labels,
+                y: values,
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: { width: 2, color: '#9b59b6', shape: 'spline' },
+                marker: { size: 6 },
+                hovertemplate: `<b>%{x}</b><br>Value: ${hoverValueFormat}<extra></extra>`
+            }],
+            layout: baseLayout
+        };
+    }
 
     // ======= REVENUE TREND (Line + Area Fill) =======
     if (templateKey === 'revenue_trend' || templateKey === 'scatter') {
@@ -569,7 +594,7 @@ function buildChartFromTemplate(chartData) {
                 y: values,
                 type: 'bar',
                 marker: { color: colors, line: { width: 0 } },
-                hovertemplate: '<b>%{x}</b><br>Net Income: $%{y:,.0f}<extra></extra>'
+                hovertemplate: `<b>%{x}</b><br>Value: ${hoverValueFormat}<extra></extra>`
             }],
             layout: baseLayout
         };
@@ -624,7 +649,7 @@ function buildChartFromTemplate(chartData) {
             y: values,
             type: 'bar',
             marker: { color: palette.stock },
-            hovertemplate: '<b>%{x}</b><br>Value: $%{y:,.0f}<extra></extra>'
+            hovertemplate: `<b>%{x}</b><br>Value: ${hoverValueFormat}<extra></extra>`
         }],
         layout: baseLayout
     };

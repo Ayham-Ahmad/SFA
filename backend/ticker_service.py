@@ -3,14 +3,15 @@ Ticker Service - Live Financial Feed
 ====================================
 Uses the swf_financials table for Revenue and Net Income data.
 """
-import os
 import sqlite3
-import math
+from backend.utils.paths import DB_PATH
+from backend.utils.formatters import format_large_number
+import os
 
 
 class TickerService:
-    def __init__(self, db_path):
-        self.db_path = db_path
+    def __init__(self, db_path=None):
+        self.db_path = db_path or DB_PATH
         self._current_index = 0
         self._cached_timeline = []
 
@@ -76,32 +77,8 @@ class TickerService:
         return timeline
 
     def _fmt_large_number(self, val):
-        """Format numbers with B/M/K suffixes."""
-        if val is None:
-            return "-"
-        
-        abs_val = abs(val)
-        prefix = "$"
-        
-        if abs_val >= 1_000_000_000_000:
-            formatted_num = val / 1_000_000_000_000
-            suffix = "T"
-        elif abs_val >= 1_000_000_000:
-            formatted_num = val / 1_000_000_000
-            suffix = "B"
-        elif abs_val >= 1_000_000:
-            formatted_num = val / 1_000_000
-            suffix = "M"
-        elif abs_val >= 1_000:
-            formatted_num = val / 1_000
-            suffix = "K"
-        else:
-            return f"{prefix}{val:,.2f}"
-        
-        s = f"{formatted_num:.1f}"
-        if s.endswith(".0"):
-            s = s[:-2]
-        return f"{prefix}{s}{suffix}"
+        """Format numbers with B/M/K suffixes using centralized formatter."""
+        return format_large_number(val)
 
     def get_batch(self):
         """Get all ticker items for the current year."""
@@ -128,7 +105,5 @@ class TickerService:
         return response_data
 
 
-# Singleton instance
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(BASE_DIR, "data", "db", "financial_data.db")
-ticker_service = TickerService(DB_PATH)
+# Singleton instance using centralized path
+ticker_service = TickerService()

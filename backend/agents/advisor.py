@@ -4,20 +4,13 @@ Advisor Agent
 Generates financial recommendations based on data context and advisory rules.
 This agent is called after data retrieval to provide actionable insights.
 """
-from groq import Groq
-import os
-import sqlite3
-import json
-from dotenv import load_dotenv
+from backend.utils.llm_client import groq_client, get_model
+from backend.utils.paths import DB_PATH
 from backend.sfa_logger import log_system_debug, log_system_error
-
-load_dotenv()
-
 from backend.advisory.rules import ADVISORY_RULES, PROFITABILITY_RULES, GROWTH_RULES, VARIANCE_RULES
+import sqlite3
 
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
-DB_PATH = 'data/db/financial_data.db'
+MODEL = get_model("default")
 
 # ============================================
 # DATA EXTRACTION FUNCTIONS
@@ -27,7 +20,6 @@ def get_latest_profitability_metrics():
     """Get the most recent profitability metrics from swf_financials."""
     try:
         conn = sqlite3.connect(DB_PATH)
-        # CHANGED: Query swf_financials directly
         result = conn.execute("""
             SELECT year, quarter, gross_margin, operating_margin, net_margin, revenue, cost_of_revenue
             FROM swf_financials
@@ -40,7 +32,7 @@ def get_latest_profitability_metrics():
             return {
                 "yr": result[0],
                 "qtr": result[1],
-                "gross_margin_pct": result[2] * 100 if result[2] is not None else 0, # Convert decimal to %
+                "gross_margin_pct": result[2] * 100 if result[2] is not None else 0,
                 "operating_margin_pct": result[3] * 100 if result[3] is not None else 0,
                 "net_margin_pct": result[4] * 100 if result[4] is not None else 0,
                 "latest_revenue": result[5] if result[5] is not None else 0,
@@ -55,6 +47,14 @@ def get_latest_profitability_metrics():
 def generate_advisory(question: str, data_context: str = None, interaction_id: str = None) -> str:
     """
     Generates an advisory response using the latest financial metrics.
+    
+    Args:
+        question: User's advisory question
+        data_context: Optional context from previous data retrieval
+        interaction_id: Optional ID for logging
+        
+    Returns:
+        Advisory recommendation text
     """
     # 1. Get latest metrics
     metrics = get_latest_profitability_metrics()
@@ -104,11 +104,11 @@ Data summary:
 """
     
     try:
-        response = client.chat.completions.create(
+        response = groq_client.chat.completions.create(
             messages=[{"role": "user", "content": advisory_prompt}],
             model=MODEL,
-            temperature=0.4,  # Slightly higher for more thoughtful responses
-            max_tokens=600    # Allow longer, more nuanced responses
+            temperature=0.4,
+            max_tokens=600
         )
         
         recommendation = response.choices[0].message.content

@@ -1,21 +1,16 @@
 """
 Graph Builder Utility
-
+=====================
 Builds Plotly.js JSON programmatically from SQL results.
 This ensures 100% reliable graph generation without depending on LLM output.
 """
 import json
-import re
-import os
 from typing import Optional, Dict, List, Any
-from groq import Groq
-from dotenv import load_dotenv
+from backend.utils.llm_client import groq_client, get_model
+from backend.utils.formatters import parse_financial_value, is_percentage_column
 
-load_dotenv()
-
-# Initialize Groq client for chart type detection
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-FAST_MODEL = "llama-3.1-8b-instant"  # Fast model for simple classification
+# Fast model for chart type detection
+FAST_MODEL = get_model("fast")
 
 
 def detect_chart_type(question: str, data_summary: str) -> str:
@@ -49,7 +44,7 @@ RESPOND WITH ONLY ONE WORD: bar, line, pie, or scatter
 Answer:"""
 
     try:
-        response = client.chat.completions.create(
+        response = groq_client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model=FAST_MODEL,
             temperature=0,
@@ -63,7 +58,6 @@ Answer:"""
             print(f"[GraphBuilder] LLM selected chart type: {chart_type}")
             return chart_type
         
-        # Default to bar if invalid response
         print(f"[GraphBuilder] Invalid chart type '{chart_type}', defaulting to bar")
         return 'bar'
     except Exception as e:
@@ -76,10 +70,7 @@ def extract_table_data(context: str) -> Optional[Dict[str, List[Any]]]:
     Extract tabular data from markdown table in context.
     Returns dict with column names as keys and lists of values.
     """
-    # Look for markdown table pattern
-    # Example: | company_name | value |
-    #          |:------------|------:|
-    #          | APPLE INC   | $219B |
+    import re
     
     lines = context.split('\n')
     table_lines = []
@@ -91,7 +82,6 @@ def extract_table_data(context: str) -> Optional[Dict[str, List[Any]]]:
             in_table = True
             table_lines.append(line)
         elif in_table and not line.startswith('|'):
-            # End of table
             if len(table_lines) >= 2:
                 break
             else:
@@ -105,7 +95,7 @@ def extract_table_data(context: str) -> Optional[Dict[str, List[Any]]]:
     header_line = table_lines[0]
     headers = [h.strip() for h in header_line.split('|') if h.strip()]
     
-    # Skip separator line (|:---|:---|)
+    # Skip separator line
     data_start = 1
     if len(table_lines) > 1 and re.match(r'^\|[\s\-:]+\|', table_lines[1]):
         data_start = 2
@@ -125,34 +115,12 @@ def extract_table_data(context: str) -> Optional[Dict[str, List[Any]]]:
 def parse_value(value_str: str) -> float:
     """
     Parse formatted value like '$219.66B' to raw number.
+    Uses centralized formatter.
     """
-    if not value_str or value_str == 'nan' or value_str == '-':
-        return 0
-    
-    # Remove $ and other formatting
-    cleaned = value_str.replace('$', '').replace(',', '').strip()
-    
-    multiplier = 1
-    if cleaned.endswith('T'):
-        multiplier = 1e12
-        cleaned = cleaned[:-1]
-    elif cleaned.endswith('B'):
-        multiplier = 1e9
-        cleaned = cleaned[:-1]
-    elif cleaned.endswith('M'):
-        multiplier = 1e6
-        cleaned = cleaned[:-1]
-    elif cleaned.endswith('K'):
-        multiplier = 1e3
-        cleaned = cleaned[:-1]
-    
-    try:
-        return float(cleaned) * multiplier
-    except ValueError:
-        return 0
+    return parse_financial_value(value_str)
 
 
-def build_bar_chart(labels: List[str], values: List[float], title: str = "Financial Comparison") -> str:
+def build_bar_chart(labels: List[str], values: List[float], title: str = "Financial Comparison", y_axis_title: str = "USD") -> str:
     """Build a Plotly bar chart JSON."""
     filtered = [(l, v) for l, v in zip(labels, values) if v != 0]
     if not filtered:
@@ -173,13 +141,13 @@ def build_bar_chart(labels: List[str], values: List[float], title: str = "Financ
         "layout": {
             "title": title,
             "xaxis": {"title": ""},
-            "yaxis": {"title": "USD"}
+            "yaxis": {"title": y_axis_title}
         }
     }
     return json.dumps(chart_data)
 
 
-def build_line_chart(labels: List[str], values: List[float], title: str = "Financial Trend") -> str:
+def build_line_chart(labels: List[str], values: List[float], title: str = "Financial Trend", y_axis_title: str = "USD") -> str:
     """Build a Plotly line chart JSON."""
     filtered = [(l, v) for l, v in zip(labels, values) if v != 0]
     if not filtered:
@@ -202,7 +170,7 @@ def build_line_chart(labels: List[str], values: List[float], title: str = "Finan
         "layout": {
             "title": title,
             "xaxis": {"title": ""},
-            "yaxis": {"title": "USD"}
+            "yaxis": {"title": y_axis_title}
         }
     }
     return json.dumps(chart_data)
@@ -222,7 +190,7 @@ def build_pie_chart(labels: List[str], values: List[float], title: str = "Distri
                 "labels": list(labels),
                 "values": list(values),
                 "type": "pie",
-                "hole": 0.3,  # Donut style
+                "hole": 0.3,
                 "textinfo": "label+percent"
             }
         ],
@@ -262,16 +230,23 @@ def build_scatter_chart(labels: List[str], values: List[float], title: str = "Co
     return json.dumps(chart_data)
 
 
-def build_chart(chart_type: str, labels: List[str], values: List[float], title: str) -> Optional[str]:
+def build_chart(chart_type: str, labels: List[str], values: List[float], title: str, y_axis_title: str = "USD") -> Optional[str]:
     """Build chart based on type."""
-    builders = {
-        'bar': build_bar_chart,
-        'line': build_line_chart,
-        'pie': build_pie_chart,
-        'scatter': build_scatter_chart
-    }
-    builder = builders.get(chart_type, build_bar_chart)
-    return builder(labels, values, title)
+    # Only bar and line support y_axis_title currently
+    if chart_type in ['bar', 'line']:
+        builders = {
+            'bar': build_bar_chart,
+            'line': build_line_chart,
+        }
+        builder = builders.get(chart_type)
+        return builder(labels, values, title, y_axis_title)
+    else:
+        builders = {
+            'pie': build_pie_chart,
+            'scatter': build_scatter_chart
+        }
+        builder = builders.get(chart_type, build_bar_chart)
+        return builder(labels, values, title)
 
 
 def build_graph_from_context(context: str, question: str) -> Optional[str]:
@@ -313,24 +288,20 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
     if not value_col and len(cols) >= 2:
         value_col = cols[-1]
     
-    # SPECIAL CASE: Single column table (just names, no values)
-    # Create a simple bar chart with equal heights to show the list visually
+    # SPECIAL CASE: Single column table
     if len(cols) == 1 or not value_col:
         label_col = cols[0]
         labels = table_data[label_col]
-        # Assign equal values (1 each) - just to visualize the list
         values = [1] * len(labels)
         
         print(f"[GraphBuilder] Single-column table detected - creating list visualization")
         
-        # Generate title
         title = "Companies Meeting Criteria"
         if "negative" in question.lower() and "income" in question.lower():
             title = "Companies with Negative Net Income"
         elif "revenue" in question.lower():
             title = "Companies by Revenue"
         
-        # Use horizontal bar for better label visibility with names
         chart_data = {
             "data": [
                 {
@@ -345,7 +316,7 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
                 "title": title,
                 "xaxis": {"title": "Count", "showticklabels": False},
                 "yaxis": {"title": ""},
-                "margin": {"l": 200}  # Extra margin for long company names
+                "margin": {"l": 200}
             }
         }
         chart_json = json.dumps(chart_data)
@@ -358,11 +329,31 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
     
     labels = table_data[label_col]
     raw_values = table_data[value_col]
-    values = [parse_value(str(v)) for v in raw_values]
+    
+    # Check if value column is a percentage column
+    is_pct = is_percentage_column(value_col)
+    y_axis_title = "%" if is_pct else "USD"
+    
+    # Parse values with percentage handling
+    values = []
+    for v in raw_values:
+        if is_pct:
+            try:
+                val = float(str(v).replace('%', '').replace('$', '').strip())
+                # Convert decimal to percentage if needed
+                if -1 <= val <= 1 and val != 0:
+                    val = val * 100
+            except:
+                val = 0.0
+        else:
+            val = parse_value(str(v))
+        values.append(val)
     
     # Generate title from question
     title = "Financial Data"
-    if "revenue" in question.lower():
+    if "margin" in question.lower():
+        title = "Margin Trend"
+    elif "revenue" in question.lower():
         title = "Revenue Comparison"
     elif "income" in question.lower() or "profit" in question.lower():
         title = "Net Income Comparison"
@@ -375,11 +366,16 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
     data_summary = f"Labels: {labels[:5]}, Values: {values[:5]}"
     chart_type = detect_chart_type(question, data_summary)
     
-    # Build chart with detected type
-    chart_json = build_chart(chart_type, labels, values, title)
+    # For percentage time-series, prefer line chart
+    if is_pct and chart_type == "bar":
+        chart_type = "line"
+        print(f"[GraphBuilder] Percentage column detected, switching to line chart")
+    
+    # Build chart with detected type and y_axis_title
+    chart_json = build_chart(chart_type, labels, values, title, y_axis_title)
     
     if chart_json:
-        print(f"[GraphBuilder] Successfully built {chart_type} chart with {len(labels)} data points")
+        print(f"[GraphBuilder] Successfully built {chart_type} chart with {len(labels)} data points, y_axis={y_axis_title}")
     
     return chart_json
 
@@ -399,4 +395,3 @@ Database Results:
         print(f"graph_data||{result}||")
     else:
         print("No graph generated")
-

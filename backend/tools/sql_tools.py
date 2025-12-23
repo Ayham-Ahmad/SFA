@@ -1,41 +1,24 @@
+"""
+SQL Tools
+=========
+Database query execution and schema utilities.
+"""
 import sqlite3
 import pandas as pd
 from typing import List, Dict, Any, Optional
-import os
+from backend.utils.paths import DB_PATH
+from backend.utils.formatters import format_financial_value, format_date
 
-DB_PATH = "data/db/financial_data.db"
-
-def format_financial_value(val):
-    """Format large numbers to readable format like $219.66B"""
-    try:
-        val = float(val)
-        if abs(val) >= 1e12:
-            return f"${val/1e12:.2f}T"
-        elif abs(val) >= 1e9:
-            return f"${val/1e9:.2f}B"
-        elif abs(val) >= 1e6:
-            return f"${val/1e6:.2f}M"
-        elif abs(val) >= 1e3:
-            return f"${val/1e3:.2f}K"
-        else:
-            return f"${val:,.2f}"
-    except:
-        return str(val)
-
-def format_date(ddate):
-    """Format YYYYMMDD integer to YYYY-MM-DD string"""
-    try:
-        ddate_str = str(int(ddate))
-        if len(ddate_str) == 8:
-            return f"{ddate_str[:4]}-{ddate_str[4:6]}-{ddate_str[6:]}"
-        return ddate_str
-    except:
-        return str(ddate)
 
 def execute_sql_query(query: str) -> str:
     """
     Execute a read-only SQL query on the financial database.
-    Returns the result as a markdown table string or error message.
+    
+    Args:
+        query: SQL SELECT statement
+        
+    Returns:
+        Result as a markdown table string or error message.
     """
     normalized = query.strip().lower()
     
@@ -76,9 +59,13 @@ def execute_sql_query(query: str) -> str:
     except Exception as e:
         return f"SQL Error: {e}"
 
+
 def get_table_schemas() -> str:
     """
     Get the schema of all tables in the database to help the LLM write queries.
+    
+    Returns:
+        Formatted string with table/view names and their columns with hints.
     """
     try:
         conn = sqlite3.connect(DB_PATH)

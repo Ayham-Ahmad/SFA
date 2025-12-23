@@ -5,13 +5,10 @@ Fetches key financial metrics for the dashboard using swf_financials table.
 """
 import sqlite3
 import pandas as pd
-import os
-import math
 from typing import Dict, Any
-
-# Use absolute path for robustness
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB_PATH = os.path.join(BASE_DIR, "data", "db", "financial_data.db")
+from backend.utils.paths import DB_PATH
+from backend.utils.formatters import format_large_number
+import os
 
 
 def get_key_metrics() -> Dict[str, Any]:
@@ -26,7 +23,6 @@ def get_key_metrics() -> Dict[str, Any]:
         conn = sqlite3.connect(DB_PATH)
         
         # Get the latest year's total revenue from swf_financials
-        # Since it's quarterly, we sum the quarters for the latest year found
         latest_year_query = "SELECT MAX(year) FROM swf_financials"
         latest_year = conn.execute(latest_year_query).fetchone()[0]
         
@@ -51,7 +47,6 @@ def get_key_metrics() -> Dict[str, Any]:
             "latest_year": latest_year
         }
     except Exception as e:
-        # Fallback to empty if fails
         return {"total_revenue": 0, "total_net_income": 0, "latest_year": None}
 
 

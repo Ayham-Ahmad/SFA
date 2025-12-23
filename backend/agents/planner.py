@@ -1,16 +1,14 @@
-from groq import Groq
-import os
-from dotenv import load_dotenv
+"""
+Planner Agent
+=============
+Decomposes user questions into actionable SQL/RAG steps.
+"""
+from backend.utils.llm_client import groq_client, get_model
 from backend.sfa_logger import log_system_debug, log_system_error
-from backend.config import TESTING
 
-load_dotenv()
+MODEL = get_model("default")
 
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "llama-3.3-70b-versatile"
-
-# Inline prompt (used when TESTING = False)
-PLANNER_PROMPT_INLINE = """
+PLANNER_PROMPT = """
 You are the Planner Agent for a Smart Financial Advisor.
 
 Your task is to create a short execution plan to answer the user question.
@@ -58,19 +56,21 @@ Examples:
 User question: {question}
 """
 
-# ============================================
-# PROMPT SELECTION LOGIC
-# ============================================
-if TESTING:
-    from backend.prompts import PLANNER_PROMPT
-else:
-    PLANNER_PROMPT = PLANNER_PROMPT_INLINE
-
 
 def plan_task(question: str, graph_allowed: bool) -> str:
+    """
+    Create an execution plan to answer the user's question.
+    
+    Args:
+        question: User's question
+        graph_allowed: Whether graph generation is allowed
+        
+    Returns:
+        Numbered list of steps (SQL/RAG/ADVISORY)
+    """
     try:
         log_system_debug(f"Planner - Graph allowed: {graph_allowed}")
-        response = client.chat.completions.create(
+        response = groq_client.chat.completions.create(
             messages=[{"role": "user", "content": PLANNER_PROMPT.format(question=question, graph_allowed=graph_allowed)}],
             model=MODEL,
         )

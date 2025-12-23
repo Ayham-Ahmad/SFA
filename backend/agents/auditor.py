@@ -1,18 +1,16 @@
-from groq import Groq
-import os
-from dotenv import load_dotenv
-import traceback
+"""
+Auditor Agent
+=============
+Synthesizes final answers from gathered context.
+"""
+from backend.utils.llm_client import groq_client, get_model
 from backend.sfa_logger import log_system_debug, log_system_error, log_system_info, log_agent_interaction
-from backend.config import TESTING
+import traceback
 
-load_dotenv()
+MODEL = get_model("auditor")
 
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
-
-# Inline prompts (used when TESTING = False)
 # TEXT-ONLY prompt (no graph instructions) - CONCISE VERSION
-TEXT_PROMPT_INLINE = """
+TEXT_PROMPT = """
 You are a Financial Reporting Assistant.
 
 Answer the user's question using ONLY the provided data.
@@ -37,7 +35,7 @@ Data:
 """
 
 # GRAPH prompt - Plotly.js format with concise output
-GRAPH_PROMPT_INLINE = """
+GRAPH_PROMPT = """
 Your task is to generate a Plotly.js visualization.
 
 INPUT:
@@ -61,7 +59,7 @@ Graph generated.
 graph_data||{{PLOTLY_JSON}}||
 """
 
-GRAPH_SELECTION_LOGIC_INLINE = """
+GRAPH_SELECTION_LOGIC = """
 Determine the best chart type based on intent:
 - Time-based → Line
 - Comparison → Bar
@@ -71,23 +69,23 @@ Determine the best chart type based on intent:
 Default → Line
 """
 
-# ============================================
-# PROMPT SELECTION LOGIC
-# ============================================
-if TESTING:
-    from backend.prompts import TEXT_PROMPT, GRAPH_PROMPT, GRAPH_SELECTION_LOGIC
-else:
-    TEXT_PROMPT = TEXT_PROMPT_INLINE
-    GRAPH_PROMPT = GRAPH_PROMPT_INLINE
-    GRAPH_SELECTION_LOGIC = GRAPH_SELECTION_LOGIC_INLINE
-
 
 def audit_and_synthesize(question: str, context: str, graph_allowed: bool = False, interaction_id: str = None) -> str:
     """
     Synthesizes the final answer from gathered context.
+    
+    Args:
+        question: User's original question
+        context: Context gathered from SQL/RAG execution
+        graph_allowed: Whether graph generation is allowed
+        interaction_id: Optional ID for logging
+        
+    Returns:
+        Synthesized answer text (may include graph_data||...|| if graph_allowed)
     """
     try:
         log_system_debug(f"Auditor Synthesizing: {question}")
+        
         # Log input
         if interaction_id:
             log_agent_interaction(interaction_id, "Auditor", "Input", {
@@ -104,7 +102,7 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
             log_system_debug(f"Auditor Synthesizing without Graph: {full_prompt}")
         
         # Call the LLM
-        response = client.chat.completions.create(
+        response = groq_client.chat.completions.create(
             messages=[{"role": "user", "content": full_prompt}],
             model=MODEL,
             temperature=0.3,

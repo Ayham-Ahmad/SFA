@@ -1,5 +1,6 @@
 """
 Graph Pipeline - Clean Rebuild
+==============================
 Single source of truth for graph generation.
 
 Flow:
@@ -9,27 +10,21 @@ Flow:
 
 NO LLM-generated chart code. All chart rendering is done in frontend with hardcoded templates.
 """
-import os
-import sqlite3
 import json
 from typing import Dict, Any, Optional, List
-from groq import Groq
-from dotenv import load_dotenv
+from backend.utils.llm_client import groq_client, get_model
+from backend.utils.paths import DB_PATH
+from backend.utils.formatters import parse_financial_value, is_percentage_column
 from backend.sfa_logger import log_system_debug, log_system_error
 
-load_dotenv()
-
-# Database path
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data", "db", "financial_data.db")
-
-# LLM client for chart type selection only
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-FAST_MODEL = "llama-3.1-8b-instant"
+# Fast model for chart type selection
+FAST_MODEL = get_model("fast")
 
 
 def get_chart_metadata(question: str, data_description: str) -> dict:
     """
     Use LLM to select chart type AND generate appropriate title.
+    
     Returns: {"chart_type": "bar|line|pie|scatter", "title": "..."}
     """
     prompt = f"""Analyze this financial data request and return chart metadata.
@@ -54,7 +49,7 @@ RESPOND WITH ONLY THIS JSON FORMAT (no markdown, no explanation):
 """
 
     try:
-        response = client.chat.completions.create(
+        response = groq_client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
             model=FAST_MODEL,
             temperature=0,
@@ -121,6 +116,7 @@ def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
 def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     """
     Parse markdown table result into lists of labels and values.
+    
     Returns: {labels: [], values: [], columns: []}
     """
     log_system_debug(f"[GraphPipeline] Parsing result text (first 500 chars):\n{result_text[:500]}")
@@ -159,7 +155,7 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     # SMART LABEL DETECTION
     # ==========================================
     
-    # Find year and quarter columns (support multiple naming conventions)
+    # Find year and quarter columns
     year_col_idx = None
     qtr_col_idx = None
     date_col_idx = None
@@ -170,19 +166,16 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     
     for i, col in enumerate(columns):
         col_lower = col.lower()
-        # Check for year column
         if year_col_idx is None:
             for pattern in year_patterns:
                 if pattern == col_lower or col_lower.startswith(pattern):
                     year_col_idx = i
                     break
-        # Check for quarter column
         if qtr_col_idx is None:
             for pattern in qtr_patterns:
                 if pattern == col_lower or col_lower.startswith(pattern):
                     qtr_col_idx = i
                     break
-        # Check for date column
         if date_col_idx is None:
             for pattern in date_patterns:
                 if pattern in col_lower:
@@ -194,28 +187,22 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     # Extract labels with smart combining
     labels = []
     for row in rows:
-        # Priority 1: Combine year + quarter if both exist
         if year_col_idx is not None and qtr_col_idx is not None:
             year_val = row[year_col_idx]
             qtr_val = row[qtr_col_idx]
-            # Format: "2024 Q3" or "Q3 2024"
             labels.append(f"{year_val} Q{qtr_val}")
-        # Priority 2: Use date column if available
         elif date_col_idx is not None:
             labels.append(row[date_col_idx])
-        # Priority 3: Use quarter column alone
         elif qtr_col_idx is not None:
             labels.append(f"Q{row[qtr_col_idx]}")
-        # Priority 4: Use first column as fallback
         else:
             labels.append(row[0])
     
-    # Find best value column: prefer actual_value, revenue, etc over variance
-    # Priority: actual_value > revenue > value > anything numeric
-    preferred_cols = ['actual_value', 'revenue', 'value', 'val', 'close', 'total']
+    # Find best value column - now includes percentage columns
+    preferred_cols = ['actual_value', 'revenue', 'value', 'val', 'close', 'total', 'margin', 'pct']
     value_col_idx = len(columns) - 1
+    is_pct = False
     
-    # First try to find preferred columns
     for preferred in preferred_cols:
         for i, col in enumerate(columns):
             if preferred in col:
@@ -225,22 +212,34 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
             continue
         break
     else:
-        # Fallback: find last numeric column that's not a percentage
         for i in range(len(columns) - 1, -1, -1):
             col_name = columns[i]
             if col_name in ['yr', 'qtr', 'mo', 'wk', 'date', 'quarter', 'month', 'status', 'metric']:
                 continue
-            if 'pct' in col_name or 'percent' in col_name:
-                continue  # Skip percentage columns
             value_col_idx = i
             break
     
-    log_system_debug(f"[GraphPipeline] Using value col {value_col_idx} ({columns[value_col_idx]})")
+    # Check if value column is a percentage type
+    value_col_name = columns[value_col_idx]
+    is_pct = is_percentage_column(value_col_name)
+    
+    log_system_debug(f"[GraphPipeline] Using value col {value_col_idx} ({value_col_name}), is_percentage={is_pct}")
     
     # Extract values
     values = []
     for row in rows:
-        val = parse_numeric(row[value_col_idx])
+        raw_val = row[value_col_idx]
+        if is_pct:
+            # For percentage columns, parse as float and convert if needed
+            try:
+                val = float(raw_val.replace('%', '').replace('$', '').strip())
+                # If already in decimal form (0.35), convert to percentage (35)
+                if -1 <= val <= 1 and val != 0:
+                    val = val * 100
+            except:
+                val = 0.0
+        else:
+            val = parse_financial_value(raw_val)
         values.append(val)
     
     log_system_debug(f"[GraphPipeline] Extracted labels: {labels[:5]}...")
@@ -250,35 +249,10 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
         "labels": labels,
         "values": values,
         "columns": columns,
-        "raw_rows": rows
+        "raw_rows": rows,
+        "is_percentage": is_pct,
+        "value_column": value_col_name
     }
-
-
-def parse_numeric(value_str: str) -> float:
-    """Parse formatted value like '$219.66B' or '1,234.56' to float."""
-    if not value_str or value_str in ['nan', '-', 'None', 'null']:
-        return 0.0
-    
-    cleaned = value_str.replace('$', '').replace(',', '').replace('%', '').strip()
-    
-    multiplier = 1
-    if cleaned.endswith('T'):
-        multiplier = 1e12
-        cleaned = cleaned[:-1]
-    elif cleaned.endswith('B'):
-        multiplier = 1e9
-        cleaned = cleaned[:-1]
-    elif cleaned.endswith('M'):
-        multiplier = 1e6
-        cleaned = cleaned[:-1]
-    elif cleaned.endswith('K'):
-        multiplier = 1e3
-        cleaned = cleaned[:-1]
-    
-    try:
-        return float(cleaned) * multiplier
-    except ValueError:
-        return 0.0
 
 
 def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
@@ -329,16 +303,24 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
     chart_type = metadata["chart_type"]
     title = metadata["title"]
     
-    # Step 4: Check for complex data (repeating labels = multiple metrics)
+    # Step 4: Check for complex data
     unique_labels = set(parsed["labels"])
-    is_complex = len(unique_labels) < len(parsed["labels"]) * 0.8  # More than 20% duplicates
+    is_complex = len(unique_labels) < len(parsed["labels"]) * 0.8
     
     if is_complex:
         message = "Graph ready! Tip: For clearer charts, try adding a specific metric, date range, or quarter to your query."
     else:
         message = "Graph ready! Click a slot to place it."
     
-    log_system_debug(f"[GraphPipeline] Success - {chart_type} chart with {len(parsed['labels'])} points")
+    # Step 5: Determine if percentage data and set axis title
+    is_percentage = parsed.get("is_percentage", False)
+    y_axis_title = "%" if is_percentage else "USD"
+    
+    # For percentage time-series, prefer line chart
+    if is_percentage and chart_type == "bar":
+        chart_type = "line"  # Line better shows percentage trends
+    
+    log_system_debug(f"[GraphPipeline] Success - {chart_type} chart with {len(parsed['labels'])} points, is_percentage={is_percentage}")
     
     return {
         "success": True,
@@ -346,5 +328,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
         "labels": parsed["labels"],
         "values": parsed["values"],
         "title": title,
-        "message": message
+        "message": message,
+        "is_percentage": is_percentage,
+        "y_axis_title": y_axis_title
     }

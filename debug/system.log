@@ -3951,3 +3951,813 @@ Database Results:
 [2025-12-23 10:21:19,090] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
 [2025-12-23 10:21:19,106] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0022s', 'client': '127.0.0.1'}
 [2025-12-23 10:21:19,195] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-23 10:37:47,068] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+
+| yr | qtr | revenue |
+|:---|:----|--------:|
+| 2024 | 1 | $50.00B |
+| 2024 | 2 | $55.00B |
+
+[2025-12-23 10:37:47,069] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['yr', 'qtr', 'revenue']
+[2025-12-23 10:37:47,069] [DEBUG] [sfa_system] [GraphPipeline] Found 2 data rows
+[2025-12-23 10:37:47,069] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=1, date_col=None
+[2025-12-23 10:37:47,070] [DEBUG] [sfa_system] [GraphPipeline] Using value col 2 (revenue)
+[2025-12-23 10:37:47,070] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2024 Q1', '2024 Q2']...
+[2025-12-23 10:37:47,070] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [50000000000.0, 55000000000.0]...
+[2025-12-23 10:48:11,533] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+
+| yr | qtr | revenue |
+|:---|:----|--------:|
+| 2024 | 1 | $50.00B |
+| 2024 | 2 | $55.00B |
+
+[2025-12-23 10:48:11,534] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['yr', 'qtr', 'revenue']
+[2025-12-23 10:48:11,534] [DEBUG] [sfa_system] [GraphPipeline] Found 2 data rows
+[2025-12-23 10:48:11,534] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=1, date_col=None
+[2025-12-23 10:48:11,535] [DEBUG] [sfa_system] [GraphPipeline] Using value col 2 (revenue)
+[2025-12-23 10:48:11,535] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2024 Q1', '2024 Q2']...
+[2025-12-23 10:48:11,536] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [50000000000.0, 55000000000.0]...
+[2025-12-23 10:51:13,107] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:13,150] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:15,847] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0638s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:15,880] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0126s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:16,259] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:16,269] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:33,018] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:33,127] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0938s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:33,185] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:36,774] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:36,855] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:36,880] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0256s', 'client': '127.0.0.1'}
+[2025-12-23 10:51:44,706] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Hi ---
+[2025-12-23 10:51:45,241] [INFO] [sfa_system]   → Intent Labels: ['CONVERSATIONAL']
+[2025-12-23 10:51:45,503] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '0.8061s', 'client': '127.0.0.1'}
+[2025-12-23 10:52:04,619] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: Hi -> A: Hello, how can I assist you with your financial needs today?
+User Query: how can he increase our profit? ---
+[2025-12-23 10:52:04,840] [INFO] [sfa_system]   → Intent Labels: ['CONVERSATIONAL', 'ADVISORY']
+[2025-12-23 10:52:04,847] [DEBUG] [sfa_system] Planner - Graph allowed: False
+[2025-12-23 10:52:05,150] [DEBUG] [sfa_system] Plan Generated:
+1. **ADVISORY**: Provide strategic recommendation on cost reduction vs revenue growth to increase profit.
+2. **SQL**: Retrieve the most recent quarterly income and cost data from swf_financials to analyze the current financial situation.
+[2025-12-23 10:52:05,183] [DEBUG] [sfa_system] Extracted 2 steps: ['**ADVISORY**: Provide strategic recommendation on cost reduction vs revenue growth to increase profit.', '**SQL**: Retrieve the most recent quarterly income and cost data from swf_financials to analyze the current financial situation.']
+[2025-12-23 10:52:05,185] [DEBUG] [sfa_system] Executing Step: ADVISORY: Provide strategic recommendation on cost reduction vs revenue growth to increase profit.
+[2025-12-23 10:52:06,900] [DEBUG] [sfa_system] [Advisor] Generated recommendation
+[2025-12-23 10:52:06,902] [DEBUG] [sfa_system] Advisory Result: Assessment:
+The current financial data indicates a stable gross margin of 28.3%, while the operating and net margins are at 6.6% and 5.1%, respectively. The latest revenue is $2.67B, with a correspond...
+[2025-12-23 10:52:06,923] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.3100s', 'client': '127.0.0.1'}
+[2025-12-23 10:52:52,687] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: Hi -> A: Hello, how can I assist you with your financial needs today?
+Q: how can he increase our profit? -> A: Assessment:
+The current financial data indicates a stable gross margin of 28.3%, while the operating and net margins are at 6.6% and 5.1%, respectively. The latest revenue is $2.67B, with a corresponding cost of revenue of $-1.92B. This suggests that the company is maintaining a reasonable balance between revenue and costs. However, to increase profit, we should focus on optimizing operational efficiency and potentially exploring opportunities to expand revenue streams.
+
+Recommendation:
+To potentially increase profit, consider implementing cost-saving measures to decrease the cost of revenue, which may lead to an increase in operating and net margins. Additionally, exploring strategic investments in research and development or marketing initiatives could help drive revenue growth. It's essential to maintain a cautious approach, balancing growth initiatives with the need to manage risk and ensure long-term sustainability.
+
+Risks:
+There are risks associated with implementing cost-saving measures, such as potential disruptions to operations or impact on employee morale. Furthermore, investing in new initiatives carries the risk of uncertain returns, and the company may face increased competition or market volatility. It's crucial to carefully assess these risks and develop strategies to mitigate them.
+
+Next Steps:
+To move forward, I recommend conducting a thorough review of the company's operational structure to identify areas where costs can be optimized without compromising performance. Additionally, consider conducting market research and analyzing industry trends to identify potential opportunities for revenue growth. It's also essential to develop a comprehensive risk management plan to ensure that the company is prepared to adapt to changing market conditions and mitigate potential risks. By taking a cautious and informed approach, the company can work towards increasing profit while maintaining long-term sustainability.
+User Query: what was the net income for q4 2014 ---
+[2025-12-23 10:52:52,931] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-23 10:52:52,939] [DEBUG] [sfa_system] Planner - Graph allowed: False
+[2025-12-23 10:52:53,268] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve net income for Q4 2014 from swf_financials.
+2. **SQL**: Verify the result by comparing it with the total income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:53,299] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve net income for Q4 2014 from swf_financials.', '**SQL**: Verify the result by comparing it with the total income for Q4 2014 from swf_financials.']
+[2025-12-23 10:52:53,301] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve net income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:53,302] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve net income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:53,304] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve net income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:53,305] [DEBUG] [sfa_system] Worker executing SQL: Retrieve net income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:57,834] [DEBUG] [sfa_system] Generated SQL: SELECT net_income
+FROM swf_financials
+WHERE year = 2014 AND quarter = 4
+ORDER BY year, quarter
+[2025-12-23 10:52:57,853] [DEBUG] [sfa_system] DB Result Sample: |   net_income |
+|-------------:|
+|      -554597 |...
+[2025-12-23 10:52:57,855] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT net_income
+FROM swf_financials
+WHERE year = 2014 AND quarter = 4
+ORDER BY year, quarter
+
+Database Results:
+|   net_income |
+|-------------:|
+|      -554597...
+[2025-12-23 10:52:57,870] [DEBUG] [sfa_system] Executing Step: SQL: Verify the result by comparing it with the total income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:57,871] [DEBUG] [sfa_system] Worker executing step: SQL: Verify the result by comparing it with the total income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:57,872] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Verify the result by comparing it with the total income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:57,874] [DEBUG] [sfa_system] Worker executing SQL: Verify the result by comparing it with the total income for Q4 2014 from swf_financials.
+[2025-12-23 10:52:59,426] [DEBUG] [sfa_system] Generated SQL: SELECT 
+    year,
+    quarter,
+    net_income
+FROM 
+    swf_financials
+WHERE 
+    year = 2014 
+    AND quarter = 4
+ORDER BY 
+    year DESC, quarter DESC
+[2025-12-23 10:52:59,438] [DEBUG] [sfa_system] DB Result Sample: |   year |   quarter |   net_income |
+|-------:|----------:|-------------:|
+|   2014 |         4 |      -554597 |...
+[2025-12-23 10:52:59,441] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT 
+    year,
+    quarter,
+    net_income
+FROM 
+    swf_financials
+WHERE 
+    year = 2014 
+    AND quarter = 4
+ORDER BY 
+    year DESC, quarter DESC
+
+Database...
+[2025-12-23 10:52:59,458] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: Hi -> A: Hello, how can I assist you with your financial needs today?
+Q: how can he increase our profit? -> A: Assessment:
+The current financial data indicates a stable gross margin of 28.3%, while the operating and net margins are at 6.6% and 5.1%, respectively. The latest revenue is $2.67B, with a corresponding cost of revenue of $-1.92B. This suggests that the company is maintaining a reasonable balance between revenue and costs. However, to increase profit, we should focus on optimizing operational efficiency and potentially exploring opportunities to expand revenue streams.
+
+Recommendation:
+To potentially increase profit, consider implementing cost-saving measures to decrease the cost of revenue, which may lead to an increase in operating and net margins. Additionally, exploring strategic investments in research and development or marketing initiatives could help drive revenue growth. It's essential to maintain a cautious approach, balancing growth initiatives with the need to manage risk and ensure long-term sustainability.
+
+Risks:
+There are risks associated with implementing cost-saving measures, such as potential disruptions to operations or impact on employee morale. Furthermore, investing in new initiatives carries the risk of uncertain returns, and the company may face increased competition or market volatility. It's crucial to carefully assess these risks and develop strategies to mitigate them.
+
+Next Steps:
+To move forward, I recommend conducting a thorough review of the company's operational structure to identify areas where costs can be optimized without compromising performance. Additionally, consider conducting market research and analyzing industry trends to identify potential opportunities for revenue growth. It's also essential to develop a comprehensive risk management plan to ensure that the company is prepared to adapt to changing market conditions and mitigate potential risks. By taking a cautious and informed approach, the company can work towards increasing profit while maintaining long-term sustainability.
+User Query: what was the net income for q4 2014
+[2025-12-23 10:52:59,496] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: Context:
+Q: Hi -> A: Hello, how can I assist you with your financial needs today?
+Q: how can he increase our profit? -> A: Assessment:
+The current financial data indicates a stable gross margin of 28.3%, while the operating and net margins are at 6.6% and 5.1%, respectively. The latest revenue is $2.67B, with a corresponding cost of revenue of $-1.92B. This suggests that the company is maintaining a reasonable balance between revenue and costs. However, to increase profit, we should focus on optimizing operational efficiency and potentially exploring opportunities to expand revenue streams.
+
+Recommendation:
+To potentially increase profit, consider implementing cost-saving measures to decrease the cost of revenue, which may lead to an increase in operating and net margins. Additionally, exploring strategic investments in research and development or marketing initiatives could help drive revenue growth. It's essential to maintain a cautious approach, balancing growth initiatives with the need to manage risk and ensure long-term sustainability.
+
+Risks:
+There are risks associated with implementing cost-saving measures, such as potential disruptions to operations or impact on employee morale. Furthermore, investing in new initiatives carries the risk of uncertain returns, and the company may face increased competition or market volatility. It's crucial to carefully assess these risks and develop strategies to mitigate them.
+
+Next Steps:
+To move forward, I recommend conducting a thorough review of the company's operational structure to identify areas where costs can be optimized without compromising performance. Additionally, consider conducting market research and analyzing industry trends to identify potential opportunities for revenue growth. It's also essential to develop a comprehensive risk management plan to ensure that the company is prepared to adapt to changing market conditions and mitigate potential risks. By taking a cautious and informed approach, the company can work towards increasing profit while maintaining long-term sustainability.
+User Query: what was the net income for q4 2014
+Data:
+
+Step: **SQL**: Retrieve net income for Q4 2014 from swf_financials.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT net_income
+FROM swf_financials
+WHERE year = 2014 AND quarter = 4
+ORDER BY year, quarter
+
+Database Results:
+|   net_income |
+|-------------:|
+|      -554597 |
+
+Step: **SQL**: Verify the result by comparing it with the total income for Q4 2014 from swf_financials.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT 
+    year,
+    quarter,
+    net_income
+FROM 
+    swf_financials
+WHERE 
+    year = 2014 
+    AND quarter = 4
+ORDER BY 
+    year DESC, quarter DESC
+
+Database Results:
+|   year |   quarter |   net_income |
+|-------:|----------:|-------------:|
+|   2014 |         4 |      -554597 |
+
+
+[2025-12-23 10:53:00,286] [DEBUG] [sfa_system] Auditor Synthesizing Result: Hello, the net income for Q4 2014 was -$554,597. 
+
+| Net Income |
+|------------:|
+|  -$554,597  |
+[2025-12-23 10:53:00,297] [DEBUG] [sfa_system] Final Output: Hello, the net income for Q4 2014 was -$554,597. 
+
+| Net Income |
+|------------:|
+|  -$554,597  |...
+[2025-12-23 10:53:00,320] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.6462s', 'client': '127.0.0.1'}
+[2025-12-23 10:53:20,297] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: how can he increase our profit? -> A: Assessment:
+The current financial data indicates a stable gross margin of 28.3%, while the operating and net margins are at 6.6% and 5.1%, respectively. The latest revenue is $2.67B, with a corresponding cost of revenue of $-1.92B. This suggests that the company is maintaining a reasonable balance between revenue and costs. However, to increase profit, we should focus on optimizing operational efficiency and potentially exploring opportunities to expand revenue streams.
+
+Recommendation:
+To potentially increase profit, consider implementing cost-saving measures to decrease the cost of revenue, which may lead to an increase in operating and net margins. Additionally, exploring strategic investments in research and development or marketing initiatives could help drive revenue growth. It's essential to maintain a cautious approach, balancing growth initiatives with the need to manage risk and ensure long-term sustainability.
+
+Risks:
+There are risks associated with implementing cost-saving measures, such as potential disruptions to operations or impact on employee morale. Furthermore, investing in new initiatives carries the risk of uncertain returns, and the company may face increased competition or market volatility. It's crucial to carefully assess these risks and develop strategies to mitigate them.
+
+Next Steps:
+To move forward, I recommend conducting a thorough review of the company's operational structure to identify areas where costs can be optimized without compromising performance. Additionally, consider conducting market research and analyzing industry trends to identify potential opportunities for revenue growth. It's also essential to develop a comprehensive risk management plan to ensure that the company is prepared to adapt to changing market conditions and mitigate potential risks. By taking a cautious and informed approach, the company can work towards increasing profit while maintaining long-term sustainability.
+Q: what was the net income for q4 2014 -> A: Hello, the net income for Q4 2014 was -$554,597. 
+
+| Net Income |
+|------------:|
+|  -$554,597  |
+User Query: for q3 2025 ---
+[2025-12-23 10:53:20,568] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-23 10:53:20,576] [DEBUG] [sfa_system] Planner - Graph allowed: False
+[2025-12-23 10:53:20,872] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve net income for Q3 2025 from swf_financials.
+2. **SQL**: Compare the retrieved net income for Q3 2025 with the previous quarter's net income to identify any trends or changes.
+[2025-12-23 10:53:20,907] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve net income for Q3 2025 from swf_financials.', "**SQL**: Compare the retrieved net income for Q3 2025 with the previous quarter's net income to identify any trends or changes."]
+[2025-12-23 10:53:20,910] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve net income for Q3 2025 from swf_financials.
+[2025-12-23 10:53:20,911] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve net income for Q3 2025 from swf_financials.
+[2025-12-23 10:53:20,912] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve net income for Q3 2025 from swf_financials.
+[2025-12-23 10:53:20,915] [DEBUG] [sfa_system] Worker executing SQL: Retrieve net income for Q3 2025 from swf_financials.
+[2025-12-23 10:53:21,589] [DEBUG] [sfa_system] Generated SQL: SELECT net_income
+FROM swf_financials
+WHERE year = 2025 AND quarter = 3
+ORDER BY year, quarter
+[2025-12-23 10:53:21,595] [DEBUG] [sfa_system] DB Result Sample: |   net_income |
+|-------------:|
+|  9.08879e+07 |...
+[2025-12-23 10:53:21,598] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT net_income
+FROM swf_financials
+WHERE year = 2025 AND quarter = 3
+ORDER BY year, quarter
+
+Database Results:
+|   net_income |
+|-------------:|
+|  9.08879e+07...
+[2025-12-23 10:53:21,611] [DEBUG] [sfa_system] Executing Step: SQL: Compare the retrieved net income for Q3 2025 with the previous quarter's net income to identify any trends or changes.
+[2025-12-23 10:53:21,613] [DEBUG] [sfa_system] Worker executing step: SQL: Compare the retrieved net income for Q3 2025 with the previous quarter's net income to identify any trends or changes.
+[2025-12-23 10:53:21,614] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Compare the retrieved net income for Q3 2025 with the previous quarter's net income to identify any trends or changes.
+[2025-12-23 10:53:21,616] [DEBUG] [sfa_system] Worker executing SQL: Compare the retrieved net income for Q3 2025 with the previous quarter's net income to identify any trends or changes.
+[2025-12-23 10:53:25,245] [DEBUG] [sfa_system] Generated SQL: SELECT 
+    q3.net_income AS q3_2025_net_income,
+    q2.net_income AS q2_2025_net_income,
+    (q3.net_income - q2.net_income) AS net_income_difference,
+    ROUND(((q3.net_income - q2.net_income) / NULLIF(q2.net_income, 0) * 100), 2) AS percent_change
+FROM 
+    (SELECT net_income FROM swf_financials WHERE year = 2025 AND quarter = 3) AS q3
+CROSS JOIN 
+    (SELECT net_income FROM swf_financials WHERE year = 2025 AND quarter = 2) AS q2
+[2025-12-23 10:53:25,267] [DEBUG] [sfa_system] DB Result Sample: |   q3_2025_net_income |   q2_2025_net_income |   net_income_difference |   percent_change |
+|---------------------:|---------------------:|------------------------:|-----------------:|
+|          9.0...
+[2025-12-23 10:53:25,270] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT 
+    q3.net_income AS q3_2025_net_income,
+    q2.net_income AS q2_2025_net_income,
+    (q3.net_income - q2.net_income) AS net_income_difference,
+    ROUND(...
+[2025-12-23 10:53:25,282] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: how can he increase our profit? -> A: Assessment:
+The current financial data indicates a stable gross margin of 28.3%, while the operating and net margins are at 6.6% and 5.1%, respectively. The latest revenue is $2.67B, with a corresponding cost of revenue of $-1.92B. This suggests that the company is maintaining a reasonable balance between revenue and costs. However, to increase profit, we should focus on optimizing operational efficiency and potentially exploring opportunities to expand revenue streams.
+
+Recommendation:
+To potentially increase profit, consider implementing cost-saving measures to decrease the cost of revenue, which may lead to an increase in operating and net margins. Additionally, exploring strategic investments in research and development or marketing initiatives could help drive revenue growth. It's essential to maintain a cautious approach, balancing growth initiatives with the need to manage risk and ensure long-term sustainability.
+
+Risks:
+There are risks associated with implementing cost-saving measures, such as potential disruptions to operations or impact on employee morale. Furthermore, investing in new initiatives carries the risk of uncertain returns, and the company may face increased competition or market volatility. It's crucial to carefully assess these risks and develop strategies to mitigate them.
+
+Next Steps:
+To move forward, I recommend conducting a thorough review of the company's operational structure to identify areas where costs can be optimized without compromising performance. Additionally, consider conducting market research and analyzing industry trends to identify potential opportunities for revenue growth. It's also essential to develop a comprehensive risk management plan to ensure that the company is prepared to adapt to changing market conditions and mitigate potential risks. By taking a cautious and informed approach, the company can work towards increasing profit while maintaining long-term sustainability.
+Q: what was the net income for q4 2014 -> A: Hello, the net income for Q4 2014 was -$554,597. 
+
+| Net Income |
+|------------:|
+|  -$554,597  |
+User Query: for q3 2025
+[2025-12-23 10:53:25,325] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: Context:
+Q: how can he increase our profit? -> A: Assessment:
+The current financial data indicates a stable gross margin of 28.3%, while the operating and net margins are at 6.6% and 5.1%, respectively. The latest revenue is $2.67B, with a corresponding cost of revenue of $-1.92B. This suggests that the company is maintaining a reasonable balance between revenue and costs. However, to increase profit, we should focus on optimizing operational efficiency and potentially exploring opportunities to expand revenue streams.
+
+Recommendation:
+To potentially increase profit, consider implementing cost-saving measures to decrease the cost of revenue, which may lead to an increase in operating and net margins. Additionally, exploring strategic investments in research and development or marketing initiatives could help drive revenue growth. It's essential to maintain a cautious approach, balancing growth initiatives with the need to manage risk and ensure long-term sustainability.
+
+Risks:
+There are risks associated with implementing cost-saving measures, such as potential disruptions to operations or impact on employee morale. Furthermore, investing in new initiatives carries the risk of uncertain returns, and the company may face increased competition or market volatility. It's crucial to carefully assess these risks and develop strategies to mitigate them.
+
+Next Steps:
+To move forward, I recommend conducting a thorough review of the company's operational structure to identify areas where costs can be optimized without compromising performance. Additionally, consider conducting market research and analyzing industry trends to identify potential opportunities for revenue growth. It's also essential to develop a comprehensive risk management plan to ensure that the company is prepared to adapt to changing market conditions and mitigate potential risks. By taking a cautious and informed approach, the company can work towards increasing profit while maintaining long-term sustainability.
+Q: what was the net income for q4 2014 -> A: Hello, the net income for Q4 2014 was -$554,597. 
+
+| Net Income |
+|------------:|
+|  -$554,597  |
+User Query: for q3 2025
+Data:
+
+Step: **SQL**: Retrieve net income for Q3 2025 from swf_financials.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT net_income
+FROM swf_financials
+WHERE year = 2025 AND quarter = 3
+ORDER BY year, quarter
+
+Database Results:
+|   net_income |
+|-------------:|
+|  9.08879e+07 |
+
+Step: **SQL**: Compare the retrieved net income for Q3 2025 with the previous quarter's net income to identify any trends or changes.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT 
+    q3.net_income AS q3_2025_net_income,
+    q2.net_income AS q2_2025_net_income,
+    (q3.net_income - q2.net_income) AS net_income_difference,
+    ROUND(((q3.net_income - q2.net_income) / NULLIF(q2.net_income, 0) * 100), 2) AS percent_change
+FROM 
+    (SELECT net_income FROM swf_financials WHERE year = 2025 AND quarter = 3) AS q3
+CROSS JOIN 
+    (SELECT net_income FROM swf_financials WHERE year = 2025 AND quarter = 2) AS q2
+
+Database Results:
+|   q3_2025_net_income |   q2_2025_net_income |   net_income_difference |   percent_change |
+|---------------------:|---------------------:|------------------------:|-----------------:|
+|          9.08879e+07 |          6.09087e+07 |             2.99792e+07 |            49.22 |
+
+
+[2025-12-23 10:53:25,770] [DEBUG] [sfa_system] Auditor Synthesizing Result: The net income for Q3 2025 was $90.89M. This represents a 49.22% increase from the net income of $60.91M in Q2 2025.
+
+| Net Income  | Q2 2025  | Q3 2025  | 
+|-------------:|---------:|---------:|
+|  Net Income | $60.91M | $90.89M | 
+| Percent Change |  | 49.22% |
+[2025-12-23 10:53:25,782] [DEBUG] [sfa_system] Final Output: The net income for Q3 2025 was $90.89M. This represents a 49.22% increase from the net income of $60...
+[2025-12-23 10:53:25,804] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.5118s', 'client': '127.0.0.1'}
+[2025-12-23 10:54:45,662] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 10:54:45,664] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 10:54:45,667] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 10:54:52,793] [DEBUG] [sfa_system] Generated SQL: SELECT 
+    year,
+    SUM(gross_profit) / SUM(revenue) AS annual_gross_margin
+FROM 
+    swf_financials
+GROUP BY 
+    year
+ORDER BY 
+    year DESC
+LIMIT 4
+[2025-12-23 10:54:52,805] [DEBUG] [sfa_system] DB Result Sample: |   year |   annual_gross_margin |
+|-------:|----------------------:|
+|   2025 |              0.292901 |
+|   2024 |              0.32819  |
+|   2023 |              0.359321 |
+|   2022 |              0...
+[2025-12-23 10:54:52,809] [DEBUG] [sfa_system] [GraphPipeline] Result length: 398 chars
+[2025-12-23 10:54:52,810] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 10:54:52,811] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT 
+    year,
+    SUM(gross_profit) / SUM(revenue) AS annual_gross_margin
+FROM 
+    swf_financials
+GROUP BY 
+    year
+ORDER BY 
+    year DESC
+LIMIT 4
+
+Database Results:
+|   year |   annual_gross_margin |
+|-------:|----------------------:|
+|   2025 |              0.292901 |
+|   2024 |              0.32819  |
+|   2023 |              0.359321 |
+|   2022 |              0.356328 |
+[2025-12-23 10:54:52,826] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'annual_gross_margin']
+[2025-12-23 10:54:52,827] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 10:54:52,828] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 10:54:52,829] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (annual_gross_margin)
+[2025-12-23 10:54:52,831] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2024', '2023', '2022']...
+[2025-12-23 10:54:52,831] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [0.292901, 0.32819, 0.359321, 0.356328]...
+[2025-12-23 10:54:53,029] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Gross Margin Over Last 4 Years
+[2025-12-23 10:54:53,032] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points
+[2025-12-23 10:54:53,054] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.4074s', 'client': '127.0.0.1'}
+[2025-12-23 11:03:40,612] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+
+| yr | qtr | revenue |
+|:---|:----|--------:|
+| 2024 | 1 | $50.00B |
+| 2024 | 2 | $55.00B |
+
+[2025-12-23 11:03:40,613] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['yr', 'qtr', 'revenue']
+[2025-12-23 11:03:40,614] [DEBUG] [sfa_system] [GraphPipeline] Found 2 data rows
+[2025-12-23 11:03:40,614] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=1, date_col=None
+[2025-12-23 11:03:40,614] [DEBUG] [sfa_system] [GraphPipeline] Using value col 2 (revenue), is_percentage=False
+[2025-12-23 11:03:40,615] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2024 Q1', '2024 Q2']...
+[2025-12-23 11:03:40,615] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [50000000000.0, 55000000000.0]...
+[2025-12-23 11:04:33,040] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:33,073] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:37,678] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0668s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:37,712] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0111s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:38,091] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:38,104] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:39,269] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:39,375] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0920s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:39,431] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:39,643] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:39,734] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-23 11:04:48,752] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 11:04:48,754] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 11:04:48,755] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 11:04:53,891] [DEBUG] [sfa_system] Generated SQL: SELECT year, (SUM(gross_profit) * 100.0 / SUM(revenue)) AS annual_gross_margin
+FROM swf_financials
+GROUP BY year
+ORDER BY year DESC
+LIMIT 4
+[2025-12-23 11:04:53,919] [DEBUG] [sfa_system] DB Result Sample: |   year |   annual_gross_margin |
+|-------:|----------------------:|
+|   2025 |               29.2901 |
+|   2024 |               32.819  |
+|   2023 |               35.9321 |
+|   2022 |               ...
+[2025-12-23 11:04:53,924] [DEBUG] [sfa_system] [GraphPipeline] Result length: 384 chars
+[2025-12-23 11:04:53,925] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 11:04:53,925] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, (SUM(gross_profit) * 100.0 / SUM(revenue)) AS annual_gross_margin
+FROM swf_financials
+GROUP BY year
+ORDER BY year DESC
+LIMIT 4
+
+Database Results:
+|   year |   annual_gross_margin |
+|-------:|----------------------:|
+|   2025 |               29.2901 |
+|   2024 |               32.819  |
+|   2023 |               35.9321 |
+|   2022 |               35.6328 |
+[2025-12-23 11:04:53,934] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'annual_gross_margin']
+[2025-12-23 11:04:53,935] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 11:04:53,937] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 11:04:53,938] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (annual_gross_margin), is_percentage=True
+[2025-12-23 11:04:53,939] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2024', '2023', '2022']...
+[2025-12-23 11:04:53,940] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [29.2901, 32.819, 35.9321, 35.6328]...
+[2025-12-23 11:04:54,125] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Gross Margin Over Last 4 Years
+[2025-12-23 11:04:54,126] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=True
+[2025-12-23 11:04:54,142] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.4289s', 'client': '127.0.0.1'}
+[2025-12-23 11:07:27,240] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-23 11:07:27,381] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+[2025-12-23 11:07:33,241] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 11:07:33,243] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 11:07:33,244] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 11:07:37,711] [DEBUG] [sfa_system] Generated SQL: SELECT f.year, f.gross_margin
+FROM swf_financials f
+INNER JOIN (
+    SELECT year, MAX(quarter) AS max_quarter
+    FROM swf_financials
+    GROUP BY year
+) sub ON f.year = sub.year AND f.quarter = sub.max_quarter
+ORDER BY f.year DESC
+LIMIT 4
+[2025-12-23 11:07:37,722] [DEBUG] [sfa_system] DB Result Sample: |   year |   gross_margin |
+|-------:|---------------:|
+|   2025 |       0.2825   |
+|   2024 |       0.305979 |
+|   2023 |       0.346789 |
+|   2022 |       0.284509 |...
+[2025-12-23 11:07:37,728] [DEBUG] [sfa_system] [GraphPipeline] Result length: 442 chars
+[2025-12-23 11:07:37,729] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 11:07:37,730] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT f.year, f.gross_margin
+FROM swf_financials f
+INNER JOIN (
+    SELECT year, MAX(quarter) AS max_quarter
+    FROM swf_financials
+    GROUP BY year
+) sub ON f.year = sub.year AND f.quarter = sub.max_quarter
+ORDER BY f.year DESC
+LIMIT 4
+
+Database Results:
+|   year |   gross_margin |
+|-------:|---------------:|
+|   2025 |       0.2825   |
+|   2024 |       0.305979 |
+|   2023 |       0.346789 |
+|   2022 |       0.284509 |
+[2025-12-23 11:07:37,743] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'gross_margin']
+[2025-12-23 11:07:37,744] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 11:07:37,745] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 11:07:37,746] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (gross_margin), is_percentage=True
+[2025-12-23 11:07:37,747] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2024', '2023', '2022']...
+[2025-12-23 11:07:37,748] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [28.249999999999996, 30.5979, 34.6789, 28.4509]...
+[2025-12-23 11:07:37,927] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Gross Margin Over Last 4 Years
+[2025-12-23 11:07:37,929] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=True
+[2025-12-23 11:07:37,940] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.7052s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:11,256] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:11,338] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0653s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:13,288] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.2108s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:13,388] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0790s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:13,780] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:13,791] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:14,922] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0517s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:15,090] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 200, 'process_time': '0.1482s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:15,185] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-23 11:13:21,130] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 11:13:21,131] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 11:13:21,133] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 11:13:28,429] [DEBUG] [sfa_system] Generated SQL: SELECT year, AVG(gross_margin) AS average_gross_margin
+FROM swf_financials
+GROUP BY year
+ORDER BY year DESC
+LIMIT 4
+[2025-12-23 11:13:28,481] [DEBUG] [sfa_system] DB Result Sample: |   year |   average_gross_margin |
+|-------:|-----------------------:|
+|   2025 |               0.295836 |
+|   2024 |               0.330843 |
+|   2023 |               0.359877 |
+|   2022 |          ...
+[2025-12-23 11:13:28,486] [DEBUG] [sfa_system] [GraphPipeline] Result length: 366 chars
+[2025-12-23 11:13:28,488] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 11:13:28,489] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, AVG(gross_margin) AS average_gross_margin
+FROM swf_financials
+GROUP BY year
+ORDER BY year DESC
+LIMIT 4
+
+Database Results:
+|   year |   average_gross_margin |
+|-------:|-----------------------:|
+|   2025 |               0.295836 |
+|   2024 |               0.330843 |
+|   2023 |               0.359877 |
+|   2022 |               0.35882  |
+[2025-12-23 11:13:28,499] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'average_gross_margin']
+[2025-12-23 11:13:28,500] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 11:13:28,501] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 11:13:28,503] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (average_gross_margin), is_percentage=True
+[2025-12-23 11:13:28,504] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2024', '2023', '2022']...
+[2025-12-23 11:13:28,505] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [29.583599999999997, 33.0843, 35.987700000000004, 35.882]...
+[2025-12-23 11:13:28,694] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Gross Margin Over Last 4 Years
+[2025-12-23 11:13:28,695] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=True
+[2025-12-23 11:13:28,723] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.6478s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:28,047] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:28,118] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:30,523] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0609s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:30,556] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0109s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:30,676] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js', 'status_code': 304, 'process_time': '0.0949s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:30,928] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:30,940] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:32,136] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:32,154] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:32,159] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0101s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:32,300] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-23 11:31:38,623] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 11:31:38,625] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 11:31:38,626] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 11:31:43,283] [DEBUG] [sfa_system] Generated SQL: SELECT year, gross_margin
+FROM swf_financials
+ORDER BY year DESC
+LIMIT 4
+[2025-12-23 11:31:43,300] [DEBUG] [sfa_system] DB Result Sample: |   year |   gross_margin |
+|-------:|---------------:|
+|   2025 |       0.27968  |
+|   2025 |       0.286828 |
+|   2025 |       0.334336 |
+|   2025 |       0.2825   |...
+[2025-12-23 11:31:43,305] [DEBUG] [sfa_system] [GraphPipeline] Result length: 275 chars
+[2025-12-23 11:31:43,306] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 11:31:43,306] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, gross_margin
+FROM swf_financials
+ORDER BY year DESC
+LIMIT 4
+
+Database Results:
+|   year |   gross_margin |
+|-------:|---------------:|
+|   2025 |       0.27968  |
+|   2025 |       0.286828 |
+|   2025 |       0.334336 |
+|   2025 |       0.2825   |
+[2025-12-23 11:31:43,316] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'gross_margin']
+[2025-12-23 11:31:43,317] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 11:31:43,317] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 11:31:43,318] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (gross_margin), is_percentage=True
+[2025-12-23 11:31:43,319] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2025', '2025', '2025']...
+[2025-12-23 11:31:43,320] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [27.968, 28.682800000000004, 33.433600000000006, 28.249999999999996]...
+[2025-12-23 11:31:43,523] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Last 4 Years Gross Margin Trend
+[2025-12-23 11:31:43,524] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=True
+[2025-12-23 11:31:43,553] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.9436s', 'client': '127.0.0.1'}
+[2025-12-23 11:34:12,731] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 11:34:12,733] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 11:34:12,735] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 11:34:15,867] [DEBUG] [sfa_system] Generated SQL: SELECT 
+    year,
+    (SUM(gross_profit) / SUM(revenue)) * 100 AS gross_margin
+FROM 
+    swf_financials
+GROUP BY 
+    year
+ORDER BY 
+    year DESC
+LIMIT 4
+[2025-12-23 11:34:15,878] [DEBUG] [sfa_system] DB Result Sample: |   year |   gross_margin |
+|-------:|---------------:|
+|   2025 |        29.2901 |
+|   2024 |        32.819  |
+|   2023 |        35.9321 |
+|   2022 |        35.6328 |...
+[2025-12-23 11:34:15,883] [DEBUG] [sfa_system] [GraphPipeline] Result length: 357 chars
+[2025-12-23 11:34:15,883] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 11:34:15,884] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT 
+    year,
+    (SUM(gross_profit) / SUM(revenue)) * 100 AS gross_margin
+FROM 
+    swf_financials
+GROUP BY 
+    year
+ORDER BY 
+    year DESC
+LIMIT 4
+
+Database Results:
+|   year |   gross_margin |
+|-------:|---------------:|
+|   2025 |        29.2901 |
+|   2024 |        32.819  |
+|   2023 |        35.9321 |
+|   2022 |        35.6328 |
+[2025-12-23 11:34:15,897] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'gross_margin']
+[2025-12-23 11:34:15,898] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 11:34:15,900] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 11:34:15,901] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (gross_margin), is_percentage=True
+[2025-12-23 11:34:15,901] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2024', '2023', '2022']...
+[2025-12-23 11:34:15,903] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [29.2901, 32.819, 35.9321, 35.6328]...
+[2025-12-23 11:34:16,112] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Gross Margin Over Last 4 Years
+[2025-12-23 11:34:16,113] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=True
+[2025-12-23 11:34:16,137] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.4102s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:35,588] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0000s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:35,644] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:37,830] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0615s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:37,862] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0110s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:38,240] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:38,253] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:40,502] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:40,634] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 200, 'process_time': '0.1165s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:40,688] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-23 11:35:45,273] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 11:35:45,275] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 11:35:45,276] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 11:35:52,347] [DEBUG] [sfa_system] Generated SQL: SELECT year, AVG(gross_margin) AS gross_margin
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) - 3 FROM swf_financials)
+GROUP BY year
+ORDER BY year
+[2025-12-23 11:35:52,364] [DEBUG] [sfa_system] DB Result Sample: |   year |   gross_margin |
+|-------:|---------------:|
+|   2022 |       0.35882  |
+|   2023 |       0.359877 |
+|   2024 |       0.330843 |
+|   2025 |       0.295836 |...
+[2025-12-23 11:35:52,368] [DEBUG] [sfa_system] [GraphPipeline] Result length: 354 chars
+[2025-12-23 11:35:52,369] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 11:35:52,370] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, AVG(gross_margin) AS gross_margin
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) - 3 FROM swf_financials)
+GROUP BY year
+ORDER BY year
+
+Database Results:
+|   year |   gross_margin |
+|-------:|---------------:|
+|   2022 |       0.35882  |
+|   2023 |       0.359877 |
+|   2024 |       0.330843 |
+|   2025 |       0.295836 |
+[2025-12-23 11:35:52,378] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'gross_margin']
+[2025-12-23 11:35:52,381] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 11:35:52,382] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 11:35:52,383] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (gross_margin), is_percentage=True
+[2025-12-23 11:35:52,384] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2022', '2023', '2024', '2025']...
+[2025-12-23 11:35:52,384] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [35.882, 35.987700000000004, 33.0843, 29.583599999999997]...
+[2025-12-23 11:35:52,566] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Gross Margin Over Last 4 Years
+[2025-12-23 11:35:52,567] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=True
+[2025-12-23 11:35:52,582] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.3208s', 'client': '127.0.0.1'}
+[2025-12-23 11:36:03,041] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0000s', 'client': '127.0.0.1'}
+[2025-12-23 11:36:03,061] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-23 11:36:03,143] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-23 11:36:03,175] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0247s', 'client': '127.0.0.1'}
+[2025-12-23 11:36:06,856] [DEBUG] [sfa_system] [GraphPipeline] Starting for: display the last 4 years gross margin
+[2025-12-23 11:36:06,857] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 11:36:06,859] [DEBUG] [sfa_system] [GraphPipeline] Question: display the last 4 years gross margin
+[2025-12-23 11:36:12,619] [DEBUG] [sfa_system] Generated SQL: SELECT year, AVG(gross_margin) AS annual_gross_margin
+FROM swf_financials
+WHERE year IN (
+    SELECT DISTINCT year
+    FROM swf_financials
+    ORDER BY year DESC
+    LIMIT 4
+)
+GROUP BY year
+ORDER BY year DESC
+[2025-12-23 11:36:12,641] [DEBUG] [sfa_system] DB Result Sample: |   year |   annual_gross_margin |
+|-------:|----------------------:|
+|   2025 |              0.295836 |
+|   2024 |              0.330843 |
+|   2023 |              0.359877 |
+|   2022 |              0...
+[2025-12-23 11:36:12,646] [DEBUG] [sfa_system] [GraphPipeline] Result length: 453 chars
+[2025-12-23 11:36:12,646] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 11:36:12,648] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, AVG(gross_margin) AS annual_gross_margin
+FROM swf_financials
+WHERE year IN (
+    SELECT DISTINCT year
+    FROM swf_financials
+    ORDER BY year DESC
+    LIMIT 4
+)
+GROUP BY year
+ORDER BY year DESC
+
+Database Results:
+|   year |   annual_gross_margin |
+|-------:|----------------------:|
+|   2025 |              0.295836 |
+|   2024 |              0.330843 |
+|   2023 |              0.359877 |
+|   2022 |              0.35882  |
+[2025-12-23 11:36:12,659] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'annual_gross_margin']
+[2025-12-23 11:36:12,660] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-23 11:36:12,661] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-23 11:36:12,663] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (annual_gross_margin), is_percentage=True
+[2025-12-23 11:36:12,664] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2024', '2023', '2022']...
+[2025-12-23 11:36:12,665] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [29.583599999999997, 33.0843, 35.987700000000004, 35.882]...
+[2025-12-23 11:36:12,844] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Gross Margin Over Last 4 Years
+[2025-12-23 11:36:12,847] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=True
+[2025-12-23 11:36:12,858] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '6.0083s', 'client': '127.0.0.1'}
+[2025-12-23 11:36:58,885] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: display the last 4 years gross margin -> A: Graph ready! Click a slot to place it.
+User Query: return the codes of the graphs ---
+[2025-12-23 11:36:59,146] [INFO] [sfa_system]   → Intent Labels: ['BLOCKED']
+[2025-12-23 11:36:59,170] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '0.2916s', 'client': '127.0.0.1'}
