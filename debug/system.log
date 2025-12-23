@@ -3841,3 +3841,113 @@ ORDER BY
 [2025-12-23 09:55:47,159] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0033s', 'client': '127.0.0.1'}
 [2025-12-23 09:55:47,238] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
 [2025-12-23 09:55:47,267] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0226s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:12,879] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:12,932] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:15,467] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0662s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:15,501] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0112s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:15,878] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:15,887] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:19,163] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:19,269] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0925s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:19,327] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:24,637] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:24,759] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:24,772] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:38,611] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:38,733] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:45,707] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:45,789] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-23 10:18:45,815] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0207s', 'client': '127.0.0.1'}
+[2025-12-23 10:19:17,674] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-23 10:19:17,769] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-23 10:19:17,781] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-23 10:19:27,867] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-23 10:19:27,995] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-23 10:20:22,634] [DEBUG] [sfa_system] [GraphPipeline] Starting for: open vs close price 2025 q2
+[2025-12-23 10:20:22,636] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 10:20:22,637] [DEBUG] [sfa_system] [GraphPipeline] Question: open vs close price 2025 q2
+[2025-12-23 10:20:24,869] [DEBUG] [sfa_system] Generated SQL: SELECT 
+    trade_date,
+    open_price,
+    close_price
+FROM 
+    market_daily_data
+WHERE 
+    year = 2025 
+    AND fiscal_quarter = 2
+ORDER BY 
+    trade_date
+[2025-12-23 10:20:24,904] [DEBUG] [sfa_system] DB Result Sample: | trade_date   |   open_price |   close_price |
+|:-------------|-------------:|--------------:|
+| 2025-04-01   |       246.05 |        244.8  |
+| 2025-04-03   |       246    |        244.8  |
+| 2025-0...
+[2025-12-23 10:20:24,908] [DEBUG] [sfa_system] [GraphPipeline] Result length: 3122 chars
+[2025-12-23 10:20:24,909] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 10:20:24,910] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT 
+    trade_date,
+    open_price,
+    close_price
+FROM 
+    market_daily_data
+WHERE 
+    year = 2025 
+    AND fiscal_quarter = 2
+ORDER BY 
+    trade_date
+
+Database Results:
+| trade_date   |   open_price |   close_price |
+|:-------------|-------------:|--------------:|
+| 2025-04-01   |       246.05 |        244.8  |
+| 2025-04-03   |       246    |        244.8  |
+| 2025-04-07   |       254.2  |        248.1  |
+| 2025-04-08   |       248    |        250.85 |
+| 2025-04-09   | 
+[2025-12-23 10:20:24,924] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['trade_date', 'open_price', 'close_price']
+[2025-12-23 10:20:24,926] [DEBUG] [sfa_system] [GraphPipeline] Found 59 data rows
+[2025-12-23 10:20:24,927] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=None, qtr_col=None, date_col=0
+[2025-12-23 10:20:24,928] [DEBUG] [sfa_system] [GraphPipeline] Using value col 2 (close_price)
+[2025-12-23 10:20:24,929] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025-04-01', '2025-04-03', '2025-04-07', '2025-04-08', '2025-04-09']...
+[2025-12-23 10:20:24,930] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [244.8, 244.8, 248.1, 250.85, 251.9]...
+[2025-12-23 10:20:25,173] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Open vs Close Price Q2 2025
+[2025-12-23 10:20:25,174] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 59 points
+[2025-12-23 10:20:25,201] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.2989s', 'client': '127.0.0.1'}
+[2025-12-23 10:20:47,487] [DEBUG] [sfa_system] [GraphPipeline] Starting for: net income q3 2020
+[2025-12-23 10:20:47,488] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-23 10:20:47,489] [DEBUG] [sfa_system] [GraphPipeline] Question: net income q3 2020
+[2025-12-23 10:20:48,172] [DEBUG] [sfa_system] Generated SQL: SELECT net_income
+FROM swf_financials
+WHERE year = 2020 AND quarter = 3
+[2025-12-23 10:20:48,178] [DEBUG] [sfa_system] DB Result Sample: |   net_income |
+|-------------:|
+|  1.44275e+07 |...
+[2025-12-23 10:20:48,181] [DEBUG] [sfa_system] [GraphPipeline] Result length: 157 chars
+[2025-12-23 10:20:48,182] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-23 10:20:48,182] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT net_income
+FROM swf_financials
+WHERE year = 2020 AND quarter = 3
+
+Database Results:
+|   net_income |
+|-------------:|
+|  1.44275e+07 |
+[2025-12-23 10:20:48,190] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['net_income']
+[2025-12-23 10:20:48,191] [DEBUG] [sfa_system] [GraphPipeline] Found 1 data rows
+[2025-12-23 10:20:48,192] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=None, qtr_col=None, date_col=None
+[2025-12-23 10:20:48,193] [DEBUG] [sfa_system] [GraphPipeline] Using value col 0 (net_income)
+[2025-12-23 10:20:48,194] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['1.44275e+07']...
+[2025-12-23 10:20:48,195] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [14427500.0]...
+[2025-12-23 10:20:48,523] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=bar, title=Net Income Q3 2020
+[2025-12-23 10:20:48,525] [DEBUG] [sfa_system] [GraphPipeline] Success - bar chart with 1 points
+[2025-12-23 10:20:48,536] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '1.0549s', 'client': '127.0.0.1'}
+[2025-12-23 10:21:17,868] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-23 10:21:18,010] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-23 10:21:18,025] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-23 10:21:19,090] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-23 10:21:19,106] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js', 'status_code': 304, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-23 10:21:19,195] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/users/me', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
