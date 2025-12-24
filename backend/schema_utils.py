@@ -33,10 +33,18 @@ def get_table_columns(table_name: str) -> List[str]:
 def get_schema_for_prompt() -> str:
     """
     Generate a formatted schema string for the SQL generation prompt.
+    Dynamically discovers all tables in the database.
     """
-    tables = ['swf_financials', 'market_daily_data']
-    schema_parts = []
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
+        tables = [row[0] for row in cursor.fetchall()]
+        conn.close()
+    except Exception:
+        tables = ['swf_financials']  # Fallback
     
+    schema_parts = []
     for table in tables:
         columns = get_table_columns(table)
         if columns:
@@ -58,20 +66,11 @@ def get_full_schema_context() -> str:
 
 KEY COLUMNS:
 - swf_financials: Financial P&L data by year/quarter
-- market_daily_data: Daily stock prices and volatility
 
 COMMON COLUMN MEANINGS:
-- open_price, high_price, low_price, close_price: Daily stock prices
-- trade_volume: Number of shares traded
-- rolling_volatility: Price volatility measure
-- daily_return_pct: Daily percentage return
 - revenue, net_income, gross_profit: Financial metrics
 - gross_margin, operating_margin, net_margin: Profitability ratios
-
-JOIN RULE (only if combining financial + market data):
-swf_financials.year = market_daily_data.year
-AND swf_financials.quarter = market_daily_data.fiscal_quarter
-When joining, ALWAYS aggregate market data (AVG, MAX, MIN)."""
+- yr, qtr: Year and quarter identifiers"""
 
     return context
 

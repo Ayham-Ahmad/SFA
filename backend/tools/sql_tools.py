@@ -82,33 +82,19 @@ def get_table_schemas() -> str:
             columns = cursor.execute(f"PRAGMA table_info({table_name});").fetchall()
             col_str = ", ".join([f"{col[1]} ({col[2]})" for col in columns])
             
-            # Add semantic hints for specific tables/views
-            if table_name == 'swf':
-                col_str += "\n    * PRIMARY P&L TABLE: Weekly financials (1934-2025)."
-                col_str += "\n    * Use for: Revenue, Net Income, Costs, Expenses queries."
-                col_str += "\n    * ITEMS include: 'Revenues', 'CostOfRevenue', 'OperatingExpense', 'Income Tax Expense', 'NetIncomeLoss'"
-                col_str += "\n    * For 'operating expenses' → use: WHERE item LIKE '%OperatingExpense%' OR item LIKE '%pense%'"
-            elif table_name == 'stock_prices':
-                col_str += "\n    * STOCK DATA: Daily prices (2007-2024)."
-                col_str += "\n    * Use for: Stock price, volume, trading queries."
-                col_str += "\n    * For volatility: calculate std deviation of close prices, or use stock_metrics view."
-            elif table_name == 'financial_targets':
-                col_str += "\n    * BUDGET TABLE: Target values for variance analysis."
-            elif table_name == 'profitability_metrics':
-                col_str += "\n    * DERIVED VIEW: Quarterly margins (gross, operating, net)."
-                col_str += "\n    * Use for: Profit margin queries, efficiency analysis."
-            elif table_name == 'stock_metrics':
-                col_str += "\n    * DERIVED VIEW: Monthly stock indicators."
-                col_str += "\n    * Columns: yr, mo, monthly_avg_close, monthly_high, monthly_low, intraday_volatility_pct"
-                col_str += "\n    * For 'volatility' queries → use intraday_volatility_pct column, AVG() for yearly."
-            elif table_name == 'variance_analysis':
-                col_str += "\n    * DERIVED VIEW: Budget vs Actual comparison."
-                col_str += "\n    * Use for: 'Are we on target?', variance questions."
-            elif table_name == 'growth_metrics':
-                col_str += "\n    * DERIVED VIEW: Quarter-over-quarter growth rates."
-                col_str += "\n    * Use for: Growth trends, 'is revenue growing?' queries."
-            elif table_name in ['numbers', 'submissions', 'annual_metrics', 'income_statements']:
-                col_str += "\n    * LEGACY: Use primary tables instead."
+            # Add semantic hints for swf_financials (primary table)
+            if table_name == 'swf_financials':
+                # Dynamically get year range from data
+                try:
+                    cursor.execute("SELECT MIN(yr), MAX(yr) FROM swf_financials WHERE revenue IS NOT NULL")
+                    min_yr, max_yr = cursor.fetchone()
+                    if min_yr and max_yr:
+                        col_str += f"\n    * PRIMARY FINANCIAL TABLE: Data from {min_yr} to {max_yr}."
+                    else:
+                        col_str += "\n    * PRIMARY FINANCIAL TABLE: Financial P&L data."
+                except:
+                    col_str += "\n    * PRIMARY FINANCIAL TABLE: Financial P&L data."
+                col_str += "\n    * Use for: Revenue, Net Income, Gross Profit, Operating Expenses, Margins."
                 
             schemas.append(f"{table_type}: {table_name}\nColumns: {col_str}")
             

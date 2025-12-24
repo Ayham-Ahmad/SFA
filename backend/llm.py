@@ -71,8 +71,7 @@ RULES:
 - Do NOT invent columns - use ONLY columns listed above.
 - Do NOT reference companies.
 - Use ORDER BY for time series.
-- For stock prices, use market_daily_data (open_price, close_price, high_price, low_price).
-- For financial data, use swf_financials (revenue, net_income, etc).
+- Query swf_financials for all financial data.
 
 OUTPUT:
 Return ONLY valid SQL wrapped in ```sql```.

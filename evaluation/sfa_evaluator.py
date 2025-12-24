@@ -50,11 +50,11 @@ from datetime import datetime
 
 # Import debug logger
 try:
-    from backend.agent_debug_logger import log_agent_interaction
+    from backend.sfa_logger import log_agent_interaction
     DEBUG_LOGGING_AVAILABLE = True
 except ImportError:
     DEBUG_LOGGING_AVAILABLE = False
-    print("Warning: agent_debug_logger not available. Debug logging disabled.")
+    print("Warning: sfa_logger not available. Debug logging disabled.")
 
 # Try to import sentence-transformers for semantic similarity
 try:
@@ -127,7 +127,7 @@ except ImportError:
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(BASE_DIR)
 DB_PATH = os.path.join(PROJECT_DIR, "data", "db", "financial_data.db")
-GOLDEN_DATASET_PATH = os.path.join(BASE_DIR, "sfa_golden_dataset_v2.json")
+GOLDEN_DATASET_PATH = os.path.join(BASE_DIR, "sfa_golden_dataset.json")
 
 # =========================================================================
 # DATA CLASSES
@@ -1126,6 +1126,6 @@ if __name__ == "__main__":
             to_CSV=args.csv
         )
     else:
-        # Default: run one test query
-        print("Running test evaluation...")
-        result = evaluator.evaluate_query("What was the total revenue in 2024?", to_CSV=True)
+        # Default: run full batch evaluation on all 40 queries
+        print("Running full batch evaluation (use --query for single query)...")
+        evaluator.evaluate_dataset(to_CSV=True)

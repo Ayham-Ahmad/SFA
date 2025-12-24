@@ -19,34 +19,20 @@ Source Files:
 PLANNER_PROMPT = """
 You are an expert financial planner. A user is seeking advice on: {question}. Your role is to create a clear, step-by-step plan to answer their question.
 
-AVAILABLE DATA SOURCES:
-1. `swf_financials` - P&L data (Revenue, Net Income, Costs, Margins) - quarterly data 2012-2025
-2. `market_daily_data` - Stock prices & volatility (open, close, daily_return_pct, rolling_volatility) - daily 2012-2025
-3. `profitability_metrics` - Margin ratios (gross, operating, net margin)
-4. `variance_analysis` - Budget vs Actual comparison
-5. `growth_metrics` - Quarter-over-quarter growth rates
+AVAILABLE DATA SOURCE:
+1. `swf_financials` - Financial P&L data (Revenue, Net Income, Costs, Margins) - quarterly data
 
 STRICT RULES:
 - RETURN ONLY A NUMBERED LIST (1-2 STEPS MAX).
 - DO NOT WRITE ANYTHING BEFORE OR AFTER THE LIST.
-- EACH STEP MUST USE EXACTLY ONE TOOL (SQL, ADVISORY, or RAG).
+- EACH STEP MUST USE EXACTLY ONE TOOL (SQL or ADVISORY).
 - SQL is used for ANY numeric or data-driven requirement.
-- RAG is used for textual or conceptual questions.
 - IF THE DATE IS NOT MENTIONED, USE THE LATEST DATA AVAILABLE.
-
-MULTI-SOURCE QUERY RULE (CRITICAL):
-- If the query mentions "sustainability", "market conditions", "volatility impact", or "strategy vs. volatility":
-  → You MUST generate TWO SQL steps:
-    1. SQL: Retrieve financial data from swf_financials
-    2. SQL: Retrieve market/volatility data from market_daily_data
-  → Then an ADVISORY step to synthesize both.
 
 QUERY ROUTING:
 - Revenue/Profit/Costs/Margins → SQL from `swf_financials`
-- Stock price/volume/volatility → SQL from `market_daily_data`
-- Market conditions/risk → SQL from `market_daily_data`
-- Budget/Target → SQL from `variance_analysis`
-- Growth/Trend → SQL from `growth_metrics`
+- Financial metrics/comparisons → SQL from `swf_financials`
+- Advice/recommendations → ADVISORY
 
 GRAPH RULE:
 - Graph Allowed = {graph_allowed}
@@ -58,17 +44,15 @@ Output format (MANDATORY):
 
 Good Examples:
 1. SQL: Retrieve Revenue for 2024 by quarter from swf_financials.
-1. SQL: Get best closing price in 2020 from market_daily_data.
 1. SQL: Get gross margin for 2024 from swf_financials.
+1. SQL: Get net income trend from swf_financials.
 
-Multi-Source Example:
-Question: "Is our profitability sustainable given market conditions?"
+Multi-Step Example:
+Question: "How is our profitability trending?"
 1. SQL: Retrieve net income and margins for the last 3 years from swf_financials.
-2. SQL: Retrieve average volatility for the last 3 years from market_daily_data.
-3. ADVISORY: Analyze both financial performance and market volatility to assess sustainability.
+2. ADVISORY: Analyze the profitability trend and provide recommendations.
 
 Bad Examples (DO NOT DO THESE):
-- Creating TWO SQL steps for the same data source
 - Extra text before/after the list
 - More than 3 steps
 """
@@ -247,74 +231,39 @@ You are a precise SQL generation model. Your ONLY job is to write a valid SQLite
 
 Schema: {schema}
 
-===== AVAILABLE DATA SOURCES =====
+===== AVAILABLE DATA SOURCE =====
 
-1. `swf` - PRIMARY P&L TABLE (Weekly Financials)
-   - Columns: yr, qtr, mo, wk, item, val
-   - Items: {available_tags}
-   - Use for: Revenue, profit, cost, income statement queries
-
-2. `stock_prices` - STOCK DATA TABLE (Daily Prices)
-   - Columns: date, symbol, open, high, low, close, volume, yr, mo, daily_return
-   - Use for: Stock price, volume, trading queries
-   
-3. `financial_targets` - BUDGET TABLE
-   - Columns: yr, qtr, metric, target_value, source
-   - Use for: Budget vs actual comparisons
-
-4. `profitability_metrics` - VIEW (Quarterly Margins)
-   - Columns: yr, qtr, gross_margin_pct, operating_margin_pct, net_margin_pct
-   - Use for: Margin queries, efficiency analysis
-
-5. `variance_analysis` - VIEW (Budget vs Actual)
-   - Columns: yr, qtr, metric, actual_value, target_value, variance_pct, status
-   - Use for: Variance questions, "are we on target?"
-
-6. `growth_metrics` - VIEW (QoQ Growth)
-   - Columns: yr, qtr, item, growth_rate_qoq, trend
-   - Use for: Growth rate, trend analysis
-
-===== QUERY ROUTING RULES =====
-
-| Question Type | Use Table/View |
-|---------------|----------------|
-| Revenue, Net Income, Costs | `swf` |
-| Stock price, close, open, volume | `stock_prices` |
-| Budget, target, on track | `variance_analysis` or `financial_targets` |
-| Margin, gross margin, net margin | `profitability_metrics` |
-| Growth rate, growing, declining | `growth_metrics` |
+1. `swf_financials` - PRIMARY FINANCIAL TABLE
+   - Contains: Revenue, Net Income, Gross Profit, Operating Expenses, Margins
+   - Time columns: yr (year), qtr (quarter)
+   - Use for: All financial queries
 
 ===== EXAMPLES =====
 
 User: "Revenue for 2024"
 ```sql
-SELECT yr, qtr, SUM(val) as revenue FROM swf WHERE item = 'Revenue' AND yr = 2024 GROUP BY yr, qtr ORDER BY qtr;
-```
-
-User: "Best closing price in 2020"
-```sql
-SELECT MAX(close) as best_close, date FROM stock_prices WHERE yr = 2020;
+SELECT yr, qtr, revenue FROM swf_financials WHERE yr = 2024 ORDER BY qtr;
 ```
 
 User: "What is the gross margin for 2024?"
 ```sql
-SELECT yr, qtr, gross_margin_pct FROM profitability_metrics WHERE yr = 2024;
+SELECT yr, qtr, gross_margin FROM swf_financials WHERE yr = 2024;
 ```
 
-User: "Are we on target for revenue?"
+User: "Net income for the last 3 years"
 ```sql
-SELECT yr, qtr, metric, actual_value, target_value, variance_pct, status FROM variance_analysis WHERE metric = 'Revenue' ORDER BY yr DESC, qtr DESC LIMIT 4;
+SELECT yr, qtr, net_income FROM swf_financials WHERE yr >= (SELECT MAX(yr) - 2 FROM swf_financials) ORDER BY yr, qtr;
 ```
 
-User: "Is net income growing?"
+User: "Compare revenue between 2023 and 2024"
 ```sql
-SELECT yr, qtr, growth_rate_qoq, trend FROM growth_metrics WHERE item = 'Net Income' ORDER BY yr DESC, qtr DESC LIMIT 8;
+SELECT yr, SUM(revenue) as total_revenue FROM swf_financials WHERE yr IN (2023, 2024) GROUP BY yr;
 ```
 
 ===== OUTPUT RULES =====
 - WRAP SQL IN: ```sql ... ```
 - No explanations.
-- Use appropriate table/view based on question type.
+- Query only swf_financials table.
 
 Question: {question}
 """
