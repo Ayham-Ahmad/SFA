@@ -1,4 +1,3 @@
-from backend.rag_fusion.fusion import rag_fusion_search
 from backend.llm import run_chain_of_tables
 import re
 from backend.sfa_logger import log_system_debug
@@ -30,14 +29,7 @@ def execute_step(step: str) -> str:
     step_clean = re.sub(r"^\s*\d+[\.\\)]\s*", "", original_step).strip()
     log_system_debug(f"Worker executing step_clean: {step_clean}")
 
-    if step_upper.startswith("RAG:"):
-        query = step_clean.split(":", 1)[1].strip()
-        log_system_debug(f"Worker executing RAG: {query}")
-
-        results = rag_fusion_search(query, n_results=3)
-        return "RAG Results:\n" + "\n".join([f"- {r['content']}" for r in results])
-
-    elif step_upper.startswith("SQL:"):
+    if step_upper.startswith("SQL:"):
         query = step_clean.split(":", 1)[1].strip()
         log_system_debug(f"Worker executing SQL: {query}")
 
@@ -46,4 +38,8 @@ def execute_step(step: str) -> str:
         return f"SQL Execution Result:\n{result}"
 
     else:
-        return f"Unknown tool in step → '{original_step}'"
+        # For any other step type, attempt SQL execution as default
+        log_system_debug(f"Worker defaulting to SQL for: {original_step}")
+        result = run_chain_of_tables(original_step, model=WORKER_MODEL)
+        return f"SQL Execution Result:\n{result}"
+

@@ -342,7 +342,7 @@ User: "{input_for_classification}"
                         result = f"Error executing advisory: {adv_err}"
                         log_system_error(f"Advisory Error: {result}")
                 else:
-                    # Standard SQL/RAG step
+                    # Standard SQL step
                     try:
                         result = execute_step(clean_step)
                         log_system_debug(f"Step Result: {result[:200]}...")

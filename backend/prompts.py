@@ -13,7 +13,7 @@ Source Files:
 # ============================================
 # 1. PLANNER PROMPT (RISE Framework)
 # Source: backend/agents/planner.py:16
-# Purpose: Decomposes user questions into SQL/RAG steps
+# Purpose: Decomposes user questions into SQL steps
 # Framework: Role, Input, Steps, Execution
 # ============================================
 PLANNER_PROMPT = """

@@ -1,7 +1,7 @@
 """
 Planner Agent
 =============
-Decomposes user questions into actionable SQL/RAG steps.
+Decomposes user questions into actionable SQL steps.
 """
 from backend.utils.llm_client import groq_client, get_model
 from backend.sfa_logger import log_system_debug, log_system_error
@@ -58,7 +58,7 @@ def plan_task(question: str, graph_allowed: bool) -> str:
         graph_allowed: Whether graph generation is allowed
         
     Returns:
-        Numbered list of steps (SQL/RAG/ADVISORY)
+        Numbered list of steps (SQL/ADVISORY)
     """
     try:
         log_system_debug(f"Planner - Graph allowed: {graph_allowed}")

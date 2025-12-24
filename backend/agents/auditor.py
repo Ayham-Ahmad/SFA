@@ -76,7 +76,7 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
     
     Args:
         question: User's original question
-        context: Context gathered from SQL/RAG execution
+        context: Context gathered from SQL execution
         graph_allowed: Whether graph generation is allowed
         interaction_id: Optional ID for logging
         
