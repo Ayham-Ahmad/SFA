@@ -10,12 +10,13 @@ from backend.utils.paths import DB_PATH
 from backend.utils.formatters import format_financial_value, format_date
 
 
-def execute_sql_query(query: str) -> str:
+def execute_sql_query(query: str, user=None) -> str:
     """
     Execute a read-only SQL query on the financial database.
     
     Args:
         query: SQL SELECT statement
+        user: Optional User object for multi-tenant execution
         
     Returns:
         Result as a markdown table string or error message.
@@ -33,9 +34,26 @@ def execute_sql_query(query: str) -> str:
             return f"Error: Unsafe SQL keyword '{keyword}' detected."
 
     try:
-        conn = sqlite3.connect(DB_PATH)
-        df = pd.read_sql_query(query, conn)
-        conn.close()
+        # Multi-Tenant Execution
+        if user and user.db_is_connected:
+            from backend.tenant_manager import MultiTenantDBManager
+            result = MultiTenantDBManager.execute_query_for_user(user, query)
+            if not result.get("success"):
+                return f"SQL Error: {result.get('error')}"
+            
+            # Helper to convert list of tuples to DataFrame-like format for markdown
+            rows = result.get("rows", [])
+            headers = result.get("columns", [])
+            
+            if not rows:
+                return "No results found."
+            
+            df = pd.DataFrame(rows, columns=headers)
+        else:
+            # Default fallback (Legacy)
+            conn = sqlite3.connect(DB_PATH)
+            df = pd.read_sql_query(query, conn)
+            conn.close()
         
         if df.empty:
             return "No results found."

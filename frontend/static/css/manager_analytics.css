@@ -91,11 +91,23 @@
     max-width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
-    background-color: var(--card-bg);
-    /* Fixed: Use theme var */
+    background-color: transparent !important;
     border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
     font-size: 0.85rem;
-    color: var(--text-color);
+    color: var(--text-color) !important;
+}
+
+.message table th,
+.message table td {
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    padding: 8px;
+    background-color: transparent !important;
+    /* Force transparency */
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .message table {
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .message th,

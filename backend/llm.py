@@ -32,7 +32,7 @@ Data:
 """
 
 
-def run_chain_of_tables(question: str, model: str = None) -> str:
+def run_chain_of_tables(question: str, user=None, model: str = None) -> str:
     """
     Executes the Chain-of-Tables reasoning loop.
     
@@ -40,6 +40,7 @@ def run_chain_of_tables(question: str, model: str = None) -> str:
     
     Args:
         question: User's question or instruction
+        user: Optional User object for multi-tenant schema context
         model: Optional model override
         
     Returns:
@@ -48,33 +49,31 @@ def run_chain_of_tables(question: str, model: str = None) -> str:
     if model is None:
         model = MODEL
         
-    schema = get_table_schemas()
+    # Import new dynamic schema helper
+    from backend.utils.schema_utils import get_schema_summary_for_llm
     
-    # Import tag information from sql_loader
-    from backend.ingestion.sql_loader import get_tags_for_prompt
-    available_tags = get_tags_for_prompt()
-    
-    # Get dynamic schema from database
-    from backend.schema_utils import get_full_schema_context
-    dynamic_schema = get_full_schema_context()
+    # Get dynamic schema context (either user specific or default)
+    if user:
+        dynamic_schema = get_schema_summary_for_llm(user)
+    else:
+        # Fallback to default
+        from backend.schema_utils import get_complete_schema_dict
+        s = get_complete_schema_dict()
+        dynamic_schema = str(s)
     
     sql_generation_prompt = f"""You are an expert SQL generator for a financial analytics database.
 
 IMPORTANT CONTEXT:
-- The data represents ONE virtual, market-level entity.
-- There are NO individual companies.
+- The data represents various financial entities.
 - Queries must be time-based (year / quarter / trade_date).
 
+AVAILABLE DATA SCHEMA:
 {dynamic_schema}
 
 RULES:
 - Do NOT invent columns - use ONLY columns listed above.
-- Do NOT reference companies.
 - Use ORDER BY for time series.
-- Query swf_financials for all financial data.
-
-OUTPUT:
-Return ONLY valid SQL wrapped in ```sql```.
+- Return ONLY valid SQL wrapped in ```sql```.
 
 Question: {question}
 """
@@ -115,7 +114,7 @@ Question: {question}
         log_system_debug(f"Generated SQL: {sql_query}")
         
         # Execute SQL
-        query_result = execute_sql_query(sql_query)
+        query_result = execute_sql_query(sql_query, user=user)
         
         # Safety: Final truncation if string is still massive
         if len(query_result) > 15000:

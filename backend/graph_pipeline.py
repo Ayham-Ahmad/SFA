@@ -80,7 +80,7 @@ RESPOND WITH ONLY THIS JSON FORMAT (no markdown, no explanation):
         return {"chart_type": "bar", "title": "Financial Analysis"}
 
 
-def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
+def execute_graph_query(question: str, user=None) -> Optional[Dict[str, Any]]:
     """
     Execute SQL query to get data for graph.
     Uses run_chain_of_tables which generates SQL and returns formatted results.
@@ -91,7 +91,7 @@ def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
     log_system_debug(f"[GraphPipeline] Question: {question}")
     
     # run_chain_of_tables generates SQL internally and returns formatted results
-    result = run_chain_of_tables(question)
+    result = run_chain_of_tables(question, user=user)
     
     if not result:
         log_system_error("[GraphPipeline] ERROR: No result from chain_of_tables")
@@ -255,7 +255,7 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     }
 
 
-def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
+def run_graph_pipeline(question: str, user=None, query_id: str = None) -> Dict[str, Any]:
     """
     Main graph pipeline function.
     
@@ -272,7 +272,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
     log_system_debug(f"[GraphPipeline] Starting for: {question}")
     
     # Step 1: Get data via SQL
-    query_result = execute_graph_query(question)
+    query_result = execute_graph_query(question, user=user)
     
     if not query_result:
         return {

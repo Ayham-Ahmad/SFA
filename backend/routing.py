@@ -147,7 +147,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> dict:
         }
 
 
-def run_ramas_pipeline(question: str, query_id: str = None) -> str:
+def run_ramas_pipeline(question: str, user=None, query_id: str = None) -> str:
     """
     Orchestrates the RAMAS pipeline:
     1. Intent Classification: Skip pipeline for greetings.
@@ -157,6 +157,7 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
     
     Args:
         question: User's question (may include context prefixes)
+        user: Optional User object for personalization
         query_id: Optional query ID for progress tracking
         
     Returns:
@@ -170,6 +171,9 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
     except ImportError:
         has_progress = False
         def set_query_progress(qid, agent, step): pass
+
+    # Import schema helper
+    from backend.utils.schema_utils import get_schema_summary_for_llm
 
     log_system_info(f"--- Starting RAMAS Pipeline for: {question} ---")
     
@@ -297,7 +301,6 @@ User: "{input_for_classification}"
     if has_progress and query_id:
         set_query_progress(query_id, "planner", "Breaking down question...")
 
-    
     try:
         # Generate a unique ID for this interaction flow
         interaction_id = str(uuid.uuid4())
@@ -306,14 +309,18 @@ User: "{input_for_classification}"
         # Log User Query (Cleaned)
         log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
         
+        # Step 1: Planner
+        # We need the schema context now
+        schema_context = get_schema_summary_for_llm(user) if user else ""
+        
         # Use full context for Planning to maintain memory
-        plan = plan_task(question, graph_allowed)
-        log_system_debug(f"Plan Generated:\n{plan}")
+        plan = plan_task(question, graph_allowed, schema_context=schema_context)
+        log_system_info(f"RAMAS - Plan Generated: {plan}") # Info level for visibility
         log_agent_interaction(interaction_id, "Planner", "Output", log_input_query, plan)
         
-        # Step 3: Worker - Execute Steps
+        # Step 2: Worker - Execute Steps
         if has_progress and query_id:
-            set_query_progress(query_id, "worker", "Executing queries...")
+            set_query_progress(query_id, "worker", "Executing plan...")
         
         context = ""
         steps = extract_steps(plan)
@@ -341,7 +348,7 @@ User: "{input_for_classification}"
                 else:
                     # Standard SQL step
                     try:
-                        result = execute_step(clean_step)
+                        result = execute_step(clean_step, user=user)
                         log_system_debug(f"Step Result: {result[:200]}...")
                     except Exception as step_err:
                         result = f"Error executing step: {step_err}"

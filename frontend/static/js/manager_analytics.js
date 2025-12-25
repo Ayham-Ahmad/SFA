@@ -19,12 +19,18 @@ const MainController = {
         }
 
         // 2. Load State or Defaults
-        if (!AppState.load()) {
-            AppState.sessionId = crypto.randomUUID();
-            await MainController.loadDefaultGraphs();
+        try {
+            const loaded = AppState.load();
+            if (!loaded || !AppState.graphs || AppState.graphs.length === 0) {
+                console.log("State empty, attempting to load defaults...");
+                if (!loaded) AppState.sessionId = crypto.randomUUID();
+                await MainController.loadDefaultGraphs();
+            }
+        } catch (e) {
+            console.error("State load error:", e);
         }
 
-        // 3. Init UI Components
+        // 3. Init UI Components (Always run this!)
         GraphManager.init();
         ChatInterface.restoreHistory();
     },
@@ -57,7 +63,10 @@ const MainController = {
                 });
                 GraphManager.add(chart);
             }
-        } catch (e) { console.error("Defaults failed", e); }
+        } catch (e) {
+            console.error("Defaults failed to load", e);
+            // Don't throw, just let it be empty so renderEmpty() shows "Graph Space"
+        }
     },
 
     toggleEditMode: () => {

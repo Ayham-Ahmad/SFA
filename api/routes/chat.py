@@ -116,7 +116,7 @@ async def chat_endpoint(
             from backend.graph_pipeline import run_graph_pipeline
             
             async def run_graph_task():
-                return await asyncio.to_thread(run_graph_pipeline, request.message, query_id)
+                return await asyncio.to_thread(run_graph_pipeline, request.message, user=current_user, query_id=query_id)
             
             task = asyncio.create_task(run_graph_task())
             active_queries[query_id] = task
@@ -148,7 +148,7 @@ async def chat_endpoint(
         else:
             # Use standard RAMAS pipeline for text responses
             async def run_text_task():
-                return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id)
+                return await asyncio.to_thread(run_ramas_pipeline, full_context_query, user=current_user, query_id=query_id)
             
             task = asyncio.create_task(run_text_task())
             active_queries[query_id] = task

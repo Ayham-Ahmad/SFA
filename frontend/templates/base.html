@@ -26,6 +26,7 @@
             <div id="user-welcome" class="text-center text-secondary mb-2 small fw-bold"></div>
 
             <div class="list-group list-group-flush my-3">
+                {% if active_page != 'admin' %}
                 <a href="/manager"
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold manager-link {% if active_page == 'dashboard' %}active{% endif %}">
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
@@ -34,12 +35,13 @@
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold manager-link {% if active_page == 'analytics' %}active{% endif %}">
                     <i class="fas fa-chart-pie me-2"></i>Analytics & Chat
                 </a>
+                {% endif %}
                 <a href="/settings"
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold manager-link {% if active_page == 'settings' or active_page == 'database' %}active{% endif %}">
                     <i class="fas fa-cog me-2"></i>Settings
                 </a>
-                <!-- Admin Link (hidden by default, shown via JS for admin users) -->
-                <a href="/admin" id="admin-link" style="display: none;"
+                <!-- Admin Link (hidden by default, shown via JS for admin users OR always shown on admin page) -->
+                <a href="/admin" id="admin-link" {% if active_page !='admin' %}style="display: none;" {% endif %}
                     class="list-group-item list-group-item-action bg-transparent second-text fw-bold {% if active_page == 'admin' %}active{% endif %}">
                     <i class="fas fa-user-shield me-2"></i>Admin Panel
                 </a>

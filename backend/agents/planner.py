@@ -49,21 +49,30 @@ User question: {question}
 """
 
 
-def plan_task(question: str, graph_allowed: bool) -> str:
+def plan_task(question: str, graph_allowed: bool, schema_context: str = "") -> str:
     """
     Create an execution plan to answer the user's question.
     
     Args:
         question: User's question
         graph_allowed: Whether graph generation is allowed
+        schema_context: Summary of available database schema
         
     Returns:
         Numbered list of steps (SQL/ADVISORY)
     """
     try:
         log_system_debug(f"Planner - Graph allowed: {graph_allowed}")
+        
+        # Format the prompt
+        prompt_content = PLANNER_PROMPT.format(
+            question=question, 
+            graph_allowed=graph_allowed,
+            schema_context=schema_context
+        )
+        
         response = groq_client.chat.completions.create(
-            messages=[{"role": "user", "content": PLANNER_PROMPT.format(question=question, graph_allowed=graph_allowed)}],
+            messages=[{"role": "user", "content": prompt_content}],
             model=MODEL,
         )
         return response.choices[0].message.content

@@ -54,13 +54,19 @@ const Theme = {
 // ============================================================================
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Sidebar Toggle
+    // 1. Sidebar Toggle & Persistence
     var el = document.getElementById("wrapper");
     var toggleButton = document.getElementById("menu-toggle");
+
+    // Restore state
+    if (localStorage.getItem('sidebar_toggled') === 'true') {
+        el.classList.add("toggled");
+    }
 
     if (toggleButton) {
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
+            localStorage.setItem('sidebar_toggled', el.classList.contains("toggled"));
         };
     }
 
