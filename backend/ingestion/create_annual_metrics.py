@@ -11,8 +11,7 @@ Run: python -m backend.ingestion.create_annual_metrics
 """
 import sqlite3
 import os
-
-DB_PATH = "data/db/financial_data.db"
+from backend.utils.paths import DB_PATH
 
 # Priority tags for annual metrics
 ANNUAL_TAGS = [

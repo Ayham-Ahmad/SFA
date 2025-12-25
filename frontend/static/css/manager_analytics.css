@@ -1,7 +1,10 @@
-/* Graphs Space Styles */
+/* ============================================================================
+   Analytics Page Styles - Theme Aware
+   ============================================================================ */
+
+/* Graphs Space */
 .graphs-space-container {
     background: var(--card-bg);
-    /* Use variable for theme compatibility */
     border-radius: 20px;
     padding: 20px;
     min-height: 400px;
@@ -9,7 +12,6 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    /* Keep content inside */
 }
 
 .graphs-track {
@@ -18,56 +20,30 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    transition: all 0.5s ease;
     width: 100%;
-    /* Ensure track takes full width */
+    min-height: 380px;
+    /* Ensure height for empty state */
 }
 
 .graph-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    /* Reduced padding */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     cursor: default;
     flex: 1 1 0;
-    /* flex-grow, flex-shrink, flex-basis */
     min-width: 0;
-    /* Allow shrinking properly with Plotly */
     height: 380px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    /* Ensure graph doesn't spill out */
-}
-
-/* Dark mode override */
-[data-bs-theme="dark"] .graph-card {
-    background: #2b3035;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
 }
 
 .graph-card:hover {
     transform: translateY(-2px);
-}
-
-/* Base "Click to Replace" overlay - only shown when there's a pending graph */
-.jiggle-mode.has-pending .graph-card::after {
-    content: "Click to Place";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    pointer-events: none;
-    z-index: 10;
 }
 
 .graph-content {
@@ -76,90 +52,17 @@
     height: 100%;
 }
 
-/* Jiggle Animation */
-@keyframes jiggle {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(1deg);
-    }
-
-    50% {
-        transform: rotate(0deg);
-    }
-
-    75% {
-        transform: rotate(-1deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-/* ========== EDIT MODE (delete/reorder) ========== */
+/* Edit Mode */
 .edit-mode .graph-card {
-    animation: jiggle 0.3s infinite linear;
-    cursor: grab;
     border: 2px solid #dc3545;
 }
 
-.edit-mode .graph-card:hover {
-    opacity: 0.9;
+.edit-mode .graph-delete-btn {
+    display: flex;
+    /* Show only in edit mode */
 }
 
-/* ========== PLACEMENT MODE (new graph generated) ========== */
-.placement-mode .graph-card.replaceable {
-    cursor: pointer;
-    border: 2px solid #0d6efd;
-    transition: all 0.2s ease;
-}
-
-.placement-mode .graph-card.replaceable:hover {
-    border-color: #28a745;
-    box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
-}
-
-.placement-mode .graph-card.replaceable::after {
-    content: "Click to Replace";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    pointer-events: none;
-    z-index: 10;
-}
-
-/* + button visible in placement mode */
-.placement-mode .add-graph-btn.placement-add {
-    display: flex !important;
-    background: #28a745;
-    border: 2px dashed #fff;
-    color: white;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-/* Delete button on each graph card */
+/* Delete Button */
 .graph-delete-btn {
     position: absolute;
     top: 8px;
@@ -169,7 +72,8 @@
     width: 32px;
     height: 32px;
     padding: 0;
-    display: flex;
+    display: none;
+    /* Hidden by default */
     align-items: center;
     justify-content: center;
     opacity: 0.9;
@@ -181,113 +85,53 @@
     transform: scale(1.1);
 }
 
-/* Drag handle */
-.graph-drag-handle {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    z-index: 20;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: grab;
-    font-size: 14px;
-    opacity: 0.8;
-    transition: all 0.2s ease;
-}
-
-.graph-drag-handle:hover {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.graph-drag-handle:active {
-    cursor: grabbing;
-}
-
-/* Drag-and-drop visual feedback */
-.graph-card.dragging {
-    opacity: 0.5;
-    transform: scale(0.95);
-}
-
-.graph-card.drag-over {
-    border: 3px dashed #28a745 !important;
-    background: rgba(40, 167, 69, 0.1);
-}
-
-/* Add Button - Hidden by default, shown in Jiggle Mode */
-.add-graph-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
-    background: #f8f9fa;
-    border: 2px dashed #dee2e6;
-    display: none;
-    /* Hidden by default */
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-}
-
-/* Only show in jiggle/edit mode */
-.jiggle-mode .add-graph-btn {
-    display: flex;
-}
-
-[data-bs-theme="dark"] .add-graph-btn {
-    background: #343a40;
-    border-color: #495057;
-    color: #e0e0e0;
-}
-
-.add-graph-btn:hover {
-    background: #e9ecef;
-    transform: scale(1.1);
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* Chat Table Styling - Static Ruler / Consistent Formatting */
+/* Chat Tables */
 .message table {
     width: 100%;
     max-width: 100%;
     border-collapse: collapse;
     margin: 10px 0;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    /* Fixed: Use theme var */
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
     font-size: 0.85rem;
+    color: var(--text-color);
 }
 
 .message th,
 .message td {
     padding: 8px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
     text-align: left;
 }
 
 .message th {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(127, 127, 127, 0.1);
+    /* Neutral transparent */
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.5px;
 }
 
-[data-bs-theme="dark"] .message table {
-    border-color: #495057;
+/* Empty Graph Space Placeholder */
+.empty-graph-space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 380px;
+    background: transparent;
+    border-radius: 16px;
+    border: 2px dashed var(--border-color, #dee2e6);
 }
 
-[data-bs-theme="dark"] .message th,
-[data-bs-theme="dark"] .message td {
-    border-color: #495057;
-}
-
-[data-bs-theme="dark"] .message th {
-    background-color: rgba(255, 255, 255, 0.05);
+.empty-graph-text {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--text-muted, #adb5bd);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transform: rotate(-30deg);
+    user-select: none;
 }

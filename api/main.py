@@ -1,35 +1,38 @@
-from fastapi import FastAPI, Depends, HTTPException, status, Query
-from fastapi.security import OAuth2PasswordRequestForm
+"""
+Smart Financial Advisory (SFA) - Main Application
+===================================================
+FastAPI application with modular route organization.
+
+Routes are now split into separate modules:
+- api/routes/auth.py      - Authentication
+- api/routes/chat.py      - AI Chat & History
+- api/routes/users.py     - User Management (Admin)
+- api/routes/database.py  - Multi-tenant DB Management
+- api/routes/config.py    - Dashboard Configuration
+- api/routes/pages.py     - Frontend Page Serving
+- api/routes/analytics.py - Dashboard Metrics
+"""
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
-from datetime import timedelta
-from .database import get_db, engine, Base
-from .models import User, ChatHistory, InteractionType
-from .auth import (
-    ACCESS_TOKEN_EXPIRE_MINUTES,
-    create_access_token,
-    get_current_active_user,
-    verify_password,
-    get_password_hash
-)
+from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
 import uvicorn
 import os
-from dotenv import load_dotenv
+
+from .database import engine, Base
 from backend.security.audit_logger import AuditMiddleware
-from backend.routing import run_ramas_pipeline
-import time
-import sqlite3
-import math
-import os
-from backend.ticker_service import ticker_service
-from api.schemas import Token, TokenData, UserCreate, UserUpdate, ChatRequest, ChatFeedbackRequest
-from pydantic import BaseModel
-import asyncio
-from uuid import uuid4
-from asyncio import CancelledError
-import json
-from datetime import datetime
-from backend.sfa_logger import log_agent_interaction, log_system_error, log_system_info
+
+# Import all route modules
+from api.routes import (
+    auth_router,
+    chat_router,
+    users_router,
+    me_router,
+    database_router,
+    config_router,
+    pages_router,
+    analytics_router
+)
 
 # -----------------------------------------------------------------------------
 # Configuration & Setup
@@ -39,7 +42,6 @@ from backend.sfa_logger import log_agent_interaction, log_system_error, log_syst
 load_dotenv()
 
 # Create all database tables defined in models.py if they don't already exist
-# This uses the SQLAlchemy engine configuration from database.py
 Base.metadata.create_all(bind=engine)
 
 # Initialize the FastAPI application with metadata
@@ -50,445 +52,61 @@ app = FastAPI(title="Smart Financial Advisory (SFA)", version="1.0.0")
 # -----------------------------------------------------------------------------
 
 # Add CORS (Cross-Origin Resource Sharing) middleware
-# This allows the frontend (potentially running on a different port/domain) to communicate with this backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Allows all origins (for development)
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"], # Allows all HTTP methods (GET, POST, etc.)
-    allow_headers=["*"], # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Add Audit Middleware to log all incoming requests for security purposes
+# Add Audit Middleware to log all incoming requests
 app.add_middleware(AuditMiddleware)
 
-# Global dictionary to track active queries for cancellation support
-active_queries = {}
-
-# Global dictionary to track query progress (agent status)
-query_progress = {}  # {query_id: {"status": "planner"|"worker"|"auditor", "step": "details"}}
-
-# Helper function to log cancellations to agent_debug_log key
-def _log_cancellation(query_id: str, question: str, reason: str):
-    """Log query cancellations to debug file"""
-    try:
-        log_agent_interaction(
-            interaction_id=query_id,
-            agent_name="System",
-            task="Cancellation",
-            input_data={"question": question, "reason": reason},
-            output_data="Cancelled"
-        )
-    except Exception as e:
-        log_system_error(f"Failed to log cancellation: {e}")
-
-# Helper functions for progress tracking
-def set_query_progress(query_id: str, agent: str, step: str = ""):
-    """Update progress status for a query"""
-    query_progress[query_id] = {"agent": agent, "step": step}
-
-def clear_query_progress(query_id: str):
-    """Remove progress tracking for completed query"""
-    query_progress.pop(query_id, None)
-
 # -----------------------------------------------------------------------------
-# Authentication Endpoints
+# Static Files Configuration
 # -----------------------------------------------------------------------------
-
-@app.post("/token")
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    """
-    Authenticates a user and returns a standard JWT access token.
-    Uses OAuth2 compatible 'username' and 'password' form fields.
-    """
-    # Query database for the user
-    user = db.query(User).filter(User.username == form_data.username).first()
-    
-    # Verify user exists and password matches hash
-    if not user or not verify_password(form_data.password, user.password_hash):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    
-    # Calculate token expiration time
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES) # 30 minutes, but i think should be 1 Day
-    
-    # Create the JWT token including the username (sub) and expiration
-    access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
-    )
-    
-    # Return token, user role and username
-    return {"access_token": access_token, "token_type": "bearer", "role": user.role, "username": user.username}
-
-
-# -----------------------------------------------------------------------------
-# Chat / AI Endpoints
-# -----------------------------------------------------------------------------
-
-@app.post("/chat")
-async def chat_endpoint(request: ChatRequest, current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
-    """
-    Main endpoint for interacting with the AI Financial Advisor.
-    Handles message history context, RAG pipeline execution, and storing history.
-    
-    For graph requests (interaction_type='graph'), uses dedicated graph pipeline
-    that builds charts programmatically without LLM involvement.
-    """
-    start_time = time.time()
-    query_id = request.query_id if request.query_id else str(uuid4())
-    
-    # 1. Determine Interaction Type
-    itype = InteractionType.QUERY
-    is_graph_request = request.interaction_type == "graph"
-    if is_graph_request:
-        itype = InteractionType.GRAPH_BUTTON
-
-    # 2. Retrieve Chat History for Context
-    query_builder = db.query(ChatHistory).filter(ChatHistory.user_id == current_user.id)
-    
-    if request.session_id:
-         query_builder = query_builder.filter(ChatHistory.session_id == request.session_id)
-         
-    last_exchanges = query_builder.order_by(ChatHistory.timestamp.desc()).limit(2).all()
-
-    full_context_query = request.message
-    
-    # 3. Inject Context
-    if last_exchanges:
-        history_lines = []
-        for ex in reversed(last_exchanges):
-            answer_clean = ex.answer.split("graph_data||")[0].strip() if "graph_data||" in ex.answer else ex.answer
-            history_lines.append(f"Q: {ex.question} -> A: {answer_clean}")
-        
-        context_str = "\n".join(history_lines)
-        full_context_query = f"Context:\n{context_str}\nUser Query: {request.message}"
-    
-    # 4. Execute the appropriate pipeline
-    response_text = ""
-    chart_data = None  # New: contains chart_type, labels, values, title
-    
-    try:
-        set_query_progress(query_id, "planner", "Analyzing question...")
-        
-        if is_graph_request:
-            # Use NEW clean graph pipeline (returns raw data, frontend renders)
-            from backend.graph_pipeline import run_graph_pipeline
-            
-            async def run_pipeline():
-                return await asyncio.to_thread(run_graph_pipeline, request.message, query_id)
-            
-            task = asyncio.create_task(run_pipeline())
-            active_queries[query_id] = task
-            
-            try:
-                result = await asyncio.wait_for(task, timeout=120.0)
-                
-                # Graph pipeline returns: {success, chart_type, labels, values, title, message}
-                response_text = result.get("message", "")
-                
-                if result.get("success"):
-                    chart_data = {
-                        "chart_type": result.get("chart_type"),
-                        "labels": result.get("labels"),
-                        "values": result.get("values"),
-                        "title": result.get("title"),
-                        "is_percentage": result.get("is_percentage", False),
-                        "y_axis_title": result.get("y_axis_title", "USD")
-                    }
-                    
-            except asyncio.TimeoutError:
-                task.cancel()
-                response_text = "Query timed out. Please try a simpler question."
-                _log_cancellation(query_id, request.message, "timeout")
-            except CancelledError:
-                response_text = "Query cancelled by user."
-                _log_cancellation(query_id, request.message, "user_cancelled")
-            finally:
-                active_queries.pop(query_id, None)
-                clear_query_progress(query_id)
-        else:
-            # Use standard RAMAS pipeline for text responses
-            async def run_pipeline():
-                return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id)
-            
-            task = asyncio.create_task(run_pipeline())
-            active_queries[query_id] = task
-            
-            try:
-                response_text = await asyncio.wait_for(task, timeout=120.0)
-            except asyncio.TimeoutError:
-                task.cancel()
-                response_text = "Query timed out after 2 minutes. Please try a more specific question."
-                _log_cancellation(query_id, request.message, "timeout")
-            except CancelledError:
-                response_text = "Query cancelled by user."
-                _log_cancellation(query_id, request.message, "user_cancelled")
-            finally:
-                active_queries.pop(query_id, None)
-                clear_query_progress(query_id)
-    
-    except Exception as e:
-        response_text = f"An error occurred: {str(e)}"
-        log_system_error(f"Chat Endpoint Error: {e}")
-    
-    # Measure processing time
-    end_time = time.time()
-    duration = end_time - start_time
-    
-    # 5. Persist the interaction to the database
-    new_history = ChatHistory(
-        user_id=current_user.id,
-        session_id=request.session_id,
-        question=request.message,
-        answer=response_text,
-        interaction_type=itype,
-        response_time_seconds=duration,
-        user_feedback=None
-    )
-    db.add(new_history)
-    db.commit()
-    db.refresh(new_history)
-    
-    # 6. Return structured response
-    # For graph requests: include chart_data with raw data for frontend templates
-    return {
-        "response": response_text,
-        "chart_data": chart_data,  # {chart_type, labels, values, title} or None
-        "chat_id": new_history.id,
-        "query_id": query_id
-    }
-
-@app.post("/chat/cancel/{query_id}")
-async def cancel_query(query_id: str, current_user: User = Depends(get_current_active_user)):
-    """
-    Cancel a running query by its query_id.
-    """
-    if query_id in active_queries:
-        active_queries[query_id].cancel()
-        return {"status": "cancelled", "query_id": query_id}
-    return {"status": "not_found", "query_id": query_id}
-
-@app.get("/chat/status/{query_id}")
-async def get_query_status(query_id: str, current_user: User = Depends(get_current_active_user)):
-    """
-    Get the current status of a running query (for progress indicator).
-    """
-    if query_id in query_progress:
-        return query_progress[query_id]
-    return {"status": "unknown", "agent": "initializing"}
-
-@app.post("/chat/feedback/{chat_id}")
-async def chat_feedback(chat_id: int, feedback: str, current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
-    """
-    Updates the user feedback (Like/Dislike) for a specific chat message.
-    """
-    # Fetch the chat entry
-    chat_entry = db.query(ChatHistory).filter(ChatHistory.id == chat_id).first()
-    if not chat_entry:
-        raise HTTPException(status_code=404, detail="Chat entry not found")
-        
-    # Security: Ensure the user modifying the feedback is the one who created the chat
-    if chat_entry.user_id != current_user.id:
-        raise HTTPException(status_code=403, detail="Not authorized")
-        
-    # Update feedback based on string input
-    # Stored as Integer: 1 (Like), 0 (Dislike), None (Neutral)
-    if feedback.lower() == "like":
-        chat_entry.user_feedback = 1
-    elif feedback.lower() == "dislike":
-        chat_entry.user_feedback = 0
-    else:
-        chat_entry.user_feedback = None
-        
-    db.commit()
-    return {"status": "success", "feedback": chat_entry.user_feedback}
-
-@app.get("/chat/history")
-async def get_chat_history(session_id: str = None, current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
-    """
-    Retrieve the chat history for the current user's specific session.
-    If session_id is provided, returns only messages from that session.
-    If session_id is not provided or has no messages, returns empty list.
-    """
-    if not session_id:
-        return []  # No session specified = no history to return
-    
-    history = db.query(ChatHistory).filter(
-        ChatHistory.user_id == current_user.id,
-        ChatHistory.session_id == session_id
-    ).order_by(ChatHistory.timestamp.asc()).all()
-    
-    return [{
-        "id": h.id,
-        "question": h.question,
-        "answer": h.answer,
-        "timestamp": h.timestamp.isoformat(),
-        "user_feedback": h.user_feedback
-    } for h in history]
-
-# -----------------------------------------------------------------------------
-# Analytics & Dashboard Data Endpoints
-# -----------------------------------------------------------------------------
-
-from backend.analytics.metrics import get_key_metrics, get_revenue_trend, get_income_trend
-
-@app.get("/api/dashboard/metrics")
-async def dashboard_metrics(current_user: User = Depends(get_current_active_user)):
-    """
-    Aggregates high-level metrics for the dashboard charts.
-    Fetches data using helper functions from backend.analytics.metrics.
-    """
-    try:
-        metrics = get_key_metrics() #########################################
-        trend = get_revenue_trend() #########################################
-        income_trend = get_income_trend() #########################################
-        return {**metrics, "trend": trend, "income_trend": income_trend}
-    except Exception as e:
-        # Deep logging for debug purposes if analytics fail
-        import traceback
-        log_system_error(f"Dashboard Metrics Error: {e}\n{traceback.format_exc()}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-# -----------------------------------------------------------------------------
-# User Management Endpoints (Admin Only)
-# -----------------------------------------------------------------------------
-
-from api.auth import get_admin_user
-
-@app.get("/api/users")
-async def list_users(current_user: User = Depends(get_admin_user), db: Session = Depends(get_db)):
-    """List all users. Restricted to Admin."""
-    users = db.query(User).all()
-    return users
-
-@app.post("/api/users")
-async def create_user(user: UserCreate, current_user: User = Depends(get_admin_user), db: Session = Depends(get_db)):
-    """Create a new user. Restricted to Admin."""
-    # Check if username exists
-    db_user = db.query(User).filter(User.username == user.username).first()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
-    if not user.password:
-        raise HTTPException(status_code=400, detail="Password required for new user")
-        
-    # Hash password before storage
-    hashed_password = get_password_hash(user.password)
-    new_user = User(username=user.username, password_hash=hashed_password, role=user.role)
-    
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    return new_user
-
-@app.put("/api/users/{user_id}")
-async def update_user(user_id: int, user: UserCreate, current_user: User = Depends(get_admin_user), db: Session = Depends(get_db)):
-    """Update existing user details. Restricted to Admin."""
-    db_user = db.query(User).filter(User.id == user_id).first()
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
-        
-    db_user.username = user.username
-    db_user.role = user.role
-    
-    # Update password only if provided
-    if user.password:
-        db_user.password_hash = get_password_hash(user.password)
-        
-    db.commit()
-    db.refresh(db_user)
-    return db_user
-
-@app.delete("/api/users/{user_id}")
-async def delete_user(user_id: int, current_user: User = Depends(get_admin_user), db: Session = Depends(get_db)):
-    """Delete a user. Restricted to Admin."""
-    db_user = db.query(User).filter(User.id == user_id).first()
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
-        
-    db.delete(db_user)
-    db.commit()
-    return {"ok": True}
-
-@app.get("/users/me")
-async def read_users_me(current_user: User = Depends(get_current_active_user)):
-    """
-    Return the profile of the currently logged-in user.
-    Used by the frontend (sidebar) to display 'Welcome, [Username]'.
-    """
-    return current_user
-
-# -----------------------------------------------------------------------------
-# System & Infrastructure Endpoints
-# -----------------------------------------------------------------------------
-
-@app.get("/health")
-async def health_check():
-    """Simple health check to verify API and Env vars are loaded"""
-    return {"status": "ok", "env_check": "GROQ_API_KEY" in os.environ}
-
-# -----------------------------------------------------------------------------
-# Frontend Page Serving
-# -----------------------------------------------------------------------------
-
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi import Request
 
 # Mount static files (CSS, JS, Images) to /static
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 
-# Setup template engine for serving HTML files
-templates = Jinja2Templates(directory="frontend/templates")
+# -----------------------------------------------------------------------------
+# Route Registration
+# -----------------------------------------------------------------------------
 
-@app.get("/", response_class=HTMLResponse)
-async def root():
-    """Redirect root access to login page"""
-    return RedirectResponse(url="/login")
+# Authentication routes
+app.include_router(auth_router)
 
-@app.get("/login", response_class=HTMLResponse)
-async def login_page(request: Request):
-    """Serve the Login Page"""
-    return templates.TemplateResponse("login.html", {"request": request})
+# Chat & AI routes (prefix: /chat)
+app.include_router(chat_router)
 
-# Global index for simulating live data loop (keeps track of ticker position)
-CURRENT_DATA_INDEX = 0
+# User management routes (prefix: /api/users)
+app.include_router(users_router)
 
-@app.get("/api/manager/live-data")
-async def live_data(current_user: User = Depends(get_current_active_user)):
-    """
-    Simulates a live data feed for the scrolling ticker.
-    Uses TickerService to fetch and rotate data from swf table.
-    """
-    data = ticker_service.get_batch()
-    return {"companies": data}
+# Current user endpoint (prefix: /users)
+app.include_router(me_router)
 
-@app.get("/manager", response_class=HTMLResponse)
-async def manager_dashboard(request: Request):
-    """Serve Manager Dashboard HTML"""
-    return templates.TemplateResponse("manager_dashboard.html", {
-        "request": request, 
-        "active_page": "dashboard"
-    })
+# Database management routes (prefix: /api/database)
+app.include_router(database_router)
 
-@app.get("/admin", response_class=HTMLResponse)
-async def admin_dashboard(request: Request):
-    """Serve Admin Dashboard HTML"""
-    return templates.TemplateResponse("admin_dashboard.html", {
-        "request": request,
-        "active_page": "admin"
-    })
+# Dashboard configuration routes (prefix: /api)
+app.include_router(config_router)
 
-@app.get("/manager/analytics", response_class=HTMLResponse)
-async def manager_analytics(request: Request):
-    """Serve Manager Analytics/Chat HTML"""
-    return templates.TemplateResponse("manager_analytics.html", {
-        "request": request,
-        "active_page": "analytics"
-    })
+# Analytics routes (prefix: /api/dashboard)
+app.include_router(analytics_router)
+
+# Frontend page routes (no prefix)
+app.include_router(pages_router)
+
+
+# -----------------------------------------------------------------------------
+# Legacy Exports for Backward Compatibility
+# -----------------------------------------------------------------------------
+
+# These are needed by chat.py for query tracking
+# In a future refactor, these could be moved to a shared state module
+from api.routes.chat import set_query_progress, clear_query_progress, active_queries, query_progress
+
 
 # -----------------------------------------------------------------------------
 # Main Execution
@@ -497,4 +115,3 @@ async def manager_analytics(request: Request):
 if __name__ == "__main__":
     # Start the server with hot-reload enabled for development
     uvicorn.run("api.main:app", host="127.0.0.1", port=8000, reload=True)
-# Forced reload for ensuring updates

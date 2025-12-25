@@ -3,10 +3,9 @@ import sqlite3
 import pandas as pd
 import glob
 import time
+from backend.utils.paths import DB_PATH, BASE_DIR
 
 # --- Config ---
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB_PATH = os.path.join(BASE_DIR, "data", "db", "financial_data.db")
 RAW_DATA_DIR = os.path.join(BASE_DIR, "data", "raw_data")
 
 # Define Data Types for better memory usage and correct mapping

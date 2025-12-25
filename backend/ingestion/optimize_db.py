@@ -1,8 +1,6 @@
 import sqlite3
 import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DB_PATH = os.path.join(BASE_DIR, "data", "db", "financial_data.db")
+from backend.utils.paths import DB_PATH
 
 def optimize_db():
     print(f"Connecting to {DB_PATH}...")

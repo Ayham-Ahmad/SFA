@@ -1,24 +1,17 @@
 from backend.llm import run_chain_of_tables
+from backend.utils.llm_client import get_model
 import re
 from backend.sfa_logger import log_system_debug
 
-WORKER_MODEL = "qwen/qwen3-32b"
+# Get model from centralized configuration
+WORKER_MODEL = get_model("worker")
 
-# Global interaction ID for current session (set by routing.py)
-_current_interaction_id = None
-
-def set_interaction_id(interaction_id: str):
-    """Set the current interaction ID for logging purposes."""
-    global _current_interaction_id
-    _current_interaction_id = interaction_id
 
 def execute_step(step: str) -> str:
     """
     Executes a single step from the plan.
     Safe, robust, and whitespace-tolerant version.
     """
-    global _current_interaction_id
-    
     log_system_debug(f"Worker executing step: {step}")
     original_step = step.strip()
     

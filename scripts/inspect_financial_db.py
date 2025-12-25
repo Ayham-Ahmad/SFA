@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, inspect
 import os
+from backend.utils.paths import DB_PATH
 
-DB_PATH = "data/db/financial_data.db"
 if not os.path.exists(DB_PATH):
     print(f"Error: {DB_PATH} not found.")
     exit(1)

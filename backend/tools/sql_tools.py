@@ -86,13 +86,13 @@ def get_table_schemas() -> str:
             if table_name == 'swf_financials':
                 # Dynamically get year range from data
                 try:
-                    cursor.execute("SELECT MIN(yr), MAX(yr) FROM swf_financials WHERE revenue IS NOT NULL")
+                    cursor.execute("SELECT MIN(year), MAX(year) FROM swf_financials WHERE revenue IS NOT NULL")
                     min_yr, max_yr = cursor.fetchone()
                     if min_yr and max_yr:
                         col_str += f"\n    * PRIMARY FINANCIAL TABLE: Data from {min_yr} to {max_yr}."
                     else:
                         col_str += "\n    * PRIMARY FINANCIAL TABLE: Financial P&L data."
-                except:
+                except Exception:
                     col_str += "\n    * PRIMARY FINANCIAL TABLE: Financial P&L data."
                 col_str += "\n    * Use for: Revenue, Net Income, Gross Profit, Operating Expenses, Margins."
                 

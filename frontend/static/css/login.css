@@ -1,5 +1,6 @@
+/* Login Page - Light Theme */
 body {
-    background-color: #f4f6f8;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,6 +14,13 @@ body {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #212529;
+}
+
+.login-card .form-control {
+    background-color: #fff;
+    border-color: #dee2e6;
+    color: #212529;
 }
 
 .btn-primary {
@@ -23,4 +31,30 @@ body {
 .btn-primary:hover {
     background-color: #007f50;
     border-color: #007f50;
+}
+
+/* Dark Mode for Login Page */
+[data-theme="dark"] body {
+    background: #18181b;
+    /* Soft dark gray */
+}
+
+[data-theme="dark"] .login-card {
+    background: #242424;
+    color: #e0e0e0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .login-card .form-control {
+    background-color: #2d2d2d;
+    border-color: #404040;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .login-card .form-label {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .login-card h2 {
+    color: #00d884 !important;
 }

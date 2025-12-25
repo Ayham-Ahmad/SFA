@@ -1,0 +1,247 @@
+/* ============================================================================
+   Settings Page Styles - Light Theme Only
+   ============================================================================ */
+
+.settings-card {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Database Type Selector */
+.db-type-selector {
+    flex-wrap: wrap;
+}
+
+.db-type-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 80px;
+}
+
+.db-type-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.db-type-btn span {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.db-type-btn:hover:not(.disabled) {
+    border-color: var(--main-text-color);
+    transform: translateY(-2px);
+}
+
+.db-type-btn.active {
+    border-color: var(--main-text-color);
+    background: var(--main-bg-color);
+    color: white;
+}
+
+.db-type-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.db-type-btn.disabled::after {
+    content: '🚫';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.6rem;
+}
+
+/* When edit mode is locked, make buttons look disabled but without the 🚫 */
+.db-type-btn.edit-locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.db-type-btn.edit-locked:hover {
+    transform: none;
+    border-color: var(--border-color);
+}
+
+/* Schema Preview */
+.schema-preview {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: var(--code-bg);
+    color: var(--text-color);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+.schema-tabs .btn-group {
+    flex-wrap: wrap;
+}
+
+.schema-tabs .btn {
+    font-size: 0.8rem;
+}
+
+/* Config Subsections */
+.config-subsection {
+    border: 1px solid var(--border-color);
+}
+
+.config-subsection h5 {
+    font-size: 1rem;
+    color: var(--main-text-color);
+}
+
+/* Expression Builder */
+.expression-builder {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.expression-palette {
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 8px;
+}
+
+.column-chip {
+    display: inline-block;
+    padding: 4px 8px;
+    background: var(--main-bg-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.column-chip:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.operator-btn {
+    font-weight: bold;
+    min-width: 36px;
+}
+
+/* Edit Mode Styles */
+.edit-mode-active #edit-mode-btn {
+    background: var(--main-bg-color);
+    color: white;
+    border-color: var(--main-bg-color);
+}
+
+.edit-mode-active #edit-mode-btn i::before {
+    content: "\f09c";
+    /* unlock icon */
+}
+
+/* Disabled form elements when edit mode is off */
+select:disabled,
+input:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    background-color: #f0f0f0 !important;
+}
+
+/* Buttons disabled state */
+button:disabled,
+.btn:disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+}
+
+/* Connect button disabled - keep it visible */
+#btn-connect:disabled {
+    background-color: #b8e6d4 !important;
+    border-color: #b8e6d4 !important;
+    color: #666 !important;
+}
+
+/* Test button disabled */
+#btn-test:disabled {
+    background-color: #f5f5f5 !important;
+    border-color: #ddd !important;
+    color: #999 !important;
+}
+
+/* Expression builder column chips when edit mode is off */
+body:not(.edit-mode-active) .column-chip {
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    filter: grayscale(50%);
+}
+
+/* Expression builder column chips when edit mode IS on - restore to normal */
+body.edit-mode-active .column-chip {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    filter: none !important;
+}
+
+/* Operator buttons when edit mode is off */
+body:not(.edit-mode-active) .operator-btn {
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+}
+
+/* Operator buttons when edit mode IS on */
+body.edit-mode-active .operator-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Clear expression button when edit mode is off */
+body:not(.edit-mode-active) .expression-builder button {
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+}
+
+/* Expression builder buttons when edit mode IS on */
+body.edit-mode-active .expression-builder button {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Save button disabled state */
+#btn-save-config:disabled {
+    opacity: 0.5 !important;
+    background-color: #ccc !important;
+    border-color: #ccc !important;
+}
+
+/* Modern Status Dot Indicators */
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 8px;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.status-dot.unconfigured {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+    box-shadow: 0 0 6px rgba(238, 90, 90, 0.5);
+}
+
+.status-dot.configured {
+    background: linear-gradient(135deg, #51cf66, #40c057);
+    box-shadow: 0 0 6px rgba(64, 192, 87, 0.5);
+}

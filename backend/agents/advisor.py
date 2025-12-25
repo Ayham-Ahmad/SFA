@@ -1,13 +1,8 @@
-"""
-Advisor Agent
-=============
-Generates financial recommendations based on data context and advisory rules.
-This agent is called after data retrieval to provide actionable insights.
-"""
 from backend.utils.llm_client import groq_client, get_model
 from backend.utils.paths import DB_PATH
 from backend.sfa_logger import log_system_debug, log_system_error
 from backend.advisory.rules import ADVISORY_RULES, PROFITABILITY_RULES, GROWTH_RULES, VARIANCE_RULES
+from backend.schema_utils import get_data_year_range
 import sqlite3
 
 MODEL = get_model("default")
@@ -56,8 +51,9 @@ def generate_advisory(question: str, data_context: str = None, interaction_id: s
     Returns:
         Advisory recommendation text
     """
-    # 1. Get latest metrics
+    # 1. Get latest metrics and year range
     metrics = get_latest_profitability_metrics()
+    min_year, max_year = get_data_year_range()
     
     if metrics:
         metrics_summary = (
@@ -83,7 +79,7 @@ You provide cautious, high-level recommendations based on long-term financial si
 
 CONTEXT:
 - Data represents a market-level virtual entity
-- Quarterly fundamentals (2012–2025)
+- Quarterly fundamentals ({min_year}–{max_year})
 - Suitable for trends, not precise forecasting
 
 RULES:

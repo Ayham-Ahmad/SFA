@@ -13,8 +13,8 @@ NO LLM-generated chart code. All chart rendering is done in frontend with hardco
 import json
 from typing import Dict, Any, Optional, List
 from backend.utils.llm_client import groq_client, get_model
-from backend.utils.paths import DB_PATH
 from backend.utils.formatters import parse_financial_value, is_percentage_column
+from backend.utils.table_parser import parse_markdown_table, extract_labels_and_values
 from backend.sfa_logger import log_system_debug, log_system_error
 
 # Fast model for chart type selection
@@ -236,7 +236,7 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
                 # If already in decimal form (0.35), convert to percentage (35)
                 if -1 <= val <= 1 and val != 0:
                     val = val * 100
-            except:
+            except (ValueError, AttributeError):
                 val = 0.0
         else:
             val = parse_financial_value(raw_val)

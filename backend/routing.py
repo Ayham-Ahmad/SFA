@@ -4,7 +4,7 @@ RAMAS Pipeline Router
 Orchestrates the RAMAS (Reasoning and Multi-Agent System) pipeline.
 """
 from backend.agents.planner import plan_task
-from backend.agents.worker import execute_step, set_interaction_id as set_worker_interaction_id
+from backend.agents.worker import execute_step
 from backend.agents.auditor import audit_and_synthesize
 from backend.utils.llm_client import groq_client, get_model
 import traceback
@@ -61,12 +61,11 @@ def run_graph_pipeline(question: str, query_id: str = None) -> dict:
     try:
         from api.main import set_query_progress
         has_progress = True
-    except:
+    except ImportError:
         has_progress = False
         def set_query_progress(qid, agent, step): pass
     
     interaction_id = str(uuid.uuid4())
-    set_worker_interaction_id(interaction_id)
     
     log_system_info(f"--- Starting GRAPH Pipeline for: {question} ---")
     
@@ -168,7 +167,7 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
     try:
         from api.main import set_query_progress
         has_progress = True
-    except:
+    except ImportError:
         has_progress = False
         def set_query_progress(qid, agent, step): pass
 
@@ -188,7 +187,7 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
             parts = question.split("User Query:")
             if len(parts) > 1:
                 log_input_query = parts[-1].strip()
-        except:
+        except Exception:
             pass
 
     input_for_classification = question 
@@ -303,9 +302,7 @@ User: "{input_for_classification}"
         # Generate a unique ID for this interaction flow
         interaction_id = str(uuid.uuid4())
         
-        # Set interaction ID for worker's SQL logging
-        set_worker_interaction_id(interaction_id)
-        
+
         # Log User Query (Cleaned)
         log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
         

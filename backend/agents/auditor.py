@@ -5,6 +5,7 @@ Synthesizes final answers from gathered context.
 """
 from backend.utils.llm_client import groq_client, get_model
 from backend.sfa_logger import log_system_debug, log_system_error, log_system_info, log_agent_interaction
+from backend.prompts import GRAPH_SELECTION_LOGIC
 import traceback
 
 MODEL = get_model("auditor")
@@ -57,16 +58,6 @@ CHART GUIDELINES:
 OUTPUT FORMAT:
 Graph generated.
 graph_data||{{PLOTLY_JSON}}||
-"""
-
-GRAPH_SELECTION_LOGIC = """
-Determine the best chart type based on intent:
-- Time-based → Line
-- Comparison → Bar
-- Composition → Pie
-- Single KPI → Card
-
-Default → Line
 """
 
 

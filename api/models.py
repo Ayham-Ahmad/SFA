@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey, Text, Float
+from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey, Text, Float, Boolean
 from sqlalchemy.orm import relationship
 from .database import Base
 import enum
@@ -7,6 +7,16 @@ from datetime import datetime, timezone
 class UserRole(str, enum.Enum):
     ADMIN = "admin"
     MANAGER = "manager"
+
+class DatabaseType(str, enum.Enum):
+    """Supported external database types for multi-tenant connections."""
+    NONE = "none"
+    SQLITE = "sqlite"
+    CSV = "csv"
+    POSTGRESQL = "postgresql"
+    MYSQL = "mysql"
+    MONGODB = "mongodb"
+    SQLSERVER = "sqlserver"
 
 class User(Base):
     __tablename__ = "users"
@@ -17,6 +27,11 @@ class User(Base):
     role = Column(Enum(UserRole), default=UserRole.MANAGER)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     last_login = Column(DateTime, nullable=True)
+    
+    # Database connection settings (for multi-tenant SaaS)
+    db_type = Column(Enum(DatabaseType), default=DatabaseType.NONE)
+    db_connection_encrypted = Column(Text, nullable=True)  # Encrypted connection string/config
+    db_is_connected = Column(Boolean, default=False)
 class InteractionType(str, enum.Enum):
     QUERY = "query"
     GRAPH_BUTTON = "graph_button"

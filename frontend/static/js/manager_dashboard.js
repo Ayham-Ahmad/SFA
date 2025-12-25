@@ -1,109 +1,166 @@
-let currentDataQueue = [];
-let queueIndex = 0;
-let rotationInterval;
+/**
+ * manager_dashboard.js - Dashboard with traffic light and company metrics
+ */
+
+let isDbConnected = false;
+let pollTimer = null;
+
+// ============================================================================
+// Initialization
+// ============================================================================
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initial check
+    const connected = await checkDatabaseConnection();
+    if (connected) {
+        startPolling();
+    } else {
+        showDatabaseRequired();
+    }
+});
+
+// ============================================================================
+// Database Connection
+// ============================================================================
+
+async function checkDatabaseConnection() {
+    try {
+        const data = await API.get('/api/database/status');
+        isDbConnected = data.connected === true;
+
+        const statusEl = document.getElementById('connection-status');
+        if (statusEl && isDbConnected) {
+            statusEl.innerHTML = '<i class="fas fa-circle me-1"></i>LIVE';
+            statusEl.className = 'text-success small fw-bold';
+        }
+        return isDbConnected;
+    } catch (error) {
+        console.error('Failed to check DB connection:', error);
+        return false;
+    }
+}
+
+function showDatabaseRequired() {
+    const container = document.getElementById('live-feed-content');
+    const statusEl = document.getElementById('connection-status');
+
+    if (statusEl) {
+        statusEl.innerHTML = '<i class="fas fa-database me-1"></i>NOT CONNECTED';
+        statusEl.className = 'text-warning small fw-bold';
+    }
+
+    if (container) {
+        container.innerHTML = `
+            <div class="py-5">
+                <i class="fas fa-database fa-4x text-muted mb-4"></i>
+                <h4 class="text-muted">No Database Connected</h4>
+                <p class="text-secondary mb-4">Connect your database to view financial data.</p>
+                <a href="/settings" class="btn btn-success btn-lg">
+                    <i class="fas fa-plug me-2"></i>Connect Database
+                </a>
+            </div>
+        `;
+    }
+}
+
+// ============================================================================
+// Live Data Polling
+// ============================================================================
+
+async function startPolling() {
+    await fetchLiveData();
+}
 
 async function fetchLiveData() {
-    const token = localStorage.getItem('token');
-    if (!token) {
+    if (!Auth.getToken()) {
         window.location.href = '/login';
         return;
     }
 
     try {
-        const response = await fetch('/api/manager/live-data', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const data = await API.get('/api/manager/live-data');
 
-        if (response.status === 401) {
-            localStorage.removeItem('token');
-            window.location.href = '/login';
-            return;
-        }
-
-        if (response.ok) {
-            const data = await response.json();
-            if (data.error) {
-                showError(data.error);
-            } else {
-                currentDataQueue = data.companies;
-
-                if (currentDataQueue.length === 0) {
-                    const container = document.getElementById('live-feed-content');
-                    if (!rotationInterval) {
-                        container.innerHTML = `<div class="py-5 text-muted">Waiting for feed...</div>`;
-                    }
-                } else if (!rotationInterval) {
-                    queueIndex = 0;
-                    displayCompany(currentDataQueue[0]);
-                    startRotation();
-                }
-            }
+        if (data.error) {
+            showError(data.error);
+        } else if (data.companies && data.companies.length > 0) {
+            // Show the last item
+            const lastItem = data.companies[data.companies.length - 1];
+            displayCompany(lastItem, data.subtitle_column);
         } else {
-            showError("Connection failed");
+            const container = document.getElementById('live-feed-content');
+            container.innerHTML = `<div class="py-5 text-muted">Waiting for data...</div>`;
         }
+
+        // Schedule next poll based on config
+        const refreshInterval = (data.refresh_interval || 10) * 1000;
+        if (pollTimer) clearTimeout(pollTimer);
+        pollTimer = setTimeout(fetchLiveData, refreshInterval);
+
     } catch (error) {
-        console.error('Error:', error);
-        showError("Network error");
+        // If 401, API.js redirects. Else show error
+        showError("Network error or server offline");
+        // Retry slower on error
+        pollTimer = setTimeout(fetchLiveData, 60000);
     }
 }
 
-function startRotation() {
-    if (rotationInterval) clearInterval(rotationInterval);
-
-    rotationInterval = setInterval(() => {
-        if (currentDataQueue.length > 0) {
-            queueIndex = (queueIndex + 1) % currentDataQueue.length;
-            displayCompany(currentDataQueue[queueIndex]);
-        }
-    }, 10000);
-}
-
-function displayCompany(company) {
+function displayCompany(company, subtitleLabel = null) {
     const container = document.getElementById('live-feed-content');
     if (!container) return;
 
-    // Determine profit class
     const isProfit = company.is_profit;
-    const statusColor = isProfit ? 'text-success' : 'text-danger';
+    let statusColor = 'text-warning'; // Default neutral/error
+    if (isProfit === true) statusColor = 'text-success';
+    if (isProfit === false) statusColor = 'text-danger';
 
-    // Format period display
-    let periodStr = company.period || '';
+    // Determine subtitle text
+    let subtitleText = "PERIOD:";
+    let subtitleValue = company.period || '';
 
-    // Render HTML
+    if (company.subtitle_value) {
+        subtitleValue = company.subtitle_value;
+        if (subtitleLabel) {
+            const parts = subtitleLabel.split('.');
+            subtitleText = (parts.length > 1 ? parts[1] : parts[0]).toUpperCase() + ":";
+        }
+    }
+
     const html = `
         <div>
             <div style="min-height: 120px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
                 <h1 class="display-4 fw-bold mb-1 text-truncate" style="max-width: 90%;" title="${company.name}">${company.name}</h1>
-                <p class="text-secondary fs-5 mb-0">PERIOD: <span class="fw-bold">${periodStr}</span></p>
+                <p class="text-secondary fs-5 mb-0 text-truncate" style="max-width: 90%;" title="${subtitleText} ${subtitleValue}">
+                    ${subtitleText} <span class="fw-bold">${subtitleValue}</span>
+                </p>
             </div>
 
             <div class="my-4 d-flex justify-content-center">
                 <div class="traffic-light-container d-flex flex-row justify-content-center align-items-center gap-4 bg-dark p-4 rounded-pill shadow-lg" 
                      style="border: 1px solid #334155;">
-                    <div class="light red ${!isProfit ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
-                    <div class="light yellow" style="width: 80px; height: 80px;"></div>
-                    <div class="light green ${isProfit ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
+                    <div class="light red ${isProfit === false ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
+                    <div class="light yellow ${isProfit === null ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
+                    <div class="light green ${isProfit === true ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
                 </div>
             </div>
 
             <div class="row justify-content-center mt-5">
                 <div class="col-md-3 border-end border-secondary">
-                    <div class="text-info small text-uppercase fw-bold mb-2">Total Revenue</div>
-                    <div class="h2 fw-bold">${company.revenue}</div>
+                    <div class="text-info small text-uppercase fw-bold mb-2">${company.metric1_label || 'Metric 1'}</div>
+                    <div class="h2 fw-bold">${company.metric1}</div>
                 </div>
                 <div class="col-md-3 border-end border-secondary">
-                    <div class="text-info small text-uppercase fw-bold mb-2">Net Income</div>
-                    <div class="h2 fw-bold ${statusColor}">${company.net_income}</div>
+                    <div class="text-info small text-uppercase fw-bold mb-2">${company.metric2_label || 'Metric 2'}</div>
+                    <div class="h2 fw-bold ${statusColor}">${company.metric2}</div>
                 </div>
                 <div class="col-md-3">
-                    <div class="text-info small text-uppercase fw-bold mb-2">Profit Margin</div>
-                    <div class="h2 fw-bold ${parseFloat(company.margin) >= 0 ? 'text-success' : 'text-danger'}">
-                        ${company.margin}
+                    <div class="text-info small text-uppercase fw-bold mb-2">${company.metric3_label || 'Metric 3'}</div>
+                    <div class="h2 fw-bold ${statusColor}">
+                        ${company.metric3}
                     </div>
                 </div>
             </div>
             
-             <div class="mt-4 badge bg-secondary bg-opacity-25 px-3 py-2 text-body">
+            <div class="mt-4 badge bg-secondary bg-opacity-25 px-3 py-2 text-body">
                 STATUS: <span class="${statusColor}">${company.status}</span>
             </div>
         </div>
@@ -118,8 +175,5 @@ function showError(msg) {
         el.innerHTML = '<i class="fas fa-exclamation-triangle me-1"></i>ERROR';
         el.className = 'text-danger small fw-bold';
     }
+    console.error('Dashboard error:', msg);
 }
-
-// Poll for new data every 30 seconds
-fetchLiveData();
-setInterval(fetchLiveData, 30000);

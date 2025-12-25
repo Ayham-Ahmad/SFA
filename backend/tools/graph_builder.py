@@ -8,6 +8,7 @@ import json
 from typing import Optional, Dict, List, Any
 from backend.utils.llm_client import groq_client, get_model
 from backend.utils.formatters import parse_financial_value, is_percentage_column
+from backend.utils.table_parser import parse_markdown_table
 
 # Fast model for chart type detection
 FAST_MODEL = get_model("fast")
@@ -69,47 +70,10 @@ def extract_table_data(context: str) -> Optional[Dict[str, List[Any]]]:
     """
     Extract tabular data from markdown table in context.
     Returns dict with column names as keys and lists of values.
+    
+    Uses centralized table_parser for consistency.
     """
-    import re
-    
-    lines = context.split('\n')
-    table_lines = []
-    in_table = False
-    
-    for line in lines:
-        line = line.strip()
-        if line.startswith('|') and '|' in line[1:]:
-            in_table = True
-            table_lines.append(line)
-        elif in_table and not line.startswith('|'):
-            if len(table_lines) >= 2:
-                break
-            else:
-                table_lines = []
-                in_table = False
-    
-    if len(table_lines) < 2:
-        return None
-    
-    # Parse header
-    header_line = table_lines[0]
-    headers = [h.strip() for h in header_line.split('|') if h.strip()]
-    
-    # Skip separator line
-    data_start = 1
-    if len(table_lines) > 1 and re.match(r'^\|[\s\-:]+\|', table_lines[1]):
-        data_start = 2
-    
-    # Parse data rows
-    result = {h: [] for h in headers}
-    
-    for line in table_lines[data_start:]:
-        cells = [c.strip() for c in line.split('|') if c.strip()]
-        if len(cells) == len(headers):
-            for i, header in enumerate(headers):
-                result[header].append(cells[i])
-    
-    return result if any(result.values()) else None
+    return parse_markdown_table(context)
 
 
 def parse_value(value_str: str) -> float:
@@ -343,7 +307,7 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
                 # Convert decimal to percentage if needed
                 if -1 <= val <= 1 and val != 0:
                     val = val * 100
-            except:
+            except ValueError:
                 val = 0.0
         else:
             val = parse_value(str(v))

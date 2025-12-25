@@ -1,0 +1,394 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - SFA{% endblock %}
+{% block header %}Settings{% endblock %}
+
+{% block content %}
+<div class="row my-4">
+    <div class="col-lg-10 mx-auto">
+
+        <!-- Theme Settings Section (Visible to ALL users including Admin) -->
+        <div id="theme-section">
+            <div class="card shadow-sm mb-4 settings-card">
+                <div class="card-body p-4">
+                    <h4 class="mb-4"><i class="fas fa-palette me-2 primary-text"></i>Theme Settings</h4>
+
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="theme-btn" data-theme="light" onclick="setTheme('light')">
+                            <i class="fas fa-sun"></i>
+                            <span>Light</span>
+                        </button>
+                        <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')">
+                            <i class="fas fa-moon"></i>
+                            <span>Dark</span>
+                        </button>
+                        <button class="theme-btn" data-theme="auto" onclick="setTheme('auto')">
+                            <i class="fas fa-adjust"></i>
+                            <span>Auto</span>
+                        </button>
+                    </div>
+                    <p class="text-muted small mt-3 mb-0">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Auto mode follows your system preference.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Database Section (Hidden for Admins) -->
+        <div id="database-section">
+            <div class="card shadow-sm mb-4 settings-card">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="mb-0"><i class="fas fa-database me-2 primary-text"></i>Database Connection</h4>
+                        <div class="d-flex align-items-center gap-2">
+                            <span id="connection-badge" class="badge bg-secondary">Not Connected</span>
+                            <button class="btn btn-sm btn-outline-warning" id="edit-mode-btn"
+                                onclick="toggleEditMode()">
+                                <i class="fas fa-lock me-1"></i>Edit Mode
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Database Type Selector (Icons) -->
+                    <div class="mb-4">
+                        <label class="form-label second-text">Database Type</label>
+                        <div class="db-type-selector d-flex gap-2">
+                            <button class="db-type-btn" data-type="sqlite" title="SQLite">
+                                <i class="fas fa-file-alt"></i>
+                                <span>SQLite</span>
+                            </button>
+                            <button class="db-type-btn" data-type="csv" title="CSV File">
+                                <i class="fas fa-file-csv"></i>
+                                <span>CSV</span>
+                            </button>
+                            <button class="db-type-btn disabled" data-type="postgresql" title="PostgreSQL (Coming Soon)"
+                                disabled>
+                                <i class="fas fa-elephant"></i>
+                                <span>PostgreSQL</span>
+                            </button>
+                            <button class="db-type-btn disabled" data-type="mysql" title="MySQL (Coming Soon)" disabled>
+                                <i class="fas fa-dolphin"></i>
+                                <span>MySQL</span>
+                            </button>
+                            <button class="db-type-btn disabled" data-type="mongodb" title="MongoDB (Coming Soon)"
+                                disabled>
+                                <i class="fas fa-leaf"></i>
+                                <span>MongoDB</span>
+                            </button>
+                            <button class="db-type-btn disabled" data-type="sqlserver" title="SQL Server (Coming Soon)"
+                                disabled>
+                                <i class="fas fa-server"></i>
+                                <span>MSSQL</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Connection Input -->
+                    <div class="mb-4">
+                        <label class="form-label second-text">Database Path</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="db-path"
+                                placeholder="e.g., C:\data\financial.db" disabled>
+                            <button class="btn btn-outline-info" id="btn-test" onclick="testConnection()" disabled>
+                                <i class="fas fa-vial me-1"></i>Test
+                            </button>
+                            <button class="btn btn-success" id="btn-connect" onclick="connectDatabase()" disabled>
+                                <i class="fas fa-link me-1"></i>Connect
+                            </button>
+                        </div>
+                        <div id="connection-result" class="mt-2"></div>
+                    </div>
+
+                    <!-- Disconnect Button (shown when connected) -->
+                    <button id="btn-disconnect" class="btn btn-outline-danger d-none" onclick="disconnectDatabase()">
+                        <i class="fas fa-unlink me-2"></i>Disconnect
+                    </button>
+                </div>
+            </div>
+
+            <!-- Schema Preview (shown when connected) -->
+            <div id="schema-section" class="card shadow-sm mb-4 settings-card d-none">
+                <div class="card-body p-4">
+                    <h4 class="mb-3"><i class="fas fa-table me-2 primary-text"></i>Database Schema</h4>
+                    <div class="schema-tabs mb-3">
+                        <div class="btn-group" role="group" id="table-tabs">
+                            <!-- Table buttons populated by JS -->
+                        </div>
+                    </div>
+                    <div id="schema-content" class="schema-preview p-3 rounded">
+                        <!-- Column list populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Configuration (shown when connected) -->
+            <div id="dashboard-config-section" class="card shadow-sm mb-4 settings-card d-none">
+                <div class="card-body p-4">
+                    <h4 class="mb-4"><i class="fas fa-tachometer-alt me-2 primary-text"></i>Dashboard Configuration</h4>
+
+                    <!-- Dashboard General Config -->
+                    <div class="config-subsection mb-4 p-3 rounded" style="background: var(--code-bg);">
+                        <h5 class="mb-3"><i class="fas fa-sliders-h me-2"></i>Dashboard Settings</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small">Subtitle Column (e.g. Period)</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="form-select" id="ticker-subtitle-col" disabled>
+                                        <option value="">Select column...</option>
+                                    </select>
+                                    <select class="form-select sticky-format" id="ticker-subtitle-format" disabled
+                                        style="max-width: 100px;" title="Format">
+                                        <option value="text">Text</option>
+                                        <option value="number">Number</option>
+                                        <option value="currency">Currency</option>
+                                        <option value="percentage">Percentage</option>
+                                        <option value="date">Date</option>
+                                    </select>
+                                </div>
+                                <div class="form-text small">Shows under "Financial Overview" title.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small">Rotation Interval</label>
+                                <select class="form-select form-select-sm" id="refresh-interval" disabled>
+                                    <option value="5">5 seconds</option>
+                                    <option value="10">10 seconds</option>
+                                    <option value="20">20 seconds</option>
+                                    <option value="30">30 seconds</option>
+                                    <option value="60">60 seconds</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Traffic Light Config -->
+                    <div class="config-subsection mb-4 p-3 rounded" style="background: var(--code-bg);">
+                        <h5 class="mb-3"><i class="fas fa-traffic-light me-2"></i>Traffic Light Metrics <span
+                                id="traffic-light-status" class="status-dot"></span></h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label small">Metric 1 (Left)</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="form-select" id="metric1-col" disabled>
+                                        <option value="">Select column...</option>
+                                    </select>
+                                    <select class="form-select sticky-format" id="metric1-format" disabled
+                                        style="max-width: 90px;">
+                                        <option value="text">Text</option>
+                                        <option value="number">Number</option>
+                                        <option value="currency">Curr</option>
+                                        <option value="percentage">%</option>
+                                        <option value="date">Date</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small">Metric 2 (Center)</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="form-select" id="metric2-col" disabled>
+                                        <option value="">Select column...</option>
+                                    </select>
+                                    <select class="form-select sticky-format" id="metric2-format" disabled
+                                        style="max-width: 90px;">
+                                        <option value="text">Text</option>
+                                        <option value="number">Number</option>
+                                        <option value="currency">Curr</option>
+                                        <option value="percentage">%</option>
+                                        <option value="date">Date</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small">Metric 3 (Right)</label>
+                                <div class="input-group input-group-sm">
+                                    <select class="form-select" id="metric3-col" disabled>
+                                        <option value="">Select column...</option>
+                                    </select>
+                                    <select class="form-select sticky-format" id="metric3-format" disabled
+                                        style="max-width: 90px;">
+                                        <option value="text">Text</option>
+                                        <option value="number">Number</option>
+                                        <option value="currency">Curr</option>
+                                        <option value="percentage">%</option>
+                                        <option value="date">Date</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expression Builder -->
+                        <div class="mt-4">
+                            <label class="form-label small">Traffic Light Expression (determines Green/Red
+                                state)</label>
+                            <div class="expression-builder">
+                                <div class="expression-palette mb-2">
+                                    <span class="expression-hint second-text small">Drag items to build
+                                        expression:</span>
+                                    <div class="d-flex flex-wrap gap-1 mt-1" id="expression-columns">
+                                        <!-- Column chips populated by JS -->
+                                    </div>
+                                    <div class="d-flex gap-1 mt-2">
+                                        <button class="btn btn-sm btn-outline-secondary operator-btn"
+                                            data-op="+">+</button>
+                                        <button class="btn btn-sm btn-outline-secondary operator-btn"
+                                            data-op="-">−</button>
+                                        <button class="btn btn-sm btn-outline-secondary operator-btn"
+                                            data-op="*">×</button>
+                                        <button class="btn btn-sm btn-outline-secondary operator-btn"
+                                            data-op="/">÷</button>
+                                        <button class="btn btn-sm btn-outline-secondary operator-btn"
+                                            data-op="(">(</button>
+                                        <button class="btn btn-sm btn-outline-secondary operator-btn"
+                                            data-op=")">)</button>
+                                        <button class="btn btn-sm btn-outline-danger ms-2" onclick="clearExpression()">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="expression-input"
+                                    placeholder="e.g., net_income / revenue * 100" disabled>
+                            </div>
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label small">Green Threshold (≥)</label>
+                                    <input type="number" class="form-control form-control-sm" id="green-threshold"
+                                        placeholder="e.g., 10" disabled>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small">Red Threshold (&lt;)</label>
+                                    <input type="number" class="form-control form-control-sm" id="red-threshold"
+                                        placeholder="e.g., 0" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Default Graph Configurations (Fixed Styling, Configurable Type) -->
+                    <div class="row g-4">
+                        <!-- Graph 1 -->
+                        <div class="col-md-6">
+                            <div class="config-subsection p-3 rounded" style="background: var(--code-bg);">
+                                <h5 class="mb-3"><i class="fas fa-chart-line me-2"></i>Graph 1 <span id="graph1-status"
+                                        class="status-dot"></span></h5>
+                                <p class="text-muted small mb-3">Default graph on Analytics page</p>
+                                <div class="mb-2">
+                                    <label class="form-label small">Chart Type</label>
+                                    <select class="form-select form-select-sm" id="graph1-type" disabled>
+                                        <option value="">Select chart type...</option>
+                                        <option value="line">Line Chart</option>
+                                        <option value="bar">Bar Chart</option>
+                                        <option value="scatter">Scatter Plot</option>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small">X-Axis Column</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="form-select" id="graph1-x" disabled>
+                                            <option value="">Select column...</option>
+                                        </select>
+                                        <select class="form-select sticky-format" id="graph1-x-format" disabled
+                                            style="max-width: 90px;">
+                                            <option value="text">Text</option>
+                                            <option value="number">Number</option>
+                                            <option value="currency">Curr</option>
+                                            <option value="percentage">%</option>
+                                            <option value="date">Date</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small">Y-Axis Column</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="form-select" id="graph1-y" disabled>
+                                            <option value="">Select column...</option>
+                                        </select>
+                                        <select class="form-select sticky-format" id="graph1-y-format" disabled
+                                            style="max-width: 90px;">
+                                            <option value="text">Text</option>
+                                            <option value="number">Number</option>
+                                            <option value="currency">Curr</option>
+                                            <option value="percentage">%</option>
+                                            <option value="date">Date</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="form-label small">Title</label>
+                                    <input type="text" class="form-control form-control-sm" id="graph1-title"
+                                        placeholder="e.g., Market Revenue Growth" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Graph 2 -->
+                        <div class="col-md-6">
+                            <div class="config-subsection p-3 rounded" style="background: var(--code-bg);">
+                                <h5 class="mb-3"><i class="fas fa-chart-bar me-2"></i>Graph 2 <span id="graph2-status"
+                                        class="status-dot"></span></h5>
+                                <p class="text-muted small mb-3">Default graph on Analytics page</p>
+                                <div class="mb-2">
+                                    <label class="form-label small">Chart Type</label>
+                                    <select class="form-select form-select-sm" id="graph2-type" disabled>
+                                        <option value="">Select chart type...</option>
+                                        <option value="line">Line Chart</option>
+                                        <option value="bar">Bar Chart</option>
+                                        <option value="scatter">Scatter Plot</option>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small">X-Axis Column</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="form-select" id="graph2-x" disabled>
+                                            <option value="">Select column...</option>
+                                        </select>
+                                        <select class="form-select sticky-format" id="graph2-x-format" disabled
+                                            style="max-width: 90px;">
+                                            <option value="text">Text</option>
+                                            <option value="number">Number</option>
+                                            <option value="currency">Curr</option>
+                                            <option value="percentage">%</option>
+                                            <option value="date">Date</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small">Y-Axis Column</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="form-select" id="graph2-y" disabled>
+                                            <option value="">Select column...</option>
+                                        </select>
+                                        <select class="form-select sticky-format" id="graph2-y-format" disabled
+                                            style="max-width: 90px;">
+                                            <option value="text">Text</option>
+                                            <option value="number">Number</option>
+                                            <option value="currency">Curr</option>
+                                            <option value="percentage">%</option>
+                                            <option value="date">Date</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="form-label small">Title</label>
+                                    <input type="text" class="form-control form-control-sm" id="graph2-title"
+                                        placeholder="e.g., Net Income Trend" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="mt-4 text-end">
+                        <button class="btn btn-primary" id="btn-save-config" onclick="saveConfiguration()" disabled>
+                            <i class="fas fa-save me-2"></i>Save Configuration
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" href="/static/css/settings.css">
+<script src="/static/js/settings.js?v=1"></script>
+{% endblock %}

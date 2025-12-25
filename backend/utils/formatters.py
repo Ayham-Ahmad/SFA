@@ -196,3 +196,62 @@ def is_percentage_column(column_name: str) -> bool:
             return True
     
     return False
+
+
+def format_number(val) -> str:
+    """
+    Format as standard number with thousands separator.
+    
+    Args:
+        val: Numeric value
+        
+    Returns:
+        Formatted string like "1,234" or "1,234.56"
+    """
+    try:
+        f = float(val)
+        if f.is_integer():
+            return f"{int(f):,}"
+        return f"{f:,.2f}"
+    except (ValueError, TypeError):
+        return str(val)
+
+
+def format_value(value, format_type: str = "text") -> str:
+    """
+    Format a value based on the specified type.
+    
+    This is the main dispatcher for dynamic formatting based on user-defined types.
+    
+    Supported types:
+    - text (default): Returns str(value)
+    - number: Returns formatted number with thousands separator
+    - currency: Returns formatted currency with B/M/K suffixes
+    - percentage: Returns formatted percentage
+    - date: Returns YYYY-MM-DD format
+    
+    Args:
+        value: The value to format
+        format_type: One of 'text', 'number', 'currency', 'percentage', 'date'
+        
+    Returns:
+        Formatted string
+    """
+    if value is None:
+        return "-"
+        
+    format_type = (format_type or "text").lower()
+    
+    try:
+        if format_type == "number":
+            return format_number(value)
+        elif format_type == "currency":
+            return format_large_number(value, prefix="$")
+        elif format_type == "percentage":
+            return format_percentage(value)
+        elif format_type == "date":
+            return format_date(value)
+        else:
+            return str(value)
+    except Exception:
+        return str(value)

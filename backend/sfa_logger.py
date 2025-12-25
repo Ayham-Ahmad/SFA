@@ -65,14 +65,14 @@ def log_agent_interaction(interaction_id: str, agent_name: str, task: str, input
         try:
              # Try to see if it's JSON first
             input_data = json.loads(input_data)
-        except:
+        except json.JSONDecodeError:
             input_data = input_data.split("\n")
             
     if isinstance(output_data, str) and "\n" in output_data:
         try:
             # Try to see if it's JSON first
             output_data = json.loads(output_data)
-        except:
+        except json.JSONDecodeError:
              output_data = output_data.split("\n")
 
     step_entry = {

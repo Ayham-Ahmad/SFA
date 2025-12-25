@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, text
 import pandas as pd
+from backend.utils.paths import DB_PATH
 
-DB_PATH = "data/db/financial_data.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
 
 def inspect_table(table_name):
