@@ -18590,3 +18590,1185 @@ Data not available f...
 [2025-12-25 19:14:24,999] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
 [2025-12-25 19:14:25,000] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0138s', 'client': '127.0.0.1'}
 [2025-12-25 19:14:25,118] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0683s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:22,514] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:22,590] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:22,741] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.1287s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:22,745] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.1280s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:25,530] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0713s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:25,563] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0143s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:25,580] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:25,585] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:25,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:25,958] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:23:25,959] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:25,977] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0081s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,334] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,348] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,362] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 200, 'process_time': '0.0147s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,370] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 304, 'process_time': '0.0154s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,375] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0189s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,378] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 304, 'process_time': '0.0216s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,383] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 304, 'process_time': '0.0249s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,387] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 200, 'process_time': '0.0281s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:27,511] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:23:27,526] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0189s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:28,586] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0137s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:28,601] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:28,607] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:28,717] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:23:28,718] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:28,734] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0077s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:28,777] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:34,823] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:34,845] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:34,850] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0113s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:34,855] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 304, 'process_time': '0.0112s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:34,861] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0166s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:34,928] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:23:34,930] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:35,797] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:39,911] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0531s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:39,938] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:39,955] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:39,961] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0083s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:40,035] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:42,631] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:42,647] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:42,651] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:43,920] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:43,938] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:43,943] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:44,005] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:44,624] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:44,638] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 304, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:44,720] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:45,541] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:45,560] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0037s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:45,566] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0107s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:45,647] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0075s', 'client': '127.0.0.1'}
+[2025-12-25 22:23:46,083] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:31:50,658] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:31:50,720] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-25 22:31:50,847] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.1081s', 'client': '127.0.0.1'}
+[2025-12-25 22:31:50,852] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 404, 'process_time': '0.1071s', 'client': '127.0.0.1'}
+[2025-12-25 22:31:50,855] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 404, 'process_time': '0.1101s', 'client': '127.0.0.1'}
+[2025-12-25 22:31:50,861] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.1080s', 'client': '127.0.0.1'}
+[2025-12-25 22:31:50,864] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 304, 'process_time': '0.0175s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:03,591] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:03,614] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0091s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:03,619] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.0102s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:03,623] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0137s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:03,627] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0171s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:03,633] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0190s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:05,416] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0650s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:05,452] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0152s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:05,469] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 304, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:05,474] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:05,854] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:34:05,856] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0092s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:05,871] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:10,896] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,325] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,352] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0101s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,361] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 200, 'process_time': '0.0149s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,368] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 200, 'process_time': '0.0210s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,375] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 200, 'process_time': '0.0235s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,380] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0220s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,384] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 200, 'process_time': '0.0339s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,391] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0297s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:13,505] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:34:13,506] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:14,568] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0210s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:14,610] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:14,719] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:34:14,734] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0207s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:14,783] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0083s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:14,833] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:17,867] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:26,336] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0464s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:26,362] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:26,380] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:26,386] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:26,455] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:28,193] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:28,212] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 304, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:28,218] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 304, 'process_time': '0.0104s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:28,222] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 304, 'process_time': '0.0138s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:28,227] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 304, 'process_time': '0.0156s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:28,316] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:28,845] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:30,286] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:34:30,378] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:10,657] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:10,675] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:10,683] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0108s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:10,689] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0161s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:10,694] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0128s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,049] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,490] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,506] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,640] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,773] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,787] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,858] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,955] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:11,969] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:12,039] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:12,127] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:36:12,213] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:15,462] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0092s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:15,481] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:15,486] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:15,490] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0126s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:15,566] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:15,962] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:16,044] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:16,105] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:16,185] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:17,171] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:23,299] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:23,316] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:23,388] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:43,126] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0012s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:43,226] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:43,678] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.1672s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:43,686] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.1684s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:43,694] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.1722s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:43,699] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.1754s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:43,708] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0230s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:44,622] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:50,309] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0882s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:50,354] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0158s', 'client': '127.0.0.1'}
+[2025-12-25 22:37:50,426] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0037s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:16,840] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:38:16,842] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0115s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:16,912] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0095s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:21,931] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,468] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,541] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 200, 'process_time': '0.0099s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,548] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 200, 'process_time': '0.0159s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,556] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 200, 'process_time': '0.0189s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,563] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 200, 'process_time': '0.0239s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,571] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 200, 'process_time': '0.0227s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,577] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0234s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,595] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0113s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,601] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0140s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:22,704] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:38:22,705] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:24,227] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0140s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:24,300] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:24,425] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:38:24,426] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:24,492] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:24,557] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:47,756] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0015s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:47,852] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:52,870] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0630s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:52,903] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:53,050] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0079s', 'client': '127.0.0.1'}
+[2025-12-25 22:38:54,589] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:33,999] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0014s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:34,063] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:34,078] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:34,084] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0108s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:34,089] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0150s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:34,369] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:34,712] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:34,959] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:46,815] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:46,889] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:47,622] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:58,807] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0703s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:58,847] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0180s', 'client': '127.0.0.1'}
+[2025-12-25 22:40:59,102] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:00,709] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0132s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:50,285] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:50,479] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 304, 'process_time': '0.1330s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:50,485] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.1384s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:50,490] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.1386s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:50,495] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.1422s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:50,717] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:57,038] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:57,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:57,182] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:41:57,727] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:07,933] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0396s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:07,955] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:08,015] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:08,101] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:09,580] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:13,832] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:13,881] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:13,983] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0076s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:16,203] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:17,507] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:17,561] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-25 22:42:17,650] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:17,673] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0012s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:17,730] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:17,744] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:17,750] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0123s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:17,756] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0172s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:17,883] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:18,011] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0015s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:18,131] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:18,181] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:18,304] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:19,488] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:22,315] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:23,919] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:24,071] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:24,206] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:24,423] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:34,867] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:34,912] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0096s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:35,498] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.1607s', 'client': '127.0.0.1'}
+[2025-12-25 22:43:35,842] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:44:58,216] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:44:58,274] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-25 22:44:58,286] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:44:58,290] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:07,766] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 401, 'process_time': '0.0513s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:11,466] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0756s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:11,506] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0176s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:11,567] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:11,747] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:13,624] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0127s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:16,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:16,163] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:19,111] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0454s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:19,137] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:19,188] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:19,201] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:19,304] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:45:19,307] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0098s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:19,385] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0127s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:20,712] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:25,219] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0456s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:25,241] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:25,297] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:25,386] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:26,976] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:28,979] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:29,039] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-25 22:45:29,142] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:24,638] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:24,693] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:24,699] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0120s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:24,706] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0160s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:24,858] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:25,358] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:25,466] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:25,533] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:25,644] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:27,578] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:27,623] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:27,636] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:27,641] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0111s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:27,645] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0143s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:36,461] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:36,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:48,816] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:48,870] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:48,879] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:51,156] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:51,311] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:56,144] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:56,210] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:59,494] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0478s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:59,518] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:59,631] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:47:59,633] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-25 22:47:59,689] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:00,777] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:00,835] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:00,848] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 304, 'process_time': '0.0147s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:00,855] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 304, 'process_time': '0.0201s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:00,860] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 304, 'process_time': '0.0123s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:00,866] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 304, 'process_time': '0.0192s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:00,956] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:48:00,958] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:01,679] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:01,730] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:01,848] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:48:01,850] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:01,911] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0070s', 'client': '127.0.0.1'}
+[2025-12-25 22:48:01,957] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:50,414] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:50,467] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:50,475] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 200, 'process_time': '0.0132s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:50,485] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 200, 'process_time': '0.0129s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:50,492] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0200s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:50,496] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0227s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:50,500] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0254s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:56,747] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:49:56,749] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:56,776] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:56,818] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:49:57,032] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:00,893] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:00,956] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:00,969] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 304, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:00,976] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 304, 'process_time': '0.0117s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:00,983] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 304, 'process_time': '0.0147s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:00,988] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 304, 'process_time': '0.0137s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:01,136] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:50:01,138] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:02,684] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:02,877] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:50:02,879] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:02,921] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0077s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:02,956] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:04,476] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:06,922] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0545s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:06,946] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:07,002] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:07,116] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:50:07,119] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:07,184] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:12,218] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:17,892] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:23,889] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:29,885] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:35,898] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:41,883] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:47,887] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:53,899] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:50:59,906] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:03,512] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:03,583] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:03,590] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:03,599] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:03,747] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:03,749] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:05,419] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:05,502] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:05,630] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:05,631] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:05,721] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:05,757] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:06,123] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:06,279] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:06,280] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:27,110] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:27,149] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:27,251] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:27,252] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:28,128] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:28,246] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:28,248] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:28,450] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:28,490] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:28,576] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:28,579] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:29,262] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:29,404] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:29,406] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:29,449] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0070s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:30,627] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:30,684] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:30,796] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:30,798] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:30,870] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:30,916] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:35,972] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:36,052] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:36,063] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:36,073] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:36,188] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:36,190] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:36,257] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:37,122] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:37,177] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:37,186] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 304, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:37,191] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 304, 'process_time': '0.0077s', 'client': '127.0.0.1'}
+[2025-12-25 22:51:37,286] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:51:37,287] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:22,879] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:22,947] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:22,959] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 304, 'process_time': '0.0152s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:22,968] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 304, 'process_time': '0.0205s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:22,973] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 304, 'process_time': '0.0205s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:22,979] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 304, 'process_time': '0.0247s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:22,985] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0263s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:23,126] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:53:23,127] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:25,042] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:25,154] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:53:25,155] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:25,328] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:25,439] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:53:25,440] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,799] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,861] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,868] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0140s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,881] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=2', 'status_code': 200, 'process_time': '0.0218s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,887] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=2', 'status_code': 200, 'process_time': '0.0279s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,895] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=2', 'status_code': 200, 'process_time': '0.0356s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,903] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=2', 'status_code': 200, 'process_time': '0.0438s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,931] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0138s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,942] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0245s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:26,950] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0243s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:57,664] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:53:57,667] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-25 22:53:57,781] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:02,961] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:03,026] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:03,034] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:03,455] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:54:03,456] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:03,534] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0076s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:03,571] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:07,343] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:07,510] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:54:07,512] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:07,559] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:08,837] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:08,945] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:54:08,947] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:09,004] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:09,539] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:09,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:09,675] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:54:09,677] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:35,408] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:35,445] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:35,999] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.1667s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:36,004] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.1557s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:36,373] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:42,754] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0740s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:42,799] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0150s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:43,136] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:54:43,158] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0350s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:43,240] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0112s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:44,753] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:44,826] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css', 'status_code': 304, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-25 22:54:44,938] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:54:44,940] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:44,036] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:44,127] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:44,146] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0093s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:44,151] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0117s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:44,157] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0171s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:46,451] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0415s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:46,473] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:46,759] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:55:46,761] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:46,834] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:47,814] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:47,876] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=4', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:47,882] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=4', 'status_code': 200, 'process_time': '0.0104s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:47,889] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=4', 'status_code': 200, 'process_time': '0.0162s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:47,895] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=4', 'status_code': 200, 'process_time': '0.0203s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:47,903] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=4', 'status_code': 200, 'process_time': '0.0211s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:47,974] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:55:47,975] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:48,066] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0097s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:48,282] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0094s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:48,610] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0127s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:48,668] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:48,749] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:55:48,750] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:48,856] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:48,902] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:49,597] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:49,739] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:55:49,741] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:49,841] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:52,446] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:52,588] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:55:52,589] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:52,652] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:52,676] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:55,845] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:56,086] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:55:56,088] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-25 22:55:56,222] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:00,879] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:00,917] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=4', 'status_code': 304, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:00,987] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:00,988] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,108] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,451] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,562] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:01,564] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,618] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,680] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,809] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:01,810] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,887] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:01,922] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:02,041] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:02,043] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:02,165] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:02,213] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:02,324] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:02,325] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:02,451] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,677] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,731] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0102s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,737] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=4', 'status_code': 200, 'process_time': '0.0153s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,745] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=4', 'status_code': 200, 'process_time': '0.0174s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,750] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=4', 'status_code': 200, 'process_time': '0.0217s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,758] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=4', 'status_code': 200, 'process_time': '0.0273s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,766] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=4', 'status_code': 200, 'process_time': '0.0228s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,779] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0139s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,785] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0116s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:08,790] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0130s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:44,993] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:44,994] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0079s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:45,068] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:45,151] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:48,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:48,880] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:49,234] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:49,235] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:49,319] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:49,361] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:53,138] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:53,224] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=4', 'status_code': 304, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:53,231] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=4', 'status_code': 304, 'process_time': '0.0105s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:53,332] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:53,334] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:53,435] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:53,821] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:54,003] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:54,005] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0070s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:54,091] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:54,887] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:55,038] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:56:55,040] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:55,184] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:56:58,949] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: hi ---
+[2025-12-25 22:57:00,279] [INFO] [sfa_system]   → Intent Labels: ['CONVERSATIONAL']
+[2025-12-25 22:57:00,744] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '1.8304s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:00,948] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:01,020] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:01,027] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0107s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:03,792] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0418s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:03,829] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:03,904] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:04,109] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:58:04,111] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:04,197] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0111s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:05,465] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:05,526] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=4', 'status_code': 304, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:05,533] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=4', 'status_code': 304, 'process_time': '0.0101s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:05,617] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:58:05,618] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:05,748] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-25 22:58:26,303] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: hi -> A: Hello, how can I assist you with your financial needs today?
+User Query: list the last 10 years revenu ---
+[2025-12-25 22:58:26,563] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-25 22:58:26,626] [DEBUG] [sfa_system] Planner - Graph allowed: False
+[2025-12-25 22:58:26,936] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve revenue data for the last 10 years from swf_financials.
+2. **SQL**: List the revenue for each year in the last decade in descending order by year.
+[2025-12-25 22:58:27,006] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve revenue data for the last 10 years from swf_financials.', '**SQL**: List the revenue for each year in the last decade in descending order by year.']
+[2025-12-25 22:58:27,007] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve revenue data for the last 10 years from swf_financials.
+[2025-12-25 22:58:27,008] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve revenue data for the last 10 years from swf_financials.
+[2025-12-25 22:58:27,009] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve revenue data for the last 10 years from swf_financials.
+[2025-12-25 22:58:27,009] [DEBUG] [sfa_system] Worker executing SQL: Retrieve revenue data for the last 10 years from swf_financials.
+[2025-12-25 22:58:37,260] [DEBUG] [sfa_system] Generated SQL: SELECT year, quarter, revenue
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) - 9 FROM swf_financials)
+ORDER BY year, quarter
+[2025-12-25 22:58:37,433] [DEBUG] [sfa_system] DB Result Sample: |   year |   quarter |     revenue |
+|-------:|----------:|------------:|
+|   2016 |         1 | 1.4177e+08  |
+|   2016 |         2 | 1.45926e+08 |
+|   2016 |         3 | 1.50442e+08 |
+|   2016 |     ...
+[2025-12-25 22:58:37,436] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT year, quarter, revenue
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) - 9 FROM swf_financials)
+ORDER BY year, quarter
+
+Database Results:
+|   year |   ...
+[2025-12-25 22:58:37,493] [DEBUG] [sfa_system] Executing Step: SQL: List the revenue for each year in the last decade in descending order by year.
+[2025-12-25 22:58:37,494] [DEBUG] [sfa_system] Worker executing step: SQL: List the revenue for each year in the last decade in descending order by year.
+[2025-12-25 22:58:37,495] [DEBUG] [sfa_system] Worker executing step_clean: SQL: List the revenue for each year in the last decade in descending order by year.
+[2025-12-25 22:58:37,495] [DEBUG] [sfa_system] Worker executing SQL: List the revenue for each year in the last decade in descending order by year.
+[2025-12-25 22:58:41,102] [DEBUG] [sfa_system] Generated SQL: SELECT year, SUM(revenue) AS revenue
+FROM swf_financials
+WHERE year BETWEEN 2016 AND 2025
+GROUP BY year
+ORDER BY year DESC
+[2025-12-25 22:58:41,108] [DEBUG] [sfa_system] DB Result Sample: |   year |     revenue |
+|-------:|------------:|
+|   2025 | 5.6499e+09  |
+|   2024 | 2.89379e+09 |
+|   2023 | 2.19026e+09 |
+|   2022 | 1.68903e+09 |
+|   2021 | 1.36437e+09 |
+|   2020 | 1.12758e+09 |
+...
+[2025-12-25 22:58:41,111] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT year, SUM(revenue) AS revenue
+FROM swf_financials
+WHERE year BETWEEN 2016 AND 2025
+GROUP BY year
+ORDER BY year DESC
+
+Database Results:
+|   year |     reven...
+[2025-12-25 22:58:41,168] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: hi -> A: Hello, how can I assist you with your financial needs today?
+User Query: list the last 10 years revenu
+[2025-12-25 22:58:41,223] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: Context:
+Q: hi -> A: Hello, how can I assist you with your financial needs today?
+User Query: list the last 10 years revenu
+Data:
+
+Step: **SQL**: Retrieve revenue data for the last 10 years from swf_financials.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT year, quarter, revenue
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) - 9 FROM swf_financials)
+ORDER BY year, quarter
+
+Database Results:
+|   year |   quarter |     revenue |
+|-------:|----------:|------------:|
+|   2016 |         1 | 1.4177e+08  |
+|   2016 |         2 | 1.45926e+08 |
+|   2016 |         3 | 1.50442e+08 |
+|   2016 |         4 | 1.57e+08    |
+|   2017 |         1 | 1.62e+08    |
+|   2017 |         2 | 1.68e+08    |
+|   2017 |         3 | 1.746e+08   |
+|   2017 |         4 | 1.806e+08   |
+|   2018 |         1 | 1.88104e+08 |
+|   2018 |         2 | 1.91089e+08 |
+|   2018 |         3 | 2.03e+08    |
+|   2018 |         4 | 2.1152e+08  |
+|   2019 |         1 | 2.21486e+08 |
+|   2019 |         2 | 2.30854e+08 |
+|   2019 |         3 | 2.4107e+08  |
+|   2019 |         4 | 2.499e+08   |
+|   2020 |         1 | 2.65316e+08 |
+|   2020 |         2 | 2.74675e+08 |
+|   2020 |         3 | 2.86588e+08 |
+|   2020 |         4 | 3.01e+08    |
+|   2021 |         1 | 3.16006e+08 |
+|   2021 |         2 | 3.30212e+08 |
+|   2021 |         3 | 3.46262e+08 |
+|   2021 |         4 | 3.71896e+08 |
+|   2022 |         1 | 3.82426e+08 |
+|   2022 |         2 | 4.164e+08   |
+|   2022 |         3 | 4.29e+08    |
+|   2022 |         4 | 4.612e+08   |
+|   2023 |         1 | 4.98825e+08 |
+|   2023 |         2 | 5.26e+08    |
+|   2023 |         3 | 5.57435e+08 |
+|   2023 |         4 | 6.08e+08    |
+|   2024 |         1 | 6.4652e+08  |
+|   2024 |         2 | 6.8115e+08  |
+|   2024 |         3 | 7.5204e+08  |
+|   2024 |         4 | 8.14078e+08 |
+|   2025 |         1 | 8.939e+08   |
+|   2025 |         2 | 9.86e+08    |
+|   2025 |         3 | 1.1e+09     |
+|   2025 |         4 | 2.67e+09    |
+
+Step: **SQL**: List the revenue for each year in the last decade in descending order by year.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT year, SUM(revenue) AS revenue
+FROM swf_financials
+WHERE year BETWEEN 2016 AND 2025
+GROUP BY year
+ORDER BY year DESC
+
+Database Results:
+|   year |     revenue |
+|-------:|------------:|
+|   2025 | 5.6499e+09  |
+|   2024 | 2.89379e+09 |
+|   2023 | 2.19026e+09 |
+|   2022 | 1.68903e+09 |
+|   2021 | 1.36437e+09 |
+|   2020 | 1.12758e+09 |
+|   2019 | 9.4331e+08  |
+|   2018 | 7.93712e+08 |
+|   2017 | 6.852e+08   |
+|   2016 | 5.95138e+08 |
+
+
+[2025-12-25 22:58:41,757] [DEBUG] [sfa_system] Auditor Synthesizing Result: Hello, here are the revenues for the last 10 years:
+
+| Year | Revenue     |
+|-------|-------------|
+| 2025 | $5.65B      |
+| 2024 | $2.89B      |
+| 2023 | $2.19B      |
+| 2022 | $1.69B      |
+| 2021 | $1.36B      |
+| 2020 | $1.13B      |
+| 2019 | $943.31M    |
+| 2018 | $793.71M    |
+| 2017 | $685.20M    |
+| 2016 | $595.14M    |
+[2025-12-25 22:58:41,814] [DEBUG] [sfa_system] Final Output: Hello, here are the revenues for the last 10 years:
+
+| Year | Revenue     |
+|-------|-------------|
+...
+[2025-12-25 22:58:41,836] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '15.5381s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,452] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,511] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,517] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=4', 'status_code': 304, 'process_time': '0.0133s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,526] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=4', 'status_code': 304, 'process_time': '0.0164s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,533] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=4', 'status_code': 304, 'process_time': '0.0221s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,539] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=4', 'status_code': 304, 'process_time': '0.0226s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,543] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=4', 'status_code': 304, 'process_time': '0.0260s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,549] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0173s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,553] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0298s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,627] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:59:03,629] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:03,774] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=d7d753f4-e320-40e5-b10f-c64a6daa0c99', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:06,259] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:06,369] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:59:06,371] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:06,435] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0115s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:06,571] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=115c0367-2182-4bfe-a3ca-82ba23b05ea6', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:09,851] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:09,909] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:09,997] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-25 22:59:09,999] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:10,063] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-25 22:59:10,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,072] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,099] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0079s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,641] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.1956s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,662] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0134s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,671] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.0213s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,677] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0271s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,682] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0299s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:39,690] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 200, 'process_time': '0.0329s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:40,110] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:49,988] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.1973s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:50,047] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0335s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:50,113] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:50,118] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 200, 'process_time': '0.0096s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:50,353] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:26:50,354] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0396s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:50,404] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0130s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:52,161] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0116s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:52,259] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 304, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:52,265] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:52,384] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:26:52,386] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:52,493] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0079s', 'client': '127.0.0.1'}
+[2025-12-26 16:26:52,549] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0081s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:01,840] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:01,904] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=4', 'status_code': 304, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:01,909] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=4', 'status_code': 304, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:01,924] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=4', 'status_code': 304, 'process_time': '0.0084s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:01,928] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=4', 'status_code': 304, 'process_time': '0.0109s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:01,934] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=4', 'status_code': 304, 'process_time': '0.0155s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:01,993] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:27:01,997] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:02,150] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=115c0367-2182-4bfe-a3ca-82ba23b05ea6', 'status_code': 200, 'process_time': '0.0105s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:08,604] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:08,719] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:27:08,721] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:08,792] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-26 16:27:08,942] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:10,687] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:10,743] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=5', 'status_code': 200, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:10,748] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=5', 'status_code': 200, 'process_time': '0.0134s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:10,760] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=5', 'status_code': 200, 'process_time': '0.0192s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:10,769] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=5', 'status_code': 200, 'process_time': '0.0268s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:10,775] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=5', 'status_code': 200, 'process_time': '0.0271s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:10,948] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:10,950] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:11,234] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:11,678] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:12,238] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=5', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:12,317] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:12,319] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:13,107] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:13,225] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:13,227] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:13,343] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:13,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:13,929] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:13,930] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:14,046] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:14,372] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:14,479] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:14,481] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:14,589] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:14,888] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:14,924] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=5', 'status_code': 304, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:14,997] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:14,998] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:15,112] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:15,264] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:15,386] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:15,387] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:15,503] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:15,751] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:15,867] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:15,869] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:15,981] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,872] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,921] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0086s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,927] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=5', 'status_code': 200, 'process_time': '0.0138s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,938] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=5', 'status_code': 200, 'process_time': '0.0181s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,944] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=5', 'status_code': 200, 'process_time': '0.0182s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,949] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=5', 'status_code': 200, 'process_time': '0.0285s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,954] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=5', 'status_code': 200, 'process_time': '0.0269s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,970] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,974] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0130s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:20,982] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0132s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:26,094] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:26,096] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:26,206] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:26,264] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:38,224] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:38,248] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:39,054] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:42,168] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 401, 'process_time': '0.0287s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:46,960] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0507s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:46,999] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0155s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:47,631] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:47,635] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0128s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:47,736] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0115s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:48,760] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:48,939] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=5', 'status_code': 304, 'process_time': '0.1217s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:48,963] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:48,966] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:49,160] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dd9dcd00-fba8-4a64-b76c-6235c14b9d73', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:51,491] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:51,604] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:51,606] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:51,662] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0098s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:51,681] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=ab52ff4e-d0d0-4bae-ada3-0b3243e4fc45', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:53,408] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0136s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:53,564] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:29:53,565] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:53,651] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:53,690] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 16:29:59,876] [INFO] [sfa_system] Dashboard config saved for user 3
+[2025-12-26 16:29:59,878] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0284s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:01,394] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:01,447] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=5', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:01,553] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:30:01,555] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:01,607] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0106s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:01,628] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=f3c37c94-7475-438c-aa70-c421872c5255', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:10,187] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:10,240] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=5', 'status_code': 304, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:10,358] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:30:10,360] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:10,429] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0113s', 'client': '127.0.0.1'}
+[2025-12-26 16:30:10,447] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=e117fa53-cbb7-4790-98bb-9af3d6123934', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:36,503] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:36,540] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:42,306] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0628s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:42,344] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0139s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:42,586] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:32:42,588] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0089s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:42,660] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0091s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,503] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,669] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=6', 'status_code': 200, 'process_time': '0.1127s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,677] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=6', 'status_code': 200, 'process_time': '0.1160s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,683] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=6', 'status_code': 200, 'process_time': '0.0097s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,689] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=6', 'status_code': 200, 'process_time': '0.0151s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,694] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=6', 'status_code': 200, 'process_time': '0.0185s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,721] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:32:43,722] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,798] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0123s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:43,820] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=c6a5a32c-9972-4d87-9728-8ac3a21e6e95', 'status_code': 200, 'process_time': '0.0095s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:46,677] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:46,715] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=6', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:46,797] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:32:46,799] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:46,851] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0083s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:46,872] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=882ab85a-6de5-47b6-8aef-2f46fb3ae52c', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,840] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,895] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,903] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=6', 'status_code': 200, 'process_time': '0.0137s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,916] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=6', 'status_code': 200, 'process_time': '0.0143s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,921] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=6', 'status_code': 200, 'process_time': '0.0190s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,926] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=6', 'status_code': 200, 'process_time': '0.0244s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,933] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=6', 'status_code': 200, 'process_time': '0.0308s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,946] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,950] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0176s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:48,958] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0129s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:50,036] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:32:50,038] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:50,053] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:50,079] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=95fc7143-14d9-4bf7-8102-ff9c76d5edd3', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:50,145] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:51,610] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0103s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:51,832] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:32:51,833] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:51,911] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0086s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:51,972] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:52,315] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:56,423] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0392s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:56,447] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:56,555] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 16:32:56,557] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:56,704] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0914s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:57,999] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:58,046] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=6', 'status_code': 304, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:58,132] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 16:32:58,134] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:58,245] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0687s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:58,260] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=c81fe850-7a76-4b74-961d-57c1dabe45ce', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:59,394] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:59,537] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 16:32:59,538] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0077s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:59,596] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 16:32:59,622] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,429] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0004s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,483] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,511] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,530] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 200, 'process_time': '0.0122s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,539] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0195s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,544] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0172s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,550] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0254s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:45,556] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 200, 'process_time': '0.0278s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:46,028] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:50,669] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0387s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:50,690] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:50,713] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:50,718] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:52,341] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:33:52,343] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:52,357] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:53,866] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:53,889] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=6', 'status_code': 200, 'process_time': '0.0084s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:53,895] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=6', 'status_code': 200, 'process_time': '0.0136s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:53,900] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=6', 'status_code': 200, 'process_time': '0.0189s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:53,906] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=6', 'status_code': 200, 'process_time': '0.0214s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:53,912] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=6', 'status_code': 200, 'process_time': '0.0259s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:54,024] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:33:54,025] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:54,050] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:54,064] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=f9aabe5b-273b-41cc-8379-eb3ac3d6984b', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:56,471] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:56,552] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:33:56,554] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:56,570] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0088s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:56,582] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=fdf0e96c-6b00-4117-9103-b9784e87b871', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:57,497] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:57,513] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:57,516] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:57,583] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:33:57,584] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:57,631] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 16:33:57,667] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,414] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,782] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:36:52,783] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,797] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,822] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,828] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,972] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:36:52,973] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,989] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:52,999] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0015s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:53,008] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:53,087] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:36:53,088] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:53,104] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:53,123] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:54,518] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:54,541] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:54,548] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 200, 'process_time': '0.0115s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:54,557] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 200, 'process_time': '0.0168s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:54,562] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0164s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:54,568] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0206s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:54,572] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0240s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,045] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:36:57,047] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,062] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,088] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,460] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,478] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=7', 'status_code': 200, 'process_time': '0.0075s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,485] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=7', 'status_code': 200, 'process_time': '0.0115s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,489] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=7', 'status_code': 200, 'process_time': '0.0167s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,493] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=7', 'status_code': 200, 'process_time': '0.0202s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,497] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=7', 'status_code': 200, 'process_time': '0.0228s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,616] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:36:57,618] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,634] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-26 16:36:57,862] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=348e978c-0528-4f08-aa53-9bd28fef649f', 'status_code': 200, 'process_time': '0.0037s', 'client': '127.0.0.1'}
+[2025-12-26 16:37:07,312] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:37:07,393] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:37:07,395] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-26 16:37:07,408] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-26 16:37:07,561] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=9d08f617-e580-452e-a0ae-3936101e61bb', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:08,254] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:08,273] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=7', 'status_code': 304, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:08,278] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=7', 'status_code': 304, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:08,627] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:41:08,628] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:08,770] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=9d08f617-e580-452e-a0ae-3936101e61bb', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:12,114] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:12,271] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:41:12,273] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:12,288] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:12,441] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=86104121-ecac-48ce-851e-f55284d7b96c', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,219] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,240] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,252] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=7', 'status_code': 200, 'process_time': '0.0128s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,260] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=7', 'status_code': 200, 'process_time': '0.0142s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,264] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=7', 'status_code': 200, 'process_time': '0.0150s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,271] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=7', 'status_code': 200, 'process_time': '0.0208s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,275] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=7', 'status_code': 200, 'process_time': '0.0241s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,286] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0159s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,296] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0107s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:15,300] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0088s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:19,981] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:41:19,982] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:20,073] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=86104121-ecac-48ce-851e-f55284d7b96c', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:30,819] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:30,967] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 16:41:30,969] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:30,985] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-26 16:41:31,128] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 16:43:37,000] [DEBUG] [sfa_system] [GraphPipeline] Starting for: revenu for last 5 year
+[2025-12-26 16:43:37,001] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-26 16:43:37,002] [DEBUG] [sfa_system] [GraphPipeline] Question: revenu for last 5 year
+[2025-12-26 16:43:45,478] [DEBUG] [sfa_system] Generated SQL: SELECT year, SUM(revenue) AS revenue
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) - 4 FROM swf_financials)
+GROUP BY year
+ORDER BY year
+[2025-12-26 16:43:45,658] [DEBUG] [sfa_system] DB Result Sample: |   year |     revenue |
+|-------:|------------:|
+|   2021 | 1.36437e+09 |
+|   2022 | 1.68903e+09 |
+|   2023 | 2.19026e+09 |
+|   2024 | 2.89379e+09 |
+|   2025 | 5.6499e+09  |...
+[2025-12-26 16:43:45,662] [DEBUG] [sfa_system] [GraphPipeline] Result length: 351 chars
+[2025-12-26 16:43:45,662] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-26 16:43:45,663] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, SUM(revenue) AS revenue
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) - 4 FROM swf_financials)
+GROUP BY year
+ORDER BY year
+
+Database Results:
+|   year |     revenue |
+|-------:|------------:|
+|   2021 | 1.36437e+09 |
+|   2022 | 1.68903e+09 |
+|   2023 | 2.19026e+09 |
+|   2024 | 2.89379e+09 |
+|   2025 | 5.6499e+09  |
+[2025-12-26 16:43:45,668] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'revenue']
+[2025-12-26 16:43:45,669] [DEBUG] [sfa_system] [GraphPipeline] Found 5 data rows
+[2025-12-26 16:43:45,670] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-26 16:43:45,670] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (revenue), is_percentage=False
+[2025-12-26 16:43:45,671] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2021', '2022', '2023', '2024', '2025']...
+[2025-12-26 16:43:45,671] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [1364370000.0, 1689030000.0, 2190260000.0, 2893790000.0, 5649900000.0]...
+[2025-12-26 16:43:45,861] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Revenue Over Last 5 Years
+[2025-12-26 16:43:45,862] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 5 points, is_percentage=False
+[2025-12-26 16:43:45,879] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '8.9546s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,414] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,435] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=8', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,447] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=8', 'status_code': 200, 'process_time': '0.0132s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,453] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=8', 'status_code': 200, 'process_time': '0.0181s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,457] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=8', 'status_code': 200, 'process_time': '0.0225s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,461] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=8', 'status_code': 200, 'process_time': '0.0174s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,794] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:07:20,796] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:20,924] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,476] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,615] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:07:21,617] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,661] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,702] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,765] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:07:21,767] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,789] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,849] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,914] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:07:21,916] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:21,954] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,002] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,063] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:07:22,064] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,134] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,151] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,212] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:07:22,213] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,292] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,313] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,389] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:07:22,391] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:22,472] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=caceddcf-fb25-4ab3-9933-66eeb9e6ecf5', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,533] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,580] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,721] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 200, 'process_time': '0.1135s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,726] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.1196s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,730] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.1138s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,734] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.1258s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,737] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.1204s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:46,742] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 200, 'process_time': '0.1240s', 'client': '127.0.0.1'}
+[2025-12-26 17:07:47,104] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:05,509] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0619s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:05,543] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0124s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:05,563] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 200, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:05,568] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:07,456] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:09:07,459] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0103s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:07,476] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0081s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,029] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,048] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=8', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,053] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_state.js?v=8', 'status_code': 200, 'process_time': '0.0115s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,063] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_graph.js?v=8', 'status_code': 200, 'process_time': '0.0153s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,069] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/analytics_chat.js?v=8', 'status_code': 200, 'process_time': '0.0218s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,074] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=8', 'status_code': 200, 'process_time': '0.0216s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,189] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:09:09,191] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,216] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0106s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:09,448] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=f5377f7b-dd27-4c32-8b5c-dbaf6a21bd38', 'status_code': 200, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:12,806] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:12,905] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:09:12,907] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:12,938] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:13,344] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:13,444] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:09:13,446] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:13,536] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=f5377f7b-dd27-4c32-8b5c-dbaf6a21bd38', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:17,636] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:17,711] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 17:09:17,713] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:17,730] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0088s', 'client': '127.0.0.1'}
+[2025-12-26 17:09:17,878] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=daaccbf0-c939-4549-b95c-6dca99fdc106', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}

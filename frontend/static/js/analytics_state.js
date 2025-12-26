@@ -8,7 +8,14 @@ const AppState = {
     maxGraphs: 2,
     isEditMode: false,
     sessionId: null,
-    username: Auth.getUsername(),
+    _username: null,
+
+    get username() {
+        if (!this._username && typeof Auth !== 'undefined') {
+            this._username = Auth.getUsername();
+        }
+        return this._username || 'default';
+    },
 
     // Persist state to local storage
     save() {

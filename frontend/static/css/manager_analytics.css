@@ -35,10 +35,13 @@
     cursor: default;
     flex: 1 1 0;
     min-width: 0;
+    max-width: calc(50% - 10px);
+    /* Ensure equal width for 2 graphs */
     height: 380px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
+    /* Allow content to be visible */
     border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
 }
 
@@ -135,3 +138,111 @@
     transform: rotate(-30deg);
     user-select: none;
 }
+
+/* Dark mode for empty graph */
+[data-theme="dark"] .empty-graph-space {
+    border-color: #404040;
+}
+
+[data-theme="dark"] .empty-graph-text {
+    color: #666;
+}
+
+/* ============================================================================
+   Floating Add Graph Button
+   ============================================================================ */
+.add-graph-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d884 0%, #009d63 100%);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    transition: all 0.3s ease;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-graph-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 157, 99, 0.5);
+}
+
+.add-graph-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Pulse animation for pending graph */
+.add-graph-btn.has-pending {
+    animation: pulse-add 2s infinite;
+}
+
+@keyframes pulse-add {
+    0% {
+        box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 25px rgba(0, 216, 132, 0.6), 0 0 0 10px rgba(0, 216, 132, 0.1);
+    }
+
+    100% {
+        box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    }
+}
+
+/* Juggle animation for new graphs */
+@keyframes juggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-2deg);
+    }
+
+    75% {
+        transform: rotate(2deg);
+    }
+}
+
+.graph-card.new-graph {
+    animation: juggle 0.5s ease-in-out;
+}
+
+/* Improved graph card styling */
+.graph-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    cursor: default;
+    flex: 1 1 0;
+    min-width: 300px;
+    max-width: calc(50% - 10px);
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+}
+
+/* Graph tooltip improvements */
+.graph-card .js-plotly-plot .plotly .hoverlayer {
+    z-index: 100;
+}
+
+/* Better hover box styling via Plotly config is in JS */

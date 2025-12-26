@@ -44,20 +44,43 @@ const MainController = {
     loadDefaultGraphs: async () => {
         try {
             const data = await API.get('/api/dashboard/metrics');
+            let graphsAdded = 0;
 
-            if (data.trend?.values?.length) {
+            // Only add graphs if they have actual data (dates AND values)
+            // API returns 'dates' not 'labels'
+            if (data.trend?.values?.length && data.trend?.dates?.length) {
                 const chart = GraphManager.buildChartFromTemplate({
-                    ...data.trend, title: data.trend.title || 'Graph 1'
+                    labels: data.trend.dates,  // Map dates to labels
+                    values: data.trend.values,
+                    title: data.trend.title || 'Graph 1',
+                    chart_type: data.trend.chart_type || 'line',
+                    y_axis_title: data.trend.y_label || 'Value'
                 });
                 GraphManager.add(chart);
+                graphsAdded++;
             }
-            if (data.income_trend?.values?.length) {
+
+            if (data.income_trend?.values?.length && data.income_trend?.dates?.length) {
                 const chart = GraphManager.buildChartFromTemplate({
-                    ...data.income_trend, title: data.income_trend.title || 'Graph 2'
+                    labels: data.income_trend.dates,  // Map dates to labels
+                    values: data.income_trend.values,
+                    title: data.income_trend.title || 'Graph 2',
+                    chart_type: data.income_trend.chart_type || 'bar',
+                    y_axis_title: data.income_trend.y_label || 'Value'
                 });
                 GraphManager.add(chart);
+                graphsAdded++;
             }
-        } catch (e) { console.error("Defaults failed", e); }
+
+            // If no graphs were added, show empty placeholder
+            if (graphsAdded === 0) {
+                GraphManager.renderEmpty();
+            }
+        } catch (e) {
+            console.error("Defaults failed", e);
+            // Show empty placeholder on error
+            GraphManager.renderEmpty();
+        }
     },
 
     toggleEditMode: () => {
@@ -81,11 +104,24 @@ const MainController = {
 };
 
 // Global Event Handlers (exposed for HTML onclicks)
-// Since explicit onclicks are used in HTML, we must expose these functions to global scope
 window.sendMessage = () => ChatInterface.sendMessage();
 window.requestGraph = () => ChatInterface.requestGraph();
 window.toggleEditMode = () => MainController.toggleEditMode();
 window.resetDashboard = () => MainController.resetDashboard();
+window.stopQuery = () => ChatInterface.stopQuery && ChatInterface.stopQuery();
+
+// Add pending graph when + button is clicked
+window.addPendingGraph = () => {
+    if (window._pendingGraph) {
+        GraphManager.add(window._pendingGraph, true);
+        window._pendingGraph = null;
+        const addBtn = document.getElementById('add-graph-btn');
+        if (addBtn) {
+            addBtn.style.display = 'none';
+            addBtn.classList.remove('has-pending');
+        }
+    }
+};
 
 // Start
 document.addEventListener('DOMContentLoaded', MainController.init);

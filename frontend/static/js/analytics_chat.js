@@ -73,12 +73,12 @@ const ChatInterface = {
                 const plotlyData = GraphManager.buildChartFromTemplate(data.chart_data);
                 this.addMessage(data.response, 'bot-msg', data.chat_id);
 
-                // Add to workspace
+                // Set as pending and show + button
                 if (AppState.graphs.length < AppState.maxGraphs) {
-                    GraphManager.add(plotlyData);
-                    this.addMessage("Graph added.", 'bot-msg');
+                    GraphManager.setPending(plotlyData);
+                    this.addMessage("📊 Graph ready! Click the + button to add it to your workspace.", 'bot-msg');
                 } else {
-                    // Set as pending for replacement
+                    // Workspace full - set as replacement
                     window._pendingReplacement = plotlyData;
                     this.addMessage("Workspace full. Click a graph above to replace it.", 'bot-msg');
                     // Trigger edit mode to show boundaries

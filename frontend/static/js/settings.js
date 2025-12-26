@@ -12,7 +12,10 @@ let allColumns = [];
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 0. Permission Check
+    // 0. Setup Theme (for ALL users, including admin)
+    setupThemeButtons();
+
+    // 1. Permission Check - Admin only sees theme
     const role = Auth.getRole();
     if (role === 'admin') {
         const sections = ['database-section', 'schema-section', 'dashboard-config-section'];
@@ -20,11 +23,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         });
-        return; // Admin only sees theme (handled by base.html/css)
+        return; // Admin only sees theme
     }
 
-    // 1. Setup UI
-    setupThemeButtons();
+    // 2. Setup UI (manager-only)
     setupDbTypeButtons();
     setupExpressionBuilder();
     setupStatusIndicatorListeners(); // Helper to attach listeners

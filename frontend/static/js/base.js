@@ -49,6 +49,15 @@ const Theme = {
     }
 };
 
+// Global function for inline onclick handlers
+function setTheme(theme) {
+    Theme.set(theme);
+    // Update button active states
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === theme);
+    });
+}
+
 // ============================================================================
 // Sidebar & UI
 // ============================================================================
@@ -64,8 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // 2. Initialize Theme
-    Theme.init();
+    // 2. Initialize Theme (skip on login page - it handles its own auto theme)
+    if (!window.location.pathname.includes('/login')) {
+        Theme.init();
+    }
 
     // 3. User Info & Admin Link (If Auth module is present)
     if (typeof Auth !== 'undefined' && Auth.isAuthenticated()) {
@@ -82,6 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (role === 'admin') {
             const adminLink = document.getElementById('admin-link');
             if (adminLink) adminLink.style.display = 'block';
+
+            // Hide manager-only links (Dashboard, Analytics) for admins
+            document.querySelectorAll('.manager-link').forEach(link => {
+                link.style.display = 'none';
+            });
         }
     }
 });
