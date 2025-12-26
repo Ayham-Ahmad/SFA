@@ -21325,3 +21325,141 @@ Database Results:
 [2025-12-26 18:09:41,266] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
 [2025-12-26 18:09:41,281] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
 [2025-12-26 18:09:44,619] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0843s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,741] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,807] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,936] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.1106s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,941] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.1122s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,945] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.1094s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,949] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.1132s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,954] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0185s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:24,958] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 304, 'process_time': '0.0184s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:30,548] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0635s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:30,583] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0149s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:30,602] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 304, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:30,606] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:31,015] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:17:31,016] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0095s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:31,036] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0097s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:36,054] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:41,070] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:46,090] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:46,347] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:46,368] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 304, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:46,373] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 304, 'process_time': '0.0080s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:50,293] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:50,990] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0085s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:51,120] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0079s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:56,850] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0141s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:56,871] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 304, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:56,875] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:56,950] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:17:56,952] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:57,000] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:17:57,045] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 18:18:04,293] [INFO] [sfa_system] Dashboard config saved for user 3
+[2025-12-26 18:18:04,294] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0142s', 'client': '127.0.0.1'}
+[2025-12-26 18:18:05,543] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0125s', 'client': '127.0.0.1'}
+[2025-12-26 18:18:05,830] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 18:18:08,183] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+[2025-12-26 18:18:21,845] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:18:21,945] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0071s', 'client': '127.0.0.1'}
+[2025-12-26 18:19:48,069] [DEBUG] [sfa_system] [GraphPipeline] Starting for: list the last 5 years margin
+[2025-12-26 18:19:48,071] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-26 18:19:48,072] [DEBUG] [sfa_system] [GraphPipeline] Question: list the last 5 years margin
+[2025-12-26 18:19:52,933] [DEBUG] [sfa_system] Generated SQL: SELECT year, gross_margin, operating_margin, net_margin
+FROM swf_financials
+WHERE (year, quarter) IN (
+    SELECT year, MAX(quarter)
+    FROM swf_financials
+    GROUP BY year
+    ORDER BY year DESC
+    LIMIT 5
+)
+ORDER BY year DESC
+[2025-12-26 18:19:52,956] [DEBUG] [sfa_system] DB Result Sample: |   year |   gross_margin |   operating_margin |   net_margin |
+|-------:|---------------:|-------------------:|-------------:|
+|   2025 |       0.2825   |          0.066378  |    0.0508094 |
+|   2024...
+[2025-12-26 18:19:52,958] [DEBUG] [sfa_system] [GraphPipeline] Result length: 713 chars
+[2025-12-26 18:19:52,958] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-26 18:19:52,959] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT year, gross_margin, operating_margin, net_margin
+FROM swf_financials
+WHERE (year, quarter) IN (
+    SELECT year, MAX(quarter)
+    FROM swf_financials
+    GROUP BY year
+    ORDER BY year DESC
+    LIMIT 5
+)
+ORDER BY year DESC
+
+Database Results:
+|   year |   gross_margin |   operating_margin |   net_margin |
+|-------:|---------------:|-------------------:|-------------:|
+|   2025 |       0.2825   |          0.066378  |    0.0508094 |
+|   2024 |       0.305979 |          0.030
+[2025-12-26 18:19:52,964] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'gross_margin', 'operating_margin', 'net_margin']
+[2025-12-26 18:19:52,965] [DEBUG] [sfa_system] [GraphPipeline] Found 5 data rows
+[2025-12-26 18:19:52,965] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-26 18:19:52,966] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (gross_margin), is_percentage=True
+[2025-12-26 18:19:52,967] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2025', '2024', '2023', '2022', '2021']...
+[2025-12-26 18:19:52,967] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [28.249999999999996, 30.5979, 34.6789, 28.4509, 35.9576]...
+[2025-12-26 18:19:53,178] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Last 5 Years Gross Margin Trend
+[2025-12-26 18:19:53,179] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 5 points, is_percentage=True
+[2025-12-26 18:19:53,194] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '5.1377s', 'client': '127.0.0.1'}
+[2025-12-26 18:20:01,161] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0225s', 'client': '127.0.0.1'}
+[2025-12-26 18:20:01,801] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0077s', 'client': '127.0.0.1'}
+[2025-12-26 18:20:02,000] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0084s', 'client': '127.0.0.1'}
+[2025-12-26 18:20:02,168] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0076s', 'client': '127.0.0.1'}
+[2025-12-26 18:20:02,333] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0092s', 'client': '127.0.0.1'}
+[2025-12-26 18:20:16,255] [DEBUG] [sfa_system] [GraphPipeline] Starting for: list the last 7 years margin
+[2025-12-26 18:20:16,256] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-26 18:20:16,257] [DEBUG] [sfa_system] [GraphPipeline] Question: list the last 7 years margin
+[2025-12-26 18:20:26,278] [DEBUG] [sfa_system] Generated SQL: SELECT 
+    year,
+    SUM(gross_profit) / SUM(revenue) AS gross_margin,
+    SUM(operating_income) / SUM(revenue) AS operating_margin,
+    SUM(net_income) / SUM(revenue) AS net_margin
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) FROM swf_financials) - 6
+GROUP BY year
+ORDER BY year
+[2025-12-26 18:20:26,286] [DEBUG] [sfa_system] DB Result Sample: |   year |   gross_margin |   operating_margin |   net_margin |
+|-------:|---------------:|-------------------:|-------------:|
+|   2019 |       0.367613 |          0.116817  |    0.0879718 |
+|   2020...
+[2025-12-26 18:20:26,288] [DEBUG] [sfa_system] [GraphPipeline] Result length: 898 chars
+[2025-12-26 18:20:26,289] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-26 18:20:26,290] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT 
+    year,
+    SUM(gross_profit) / SUM(revenue) AS gross_margin,
+    SUM(operating_income) / SUM(revenue) AS operating_margin,
+    SUM(net_income) / SUM(revenue) AS net_margin
+FROM swf_financials
+WHERE year >= (SELECT MAX(year) FROM swf_financials) - 6
+GROUP BY year
+ORDER BY year
+
+Database Results:
+|   year |   gross_margin |   operating_margin |   net_margin |
+|-------:|---------------:|-------------------:|-------------:|
+|   2019 |       0.367613 |          0.116817  | 
+[2025-12-26 18:20:26,295] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'gross_margin', 'operating_margin', 'net_margin']
+[2025-12-26 18:20:26,295] [DEBUG] [sfa_system] [GraphPipeline] Found 7 data rows
+[2025-12-26 18:20:26,296] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=None, date_col=None
+[2025-12-26 18:20:26,297] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (gross_margin), is_percentage=True
+[2025-12-26 18:20:26,298] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2019', '2020', '2021', '2022', '2023']...
+[2025-12-26 18:20:26,298] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [36.761300000000006, 31.2162, 36.4471, 35.632799999999996, 35.9321]...
+[2025-12-26 18:20:26,496] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Last 7 Years Gross Margin
+[2025-12-26 18:20:26,497] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 7 points, is_percentage=True
+[2025-12-26 18:20:26,509] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '10.2592s', 'client': '127.0.0.1'}
+[2025-12-26 18:22:52,184] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 18:22:52,199] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-26 18:22:52,354] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:22:52,357] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0182s', 'client': '127.0.0.1'}
+[2025-12-26 18:22:52,437] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:22:52,456] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
