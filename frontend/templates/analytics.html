@@ -13,6 +13,9 @@
         <div class="graphs-space-container" id="graphs-space">
             <div class="d-flex justify-content-between align-items-center absolute-top-buttons mb-2"
                 style="position:absolute; top: 10px; right: 20px; z-index: 20;">
+                <button class="btn btn-sm btn-outline-success me-1" onclick="refreshGraphs()" title="Refresh Graphs">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
                 <button class="btn btn-sm btn-outline-danger me-1" onclick="resetDashboard()" title="Reset Dashboard">
                     <i class="fas fa-undo"></i>
                 </button>
@@ -61,10 +64,7 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="/static/css/manager_analytics.css?v=8">
-<!-- Modular Analytics Scripts -->
-<script src="/static/js/analytics_state.js?v=8"></script>
-<script src="/static/js/analytics_graph.js?v=8"></script>
-<script src="/static/js/analytics_chat.js?v=8"></script>
-<script src="/static/js/manager_analytics.js?v=8"></script>
+<link rel="stylesheet" href="/static/css/manager_analytics.css?v=12">
+<!-- Main Analytics Script (all-in-one) -->
+<script src="/static/js/manager_analytics.js?v=12"></script>
 {% endblock %}

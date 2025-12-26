@@ -88,6 +88,56 @@
     transform: scale(1.1);
 }
 
+/* Replace Badge (Placement Mode) */
+.replace-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 157, 99, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 25;
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    animation: pulse-badge 2s infinite;
+}
+
+.replace-badge i {
+    margin-right: 8px;
+}
+
+@keyframes pulse-badge {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 6px 25px rgba(0, 157, 99, 0.6);
+    }
+}
+
+/* Replaceable graph card styling */
+.graph-card.replaceable {
+    cursor: pointer;
+    border: 2px dashed #00d884 !important;
+}
+
+.graph-card.replaceable:hover {
+    border-color: #00ff9d !important;
+}
+
+.graph-card.replaceable:hover .replace-badge {
+    background: rgba(0, 216, 132, 1);
+}
+
 /* Chat Tables */
 .message table {
     width: 100%;

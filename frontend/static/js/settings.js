@@ -257,6 +257,9 @@ async function saveConfiguration() {
         if (result.success) {
             showToast('Configuration saved!', 'success');
             toggleEditMode();
+
+            // Notify Analytics page to refresh graphs (via localStorage event)
+            localStorage.setItem('sfa_config_updated', Date.now().toString());
         } else {
             showToast('Save failed: ' + result.message, 'error');
         }
