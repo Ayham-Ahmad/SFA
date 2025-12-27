@@ -1,7 +1,7 @@
 """
-RAMAS Pipeline Router
-=====================
-Orchestrates the RAMAS (Reasoning and Multi-Agent System) pipeline.
+Pipeline Router
+===============
+Orchestrates the multi-agent pipeline for text and graph queries.
 """
 from backend.agents.planner import plan_task
 from backend.agents.worker import execute_step
@@ -13,6 +13,18 @@ import uuid
 from backend.sfa_logger import log_system_info, log_system_error, log_system_debug, log_agent_interaction
 
 MODEL = get_model("default")
+
+
+# --- Progress Helper (avoids circular import) ---
+def _update_progress(query_id: str, agent: str, step: str):
+    """Update query progress for frontend display."""
+    if not query_id:
+        return
+    try:
+        from api.main import set_query_progress
+        set_query_progress(query_id, agent, step)
+    except ImportError:
+        pass  # Progress tracking not available
 
 
 def extract_steps(plan: str):
@@ -58,17 +70,8 @@ def run_graph_pipeline(question: str, query_id: str = None, user=None) -> dict:
     """
     from backend.tools.graph_builder import build_graph_from_context
     
-    # Progress tracking
-    try:
-        from api.main import set_query_progress
-        has_progress = True
-    except ImportError:
-        has_progress = False
-        def set_query_progress(qid, agent, step): pass
-    
     interaction_id = str(uuid.uuid4())
-    
-    log_system_info(f"--- Starting GRAPH Pipeline for: {question} ---")
+    log_system_info(f"--- Starting Graph Pipeline for: {question} ---")
     
     # Parse query (strip context prefix if present)
     clean_question = question
@@ -81,8 +84,7 @@ def run_graph_pipeline(question: str, query_id: str = None, user=None) -> dict:
     
     try:
         # Step 1: Planner - generate SQL steps
-        if has_progress and query_id:
-            set_query_progress(query_id, "planner", "Preparing data query...")
+        _update_progress(query_id, "planner", "📝 Creating a plan...")
         
         # Force DATA route (graph_allowed=False since we handle graph separately)
         plan = plan_task(question, graph_allowed=False, user=user)
@@ -90,8 +92,7 @@ def run_graph_pipeline(question: str, query_id: str = None, user=None) -> dict:
         log_agent_interaction(interaction_id, "Planner", "Output", clean_question, plan)
         
         # Step 2: Worker - Execute SQL to get data
-        if has_progress and query_id:
-            set_query_progress(query_id, "worker", "Fetching data...")
+        _update_progress(query_id, "worker", "💾 Fetching data...")
         
         steps = extract_steps(plan)
         context = ""
@@ -118,8 +119,7 @@ def run_graph_pipeline(question: str, query_id: str = None, user=None) -> dict:
             }
         
         # Step 4: Build graph programmatically (NO LLM!)
-        if has_progress and query_id:
-            set_query_progress(query_id, "graph", "Building chart...")
+        _update_progress(query_id, "graph", "📊 Building chart...")
         
         graph_json = build_graph_from_context(context, clean_question)
         
@@ -148,11 +148,11 @@ def run_graph_pipeline(question: str, query_id: str = None, user=None) -> dict:
         }
 
 
-def run_ramas_pipeline(question: str, query_id: str = None, user=None) -> str:
+def run_text_query_pipeline(question: str, query_id: str = None, user=None) -> str:
     """
-    Orchestrates the RAMAS pipeline:
-    1. Intent Classification: Skip pipeline for greetings.
-    2. Planner: Decomposes question.
+    Orchestrates the multi-agent text query pipeline:
+    1. Intent Classification: Route to appropriate handler.
+    2. Planner: Decomposes question into SQL steps.
     3. Worker: Executes each step.
     4. Auditor: Synthesizes final answer.
     
@@ -165,15 +165,7 @@ def run_ramas_pipeline(question: str, query_id: str = None, user=None) -> str:
         Final response string
     """
     
-    # Import progress tracking (optional, won't crash if not available)
-    try:
-        from api.main import set_query_progress
-        has_progress = True
-    except ImportError:
-        has_progress = False
-        def set_query_progress(qid, agent, step): pass
-
-    log_system_info(f"--- Starting RAMAS Pipeline for: {question} ---")
+    log_system_info(f"--- Starting Text Query Pipeline for: {question} ---")
     
     # 0. Check for Graph Authorization
     graph_allowed = False
@@ -280,8 +272,7 @@ User: "{input_for_classification}"
             
             log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
             
-            if has_progress and query_id:
-                set_query_progress(query_id, "advisor", "Generating recommendation...")
+            _update_progress(query_id, "advisor", "💡 Preparing advice...")
             
             advisory_response = generate_advisory(log_input_query)
             
@@ -295,9 +286,7 @@ User: "{input_for_classification}"
     # Handle DATA or DATA+ADVISORY (need to run data pipeline first)
     needs_data = "DATA" in labels
     needs_advisory = "ADVISORY" in labels
-    
-    if has_progress and query_id:
-        set_query_progress(query_id, "planner", "Breaking down question...")
+    _update_progress(query_id, "planner", "🔍 Understanding your question...")
 
     
     try:
@@ -314,8 +303,7 @@ User: "{input_for_classification}"
         log_agent_interaction(interaction_id, "Planner", "Output", log_input_query, plan)
         
         # Step 3: Worker - Execute Steps
-        if has_progress and query_id:
-            set_query_progress(query_id, "worker", "Executing queries...")
+        _update_progress(query_id, "worker", "💾 Running queries...")
         
         context = ""
         steps = extract_steps(plan)
@@ -355,8 +343,7 @@ User: "{input_for_classification}"
                 log_agent_interaction(interaction_id, "Worker", "Tool Call", clean_step, result)
         
         # Step 4: Auditor - Synthesize Final Answer
-        if has_progress and query_id:
-            set_query_progress(query_id, "auditor", "Synthesizing answer...")
+        _update_progress(query_id, "auditor", "✍️ Writing your answer...")
         
         final_answer = audit_and_synthesize(question, context, graph_allowed, interaction_id=interaction_id)
         
@@ -371,8 +358,7 @@ User: "{input_for_classification}"
             try:
                 from backend.agents.advisor import generate_advisory
                 
-                if has_progress and query_id:
-                    set_query_progress(query_id, "advisor", "Generating recommendation...")
+                _update_progress(query_id, "advisor", "💡 Preparing advice...")
                 
                 # Pass the data context to advisor
                 advisory_response = generate_advisory(log_input_query, data_context=final_answer)

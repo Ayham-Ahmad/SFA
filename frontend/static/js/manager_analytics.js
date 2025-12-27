@@ -255,6 +255,37 @@ const GraphManager = {
 };
 
 // --- Chat Interface ---
+
+// Live status polling helper
+let statusPollInterval = null;
+
+function startStatusPolling(queryId, statusElement) {
+    // Poll every 500ms for live status updates
+    statusPollInterval = setInterval(async () => {
+        try {
+            const res = await fetch(`/chat/status/${queryId}`, {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+            const data = await res.json();
+            if (data.step) {
+                // Update the status text with the current step
+                const timerSpan = statusElement.querySelector('span');
+                const timerText = timerSpan ? timerSpan.outerHTML : '';
+                statusElement.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${data.step} ${timerText}`;
+            }
+        } catch (e) {
+            // Ignore polling errors
+        }
+    }, 500);
+}
+
+function stopStatusPolling() {
+    if (statusPollInterval) {
+        clearInterval(statusPollInterval);
+        statusPollInterval = null;
+    }
+}
+
 async function sendMessage() {
     const input = document.getElementById('user-input');
     const msg = input.value.trim();
@@ -269,7 +300,7 @@ async function sendMessage() {
     const sendBtn = document.getElementById('send-btn');
 
     let seconds = 0;
-    status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Thinking... <span id="timer-text"></span>';
+    status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting... <span id="timer-text"></span>';
     const timerSpan = document.getElementById('timer-text');
     const timer = setInterval(() => {
         seconds++;
@@ -282,6 +313,9 @@ async function sendMessage() {
 
     // Generate query ID for cancellation
     currentQueryId = crypto.randomUUID();
+
+    // Start live status polling
+    startStatusPolling(currentQueryId, status);
 
     try {
         const response = await fetch('/chat', {
@@ -298,10 +332,12 @@ async function sendMessage() {
         });
         const data = await response.json();
         clearInterval(timer);
+        stopStatusPolling();
         status.textContent = '';
         addMessageUI(data.response, 'bot-msg', data.chat_id, data.chart_data);
     } catch (e) {
         clearInterval(timer);
+        stopStatusPolling();
         status.textContent = 'Error sending message.';
     } finally {
         input.disabled = false;
@@ -327,7 +363,7 @@ async function requestGraph() {
     const sendBtn = document.getElementById('send-btn');
 
     let seconds = 0;
-    status.innerHTML = '<i class="fas fa-chart-line fa-spin"></i> Generating graph... <span id="graph-timer-text"></span>';
+    status.innerHTML = '<i class="fas fa-chart-line fa-spin"></i> Starting... <span id="graph-timer-text"></span>';
     const timerSpan = document.getElementById('graph-timer-text');
     const timer = setInterval(() => {
         seconds++;
@@ -340,6 +376,9 @@ async function requestGraph() {
 
     // Generate query ID for cancellation
     currentQueryId = crypto.randomUUID();
+
+    // Start live status polling
+    startStatusPolling(currentQueryId, status);
 
     try {
         const response = await fetch('/chat', {
@@ -357,6 +396,7 @@ async function requestGraph() {
         });
         const data = await response.json();
         clearInterval(timer);
+        stopStatusPolling();
         status.textContent = '';
 
         if (data.chart_data) {
@@ -385,6 +425,7 @@ async function requestGraph() {
         }
     } catch (e) {
         clearInterval(timer);
+        stopStatusPolling();
         status.textContent = 'Error.';
     } finally {
         input.disabled = false;
@@ -439,16 +480,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2. Initialize GraphManager (which will render the loaded graphs)
     GraphManager.init();
 
-    // 3. Handle First Load / History Fetch (only if no local data)
-    if (!hasLocal) {
+    // 3. Handle First Load / History Fetch
+    // KEY FIX: Always try to sync history if we have a session ID, ensuring resilience against server restarts.
+    if (AppState.sessionId) {
+        await restoreFromBackend();
+    } else {
+        // New Session
         AppState.sessionId = crypto.randomUUID();
-        const skip = localStorage.getItem('sfa_skip_history');
-        if (skip) {
+        if (localStorage.getItem('sfa_skip_history')) {
             localStorage.removeItem('sfa_skip_history');
-            loadDefaultGraphs();
-        } else {
-            await restoreFromBackend();
         }
+        loadDefaultGraphs();
     }
 
     // 4. Update Greeting
@@ -495,11 +537,12 @@ async function restoreFromBackend() {
                 addMessageUI(item.question, 'user-msg');
                 addMessageUI(item.answer, 'bot-msg', item.id);
             });
-        } else {
+        } else if (AppState.graphs.length === 0) {
+            // Only load defaults if workspace is empty
             loadDefaultGraphs();
         }
     } catch (e) {
-        loadDefaultGraphs();
+        if (AppState.graphs.length === 0) loadDefaultGraphs();
     }
 }
 
@@ -511,26 +554,26 @@ async function loadDefaultGraphs() {
         const data = await res.json();
 
         // Only add graphs if data exists - use chart_type from settings
-        if (data.trend?.dates?.length && data.trend?.values?.length) {
-            const revenueTrend = buildChartFromTemplate({
-                chart_type: data.trend.chart_type || 'line',  // Use configured type
-                labels: data.trend.dates,
-                values: data.trend.values,
-                title: data.trend.title || 'Graph 1',
-                yLabel: data.trend.y_label || 'Value'
+        if (data.graph1?.dates?.length && data.graph1?.values?.length) {
+            const graph1Chart = buildChartFromTemplate({
+                chart_type: data.graph1.chart_type,
+                labels: data.graph1.dates,
+                values: data.graph1.values,
+                title: data.graph1.title,
+                yLabel: data.graph1.y_label || 'Value'
             });
-            GraphManager.add(revenueTrend);
+            GraphManager.add(graph1Chart);
         }
 
-        if (data.income_trend?.dates?.length && data.income_trend?.values?.length) {
-            const netIncome = buildChartFromTemplate({
-                chart_type: data.income_trend.chart_type || 'bar',  // Use configured type
-                labels: data.income_trend.dates,
-                values: data.income_trend.values,
-                title: data.income_trend.title || 'Graph 2',
-                yLabel: data.income_trend.y_label || 'Value'
+        if (data.graph2?.dates?.length && data.graph2?.values?.length) {
+            const graph2Chart = buildChartFromTemplate({
+                chart_type: data.graph2.chart_type,
+                labels: data.graph2.dates,
+                values: data.graph2.values,
+                title: data.graph2.title,
+                yLabel: data.graph2.y_label || 'Value'
             });
-            GraphManager.add(netIncome);
+            GraphManager.add(graph2Chart);
         }
     } catch (e) { console.error("Default graphs failed", e); }
 }
@@ -614,12 +657,20 @@ function rate(id, type) {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     }).then(() => {
-        // Visual feedback - find the buttons and update styling
-        const buttons = document.querySelectorAll(`[onclick="rate(${id}, 'like')"], [onclick="rate(${id}, 'dislike')"]`);
-        buttons.forEach(btn => {
-            btn.disabled = true;
-            btn.style.opacity = '0.5';
-        });
+        // Reset both buttons to default state
+        const likeBtn = document.querySelector(`[onclick="rate(${id}, 'like')"]`);
+        const dislikeBtn = document.querySelector(`[onclick="rate(${id}, 'dislike')"]`);
+
+        if (likeBtn) {
+            likeBtn.classList.remove('btn-success');
+            likeBtn.classList.add('btn-outline-success');
+            likeBtn.style.opacity = '0.7';
+        }
+        if (dislikeBtn) {
+            dislikeBtn.classList.remove('btn-danger');
+            dislikeBtn.classList.add('btn-outline-danger');
+            dislikeBtn.style.opacity = '0.7';
+        }
 
         // Highlight the clicked button
         const clickedBtn = document.querySelector(`[onclick="rate(${id}, '${type}')"]`);

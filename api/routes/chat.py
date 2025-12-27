@@ -1,59 +1,35 @@
-"""
-Chat Routes
-============
-Handles AI chat, query management, and chat history.
-"""
+import asyncio
+import time
+from uuid import uuid4
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-import asyncio
-from asyncio import CancelledError
-from uuid import uuid4
-import time
 
+# --- Internal Imports ---
 from api.database import get_db
 from api.models import User, ChatHistory, InteractionType
 from api.schemas import ChatRequest
 from api.auth import get_current_active_user
-from backend.routing import run_ramas_pipeline
+from backend.routing import run_text_query_pipeline
+from backend.graph_pipeline import run_graph_pipeline
 from backend.sfa_logger import log_system_error
 
+# --- Configuration ---
+TIMEOUT_SECONDS = 120.0
+CHAT_HISTORY_LIMIT = 2  
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
-# Global dictionaries for query tracking (shared with main app)
-active_queries = {}
-query_progress = {}
+# --- Global State (Tracking Active Tasks) ---
+# We keep track of running queries here so we can cancel them if needed.
+active_queries = {}     # Maps query_id -> asyncio Task
+query_progress = {}     # Maps query_id -> Status message (e.g., "Reading database...")
 
 
-def _log_cancellation(query_id: str, question: str, reason: str):
-    """Log query cancellations to debug file."""
-    from datetime import datetime
-    import json
-    import os
-    
-    log_entry = {
-        "timestamp": datetime.now().isoformat(),
-        "query_id": query_id,
-        "question": question[:100],
-        "reason": reason
-    }
-    debug_path = "debug/cancellations.json"
-    os.makedirs("debug", exist_ok=True)
-    
-    logs = []
-    if os.path.exists(debug_path):
-        try:
-            with open(debug_path, "r") as f:
-                logs = json.load(f)
-        except Exception:
-            logs = []
-    
-    logs.append(log_entry)
-    with open(debug_path, "w") as f:
-        json.dump(logs[-100:], f, indent=2)
-
+# --- Helper Functions ---
 
 def set_query_progress(query_id: str, agent: str, step: str = ""):
-    """Update progress status for a query."""
+    """Updates the status message for the frontend loading bar."""
     query_progress[query_id] = {"agent": agent, "step": step}
 
 
@@ -62,153 +38,107 @@ def clear_query_progress(query_id: str):
     query_progress.pop(query_id, None)
 
 
+async def run_task_safely(task_func, query_id: str):
+    """
+    Runs the AI task with a timeout and cancellation support.
+    Returns: (text_response, chart_data)
+    """
+    task = asyncio.create_task(task_func())
+    active_queries[query_id] = task
+
+    response_text = ""
+    chart_data = None
+
+    try:
+        result = await asyncio.wait_for(task, timeout=TIMEOUT_SECONDS)
+
+        if isinstance(result, dict):
+            response_text = result.get("message", "")
+            if result.get("success"):
+                chart_data = result
+        else:
+            response_text = result
+
+    except asyncio.TimeoutError:
+        task.cancel()
+        response_text = "Query timed out. Please try a more specific question."
+    except asyncio.CancelledError:
+        response_text = "Query cancelled by user."
+    except Exception as e:
+        response_text = f"An error occurred: {str(e)}"
+        log_system_error(f"Task Error: {e}")
+    finally:
+        active_queries.pop(query_id, None)
+        clear_query_progress(query_id)
+
+    return response_text, chart_data
+
+
+# --- Main Endpoints ---
+
 @router.post("")
 async def chat_endpoint(
     request: ChatRequest, 
     current_user: User = Depends(get_current_active_user), 
     db: Session = Depends(get_db)
 ):
-    """
-    Main endpoint for interacting with the AI Financial Advisor.
-    Handles message history context, RAG pipeline execution, and storing history.
-    
-    For graph requests (interaction_type='graph'), uses dedicated graph pipeline
-    that builds charts programmatically without LLM involvement.
-    """
+    """Receives a message, runs the AI, and saves the result."""
     start_time = time.time()
-    query_id = request.query_id if request.query_id else str(uuid4())
+    query_id = request.query_id or str(uuid4())
     
-    # 1. Determine Interaction Type
-    itype = InteractionType.QUERY
-    is_graph_request = request.interaction_type == "graph"
-    if is_graph_request:
-        itype = InteractionType.GRAPH_BUTTON
+    # 1. Decide if this is a Graph request or a Text request
+    is_graph = (request.interaction_type == "graph")
+    interaction_type = InteractionType.GRAPH_BUTTON if is_graph else InteractionType.QUERY
 
-    # 2. Retrieve Chat History for Context
-    query_builder = db.query(ChatHistory).filter(ChatHistory.user_id == current_user.id)
-    
-    if request.session_id:
-         query_builder = query_builder.filter(ChatHistory.session_id == request.session_id)
-         
-    last_exchanges = query_builder.order_by(ChatHistory.timestamp.desc()).limit(2).all()
+    # 2. Build Context (Fetch last 2 messages)
+    last_chats = db.query(ChatHistory)\
+        .filter(ChatHistory.user_id == current_user.id)\
+        .filter(ChatHistory.session_id == request.session_id)\
+        .order_by(ChatHistory.timestamp.desc())\
+        .limit(CHAT_HISTORY_LIMIT).all()
 
-    full_context_query = request.message
+    # Prepare the input string with history attached
+    full_prompt = request.message
+    if last_chats and not is_graph:
+        history_text = "\n".join([f"Q: {c.question} -> A: {c.answer}" for c in reversed(last_chats)])
+        full_prompt = f"Context:\n{history_text}\nUser Query: {request.message}"
+
+    # 3. Define the heavy task (to be run in background)
+    set_query_progress(query_id, "planner", "🔍 Analyzing your request...")
     
-    # 3. Inject Context (only successful exchanges, skip errors/failures)
-    if last_exchanges:
-        history_lines = []
-        error_phrases = ["data not available", "error:", "no data", "not found", "no results"]
-        
-        for ex in reversed(last_exchanges):
-            answer_clean = ex.answer.split("graph_data||")[0].strip() if "graph_data||" in ex.answer else ex.answer
-            # Skip error responses to avoid polluting context
-            if any(phrase in answer_clean.lower() for phrase in error_phrases):
-                continue
-            # Truncate long answers
-            if len(answer_clean) > 200:
-                answer_clean = answer_clean[:200] + "..."
-            history_lines.append(f"Q: {ex.question} -> A: {answer_clean}")
-        
-        if history_lines:
-            context_str = "\n".join(history_lines)
-            full_context_query = f"Context:\n{context_str}\nUser Query: {request.message}"
-    
-    # 4. Execute the appropriate pipeline
-    response_text = ""
-    chart_data = None
-    
-    try:
-        set_query_progress(query_id, "planner", "Analyzing question...")
-        
-        if is_graph_request:
-            # Use NEW clean graph pipeline (returns raw data, frontend renders)
-            from backend.graph_pipeline import run_graph_pipeline
-            
-            async def run_graph_task():
-                return await asyncio.to_thread(run_graph_pipeline, request.message, query_id, current_user)
-            
-            task = asyncio.create_task(run_graph_task())
-            active_queries[query_id] = task
-            
-            try:
-                result = await asyncio.wait_for(task, timeout=120.0)
-                response_text = result.get("message", "")
-                
-                if result.get("success"):
-                    chart_data = {
-                        "chart_type": result.get("chart_type"),
-                        "labels": result.get("labels"),
-                        "values": result.get("values"),
-                        "title": result.get("title"),
-                        "is_percentage": result.get("is_percentage", False),
-                        "y_axis_title": result.get("y_axis_title", "USD")
-                    }
-                    
-            except asyncio.TimeoutError:
-                task.cancel()
-                response_text = "Query timed out. Please try a simpler question."
-                _log_cancellation(query_id, request.message, "timeout")
-            except CancelledError:
-                response_text = "Query cancelled by user."
-                _log_cancellation(query_id, request.message, "user_cancelled")
-            finally:
-                active_queries.pop(query_id, None)
-                clear_query_progress(query_id)
+    async def heavy_ai_task():
+        if is_graph:
+            return await asyncio.to_thread(run_graph_pipeline, request.message, query_id, current_user)
         else:
-            # Use standard RAMAS pipeline for text responses
-            async def run_text_task():
-                return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id, current_user)
-            
-            task = asyncio.create_task(run_text_task())
-            active_queries[query_id] = task
-            
-            try:
-                response_text = await asyncio.wait_for(task, timeout=120.0)
-            except asyncio.TimeoutError:
-                task.cancel()
-                response_text = "Query timed out after 2 minutes. Please try a more specific question."
-                _log_cancellation(query_id, request.message, "timeout")
-            except CancelledError:
-                response_text = "Query cancelled by user."
-                _log_cancellation(query_id, request.message, "user_cancelled")
-            finally:
-                active_queries.pop(query_id, None)
-                clear_query_progress(query_id)
-    
-    except Exception as e:
-        response_text = f"An error occurred: {str(e)}"
-        log_system_error(f"Chat Endpoint Error: {e}")
-    
-    # Measure processing time
-    end_time = time.time()
-    duration = end_time - start_time
-    
-    # 5. Persist the interaction to the database
-    new_history = ChatHistory(
+            return await asyncio.to_thread(run_text_query_pipeline, full_prompt, query_id, current_user)
+
+    # 4. Run it!
+    answer_text, chart_data = await run_task_safely(heavy_ai_task, query_id)
+
+    # 5. Save to Database
+    new_chat = ChatHistory(
         user_id=current_user.id,
         session_id=request.session_id,
         question=request.message,
-        answer=response_text,
-        interaction_type=itype,
-        response_time_seconds=duration,
-        user_feedback=None
+        answer=answer_text,
+        interaction_type=interaction_type,
+        response_time_seconds=time.time() - start_time
     )
-    db.add(new_history)
+    db.add(new_chat)
     db.commit()
-    db.refresh(new_history)
-    
-    # 6. Return structured response
+    db.refresh(new_chat)  # Ensure ID is populated
+
     return {
-        "response": response_text,
+        "response": answer_text,
         "chart_data": chart_data,
-        "chat_id": new_history.id,
+        "chat_id": new_chat.id,
         "query_id": query_id
     }
 
 
 @router.post("/cancel/{query_id}")
 async def cancel_query(query_id: str, current_user: User = Depends(get_current_active_user)):
-    """Cancel a running query by its query_id."""
+    """Stop a specific query if it's taking too long."""
     if query_id in active_queries:
         active_queries[query_id].cancel()
         return {"status": "cancelled", "query_id": query_id}
@@ -217,10 +147,10 @@ async def cancel_query(query_id: str, current_user: User = Depends(get_current_a
 
 @router.get("/status/{query_id}")
 async def get_query_status(query_id: str, current_user: User = Depends(get_current_active_user)):
-    """Get the current status of a running query (for progress indicator)."""
+    """Check what the AI is doing right now."""
     if query_id in query_progress:
         return query_progress[query_id]
-    return {"status": "unknown", "agent": "initializing"}
+    return {"agent": "initializing", "step": "⏳ Starting..."}
 
 
 @router.post("/feedback/{chat_id}")
@@ -232,6 +162,7 @@ async def chat_feedback(
 ):
     """Updates the user feedback (Like/Dislike) for a specific chat message."""
     chat_entry = db.query(ChatHistory).filter(ChatHistory.id == chat_id).first()
+    
     if not chat_entry:
         raise HTTPException(status_code=404, detail="Chat entry not found")
         
@@ -248,25 +179,21 @@ async def chat_feedback(
     db.commit()
     return {"status": "success", "feedback": chat_entry.user_feedback}
 
-
+# The chat history that is displayed in the chat window
 @router.get("/history")
 async def get_chat_history(
-    session_id: str = None, 
+    session_id: Optional[str] = None, 
     current_user: User = Depends(get_current_active_user), 
     db: Session = Depends(get_db)
 ):
-    """
-    Retrieve the chat history for the current user's specific session.
-    If session_id is provided, returns only messages from that session.
-    If session_id is not provided or has no messages, returns empty list.
-    """
+    """Get previous messages for the current session."""
     if not session_id:
         return []
     
-    history = db.query(ChatHistory).filter(
-        ChatHistory.user_id == current_user.id,
-        ChatHistory.session_id == session_id
-    ).order_by(ChatHistory.timestamp.asc()).all()
+    history = db.query(ChatHistory)\
+        .filter(ChatHistory.user_id == current_user.id, ChatHistory.session_id == session_id)\
+        .order_by(ChatHistory.timestamp.asc())\
+        .all()
     
     return [{
         "id": h.id,

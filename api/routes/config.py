@@ -65,7 +65,7 @@ async def get_dashboard_data(current_user: User = Depends(get_current_active_use
     
     if not config:
         # Fall back to legacy data
-        return {"companies": ticker_service.get_batch()}
+        return {"data": ticker_service.get_batch()}
     
     if not current_user.db_is_connected:
         return {"error": "No database connected"}

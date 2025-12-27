@@ -231,22 +231,45 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
     value_col = None
     cols = list(table_data.keys())
     
-    # Priority order for label columns
-    label_candidates = ['company_name', 'name', 'company', 'Company', 'Name']
-    for col in label_candidates:
-        if col in table_data:
+    # DYNAMIC COLUMN DETECTION
+    # Analyze actual data types rather than relying on hardcoded column names
+    
+    def is_numeric_column(values):
+        """Check if column values are numeric (for Y-axis)."""
+        numeric_count = 0
+        for v in values[:10]:  # Check first 10 values
+            try:
+                # Handle formatted values like "$100M", "50%", etc.
+                cleaned = str(v).replace('$', '').replace('%', '').replace(',', '').replace('B', '').replace('M', '').replace('K', '').strip()
+                if cleaned and cleaned not in ['-', 'N/A', 'None', '']:
+                    float(cleaned)
+                    numeric_count += 1
+            except (ValueError, TypeError):
+                pass
+        return numeric_count >= len(values[:10]) * 0.7  # 70% threshold
+    
+    def is_categorical_column(values):
+        """Check if column values are categorical (for X-axis labels)."""
+        str_count = sum(1 for v in values[:10] if isinstance(v, str) and not str(v).replace('.','').replace('-','').isdigit())
+        return str_count >= len(values[:10]) * 0.5
+    
+    # Find best label column (categorical/text data)
+    for col in cols:
+        values = table_data[col]
+        if is_categorical_column(values):
             label_col = col
             break
     
-    # Priority order for value columns
-    value_candidates = ['value', 'Value', 'revenue', 'Revenue', 'net_income', 'Net Income', 
-                        'stockholders_equity', 'fiscal_year', 'total']
-    for col in value_candidates:
-        if col in table_data:
+    # Find best value column (numeric data)
+    for col in reversed(cols):  # Prefer later columns for values
+        if col == label_col:
+            continue
+        values = table_data[col]
+        if is_numeric_column(values):
             value_col = col
             break
     
-    # If no standard columns found, try first and last
+    # Fallback: use first and last columns
     if not label_col and len(cols) >= 1:
         label_col = cols[0]
     if not value_col and len(cols) >= 2:
@@ -260,11 +283,11 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
         
         print(f"[GraphBuilder] Single-column table detected - creating list visualization")
         
-        title = "Companies Meeting Criteria"
+        title = "Data Meeting Criteria"
         if "negative" in question.lower() and "income" in question.lower():
-            title = "Companies with Negative Net Income"
+            title = "Negative Net Income"
         elif "revenue" in question.lower():
-            title = "Companies by Revenue"
+            title = "Revenue Breakdown"
         
         chart_data = {
             "data": [
@@ -313,17 +336,38 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
             val = parse_value(str(v))
         values.append(val)
     
+    # Check if data is in descending order (newest first) and reverse for chronological display
+    # This handles "last N" queries that return DESC order
+    date_keywords = ['date', 'quarter', 'year', 'month', 'period', 'time']
+    is_date_col = any(kw in label_col.lower() for kw in date_keywords)
+    if is_date_col and len(labels) > 1:
+        # Check if dates are descending (simple heuristic: first > last alphabetically for dates)
+        try:
+            if str(labels[0]) > str(labels[-1]):
+                print(f"[GraphBuilder] Detected descending date order, reversing for chronological display")
+                labels = list(reversed(labels))
+                values = list(reversed(values))
+        except Exception:
+            pass  # Skip if comparison fails
+    
     # Generate title from question
     title = "Financial Data"
-    if "margin" in question.lower():
+    q_lower = question.lower()
+    if "margin" in q_lower:
         title = "Margin Trend"
-    elif "revenue" in question.lower():
+    elif "open" in q_lower and "price" in q_lower:
+        title = "Open Stock Prices"
+    elif "close" in q_lower and "price" in q_lower:
+        title = "Close Stock Prices"
+    elif "stock" in q_lower or "price" in q_lower:
+        title = "Stock Price Trend"
+    elif "revenue" in q_lower:
         title = "Revenue Comparison"
-    elif "income" in question.lower() or "profit" in question.lower():
+    elif "income" in q_lower or "profit" in q_lower:
         title = "Net Income Comparison"
-    elif "asset" in question.lower():
+    elif "asset" in q_lower:
         title = "Assets Comparison"
-    elif "equity" in question.lower():
+    elif "equity" in q_lower:
         title = "Stockholders Equity"
     
     # Ask LLM for chart type
@@ -342,20 +386,3 @@ def build_graph_from_context(context: str, question: str) -> Optional[str]:
         print(f"[GraphBuilder] Successfully built {chart_type} chart with {len(labels)} data points, y_axis={y_axis_title}")
     
     return chart_json
-
-
-# Test function
-if __name__ == "__main__":
-    test_context = """
-Database Results:
-| company_name   |   fiscal_year | value    |
-|:---------------|--------------:|:---------|
-| APPLE INC      |          2025 | $219.66B |
-| MICROSOFT CORP |          2025 | $205.28B |
-    """
-    
-    result = build_graph_from_context(test_context, "apple vs microsoft revenue")
-    if result:
-        print(f"graph_data||{result}||")
-    else:
-        print("No graph generated")

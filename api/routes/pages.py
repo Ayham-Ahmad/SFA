@@ -88,7 +88,7 @@ async def live_data(current_user: User = Depends(get_current_active_user)):
     subtitle_column = config.ticker_title_column if config else None
     
     return {
-        "companies": data,
+        "data": data,
         "refresh_interval": refresh_interval,
         "subtitle_column": subtitle_column
     }

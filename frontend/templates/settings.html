@@ -147,6 +147,12 @@
                                         <option value="date">Date</option>
                                     </select>
                                 </div>
+                                <div class="mt-2">
+                                    <label class="form-label small text-muted">Secondary Column (optional)</label>
+                                    <select class="form-select form-select-sm" id="ticker-subtitle-secondary" disabled>
+                                        <option value="">None</option>
+                                    </select>
+                                </div>
                                 <div class="form-text small">Shows under "Financial Overview" title.</div>
                             </div>
                             <div class="col-md-6">
@@ -298,6 +304,12 @@
                                     </div>
                                 </div>
                                 <div class="mb-2">
+                                    <label class="form-label small text-muted">Secondary X Column (optional)</label>
+                                    <select class="form-select form-select-sm" id="graph1-x-secondary" disabled>
+                                        <option value="">None</option>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
                                     <label class="form-label small">Y-Axis Column</label>
                                     <div class="input-group input-group-sm">
                                         <select class="form-select" id="graph1-y" disabled>
@@ -317,6 +329,19 @@
                                     <label class="form-label small">Title</label>
                                     <input type="text" class="form-control form-control-sm" id="graph1-title"
                                         placeholder="e.g., Market Revenue Growth" disabled>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Data Range</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="form-select" id="graph1-range-mode" disabled
+                                            style="max-width: 140px;">
+                                            <option value="all">All Data</option>
+                                            <option value="last_n">Last N Rows</option>
+                                        </select>
+                                        <input type="number" class="form-control" id="graph1-range-limit"
+                                            placeholder="12" value="12" min="1" disabled style="display: none;">
+                                        <!-- Hidden unless 'last_n' selected -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -353,6 +378,12 @@
                                     </div>
                                 </div>
                                 <div class="mb-2">
+                                    <label class="form-label small text-muted">Secondary X Column (optional)</label>
+                                    <select class="form-select form-select-sm" id="graph2-x-secondary" disabled>
+                                        <option value="">None</option>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
                                     <label class="form-label small">Y-Axis Column</label>
                                     <div class="input-group input-group-sm">
                                         <select class="form-select" id="graph2-y" disabled>
@@ -372,6 +403,18 @@
                                     <label class="form-label small">Title</label>
                                     <input type="text" class="form-control form-control-sm" id="graph2-title"
                                         placeholder="e.g., Net Income Trend" disabled>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Data Range</label>
+                                    <div class="input-group input-group-sm">
+                                        <select class="form-select" id="graph2-range-mode" disabled
+                                            style="max-width: 140px;">
+                                            <option value="all">All Data</option>
+                                            <option value="last_n">Last N Rows</option>
+                                        </select>
+                                        <input type="number" class="form-control" id="graph2-range-limit"
+                                            placeholder="12" value="12" min="1" disabled style="display: none;">
+                                    </div>
                                 </div>
                             </div>
                         </div>

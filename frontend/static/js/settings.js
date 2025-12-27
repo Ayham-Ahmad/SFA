@@ -242,6 +242,7 @@ async function loadSchema() {
 async function saveConfiguration() {
     const config = {
         ticker_title_column: val('ticker-subtitle-col'),
+        ticker_title_secondary_column: val('ticker-subtitle-secondary'),
         ticker_title_format: val('ticker-subtitle-format'),
         refresh_interval: parseInt(val('refresh-interval')) || 10,
         traffic_light: {
@@ -258,18 +259,24 @@ async function saveConfiguration() {
         graph1: {
             graph_type: val('graph1-type'),
             x_column: val('graph1-x'),
+            x_secondary_column: val('graph1-x-secondary'),
             x_format: val('graph1-x-format'),
             y_column: val('graph1-y'),
             y_format: val('graph1-y-format'),
-            title: val('graph1-title')
+            title: val('graph1-title'),
+            data_range_mode: val('graph1-range-mode'),
+            data_range_limit: parseInt(val('graph1-range-limit')) || 12
         },
         graph2: {
             graph_type: val('graph2-type'),
             x_column: val('graph2-x'),
+            x_secondary_column: val('graph2-x-secondary'),
             x_format: val('graph2-x-format'),
             y_column: val('graph2-y'),
             y_format: val('graph2-y-format'),
-            title: val('graph2-title')
+            title: val('graph2-title'),
+            data_range_mode: val('graph2-range-mode'),
+            data_range_limit: parseInt(val('graph2-range-limit')) || 12
         }
     };
 
@@ -294,6 +301,7 @@ async function loadSavedConfiguration() {
             const c = result.config;
 
             setSelectValue('ticker-subtitle-col', c.ticker_title_column);
+            setSelectValue('ticker-subtitle-secondary', c.ticker_title_secondary_column);
             setSelectValue('ticker-subtitle-format', c.ticker_title_format);
             setSelectValue('refresh-interval', c.refresh_interval);
 
@@ -305,33 +313,63 @@ async function loadSavedConfiguration() {
                 setSelectValue('metric3-col', c.traffic_light.metric3_column);
                 setSelectValue('metric3-format', c.traffic_light.metric3_format);
 
-                setVal('expression-input', c.traffic_light.expression);
-                setVal('green-threshold', c.traffic_light.green_threshold);
-                setVal('red-threshold', c.traffic_light.red_threshold);
+                document.getElementById('expression-input').value = c.traffic_light.expression || '';
+                document.getElementById('green-threshold').value = c.traffic_light.green_threshold;
+                document.getElementById('red-threshold').value = c.traffic_light.red_threshold;
             }
 
             if (c.graph1) {
                 setSelectValue('graph1-type', c.graph1.graph_type);
                 setSelectValue('graph1-x', c.graph1.x_column);
+                setSelectValue('graph1-x-secondary', c.graph1.x_secondary_column);
                 setSelectValue('graph1-x-format', c.graph1.x_format);
                 setSelectValue('graph1-y', c.graph1.y_column);
                 setSelectValue('graph1-y-format', c.graph1.y_format);
-                setVal('graph1-title', c.graph1.title);
+                document.getElementById('graph1-title').value = c.graph1.title || '';
+
+                setSelectValue('graph1-range-mode', c.graph1.data_range_mode || 'all');
+                document.getElementById('graph1-range-limit').value = c.graph1.data_range_limit || 12;
+                toggleRangeLimitInput('graph1');
             }
 
             if (c.graph2) {
                 setSelectValue('graph2-type', c.graph2.graph_type);
                 setSelectValue('graph2-x', c.graph2.x_column);
+                setSelectValue('graph2-x-secondary', c.graph2.x_secondary_column);
                 setSelectValue('graph2-x-format', c.graph2.x_format);
                 setSelectValue('graph2-y', c.graph2.y_column);
                 setSelectValue('graph2-y-format', c.graph2.y_format);
-                setVal('graph2-title', c.graph2.title);
+                document.getElementById('graph2-title').value = c.graph2.title || '';
+
+                setSelectValue('graph2-range-mode', c.graph2.data_range_mode || 'all');
+                document.getElementById('graph2-range-limit').value = c.graph2.data_range_limit || 12;
+                toggleRangeLimitInput('graph2');
             }
 
             updateConfigStatusIndicators();
         }
-    } catch (e) { console.error("Load config error", e); }
+    } catch (e) { console.error('Config load error', e); }
 }
+
+function toggleRangeLimitInput(graphId) {
+    const mode = document.getElementById(`${graphId}-range-mode`).value;
+    const limitInput = document.getElementById(`${graphId}-range-limit`);
+    if (limitInput) {
+        limitInput.style.display = mode === 'last_n' ? 'block' : 'none';
+        // Auto-focus if switching to last_n in edit mode
+        if (mode === 'last_n' && isEditMode) limitInput.focus();
+    }
+    updateConfigStatusIndicators();
+}
+
+// Add listeners for range mode changing
+document.addEventListener('DOMContentLoaded', () => {
+    ['graph1', 'graph2'].forEach(id => {
+        const sel = document.getElementById(`${id}-range-mode`);
+        if (sel) sel.addEventListener('change', () => toggleRangeLimitInput(id));
+    });
+});
+
 
 // ============================================================================
 // UI Helpers
@@ -373,9 +411,9 @@ function updateEditableState() {
         'db-path', 'btn-test', 'btn-connect', 'btn-disconnect',
         'metric1-col', 'metric1-format', 'metric2-col', 'metric2-format', 'metric3-col', 'metric3-format',
         'expression-input', 'green-threshold', 'red-threshold',
-        'graph1-type', 'graph1-x', 'graph1-x-format', 'graph1-y', 'graph1-y-format', 'graph1-title',
-        'graph2-type', 'graph2-x', 'graph2-x-format', 'graph2-y', 'graph2-y-format', 'graph2-title',
-        'btn-save-config', 'ticker-subtitle-col', 'ticker-subtitle-format', 'refresh-interval'
+        'graph1-type', 'graph1-x', 'graph1-x-secondary', 'graph1-x-format', 'graph1-y', 'graph1-y-format', 'graph1-title', 'graph1-range-mode', 'graph1-range-limit',
+        'graph2-type', 'graph2-x', 'graph2-x-secondary', 'graph2-x-format', 'graph2-y', 'graph2-y-format', 'graph2-title', 'graph2-range-mode', 'graph2-range-limit',
+        'btn-save-config', 'ticker-subtitle-col', 'ticker-subtitle-secondary', 'ticker-subtitle-format', 'refresh-interval'
     ];
 
     editableIds.forEach(id => {
@@ -453,7 +491,8 @@ function populateColumnSelects(tables) {
     allColumns = [];
     const ids = [
         'metric1-col', 'metric2-col', 'metric3-col', 'ticker-subtitle-col',
-        'graph1-x', 'graph1-y', 'graph2-x', 'graph2-y'
+        'ticker-subtitle-secondary', 'graph1-x', 'graph1-x-secondary', 'graph1-y',
+        'graph2-x', 'graph2-x-secondary', 'graph2-y'
     ];
 
     const optionsHtml = ['<option value="">Select column...</option>'];

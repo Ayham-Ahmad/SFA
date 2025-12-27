@@ -79,7 +79,9 @@ IMPORTANT CONTEXT:
 
 RULES:
 - Do NOT invent columns - use ONLY columns listed above.
-- Use ORDER BY for time series if date/time columns exist.
+- For time-series data, ALWAYS include the date/time column in SELECT (e.g., trade_date, date, quarter).
+- For "last N" queries: ORDER BY date DESC, LIMIT N, then the graph will display oldest to newest.
+- For trend queries: ORDER BY date ASC (oldest first) for proper chronological display.
 - Handle different data types appropriately.
 
 OUTPUT:

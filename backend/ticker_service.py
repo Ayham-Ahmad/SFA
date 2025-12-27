@@ -74,11 +74,23 @@ class TickerService:
             is_profit = None # Default to Neutral/Yellow if unsure
             status_text = "NORMAL"
             
+            # Calc debug info
+            calc_debug = {}
+            
             try:
                 if expression:
                     # Evaluate expression
                     # eval_context has all columns, so 'cost_of_revenue' will work if in table
                     val = eval(expression, {"__builtins__": None}, eval_context)
+                    
+                    # Identify used variables for tooltip (heuristic)
+                    used_vars = {k: v for k, v in eval_context.items() if k in expression}
+                    calc_debug = {
+                        "result": val,
+                        "green": green_thresh,
+                        "red": red_thresh,
+                        "vars": used_vars
+                    }
                     
                     if val >= green_thresh:
                         is_profit = True
@@ -95,21 +107,37 @@ class TickerService:
             except Exception as e:
                 # Capture error for debugging but don't crash
                 log_system_error(f"Traffic Light Eval Error: {e}")
-                is_profit = None 
+                is_profit = "error" 
                 status_text = "ERROR"
+                calc_debug = {"error": str(e)}
 
             # Get metric values for display
             m1_val = get_val(row_dict, config.traffic_light.metric1_column)
             m2_val = get_val(row_dict, config.traffic_light.metric2_column)
             m3_val = get_val(row_dict, config.traffic_light.metric3_column)
             
-            # Subtitle
+            # Subtitle - combine primary and secondary if both exist
             sub_col = config.ticker_title_column
+            sub_secondary_col = config.ticker_title_secondary_column
             subtitle_val = None
+            
             if sub_col:
                 parts = sub_col.split('.')
                 sub_key = parts[1] if len(parts) > 1 else parts[0]
-                subtitle_val = row_dict.get(sub_key)
+                primary_val = row_dict.get(sub_key)
+                
+                # Check for secondary column
+                if sub_secondary_col and primary_val is not None:
+                    sec_parts = sub_secondary_col.split('.')
+                    sec_key = sec_parts[1] if len(sec_parts) > 1 else sec_parts[0]
+                    secondary_val = row_dict.get(sec_key)
+                    
+                    if secondary_val is not None:
+                        subtitle_val = f"{primary_val} {secondary_val}"
+                    else:
+                        subtitle_val = primary_val
+                else:
+                    subtitle_val = primary_val
 
             # Format item
             from backend.utils.formatters import format_value
@@ -124,6 +152,8 @@ class TickerService:
                 "metric3": format_value(m3_val, config.traffic_light.metric3_format),
                 "metric3_label": self._get_label_from_col(config.traffic_light.metric3_column),
                 "is_profit": is_profit,
+                "expression": expression if expression else "No Expression",
+                "calc_details": calc_debug,
                 # Force status to string just in case
                 "status": str(status_text)
             })

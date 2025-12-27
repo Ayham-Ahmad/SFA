@@ -82,9 +82,9 @@ async function fetchLiveData() {
 
         if (data.error) {
             showError(data.error);
-        } else if (data.companies && data.companies.length > 0) {
+        } else if (data.data && data.data.length > 0) {
             // Show the last item
-            const lastItem = data.companies[data.companies.length - 1];
+            const lastItem = data.data[data.data.length - 1];
             displayCompany(lastItem, data.subtitle_column);
         } else {
             const container = document.getElementById('live-feed-content');
@@ -135,13 +135,16 @@ function displayCompany(company, subtitleLabel = null) {
             </div>
 
             <div class="my-4 d-flex justify-content-center">
-                <div class="traffic-light-container d-flex flex-row justify-content-center align-items-center gap-4 bg-dark p-4 rounded-pill shadow-lg" 
+                <div class="traffic-light-container position-relative d-flex flex-row justify-content-center align-items-center gap-4 bg-dark p-4 rounded-pill shadow-lg" 
                      style="border: 1px solid #334155;">
                     <div class="light red ${isProfit === false ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
                     <div class="light yellow ${isProfit === null ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
                     <div class="light green ${isProfit === true ? 'active' : ''}" style="width: 80px; height: 80px;"></div>
+
+
                 </div>
             </div>
+
 
             <div class="row justify-content-center mt-5">
                 <div class="col-md-3 border-end border-secondary">
@@ -160,8 +163,35 @@ function displayCompany(company, subtitleLabel = null) {
                 </div>
             </div>
             
-            <div class="mt-4 badge bg-secondary bg-opacity-25 px-3 py-2 text-body">
-                STATUS: <span class="${statusColor}">${company.status}</span>
+            <div class="mt-4 d-flex justify-content-center align-items-center gap-2">
+                <div class="badge bg-secondary bg-opacity-25 px-3 py-2 text-body">
+                    STATUS: <span class="${statusColor}">${company.status}</span>
+                </div>
+                
+                <!-- Calculator Tooltip -->
+                <div class="calc-tooltip-btn position-relative" style="cursor: pointer;">
+                     <i class="fas fa-calculator text-secondary" style="font-size: 1.2rem;"></i>
+                     <div class="calc-tooltip-content text-white shadow-lg">
+                        <div class="fw-bold text-info mb-2 border-bottom border-secondary pb-1">Traffic Light Logic</div>
+                        
+                        <div class="calc-tooltip-row">
+                            <span class="text-muted">Expr:</span>
+                            <code class="text-white small" style="word-break: break-all;">${company.expression || '-'}</code>
+                        </div>
+
+                        ${renderVars(company.calc_details?.vars)}
+
+                        <div class="calc-tooltip-row mt-2 border-top border-secondary pt-1">
+                            <span class="text-muted">Result:</span>
+                            <span class="fw-bold ${statusColor}">${formatNumber(company.calc_details?.result)}</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-2 pt-2 border-top border-secondary small">
+                             <div class="text-danger" title="Red Threshold"><i class="fas fa-arrow-down"></i> &lt; ${company.calc_details?.red ?? '-'}</div>
+                             <div class="text-success" title="Green Threshold"><i class="fas fa-arrow-up"></i> &ge; ${company.calc_details?.green ?? '-'}</div>
+                        </div>
+                     </div>
+                </div>
             </div>
         </div>
     `;
@@ -176,4 +206,31 @@ function showError(msg) {
         el.className = 'text-danger small fw-bold';
     }
     console.error('Dashboard error:', msg);
+}
+
+
+function renderVars(vars) {
+    if (!vars || Object.keys(vars).length === 0) {
+        return '<div class="text-muted text-center small my-2">No variables tracked</div>';
+    }
+    let html = '';
+    for (const [key, val] of Object.entries(vars)) {
+        html += `
+            <div class="calc-tooltip-row">
+                <span class="text-muted small">${key}:</span>
+                <span class="text-white small">${formatNumber(val)}</span>
+            </div>`;
+    }
+    return html;
+}
+
+function formatNumber(num) {
+    if (num === null || num === undefined || isNaN(num)) return '-';
+    if (typeof num !== 'number') return num;
+
+    // Format large numbers
+    if (Math.abs(num) >= 1e9) return (num / 1e9).toFixed(2) + 'B';
+    if (Math.abs(num) >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+    if (Math.abs(num) >= 1e3) return (num / 1e3).toFixed(2) + 'k';
+    return num.toFixed(2);
 }
