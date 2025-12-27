@@ -1,0 +1,16 @@
+def getDatabaseConnection(dbPath):
+    connect to the db
+    return connection
+
+def getDatabaseCursor(connection):
+    return cursor
+
+def getDatabaseColumns(cursor):
+    sql code to get the columns
+    return columns
+
+def getSqliteDBColumns(dbPath):
+    connection = getDatabaseConnection(dbPath)
+    cursor = getDatabaseCursor(connection)
+    columns = getDatabaseColumns(cursor)
+    return columns

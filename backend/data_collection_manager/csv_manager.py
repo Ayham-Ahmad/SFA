@@ -2,19 +2,21 @@
 CSV Manager
 ===========
 Handles CSV file connections and schema extraction.
-Loads CSV into in-memory SQLite for SQL querying.
+Loads CSV into a temp SQLite file for SQL querying (thread-safe).
 """
 
 import os
 import csv
 import sqlite3
+import tempfile
 from typing import Dict, List, Any, Optional
 
 
 class CSVManager:
     """
     Manager for CSV files.
-    Loads CSV into in-memory SQLite database for SQL querying.
+    Loads CSV into a temp SQLite database file for SQL querying.
+    Uses file-based SQLite for thread safety.
     """
     
     def __init__(self, config: Dict[str, Any]):
@@ -26,14 +28,14 @@ class CSVManager:
         """
         self.csv_path = config.get("path", "")
         self.table_name: Optional[str] = None
-        self.memory_db: Optional[sqlite3.Connection] = None
+        self.db_path: Optional[str] = None  # Path to temp SQLite file
         self.is_connected = False
         self.original_headers: List[str] = []
         self.clean_headers: List[str] = []
     
     def connect(self) -> bool:
         """
-        Load CSV into in-memory SQLite database.
+        Load CSV into a temp SQLite database file.
         
         Returns:
             True if loaded successfully
@@ -42,12 +44,19 @@ class CSVManager:
             if not os.path.exists(self.csv_path):
                 return False
             
-            # Create in-memory SQLite database
-            self.memory_db = sqlite3.connect(":memory:")
+            # Create temp SQLite file (thread-safe)
+            temp_dir = tempfile.gettempdir()
+            csv_name = os.path.splitext(os.path.basename(self.csv_path))[0]
+            self.db_path = os.path.join(temp_dir, f"sfa_csv_{csv_name}_{os.getpid()}.db")
+            
+            # Remove old temp file if exists
+            if os.path.exists(self.db_path):
+                os.remove(self.db_path)
+            
+            conn = sqlite3.connect(self.db_path)
             
             # Derive table name from filename
-            self.table_name = os.path.splitext(os.path.basename(self.csv_path))[0]
-            self.table_name = self._clean_name(self.table_name)
+            self.table_name = self._clean_name(csv_name)
             
             # Read CSV and load into SQLite
             with open(self.csv_path, 'r', encoding='utf-8', newline='') as f:
@@ -71,13 +80,13 @@ class CSVManager:
                     f'"{h}" {column_types.get(h, "TEXT")}' 
                     for h in self.clean_headers
                 ])
-                self.memory_db.execute(f'CREATE TABLE "{self.table_name}" ({columns_def})')
+                conn.execute(f'CREATE TABLE "{self.table_name}" ({columns_def})')
                 
                 # Insert sample rows
                 placeholders = ", ".join(["?" for _ in self.clean_headers])
                 for row in sample_rows:
                     if len(row) == len(self.clean_headers):
-                        self.memory_db.execute(
+                        conn.execute(
                             f'INSERT INTO "{self.table_name}" VALUES ({placeholders})',
                             row
                         )
@@ -88,13 +97,14 @@ class CSVManager:
                 next(reader)  # Skip header
                 for i, row in enumerate(reader):
                     if i >= 100 and len(row) == len(self.clean_headers):
-                        self.memory_db.execute(
+                        conn.execute(
                             f'INSERT INTO "{self.table_name}" VALUES ({placeholders})',
                             row
                         )
                 
-                self.memory_db.commit()
+                conn.commit()
             
+            conn.close()
             self.is_connected = True
             return True
             
@@ -102,6 +112,10 @@ class CSVManager:
             print(f"CSV connect error: {e}")
             self.is_connected = False
             return False
+    
+    def _get_connection(self) -> sqlite3.Connection:
+        """Get a new thread-safe connection to the temp database."""
+        return sqlite3.connect(self.db_path, check_same_thread=False)
     
     def _clean_name(self, name: str) -> str:
         """Clean a name to be SQL-safe."""
@@ -149,11 +163,15 @@ class CSVManager:
         return types
     
     def disconnect(self) -> None:
-        """Close in-memory database."""
-        if self.memory_db:
-            self.memory_db.close()
-            self.memory_db = None
+        """Close and remove temp database."""
         self.is_connected = False
+        # Remove temp file
+        if self.db_path and os.path.exists(self.db_path):
+            try:
+                os.remove(self.db_path)
+            except:
+                pass
+        self.db_path = None
     
     def test_connection(self) -> Dict[str, Any]:
         """
@@ -208,11 +226,12 @@ class CSVManager:
         if not self.is_connected:
             self.connect()
         
-        if not self.memory_db:
+        if not self.db_path:
             return {}
         
         try:
-            cursor = self.memory_db.cursor()
+            conn = self._get_connection()
+            cursor = conn.cursor()
             
             # Get column info
             cursor.execute(f'PRAGMA table_info("{table_name}")')
@@ -229,6 +248,8 @@ class CSVManager:
             # Get row count
             cursor.execute(f'SELECT COUNT(*) FROM "{table_name}"')
             row_count = cursor.fetchone()[0]
+            
+            conn.close()
             
             return {
                 "table_name": table_name,
@@ -282,7 +303,7 @@ class CSVManager:
     
     def execute_query(self, query: str) -> Dict[str, Any]:
         """
-        Execute SQL query on in-memory database.
+        Execute SQL query on temp database (thread-safe).
         
         Args:
             query: SQL query string
@@ -295,12 +316,15 @@ class CSVManager:
                 return {"success": False, "error": "Failed to load CSV"}
         
         try:
-            cursor = self.memory_db.cursor()
+            # New connection for each query (thread-safe)
+            conn = self._get_connection()
+            cursor = conn.cursor()
             cursor.execute(query)
             
             if query.strip().upper().startswith("SELECT"):
                 columns = [desc[0] for desc in cursor.description] if cursor.description else []
                 rows = cursor.fetchall()
+                conn.close()
                 return {
                     "success": True,
                     "columns": columns,
@@ -308,11 +332,13 @@ class CSVManager:
                     "row_count": len(rows)
                 }
             else:
-                self.memory_db.commit()
+                conn.commit()
+                row_count = cursor.rowcount
+                conn.close()
                 return {
                     "success": True,
                     "message": "Query executed",
-                    "row_count": cursor.rowcount
+                    "row_count": row_count
                 }
         except Exception as e:
             return {"success": False, "error": str(e)}

@@ -21463,3 +21463,1802 @@ Database Results:
 [2025-12-26 18:22:52,357] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0182s', 'client': '127.0.0.1'}
 [2025-12-26 18:22:52,437] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
 [2025-12-26 18:22:52,456] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,200] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0012s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,256] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0083s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,400] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 200, 'process_time': '0.1199s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,403] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.1241s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,407] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.1152s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,409] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.1155s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,412] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.1319s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,414] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 200, 'process_time': '0.1187s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:48,608] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:52,124] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0614s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:52,159] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0157s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:52,178] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:52,184] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 200, 'process_time': '0.0088s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:53,443] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:44:53,445] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:53,458] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:55,633] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:55,659] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:55,663] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 200, 'process_time': '0.0070s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:55,818] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=ed6d32ed-3c70-4d24-9399-f36e8698d2a4', 'status_code': 200, 'process_time': '0.0096s', 'client': '127.0.0.1'}
+[2025-12-26 18:44:55,845] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0113s', 'client': '127.0.0.1'}
+[2025-12-26 18:45:23,476] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: do have revenu? list 5 last years ---
+[2025-12-26 18:45:24,012] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-26 18:45:24,072] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 3
+[2025-12-26 18:45:24,376] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve revenue data for the last 5 years.
+2. **SQL**: List the revenue for each of the last 5 years.
+[2025-12-26 18:45:24,442] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve revenue data for the last 5 years.', '**SQL**: List the revenue for each of the last 5 years.']
+[2025-12-26 18:45:24,443] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve revenue data for the last 5 years.
+[2025-12-26 18:45:24,443] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve revenue data for the last 5 years.
+[2025-12-26 18:45:24,444] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve revenue data for the last 5 years.
+[2025-12-26 18:45:24,445] [DEBUG] [sfa_system] Worker executing SQL: Retrieve revenue data for the last 5 years.
+[2025-12-26 18:45:25,082] [DEBUG] [sfa_system] Generated SQL: <think>
+Okay, the user wants to retrieve revenue data for the last 5 years. Let me check the database schema they provided. Oh wait, they mentioned that there are no tables found in the connected database. That's a problem. Without any tables, I can't generate a valid SQL query. Normally, I would look for a table that contains revenue information and a date column to filter the data. But since there are no tables listed, I don't have the necessary structure to proceed. I should inform them that I can't generate the SQL because there's no available table structure. Maybe they forgot to provide the schema details or there's an issue with their database connection. Either way, without the tables and columns, creating a query isn't possible.
+</think>
+[2025-12-26 18:45:25,085] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-26 18:45:25,086] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+<think>
+Okay, the user wants to retrieve revenue data for the last 5 years. Let me check the database schema they provided. Oh wait, they mentioned that there are...
+[2025-12-26 18:45:25,151] [DEBUG] [sfa_system] Executing Step: SQL: List the revenue for each of the last 5 years.
+[2025-12-26 18:45:25,152] [DEBUG] [sfa_system] Worker executing step: SQL: List the revenue for each of the last 5 years.
+[2025-12-26 18:45:25,153] [DEBUG] [sfa_system] Worker executing step_clean: SQL: List the revenue for each of the last 5 years.
+[2025-12-26 18:45:25,153] [DEBUG] [sfa_system] Worker executing SQL: List the revenue for each of the last 5 years.
+[2025-12-26 18:45:25,908] [DEBUG] [sfa_system] Generated SQL: <think>
+Okay, the user wants to list the revenue for each of the last 5 years. Let me check the database schema they provided. Oh wait, they mentioned that there are no tables found in the connected database. That's a problem because I need tables and columns to generate the SQL query.
+[2025-12-26 18:45:25,910] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-26 18:45:25,911] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+<think>
+Okay, the user wants to list the revenue for each of the last 5 years. Let me check the database schema they provided. Oh wait, they mentioned that there ...
+[2025-12-26 18:45:25,975] [DEBUG] [sfa_system] Auditor Synthesizing: do have revenu? list 5 last years
+[2025-12-26 18:45:26,053] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: do have revenu? list 5 last years
+Data:
+
+Step: **SQL**: Retrieve revenue data for the last 5 years.
+Result: SQL Execution Result:
+SQL Query Used:
+<think>
+Okay, the user wants to retrieve revenue data for the last 5 years. Let me check the database schema they provided. Oh wait, they mentioned that there are no tables found in the connected database. That's a problem. Without any tables, I can't generate a valid SQL query. Normally, I would look for a table that contains revenue information and a date column to filter the data. But since there are no tables listed, I don't have the necessary structure to proceed. I should inform them that I can't generate the SQL because there's no available table structure. Maybe they forgot to provide the schema details or there's an issue with their database connection. Either way, without the tables and columns, creating a query isn't possible.
+</think>
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+Step: **SQL**: List the revenue for each of the last 5 years.
+Result: SQL Execution Result:
+SQL Query Used:
+<think>
+Okay, the user wants to list the revenue for each of the last 5 years. Let me check the database schema they provided. Oh wait, they mentioned that there are no tables found in the connected database. That's a problem because I need tables and columns to generate the SQL query.
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+
+[2025-12-26 18:45:26,317] [DEBUG] [sfa_system] Auditor Synthesizing Result: Data not available for this period. 
+
+No financial data provided to list the revenue for the last 5 years.
+[2025-12-26 18:45:26,377] [DEBUG] [sfa_system] Final Output: Data not available for this period. 
+
+No financial data provided to list the revenue for the last 5 ...
+[2025-12-26 18:45:26,392] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.9264s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:34,590] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0152s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:34,607] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:34,613] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 200, 'process_time': '0.0084s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:34,723] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:48:34,724] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:34,802] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0098s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:34,853] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0167s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:42,491] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/disconnect', 'status_code': 200, 'process_time': '0.0137s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:42,513] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:42,598] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:43,548] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:43,659] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:44,152] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:44,963] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:45,061] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:45,689] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:49,636] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:49,725] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:52,169] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:52,256] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=94a5dd2c-5227-4957-944a-9a8ba9d757f7', 'status_code': 200, 'process_time': '0.0145s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:52,269] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:52,829] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:52,908] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=2b3dfb0a-4146-4cec-b544-84ef9b2c47d6', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:52,920] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:52,948] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,028] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=c3487596-9ddf-4f47-b5f4-7063864e7a05', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,042] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,091] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,172] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=face31f6-1171-46a4-a739-0943216cdf64', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,183] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,227] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,311] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=89c7f898-e20c-4128-b399-02656d7b3450', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,330] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,368] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,452] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=4cd5913d-d628-4893-aab2-a6b1b2ac4d6a', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,466] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,535] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,611] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=5676b59e-f5db-4309-8b85-3a747b2f6302', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,622] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,699] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,789] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=36361412-6341-4486-b56b-887cf96b7566', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,806] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,856] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,939] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=8f4378c1-92ab-4f94-a563-d3b5a297581f', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:53,951] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,006] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,091] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=e88302ed-770f-4022-abd0-dfd99642aa70', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,102] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,186] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,268] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=82945619-52e8-4e6c-9d81-e9d73c3bd48e', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,280] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,337] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,415] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=966649ed-5897-4e28-b2ac-e418dcaa4e14', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,430] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,500] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,586] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=fa517e33-ddfb-469d-9492-48cfd13e5a77', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,598] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,659] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,736] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=2923c5ff-00b4-48fe-9138-16f9d38b4b53', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,749] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,823] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,897] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=9443474b-cbd5-4df2-ab9b-d292441164b3', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:54,910] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,086] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,164] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=31b9d6e2-099b-47f9-ae78-7e7505ff9f0b', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,176] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,237] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,330] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=52fbeaa1-1f75-4c60-9627-24c6c8cba6b5', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,343] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,387] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,470] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=2f2c8a4f-0cea-45f7-b492-8fcb54eb1b6d', 'status_code': 200, 'process_time': '0.0040s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,481] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,567] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,645] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=7d854df7-6ef1-4f94-b4e7-3c65b7fe886c', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,670] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,723] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,798] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=0e4190e4-4879-4bbc-a7b5-d868f84d98d9', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,811] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,882] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,959] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=a8a76dad-4308-4616-9c03-9f8358b74c2d', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:55,972] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:56,031] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:56,109] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=0f94dc77-41fe-4545-ae10-79ac83f34ccf', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:56,122] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:56,213] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:56,299] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=dedc89f9-a090-485a-bbb3-2564f509f070', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:56,312] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:57,292] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:48:57,396] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:00,938] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:01,036] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=0e08a147-aea2-4a75-a0fa-e701b068e80a', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:01,058] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0116s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:03,017] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:03,100] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:04,058] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:04,164] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0147s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:12,182] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/test', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:14,304] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/connect', 'status_code': 200, 'process_time': '0.0249s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:15,831] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:15,934] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:49:15,936] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:15,956] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0080s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:15,979] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:24,444] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:24,459] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 304, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:24,581] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=c6433e5d-5291-4197-9cb2-d8e2ba72f442', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:24,617] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:25,726] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:25,832] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:49:25,834] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0083s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:25,867] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:30,881] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:35,910] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0093s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:40,937] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:45,963] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:50,979] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:54,454] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:54,594] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-26 18:49:54,595] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:54,649] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 18:49:54,675] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:26,530] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/disconnect', 'status_code': 200, 'process_time': '0.0228s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:26,545] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:26,634] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:46,114] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/test', 'status_code': 200, 'process_time': '0.0161s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:47,310] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/connect', 'status_code': 200, 'process_time': '0.0354s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:48,833] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:48,917] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 18:50:48,918] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:48,988] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0594s', 'client': '127.0.0.1'}
+[2025-12-26 18:50:49,002] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:02,325] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:02,343] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 304, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:03,847] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:03,971] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 18:51:03,972] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:04,001] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:05,107] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:07,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:07,706] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:09,730] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:09,826] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:10,629] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0014s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:10,749] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 18:51:10,751] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0088s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:10,778] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-26 18:51:10,837] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0282s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:38,392] [INFO] [sfa_system] Dashboard config saved for user 3
+[2025-12-26 18:54:38,393] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0148s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,201] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,230] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.0133s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,239] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 304, 'process_time': '0.0182s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,245] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0244s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,253] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0241s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,259] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.0206s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,263] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.0182s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,325] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 18:54:40,327] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0093s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:40,342] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:44,086] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:44,103] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:44,186] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 18:54:44,188] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:44,206] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 18:54:44,226] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:16,865] [INFO] [sfa_system] Dashboard config saved for user 3
+[2025-12-26 18:55:16,866] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0237s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:18,584] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:18,600] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:18,701] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=e308424f-a8c2-4ff0-bbfc-d0bb7dc3f22f', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:18,789] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0756s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:23,844] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0611s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:27,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:27,185] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 18:55:27,194] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0117s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:27,209] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-26 18:55:27,239] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:03,293] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0117s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:03,318] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0083s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:03,323] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 200, 'process_time': '0.0125s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:03,328] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 200, 'process_time': '0.0138s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:03,335] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0186s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:03,342] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0149s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:03,347] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0198s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:06,420] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 18:59:06,421] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:06,436] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:06,452] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:19,280] [INFO] [sfa_system] Dashboard config saved for user 3
+[2025-12-26 18:59:19,281] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0246s', 'client': '127.0.0.1'}
+[2025-12-26 18:59:28,003] [INFO] [sfa_system] Dashboard config saved for user 3
+[2025-12-26 18:59:28,004] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0248s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:06,437] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/disconnect', 'status_code': 200, 'process_time': '0.0233s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:06,452] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:06,470] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=1', 'status_code': 304, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:06,614] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:39,638] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:39,661] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:39,667] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 304, 'process_time': '0.0091s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:44,476] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0418s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:44,501] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-26 19:00:44,614] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:10,029] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0114s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:10,051] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 200, 'process_time': '0.0037s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:11,974] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/admin', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:12,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/users', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:13,039] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:13,061] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:14,557] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:16,257] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0537s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:16,277] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:16,370] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:17,642] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:17,729] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:17,961] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:17,980] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 304, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:17,987] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 304, 'process_time': '0.0097s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:18,988] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:21,553] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:21,570] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:21,654] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:22,387] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:24,537] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:24,643] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:26,633] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:26,652] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:26,724] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:44,450] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/test', 'status_code': 200, 'process_time': '0.0231s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:45,353] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/connect', 'status_code': 200, 'process_time': '0.0411s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:46,873] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:46,891] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:46,969] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:01:46,971] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:47,045] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0627s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:47,080] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0238s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:51,177] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:52,179] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:52,516] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:01:52,517] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:52,595] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:53,702] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:53,783] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:01:53,785] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:53,800] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:54,039] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:56,194] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:56,298] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:01:56,300] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:56,320] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:56,726] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:58,209] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0014s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:58,230] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:58,381] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:01:58,382] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:58,404] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-26 19:01:58,425] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:00,984] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:15,021] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:15,038] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:15,130] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:02:15,131] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:15,146] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:15,177] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:32,631] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:02:42,485] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: what is the last open price? ---
+[2025-12-26 19:02:42,759] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-26 19:02:42,833] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 3
+[2025-12-26 19:02:43,163] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve the last open price from the available data.
+2. **SQL**: If no data is available, return a message indicating no data exists.
+[2025-12-26 19:02:43,227] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve the last open price from the available data.', '**SQL**: If no data is available, return a message indicating no data exists.']
+[2025-12-26 19:02:43,228] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the last open price from the available data.
+[2025-12-26 19:02:43,228] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the last open price from the available data.
+[2025-12-26 19:02:43,229] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the last open price from the available data.
+[2025-12-26 19:02:43,230] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the last open price from the available data.
+[2025-12-26 19:02:47,071] [DEBUG] [sfa_system] Generated SQL: SELECT open_price FROM "4" ORDER BY timestamp DESC LIMIT 1
+[2025-12-26 19:02:47,072] [DEBUG] [sfa_system] DB Result Sample: Error: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 19424 and this is thread id 17056....
+[2025-12-26 19:02:47,073] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT open_price FROM "4" ORDER BY timestamp DESC LIMIT 1
+
+Database Results:
+Error: SQLite objects created in a thread can only be used in that same thread. The ...
+[2025-12-26 19:02:47,152] [DEBUG] [sfa_system] Executing Step: SQL: If no data is available, return a message indicating no data exists.
+[2025-12-26 19:02:47,152] [DEBUG] [sfa_system] Worker executing step: SQL: If no data is available, return a message indicating no data exists.
+[2025-12-26 19:02:47,153] [DEBUG] [sfa_system] Worker executing step_clean: SQL: If no data is available, return a message indicating no data exists.
+[2025-12-26 19:02:47,154] [DEBUG] [sfa_system] Worker executing SQL: If no data is available, return a message indicating no data exists.
+[2025-12-26 19:02:51,763] [DEBUG] [sfa_system] Generated SQL: 
+[2025-12-26 19:02:51,764] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-26 19:02:51,765] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+
+
+Database Results:
+Error: Only SELECT statements are allowed....
+[2025-12-26 19:02:51,829] [DEBUG] [sfa_system] Auditor Synthesizing: what is the last open price?
+[2025-12-26 19:02:51,896] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: what is the last open price?
+Data:
+
+Step: **SQL**: Retrieve the last open price from the available data.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT open_price FROM "4" ORDER BY timestamp DESC LIMIT 1
+
+Database Results:
+Error: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 19424 and this is thread id 17056.
+
+Step: **SQL**: If no data is available, return a message indicating no data exists.
+Result: SQL Execution Result:
+SQL Query Used:
+
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+
+[2025-12-26 19:02:52,081] [DEBUG] [sfa_system] Auditor Synthesizing Result: Data not available for this period.
+[2025-12-26 19:02:52,139] [DEBUG] [sfa_system] Final Output: Data not available for this period....
+[2025-12-26 19:02:52,159] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '9.6819s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:02,549] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:02,571] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:02,584] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 200, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:02,589] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 200, 'process_time': '0.0125s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:02,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.0154s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:02,598] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.0174s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:02,604] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0209s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:13,522] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0012s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:13,566] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:13,752] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.1626s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:13,757] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 304, 'process_time': '0.1179s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:16,391] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0864s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:16,428] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0171s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:16,445] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 304, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:16,451] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0076s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:33,334] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:14:33,336] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0075s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:33,407] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0623s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:34,679] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:36,821] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:36,910] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:14:36,912] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:36,926] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0064s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:37,480] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-26 19:14:44,275] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+User Query: what is the last open price? ---
+[2025-12-26 19:14:45,026] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-26 19:14:45,076] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 3
+[2025-12-26 19:14:45,396] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve the last open price from the database.
+2. **SQL**: If no data is found, return a message indicating that data is not available for this period.
+[2025-12-26 19:14:45,468] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve the last open price from the database.', '**SQL**: If no data is found, return a message indicating that data is not available for this period.']
+[2025-12-26 19:14:45,469] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the last open price from the database.
+[2025-12-26 19:14:45,469] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the last open price from the database.
+[2025-12-26 19:14:45,470] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the last open price from the database.
+[2025-12-26 19:14:45,470] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the last open price from the database.
+[2025-12-26 19:14:48,089] [DEBUG] [sfa_system] Generated SQL: -- Cannot generate valid SQL: No columns defined in the provided schema for table '4'.
+[2025-12-26 19:14:48,091] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-26 19:14:48,092] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+-- Cannot generate valid SQL: No columns defined in the provided schema for table '4'.
+
+Database Results:
+Error: Only SELECT statements are allowed....
+[2025-12-26 19:14:48,152] [DEBUG] [sfa_system] Executing Step: SQL: If no data is found, return a message indicating that data is not available for this period.
+[2025-12-26 19:14:48,153] [DEBUG] [sfa_system] Worker executing step: SQL: If no data is found, return a message indicating that data is not available for this period.
+[2025-12-26 19:14:48,154] [DEBUG] [sfa_system] Worker executing step_clean: SQL: If no data is found, return a message indicating that data is not available for this period.
+[2025-12-26 19:14:48,155] [DEBUG] [sfa_system] Worker executing SQL: If no data is found, return a message indicating that data is not available for this period.
+[2025-12-26 19:14:53,822] [DEBUG] [sfa_system] Generated SQL: SELECT 'No data available for this period.' AS message
+WHERE NOT EXISTS (SELECT 1 FROM "4")
+[2025-12-26 19:14:53,824] [DEBUG] [sfa_system] DB Result Sample: Error: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 2944 and this is thread id 14440....
+[2025-12-26 19:14:53,825] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT 'No data available for this period.' AS message
+WHERE NOT EXISTS (SELECT 1 FROM "4")
+
+Database Results:
+Error: SQLite objects created in a thread can only ...
+[2025-12-26 19:14:53,885] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+User Query: what is the last open price?
+[2025-12-26 19:14:53,948] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+User Query: what is the last open price?
+Data:
+
+Step: **SQL**: Retrieve the last open price from the database.
+Result: SQL Execution Result:
+SQL Query Used:
+-- Cannot generate valid SQL: No columns defined in the provided schema for table '4'.
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+Step: **SQL**: If no data is found, return a message indicating that data is not available for this period.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT 'No data available for this period.' AS message
+WHERE NOT EXISTS (SELECT 1 FROM "4")
+
+Database Results:
+Error: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 2944 and this is thread id 14440.
+
+
+[2025-12-26 19:14:54,131] [DEBUG] [sfa_system] Auditor Synthesizing Result: Data not available for this period.
+[2025-12-26 19:14:54,191] [DEBUG] [sfa_system] Final Output: Data not available for this period....
+[2025-12-26 19:14:54,205] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '9.9428s', 'client': '127.0.0.1'}
+[2025-12-26 19:16:51,692] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0167s', 'client': '127.0.0.1'}
+[2025-12-26 19:16:51,711] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 304, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-26 19:16:51,716] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0082s', 'client': '127.0.0.1'}
+[2025-12-26 19:16:52,313] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-26 19:16:52,315] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0111s', 'client': '127.0.0.1'}
+[2025-12-26 19:16:52,338] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0079s', 'client': '127.0.0.1'}
+[2025-12-26 19:16:52,387] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-26 19:17:33,952] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:08:18,268] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:06,869] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:07,011] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0985s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:07,188] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.1007s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:07,192] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.0985s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:07,195] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.1006s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:07,199] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.1072s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:07,201] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.1056s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:07,206] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 304, 'process_time': '0.1084s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:16,278] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.1687s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:16,396] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0979s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:16,414] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 304, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:16,420] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0076s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:16,874] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:34:16,876] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0393s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:16,989] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.1033s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:19,521] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0414s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:19,538] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 304, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:19,543] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 304, 'process_time': '0.0088s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:27,474] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0198s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:27,490] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 304, 'process_time': '0.0045s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:27,495] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:27,580] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:34:27,581] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:27,643] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0181s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:27,685] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0125s', 'client': '127.0.0.1'}
+[2025-12-27 11:34:59,346] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/test', 'status_code': 200, 'process_time': '0.0200s', 'client': '127.0.0.1'}
+[2025-12-27 11:35:00,936] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-27 11:35:10,065] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+Q: what is the last open price? -> A: Data not available for this period.
+User Query: what is the last open price? ---
+[2025-12-27 11:35:11,490] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 11:35:11,555] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 3
+[2025-12-27 11:35:11,858] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve the most recent Open price from the database.
+2. **SQL**: If no data is found, return a message stating "Data not available for this period".
+[2025-12-27 11:35:11,920] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve the most recent Open price from the database.', '**SQL**: If no data is found, return a message stating "Data not available for this period".']
+[2025-12-27 11:35:11,921] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the most recent Open price from the database.
+[2025-12-27 11:35:11,922] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the most recent Open price from the database.
+[2025-12-27 11:35:11,924] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the most recent Open price from the database.
+[2025-12-27 11:35:11,925] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the most recent Open price from the database.
+[2025-12-27 11:35:13,829] [DEBUG] [sfa_system] Generated SQL: SELECT Open 
+FROM "4" 
+ORDER BY Date DESC 
+LIMIT 1
+[2025-12-27 11:35:13,990] [DEBUG] [sfa_system] DB Result Sample: |   Open |
+|-------:|
+|    411 |...
+[2025-12-27 11:35:13,991] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT Open 
+FROM "4" 
+ORDER BY Date DESC 
+LIMIT 1
+
+Database Results:
+|   Open |
+|-------:|
+|    411 |...
+[2025-12-27 11:35:14,053] [DEBUG] [sfa_system] Executing Step: SQL: If no data is found, return a message stating "Data not available for this period".
+[2025-12-27 11:35:14,054] [DEBUG] [sfa_system] Worker executing step: SQL: If no data is found, return a message stating "Data not available for this period".
+[2025-12-27 11:35:14,055] [DEBUG] [sfa_system] Worker executing step_clean: SQL: If no data is found, return a message stating "Data not available for this period".
+[2025-12-27 11:35:14,056] [DEBUG] [sfa_system] Worker executing SQL: If no data is found, return a message stating "Data not available for this period".
+[2025-12-27 11:35:18,737] [DEBUG] [sfa_system] Generated SQL: 
+[2025-12-27 11:35:18,738] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-27 11:35:18,739] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+
+
+Database Results:
+Error: Only SELECT statements are allowed....
+[2025-12-27 11:35:18,799] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+Q: what is the last open price? -> A: Data not available for this period.
+User Query: what is the last open price?
+[2025-12-27 11:35:18,858] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+Q: what is the last open price? -> A: Data not available for this period.
+User Query: what is the last open price?
+Data:
+
+Step: **SQL**: Retrieve the most recent Open price from the database.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT Open 
+FROM "4" 
+ORDER BY Date DESC 
+LIMIT 1
+
+Database Results:
+|   Open |
+|-------:|
+|    411 |
+
+Step: **SQL**: If no data is found, return a message stating "Data not available for this period".
+Result: SQL Execution Result:
+SQL Query Used:
+
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+
+[2025-12-27 11:35:19,090] [DEBUG] [sfa_system] Auditor Synthesizing Result: The last open price is $411M. 
+No additional information is available. 
+
+| Open  |
+|-------|
+| $411M |
+[2025-12-27 11:35:19,153] [DEBUG] [sfa_system] Final Output: The last open price is $411M. 
+No additional information is available. 
+
+| Open  |
+|-------|
+| $411M...
+[2025-12-27 11:35:19,181] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '9.1495s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:13,178] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0013s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:13,411] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:36:13,417] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0399s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:13,537] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0108s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:18,686] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:24,686] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0051s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:30,692] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:36,690] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:42,680] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:48,687] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:53,042] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:56,611] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0471s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:56,632] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:56,732] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:36:56,735] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0070s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:56,750] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-27 11:36:58,421] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-27 11:37:00,792] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:37:00,906] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:37:00,908] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-27 11:37:00,929] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-27 11:37:00,954] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-27 11:37:02,570] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-27 11:37:21,234] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+Q: what is the last open price? -> A: The last open price is $411M. 
+No additional information is available. 
+
+| Open  |
+|-------|
+| $411M |
+User Query: what is the last reveue in 2025 q1? ---
+[2025-12-27 11:37:21,478] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 11:37:21,557] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 3
+[2025-12-27 11:37:22,291] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve the last revenue value for Q1 2025 from the database.
+2. **SQL**: If no revenue data is found, return a message indicating data is not available for this period.
+[2025-12-27 11:37:22,367] [DEBUG] [sfa_system] Extracted 2 steps: ['**SQL**: Retrieve the last revenue value for Q1 2025 from the database.', '**SQL**: If no revenue data is found, return a message indicating data is not available for this period.']
+[2025-12-27 11:37:22,368] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the last revenue value for Q1 2025 from the database.
+[2025-12-27 11:37:22,369] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the last revenue value for Q1 2025 from the database.
+[2025-12-27 11:37:22,370] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the last revenue value for Q1 2025 from the database.
+[2025-12-27 11:37:22,370] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the last revenue value for Q1 2025 from the database.
+[2025-12-27 11:37:25,767] [DEBUG] [sfa_system] Generated SQL: SELECT Turnover 
+FROM "4" 
+WHERE Date BETWEEN 20250101 AND 20250331 
+ORDER BY Date DESC 
+LIMIT 1
+[2025-12-27 11:37:25,771] [DEBUG] [sfa_system] DB Result Sample: No results found....
+[2025-12-27 11:37:25,772] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT Turnover 
+FROM "4" 
+WHERE Date BETWEEN 20250101 AND 20250331 
+ORDER BY Date DESC 
+LIMIT 1
+
+Database Results:
+No results found....
+[2025-12-27 11:37:25,832] [DEBUG] [sfa_system] Executing Step: SQL: If no revenue data is found, return a message indicating data is not available for this period.
+[2025-12-27 11:37:25,832] [DEBUG] [sfa_system] Worker executing step: SQL: If no revenue data is found, return a message indicating data is not available for this period.
+[2025-12-27 11:37:25,833] [DEBUG] [sfa_system] Worker executing step_clean: SQL: If no revenue data is found, return a message indicating data is not available for this period.
+[2025-12-27 11:37:25,834] [DEBUG] [sfa_system] Worker executing SQL: If no revenue data is found, return a message indicating data is not available for this period.
+[2025-12-27 11:37:30,580] [DEBUG] [sfa_system] Generated SQL: SELECT *
+FROM "4"
+ORDER BY Date
+[2025-12-27 11:37:30,684] [DEBUG] [sfa_system] DB Result Sample: | Date       | Symbol     | Series   |   Prev_Close |    Open |    High |     Low |    Last |   Close |    VWAP |   Volume |    Turnover | Trades   |   Deliverable_Volume |   %Deliverble |
+|:---------...
+[2025-12-27 11:37:30,686] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT *
+FROM "4"
+ORDER BY Date
+
+Database Results:
+| Date       | Symbol     | Series   |   Prev_Close |    Open |    High |     Low |    Last |   Close |    VWAP...
+[2025-12-27 11:37:30,751] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+Q: what is the last open price? -> A: The last open price is $411M. 
+No additional information is available. 
+
+| Open  |
+|-------|
+| $411M |
+User Query: what is the last reveue in 2025 q1?
+[2025-12-27 11:37:30,815] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown.
+2. Do NOT estimate or extrapolate.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. Margins are decimals → convert to percentages.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Financial units:
+  - Billions → $XX.XXB
+  - Millions → $XX.XXM
+
+User question: Context:
+Q: what is the last open price? -> A: Data not available for this period.
+Q: what is the last open price? -> A: The last open price is $411M. 
+No additional information is available. 
+
+| Open  |
+|-------|
+| $411M |
+User Query: what is the last reveue in 2025 q1?
+Data:
+
+Step: **SQL**: Retrieve the last revenue value for Q1 2025 from the database.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT Turnover 
+FROM "4" 
+WHERE Date BETWEEN 20250101 AND 20250331 
+ORDER BY Date DESC 
+LIMIT 1
+
+Database Results:
+No results found.
+
+Step: **SQL**: If no revenue data is found, return a message indicating data is not available for this period.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT *
+FROM "4"
+ORDER BY Date
+
+Database Results:
+| Date       | Symbol     | Series   |   Prev_Close |    Open |    High |     Low |    Last |   Close |    VWAP |   Volume |    Turnover | Trades   |   Deliverable_Volume |   %Deliverble |
+|:-----------|:-----------|:---------|-------------:|--------:|--------:|--------:|--------:|--------:|--------:|---------:|------------:|:---------|---------------------:|--------------:|
+| 2007-11-27 | MUNDRAPORT | EQ       |       440    |  770    | 1050    |  770    |  959    |  962.9  |  984.72 | 27294366 | 2.68772e+15 |          |              9859619 |        0.3612 |
+| 2007-11-28 | MUNDRAPORT | EQ       |       962.9  |  984    |  990    |  874    |  885    |  893.9  |  941.38 |  4581338 | 4.31277e+14 |          |              1453278 |        0.3172 |
+| 2007-11-29 | MUNDRAPORT | EQ       |       893.9  |  909    |  914.75 |  841    |  887    |  884.2  |  888.09 |  5124121 | 4.55066e+14 |          |              1069678 |        0.2088 |
+| 2007-11-30 | MUNDRAPORT | EQ       |       884.2  |  890    |  958    |  890    |  929    |  921.55 |  929.17 |  4609762 | 4.28326e+14 |          |              1260913 |        0.2735 |
+| 2007-12-03 | MUNDRAPORT | EQ       |       921.55 |  939.75 |  995    |  922    |  980    |  969.3  |  965.65 |  2977470 | 2.8752e+14  |          |               816123 |        0.2741 |
+| 2007-12-04 | MUNDRAPORT | EQ       |       969.3  |  985    | 1056    |  976    | 1049    | 1041.45 | 1015.39 |  4849250 | 4.92387e+14 |          |              1537667 |        0.3171 |
+| 2007-12-05 | MUNDRAPORT | EQ       |      1041.45 | 1061    | 1099.5  | 1050    | 1084    | 1082.45 | 1082.79 |  2848209 | 3.08401e+14 |          |               904260 |        0.3175 |
+| 2007-12-06 | MUNDRAPORT | EQ       |      1082.45 | 1089    | 1109.7  | 1051    | 1090.1  | 1081.3  | 1087.03 |  1749516 | 1.90177e+14 |          |               825691 |        0.472  |
+| 2007-12-07 | MUNDRAPORT | EQ       |      1081.3  | 1100    | 1134    | 1078    | 1100    | 1102.4  | 1106.57 |  2247904 | 2.48747e+14 |          |               697763 |        0.3104 |
+| 2007-12-10 | MUNDRAPORT | EQ       |      1102.4  | 1110    | 1110    | 1061.1  | 1073.55 | 1075.4  | 1080.38 |  1012350 | 1.09373e+14 |          |               417514 |        0.4124 |
+| 2007-12-11 | MUNDRAPORT | EQ       |      1075.4  | 1081    | 1089    | 1041    | 1046    | 1047.65 | 1067.8  |   810464 | 8.65416e+13 |          |               415191 |        0.5123 |
+| 2007-12-12 | MUNDRAPORT | EQ       |      1047.65 | 1032    | 1065    | 1016    | 1036.9  | 1036.8  | 1043.92 |   744799 | 7.77514e+13 |          |               363848 |        0.4885 |
+| 2007-12-13 | MUNDRAPORT | EQ       |      1036.8  | 1040    | 1150    | 1030.25 | 1131.15 | 1129.95 | 1109.09 |  3067687 | 3.40234e+14 |          |              1040076 |        0.339  |
+| 2007-12-14 | MUNDRAPORT | EQ       |      1129.95 | 1139.9  | 1140    | 1101.1  | 1107    | 1110.5  | 1119.55 |  1070737 | 1.19875e+14 |          |               525239 |        0.4905 |
+| 2007-12-17 | MUNDRAPORT | EQ       |      1110.5  | 1140    | 1168    | 1021.5  | 1052    | 1044.25 | 1102.42 |  1404955 | 1.54885e+14 |          |               670298 |        0.4771 |
+| 2007-12-18 | MUNDRAPORT | EQ       |      1044.25 | 1045    | 1109.9  | 1031.55 | 1085    | 1074.95 | 1077.84 |  1226984 | 1.3225e+14  |          |               449420 |        0.3663 |
+| 2007-12-19 | MUNDRAPORT | EQ       |      1074.95 | 1091    | 1116    | 1046.3  | 1078    | 1066.9  | 1082.93 |   845666 | 9.15798e+13 |          |               344171 |        0.407  |
+| 2007-12-20 | MUNDRAPORT | EQ       |      1066.9  | 1083.5  | 1083.5  | 1051    | 1067    | 1060.2  | 1065.52 |   623288 | 6.64127e+13 |          |               276356 |        0.4434 |
+| 2007-12-24 | MUNDRAPORT | EQ       |      1060.2  | 1095    | 1192    | 1085.25 | 1160    | 1156.8  | 1160.77 |  2060892 | 2.39221e+14 |          |               807879 |        0.392  |
+| 2007-12-26 | MUNDRAPORT | EQ       |      1156.8  | 1175    | 1214    | 1148    | 1212    | 1199.9  | 1183.3  |  1467031 | 1.73594e+14 |          |               469389 |        0.32   |
+| 2007-12-27 | MUNDRAPORT | EQ       |      1199.9  | 1215    | 1240    | 1204    | 1209    | 1211.65 | 1222.58 |   977495 | 1.19506e+14 |          |               355431 |        0.3636 |
+| 2007-12-28 | MUNDRAPORT | EQ       |      1211.65 | 1189.4  | 1274    | 1175    | 1270    | 1249.1  | 1221.31 |  1164138 | 1.42177e+14 |          |               503564 |        0.4326 |
+| 2007-12-31 | MUNDRAPORT | EQ       |      1249.1  | 1263.35 | 1295    | 1261    | 1268    | 1268.8  | 1277.64 |   737249 | 9.41942e+13 |          |               316377 |        0.4291 |
+| 2008-01-01 | MUNDRAPORT | EQ       |      1268.8  | 1279    | 1319    | 1263.7  | 1308    | 1296.85 | 1285.72 |   491348 | 6.31735e+13 |          |               172911 |        0.3519 |
+| 2008-01-02 | MUNDRAPORT | EQ       |      1296.85 | 1310.25 | 1324    | 1270    | 1300.15 | 1307.45 | 1302.15 |   703815 | 9.16473e+13 |          |               221397 |        0.3146 |
+| 2008-01-03 | MUNDRAPORT | EQ       |      1307.45 | 1305    | 1314.7  | 1261.15 | 1267.15 | 1275.8  | 1289.24 |   505058 | 6.51143e+13 |          |               217437 |        0.4305 |
+| 2008-01-04 | MUNDRAPORT | EQ       |      1275.8  | 1278.8  | 1294.8  | 1233    | 1239.9  | 1240.35 | 1256.03 |   550795 | 6.91817e+13 |          |               230237 |        0.418  |
+| 2008-01-07 | MUNDRAPORT | EQ       |      1240.35 | 1240    | 1278.9  | 1215    | 1233    | 1227.25 | 1244.76 |   630963 | 7.85398e+13 |          |               239404 |        0.3794 |
+| 2008-01-08 | MUNDRAPORT | EQ       |      1227.25 | 1240    | 1255    | 1185    | 1202    | 1204.8  | 1217.08 |   530499 | 6.4566e+13  |          |               228866 |        0.4314 |
+| 2008-01-09 | MUNDRAPORT | EQ       |      1204.8  | 1200    | 1210    | 1151    | 1181    | 1180.25 | 1176.37 |   627507 | 7.38183e+13 |          |               259280 |        0.4132 |
+| 2008-01-10 | MUNDRAPORT | EQ       |      1180.25 | 1185    | 1199.8  | 1110    | 1118    | 1121.55 | 1156.44 |   438806 | 5.07452e+13 |          |               200150 |        0.4561 |
+| 2008-01-11 | MUNDRAPORT | EQ       |      1121.55 | 1128    | 1130    | 1063    | 1096    | 1085.85 | 1087.78 |   616938 | 6.71093e+13 |          |               312121 |        0.5059 |
+| 2008-01-14 | MUNDRAPORT | EQ       |      1085.85 | 1082.4  | 1082.4  | 1031.1  | 1035    | 1035.15 | 1042.4  |   835916 | 8.71357e+13 |          |               570824 |        0.6829 |
+| 2008-01-15 | MUNDRAPORT | EQ       |      1035.15 | 1045.6  | 1078.7  | 1036.05 | 1057    | 1049.55 | 1050.69 |   830493 | 8.72593e+13 |          |               504259 |        0.6072 |
+| 2008-01-16 | MUNDRAPORT | EQ       |      1049.55 | 1046    | 1064    | 1000    | 1038.3  | 1030.4  | 1032.86 |   816188 | 8.43006e+13 |          |               478517 |        0.5863 |
+| 2008-01-17 | MUNDRAPORT | EQ       |      1030.4  | 1050    | 1053.5  | 1011    | 1014.95 | 1020.9  | 1033.73 |   336003 | 3.47335e+13 |          |               145194 |        0.4321 |
+| 2008-01-18 | MUNDRAPORT | EQ       |      1020.9  | 1010    | 1072    |  974.9  |  995    |  994.6  | 1022.57 |   676854 | 6.92133e+13 |          |               278615 |        0.4116 |
+| 2008-01-21 | MUNDRAPORT | EQ       |       994.6  |  995    | 1005    |  795.7  |  853    |  825.05 |  880.77 |   788623 | 6.94599e+13 |          |               474223 |        0.6013 |
+| 2008-01-22 | MUNDRAPORT | EQ       |       825.05 |  700    |  810    |  660.05 |  739    |  735.55 |  703.2  |   546161 | 3.84061e+13 |          |               376194 |        0.6888 |
+| 2008-01-23 | MUNDRAPORT | EQ       |       735.55 |  760    |  881.9  |  760    |  862.2  |  857    |  818.67 |   535462 | 4.38365e+13 |          |               283881 |        0.5302 |
+| 2008-01-24 | MUNDRAPORT | EQ       |       857    |  875    |  935    |  812    |  814.7  |  814.15 |  854.83 |   511017 | 4.36833e+13 |          |               258346 |        0.5056 |
+| 2008-01-25 | MUNDRAPORT | EQ       |       814.15 |  820    |  883    |  820    |  866    |  865.7  |  858.33 |   404045 | 3.46803e+13 |          |               178177 |        0.441  |
+| 2008-01-28 | MUNDRAPORT | EQ       |       865.7  |  835    |  835    |  783.2  |  822    |  820.8  |  804.38 |   467052 | 3.75686e+13 |          |               241365 |        0.5168 |
+| 2008-01-29 | MUNDRAPORT | EQ       |       820.8  |  840    |  860    |  820.05 |  840    |  840.75 |  841.27 |   220070 | 1.85138e+13 |          |                74141 |        0.3369 |
+| 2008-01-30 | MUNDRAPORT | EQ       |       840.75 |  849.8  |  864    |  822.25 |  834    |  830.45 |  833.82 |   286190 | 2.38631e+13 |          |               165926 |        0.5798 |
+| 2008-01-31 | MUNDRAPORT | EQ       |       830.45 |  831    |  849.9  |  812.55 |  836.6  |  837.65 |  833.58 |   194300 | 1.61966e+13 |          |               103890 |        0.5347 |
+| 2008-02-01 | MUNDRAPORT | EQ       |       837.65 |  831.65 |  852.3  |  820    |  826    |  825.35 |  828.09 |   204391 | 1.69255e+13 |          |               115715 |        0.5661 |
+| 2008-02-04 | MUNDRAPORT | EQ       |       825.35 |  847.9  |  872.4  |  840    |  859    |  856.1  |  858.77 |   280230 | 2.40652e+13 |          |               128195 |        0.4575 |
+| 2008-02-05 | MUNDRAPORT | EQ       |       856.1  |  856    |  857    |  830    |  834.65 |  834.3  |  842.06 |   162093 | 1.36492e+13 |          |                96153 |        0.5932 |
+| 2008-02-06 | MUNDRAPORT | EQ       |       834.3  |  803    |  824.9  |  780    |  809    |  807.5  |  810.5  |   193260 | 1.56638e+13 |          |               110565 |        0.5721 |
+| 2008-02-07 | MUNDRAPORT | EQ       |       807.5  |  825    |  830    |  792    |  795.9  |  796.25 |  809.53 |   212932 | 1.72376e+13 |          |               106275 |        0.4991 |
+| 2008-02-08 | MUNDRAPORT | EQ       |       796.25 |  810    |  830    |  765.15 |  786    |  784.05 |  781.48 |   285025 | 2.22743e+13 |          |               154857 |        0.5433 |
+| 2008-02-11 | MUNDRAPORT | EQ       |       784.05 |  785    |  785    |  695    |  699    |  711.2  |  736.23 |   223955 | 1.64883e+13 |          |               118002 |        0.5269 |
+| 2008-02-12 | MUNDRAPORT | EQ       |       711.2  |  725    |  734.95 |  655.6  |  689    |  681.3  |  681.38 |   303409 | 2.06736e+13 |          |               187180 |        0.6169 |
+| 2008-02-13 | MUNDRAPORT | EQ       |       681.3  |  815.9  |  815.9  |  664    |  678    |  670.95 |  681.68 |   214900 | 1.46492e+13 |          |               108761 |        0.5061 |
+| 2008-02-14 | MUNDRAPORT | EQ       |       670.95 |  680    |  714    |  680    |  710    |  709.8  |  704.71 |   269032 | 1.8959e+13  |          |               148611 |        0.5524 |
+| 2008-02-15 | MUNDRAPORT | EQ       |       709.8  |  700    |  763.7  |  681.25 |  729    |  728.75 |  734.23 |   353049 | 2.59219e+13 |          |               110621 |        0.3133 |
+| 2008-02-18 | MUNDRAPORT | EQ       |       728.75 |  735    |  775    |  735    |  772    |  771.6  |  762.33 |   342580 | 2.61159e+13 |          |               154099 |        0.4498 |
+| 2008-02-19 | MUNDRAPORT | EQ       |       771.6  |  779    |  786.9  |  760.2  |  767    |  763.9  |  772.24 |   137412 | 1.06116e+13 |          |                47543 |        0.346  |
+| 2008-02-20 | MUNDRAPORT | EQ       |       763.9  |  750    |  760    |  720    |  740    |  732.1  |  730.61 |   197489 | 1.44287e+13 |          |                89397 |        0.4527 |
+| 2008-02-21 | MUNDRAPORT | EQ       |       732.1  |  762    |  762    |  730.1  |  738.9  |  737.6  |  741.53 |   125558 | 9.31047e+12 |          |                37956 |        0.3023 |
+| 2008-02-22 | MUNDRAPORT | EQ       |       737.6  |  723    |  737    |  715    |  724.5  |
+...(Truncated for token limits)
+
+
+[2025-12-27 11:37:31,360] [DEBUG] [sfa_system] Auditor Synthesizing Result: Data not available for this period.
+[2025-12-27 11:37:31,420] [DEBUG] [sfa_system] Final Output: Data not available for this period....
+[2025-12-27 11:37:31,431] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '10.2043s', 'client': '127.0.0.1'}
+[2025-12-27 11:38:22,851] [DEBUG] [sfa_system] [GraphPipeline] Starting for: last 5 years net income
+[2025-12-27 11:38:22,852] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-27 11:38:22,853] [DEBUG] [sfa_system] [GraphPipeline] Question: last 5 years net income
+[2025-12-27 11:38:25,817] [DEBUG] [sfa_system] Generated SQL: -- The requested column 'net income' is not present in the provided database schema.
+-- Available columns: Date, Symbol, Series, Prev_Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover, Trades, Deliverable_Volume, %Deliverble
+SELECT 'Required column not found in schema' AS error_message
+[2025-12-27 11:38:25,826] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-27 11:38:25,827] [DEBUG] [sfa_system] [GraphPipeline] Result length: 374 chars
+[2025-12-27 11:38:25,827] [ERROR] [sfa_system] [GraphPipeline] ERROR: Query returned error or no data signal
+[2025-12-27 11:38:25,836] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.0773s', 'client': '127.0.0.1'}
+[2025-12-27 11:38:56,778] [DEBUG] [sfa_system] [GraphPipeline] Starting for: last 1 year open vs close price
+[2025-12-27 11:38:56,779] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-27 11:38:56,780] [DEBUG] [sfa_system] [GraphPipeline] Question: last 1 year open vs close price
+[2025-12-27 11:38:59,316] [DEBUG] [sfa_system] Generated SQL: SELECT Date, Open, Close
+FROM `4`
+WHERE Date >= (SELECT MAX(Date) - 365 FROM `4`)
+ORDER BY Date
+[2025-12-27 11:38:59,351] [DEBUG] [sfa_system] DB Result Sample: | Date       |    Open |   Close |
+|:-----------|--------:|--------:|
+| 2007-11-27 |  770    |  962.9  |
+| 2007-11-28 |  984    |  893.9  |
+| 2007-11-29 |  909    |  884.2  |
+| 2007-11-30 |  890    | ...
+[2025-12-27 11:38:59,354] [DEBUG] [sfa_system] [GraphPipeline] Result length: 7253 chars
+[2025-12-27 11:38:59,355] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-27 11:38:59,355] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT Date, Open, Close
+FROM `4`
+WHERE Date >= (SELECT MAX(Date) - 365 FROM `4`)
+ORDER BY Date
+
+Database Results:
+| Date       |    Open |   Close |
+|:-----------|--------:|--------:|
+| 2007-11-27 |  770    |  962.9  |
+| 2007-11-28 |  984    |  893.9  |
+| 2007-11-29 |  909    |  884.2  |
+| 2007-11-30 |  890    |  921.55 |
+| 2007-12-03 |  939.75 |  969.3  |
+| 2007-12-04 |  985    | 1041.45 |
+| 2007-12-05 | 1061    | 1082.45 |
+| 2007-12-06 | 1089    | 1081.3  |
+| 2007-12-07 | 1100
+[2025-12-27 11:38:59,360] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['date', 'open', 'close']
+[2025-12-27 11:38:59,361] [DEBUG] [sfa_system] [GraphPipeline] Found 200 data rows
+[2025-12-27 11:38:59,361] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=None, qtr_col=None, date_col=0
+[2025-12-27 11:38:59,361] [DEBUG] [sfa_system] [GraphPipeline] Using value col 2 (close), is_percentage=False
+[2025-12-27 11:38:59,362] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2007-11-27', '2007-11-28', '2007-11-29', '2007-11-30', '2007-12-03']...
+[2025-12-27 11:38:59,362] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [962.9, 893.9, 884.2, 921.55, 969.3]...
+[2025-12-27 11:38:59,559] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Stock Price Open vs Close 1 Year
+[2025-12-27 11:38:59,560] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 200 points, is_percentage=False
+[2025-12-27 11:38:59,572] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.7993s', 'client': '127.0.0.1'}
+[2025-12-27 11:39:50,476] [DEBUG] [sfa_system] [GraphPipeline] Starting for: the last year open vs close price
+[2025-12-27 11:39:50,477] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-27 11:39:50,478] [DEBUG] [sfa_system] [GraphPipeline] Question: the last year open vs close price
+[2025-12-27 11:40:03,623] [DEBUG] [sfa_system] Generated SQL: SELECT 
+  (SELECT Open FROM "4" WHERE Date = (SELECT MIN(Date) FROM "4" WHERE Date BETWEEN (SELECT (MAX(Date) / 10000) - 1) * 10000 + 1 AND (SELECT (MAX(Date) / 10000) - 1) * 10000 + 9999)) AS Open_Start,
+  (SELECT Close FROM "4" WHERE Date = (SELECT MAX(Date) FROM "4" WHERE Date BETWEEN (SELECT (MAX(Date) / 10000) - 1) * 10000 + 1 AND (SELECT (MAX(Date) / 10000) - 1) * 10000 + 9999)) AS Close_End
+[2025-12-27 11:40:03,627] [DEBUG] [sfa_system] DB Result Sample: Error: misuse of aggregate: MAX()...
+[2025-12-27 11:40:03,628] [DEBUG] [sfa_system] [GraphPipeline] Result length: 469 chars
+[2025-12-27 11:40:03,629] [ERROR] [sfa_system] [GraphPipeline] ERROR: Query returned error or no data signal
+[2025-12-27 11:40:03,639] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '13.1683s', 'client': '127.0.0.1'}
+[2025-12-27 11:41:53,719] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:00,545] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0410s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:00,564] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:00,694] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:42:00,696] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:00,714] [ERROR] [sfa_system] Failed to connect manager for user 5
+[2025-12-27 11:42:00,716] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0115s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:02,361] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:02,457] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=64334100-de82-4d4d-97f5-a90484d6be72', 'status_code': 200, 'process_time': '0.0058s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:02,489] [ERROR] [sfa_system] Failed to connect manager for user 5
+[2025-12-27 11:42:02,492] [ERROR] [sfa_system] Failed to connect manager for user 5
+[2025-12-27 11:42:02,494] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0104s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:03,313] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:03,327] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:03,411] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:42:03,412] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:03,428] [ERROR] [sfa_system] Failed to connect manager for user 5
+[2025-12-27 11:42:03,431] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 400, 'process_time': '0.0083s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:03,455] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:11,543] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/disconnect', 'status_code': 200, 'process_time': '0.0124s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:11,556] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0012s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:11,646] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:37,573] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/test', 'status_code': 200, 'process_time': '0.0166s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:38,398] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/database/connect', 'status_code': 200, 'process_time': '0.0247s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:39,927] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:40,023] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:42:40,030] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0108s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:40,045] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-27 11:42:40,064] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0070s', 'client': '127.0.0.1'}
+[2025-12-27 11:43:55,558] [INFO] [sfa_system] Dashboard config saved for user 5
+[2025-12-27 11:43:55,560] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0282s', 'client': '127.0.0.1'}
+[2025-12-27 11:43:56,517] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+[2025-12-27 11:43:57,268] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:43:57,369] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:43:57,370] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-27 11:43:57,384] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:00,546] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:00,662] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=194bd70b-3002-4ae9-8128-5ec740b39dae', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:00,681] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:02,183] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:02,281] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:44:02,282] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:02,299] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:02,312] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:03,590] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:03,683] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=288e351f-4e25-4ec9-92a4-7df81897dc86', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:03,699] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:08,087] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: hi ---
+[2025-12-27 11:44:08,482] [INFO] [sfa_system]   → Intent Labels: ['CONVERSATIONAL']
+[2025-12-27 11:44:08,833] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '0.7513s', 'client': '127.0.0.1'}
+[2025-12-27 11:44:31,630] [DEBUG] [sfa_system] [GraphPipeline] Starting for: last 5 years revune
+[2025-12-27 11:44:31,631] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-27 11:44:31,632] [DEBUG] [sfa_system] [GraphPipeline] Question: last 5 years revune
+[2025-12-27 11:44:32,459] [DEBUG] [sfa_system] Generated SQL: <think>
+Okay, the user is asking for the last 5 years of revenue. Let me check the database schema they provided. Oh wait, they mentioned there are no tables found in the connected database. That's a problem. Without any tables, I can't generate a valid SQL query. Maybe they forgot to list the tables or there's an issue with the connection. Let me think if there's any possible way around this. If there are no tables, there's nothing to query. I should inform them about this. But the user might expect me to proceed assuming some standard tables. However, the rules say to use only the columns and tables shown in the schema. Since there's no schema provided, I can't make assumptions. I need to point out that there are no tables available. Maybe they made a mistake in providing the schema. Let me double-check the context. The user emphasized to use only the columns and tables in the schema, which is empty here. So the correct response is to indicate that no tables are available. I can't proceed without that info. I'll let them know that I can't generate the SQL because there's no data to work with.
+</think>
+[2025-12-27 11:44:32,462] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-27 11:44:32,463] [DEBUG] [sfa_system] [GraphPipeline] Result length: 1198 chars
+[2025-12-27 11:44:32,464] [ERROR] [sfa_system] [GraphPipeline] ERROR: Query returned error or no data signal
+[2025-12-27 11:44:32,483] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '0.8592s', 'client': '127.0.0.1'}
+[2025-12-27 11:47:05,650] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:47:05,665] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-27 11:47:05,801] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:47:05,803] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-27 11:47:05,845] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-27 11:47:05,868] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0075s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,533] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,605] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,745] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 200, 'process_time': '0.1178s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,749] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.1221s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,755] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.1184s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,759] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.1311s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,763] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.1252s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:07,767] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 200, 'process_time': '0.1277s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:08,064] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0004s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:11,898] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0595s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:11,930] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0123s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:11,949] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:11,954] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 200, 'process_time': '0.0084s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:13,450] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:50:13,452] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0072s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:13,521] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0628s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:15,090] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:15,108] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:15,114] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 200, 'process_time': '0.0093s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:15,273] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=83f2c209-2106-4cb4-9d46-6edcf414c2c8', 'status_code': 200, 'process_time': '0.0102s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:15,353] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0698s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:20,198] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0632s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:27,251] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0114s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:27,274] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:27,278] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:27,347] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:50:27,348] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:27,401] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:27,441] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:28,490] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:50:52,499] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: list the last 5 close prices ---
+[2025-12-27 11:50:52,947] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 11:50:52,991] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 3
+[2025-12-27 11:50:53,302] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: SELECT Close FROM TABLE ORDER BY Date DESC LIMIT 5
+[2025-12-27 11:50:53,368] [DEBUG] [sfa_system] Extracted 1 steps: ['**SQL**: SELECT Close FROM TABLE ORDER BY Date DESC LIMIT 5']
+[2025-12-27 11:50:53,369] [DEBUG] [sfa_system] Executing Step: SQL: SELECT Close FROM TABLE ORDER BY Date DESC LIMIT 5
+[2025-12-27 11:50:53,370] [DEBUG] [sfa_system] Worker executing step: SQL: SELECT Close FROM TABLE ORDER BY Date DESC LIMIT 5
+[2025-12-27 11:50:53,371] [DEBUG] [sfa_system] Worker executing step_clean: SQL: SELECT Close FROM TABLE ORDER BY Date DESC LIMIT 5
+[2025-12-27 11:50:53,373] [DEBUG] [sfa_system] Worker executing SQL: SELECT Close FROM TABLE ORDER BY Date DESC LIMIT 5
+[2025-12-27 11:50:53,377] [DEBUG] [sfa_system] [LLM] User: 3, db_connected: True
+[2025-12-27 11:50:53,377] [DEBUG] [sfa_system] [LLM] Schema retrieved: TABLE: 4
+COLUMNS: Date (INTEGER), Symbol (TEXT), Series (TEXT), Prev_Close (REAL), Open (REAL), High (REAL), Low (REAL), Last (REAL), Close (REAL), VWAP (REAL), Volume (INTEGER), Turnover (REAL), Trad...
+[2025-12-27 11:50:54,467] [DEBUG] [sfa_system] Generated SQL: SELECT Close FROM "4" ORDER BY Date DESC LIMIT 5
+[2025-12-27 11:50:54,483] [DEBUG] [sfa_system] DB Result Sample: |   Close |
+|--------:|
+|  411.55 |
+|  410.15 |
+|  398.95 |
+|  392.25 |
+|  375.15 |...
+[2025-12-27 11:50:54,487] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT Close FROM "4" ORDER BY Date DESC LIMIT 5
+
+Database Results:
+|   Close |
+|--------:|
+|  411.55 |
+|  410.15 |
+|  398.95 |
+|  392.25 |
+|  375.15 |...
+[2025-12-27 11:50:54,571] [DEBUG] [sfa_system] Auditor Synthesizing: list the last 5 close prices
+[2025-12-27 11:50:54,636] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. If the value has no clear unit context, report the raw number.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Only add units ($, B, M) if the data clearly indicates them
+
+User question: list the last 5 close prices
+Data:
+
+Step: **SQL**: SELECT Close FROM TABLE ORDER BY Date DESC LIMIT 5
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT Close FROM "4" ORDER BY Date DESC LIMIT 5
+
+Database Results:
+|   Close |
+|--------:|
+|  411.55 |
+|  410.15 |
+|  398.95 |
+|  392.25 |
+|  375.15 |
+
+
+[2025-12-27 11:50:54,905] [DEBUG] [sfa_system] Auditor Synthesizing Result: The last 5 close prices are:
+
+| Close |
+|-------|
+| 411.55 |
+| 410.15 |
+| 398.95 |
+| 392.25 |
+| 375.15 |
+
+These are the most recent close prices.
+[2025-12-27 11:50:54,964] [DEBUG] [sfa_system] Final Output: The last 5 close prices are:
+
+| Close |
+|-------|
+| 411.55 |
+| 410.15 |
+| 398.95 |
+| 392.25 |
+| 375....
+[2025-12-27 11:50:54,980] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.4900s', 'client': '127.0.0.1'}
+[2025-12-27 11:51:01,799] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat/feedback/428?feedback=like', 'status_code': 200, 'process_time': '0.0167s', 'client': '127.0.0.1'}
+[2025-12-27 11:51:16,306] [DEBUG] [sfa_system] [GraphPipeline] Starting for: list the last 5 close prices
+[2025-12-27 11:51:16,307] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-27 11:51:16,308] [DEBUG] [sfa_system] [GraphPipeline] Question: list the last 5 close prices
+[2025-12-27 11:51:16,315] [DEBUG] [sfa_system] [LLM] User: 3, db_connected: True
+[2025-12-27 11:51:16,316] [DEBUG] [sfa_system] [LLM] Schema retrieved: TABLE: 4
+COLUMNS: Date (INTEGER), Symbol (TEXT), Series (TEXT), Prev_Close (REAL), Open (REAL), High (REAL), Low (REAL), Last (REAL), Close (REAL), VWAP (REAL), Volume (INTEGER), Turnover (REAL), Trad...
+[2025-12-27 11:51:18,557] [DEBUG] [sfa_system] Generated SQL: SELECT Date, Close 
+FROM "4" 
+ORDER BY Date DESC 
+LIMIT 5
+[2025-12-27 11:51:18,564] [DEBUG] [sfa_system] DB Result Sample: | Date       |   Close |
+|:-----------|--------:|
+| 2020-11-27 |  411.55 |
+| 2020-11-26 |  410.15 |
+| 2020-11-25 |  398.95 |
+| 2020-11-24 |  392.25 |
+| 2020-11-23 |  375.15 |...
+[2025-12-27 11:51:18,568] [DEBUG] [sfa_system] [GraphPipeline] Result length: 267 chars
+[2025-12-27 11:51:18,569] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-27 11:51:18,569] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT Date, Close 
+FROM "4" 
+ORDER BY Date DESC 
+LIMIT 5
+
+Database Results:
+| Date       |   Close |
+|:-----------|--------:|
+| 2020-11-27 |  411.55 |
+| 2020-11-26 |  410.15 |
+| 2020-11-25 |  398.95 |
+| 2020-11-24 |  392.25 |
+| 2020-11-23 |  375.15 |
+[2025-12-27 11:51:18,573] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['date', 'close']
+[2025-12-27 11:51:18,574] [DEBUG] [sfa_system] [GraphPipeline] Found 5 data rows
+[2025-12-27 11:51:18,574] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=None, qtr_col=None, date_col=0
+[2025-12-27 11:51:18,575] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (close), is_percentage=False
+[2025-12-27 11:51:18,575] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2020-11-27', '2020-11-26', '2020-11-25', '2020-11-24', '2020-11-23']...
+[2025-12-27 11:51:18,575] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [411.55, 410.15, 398.95, 392.25, 375.15]...
+[2025-12-27 11:51:18,758] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Last 5 Close Stock Prices
+[2025-12-27 11:51:18,759] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 5 points, is_percentage=False
+[2025-12-27 11:51:18,779] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.4922s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:19,687] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:24,179] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0528s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:24,201] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:24,302] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:52:24,314] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0197s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:24,376] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0117s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:26,090] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:26,182] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=23541ce8-fc29-4d86-916e-5b62b3c8f663', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:26,197] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:28,234] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:28,330] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:52:28,332] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0049s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:28,347] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0059s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:28,363] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:29,606] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:29,697] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=01a5119b-fd05-46c8-993b-06a4ad54dadd', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:29,713] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:35,334] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: hi ---
+[2025-12-27 11:52:35,545] [INFO] [sfa_system]   → Intent Labels: ['CONVERSATIONAL']
+[2025-12-27 11:52:35,900] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '0.5710s', 'client': '127.0.0.1'}
+[2025-12-27 11:52:47,009] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: hi -> A: Hello, how can I assist you with your financial needs today?
+User Query: last revue for our company is what? ---
+[2025-12-27 11:52:47,210] [INFO] [sfa_system]   → Intent Labels: ['CONVERSATIONAL', 'DATA']
+[2025-12-27 11:52:47,282] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 5
+[2025-12-27 11:52:47,466] [DEBUG] [sfa_system] Plan Generated:
+1. SQL: Retrieve the latest review for the company
+[2025-12-27 11:52:47,531] [DEBUG] [sfa_system] Extracted 1 steps: ['SQL: Retrieve the latest review for the company']
+[2025-12-27 11:52:47,532] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the latest review for the company
+[2025-12-27 11:52:47,533] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the latest review for the company
+[2025-12-27 11:52:47,534] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the latest review for the company
+[2025-12-27 11:52:47,535] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the latest review for the company
+[2025-12-27 11:52:47,536] [DEBUG] [sfa_system] [LLM] User: 5, db_connected: True
+[2025-12-27 11:52:47,537] [DEBUG] [sfa_system] [LLM] Schema retrieved: No tables found in connected database....
+[2025-12-27 11:52:50,217] [DEBUG] [sfa_system] Generated SQL: -- No tables found in the connected database. Cannot generate SQL query.
+[2025-12-27 11:52:50,218] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-27 11:52:50,219] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+-- No tables found in the connected database. Cannot generate SQL query.
+
+Database Results:
+Error: Only SELECT statements are allowed....
+[2025-12-27 11:52:50,279] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: hi -> A: Hello, how can I assist you with your financial needs today?
+User Query: last revue for our company is what?
+[2025-12-27 11:52:50,338] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. If the value has no clear unit context, report the raw number.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Only add units ($, B, M) if the data clearly indicates them
+
+User question: Context:
+Q: hi -> A: Hello, how can I assist you with your financial needs today?
+User Query: last revue for our company is what?
+Data:
+
+Step: SQL: Retrieve the latest review for the company
+Result: SQL Execution Result:
+SQL Query Used:
+-- No tables found in the connected database. Cannot generate SQL query.
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+
+[2025-12-27 11:52:50,546] [DEBUG] [sfa_system] Auditor Synthesizing Result: Hello, I'd be happy to help you with your financial needs today. Unfortunately, Data not available for this period.
+[2025-12-27 11:52:50,606] [DEBUG] [sfa_system] Final Output: Hello, I'd be happy to help you with your financial needs today. Unfortunately, Data not available f...
+[2025-12-27 11:52:50,626] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.6215s', 'client': '127.0.0.1'}
+[2025-12-27 11:54:46,085] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:54:48,610] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0404s', 'client': '127.0.0.1'}
+[2025-12-27 11:54:48,635] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 11:54:48,741] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:54:48,743] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-27 11:54:48,760] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-27 11:54:53,323] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-27 11:54:59,419] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0648s', 'client': '127.0.0.1'}
+[2025-12-27 11:55:07,336] [DEBUG] [sfa_system] [GraphPipeline] Starting for: list the last 5 close prices
+[2025-12-27 11:55:07,336] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-27 11:55:07,337] [DEBUG] [sfa_system] [GraphPipeline] Question: list the last 5 close prices
+[2025-12-27 11:55:07,342] [DEBUG] [sfa_system] [LLM] User: 3, db_connected: True
+[2025-12-27 11:55:07,345] [DEBUG] [sfa_system] [LLM] Schema retrieved: TABLE: 4
+COLUMNS: Date (INTEGER), Symbol (TEXT), Series (TEXT), Prev_Close (REAL), Open (REAL), High (REAL), Low (REAL), Last (REAL), Close (REAL), VWAP (REAL), Volume (INTEGER), Turnover (REAL), Trad...
+[2025-12-27 11:55:09,282] [DEBUG] [sfa_system] Generated SQL: SELECT Date, Close 
+FROM "4" 
+ORDER BY Date DESC 
+LIMIT 5
+[2025-12-27 11:55:09,291] [DEBUG] [sfa_system] DB Result Sample: | Date       |   Close |
+|:-----------|--------:|
+| 2020-11-27 |  411.55 |
+| 2020-11-26 |  410.15 |
+| 2020-11-25 |  398.95 |
+| 2020-11-24 |  392.25 |
+| 2020-11-23 |  375.15 |...
+[2025-12-27 11:55:09,294] [DEBUG] [sfa_system] [GraphPipeline] Result length: 267 chars
+[2025-12-27 11:55:09,295] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-27 11:55:09,296] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+SQL Query Used:
+SELECT Date, Close 
+FROM "4" 
+ORDER BY Date DESC 
+LIMIT 5
+
+Database Results:
+| Date       |   Close |
+|:-----------|--------:|
+| 2020-11-27 |  411.55 |
+| 2020-11-26 |  410.15 |
+| 2020-11-25 |  398.95 |
+| 2020-11-24 |  392.25 |
+| 2020-11-23 |  375.15 |
+[2025-12-27 11:55:09,301] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['date', 'close']
+[2025-12-27 11:55:09,301] [DEBUG] [sfa_system] [GraphPipeline] Found 5 data rows
+[2025-12-27 11:55:09,302] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=None, qtr_col=None, date_col=0
+[2025-12-27 11:55:09,303] [DEBUG] [sfa_system] [GraphPipeline] Using value col 1 (close), is_percentage=False
+[2025-12-27 11:55:09,304] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2020-11-27', '2020-11-26', '2020-11-25', '2020-11-24', '2020-11-23']...
+[2025-12-27 11:55:09,304] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [411.55, 410.15, 398.95, 392.25, 375.15]...
+[2025-12-27 11:55:09,497] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Last 5 Close Stock Prices
+[2025-12-27 11:55:09,498] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 5 points, is_percentage=False
+[2025-12-27 11:55:09,508] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.1765s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,616] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,643] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0079s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,786] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 200, 'process_time': '0.1165s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,791] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 200, 'process_time': '0.1178s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,795] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 200, 'process_time': '0.1218s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,802] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 200, 'process_time': '0.1170s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,805] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 200, 'process_time': '0.0202s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:27,811] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 200, 'process_time': '0.0246s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:28,069] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/favicon.ico', 'status_code': 404, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:32,495] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0880s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:32,577] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0627s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:32,595] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:32,601] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 200, 'process_time': '0.0092s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:33,973] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 11:56:33,975] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0091s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:33,986] [INFO] [sfa_system] [TenantManager] User 3: Creating manager for db_type=csv, config keys=['path']
+[2025-12-27 11:56:34,064] [INFO] [sfa_system] [TenantManager] User 3: Manager connected successfully, is_connected=True
+[2025-12-27 11:56:34,069] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0879s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:35,371] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0063s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:35,388] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=12', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:35,393] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 200, 'process_time': '0.0089s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:35,539] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=0cd84004-73fa-432f-8770-2d77bc57add7', 'status_code': 200, 'process_time': '0.0078s', 'client': '127.0.0.1'}
+[2025-12-27 11:56:35,561] [INFO] [sfa_system] [TenantManager] User 3: Using cached manager
+[2025-12-27 11:56:35,577] [INFO] [sfa_system] [TenantManager] User 3: Using cached manager
+[2025-12-27 11:56:35,621] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0645s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:30,840] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0010s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:34,405] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0428s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:34,425] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:34,531] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:58:34,533] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:34,550] [INFO] [sfa_system] [TenantManager] User 5: Creating manager for db_type=sqlite, config keys=['path']
+[2025-12-27 11:58:34,556] [INFO] [sfa_system] [TenantManager] User 5: Manager connected successfully, is_connected=True
+[2025-12-27 11:58:34,559] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0153s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:35,665] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:35,797] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=08b1c3c6-5e2b-429b-8edf-36869f43fd0f', 'status_code': 200, 'process_time': '0.0050s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:35,826] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-27 11:58:50,048] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: last revnue of the company ---
+[2025-12-27 11:58:50,902] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 11:58:50,975] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 5
+[2025-12-27 11:58:50,976] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 11:58:50,977] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=[], llm_len=0
+[2025-12-27 11:58:50,978] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=False, tables_count=0
+[2025-12-27 11:58:51,303] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve the most recent revenue data from the database.
+[2025-12-27 11:58:51,367] [DEBUG] [sfa_system] Extracted 1 steps: ['**SQL**: Retrieve the most recent revenue data from the database.']
+[2025-12-27 11:58:51,369] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the most recent revenue data from the database.
+[2025-12-27 11:58:51,370] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the most recent revenue data from the database.
+[2025-12-27 11:58:51,371] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the most recent revenue data from the database.
+[2025-12-27 11:58:51,372] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the most recent revenue data from the database.
+[2025-12-27 11:58:51,373] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 11:58:51,374] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=[], llm_len=0
+[2025-12-27 11:58:51,374] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=False, tables_count=0
+[2025-12-27 11:58:51,375] [DEBUG] [sfa_system] [LLM] User: 5, db_connected: True
+[2025-12-27 11:58:51,376] [DEBUG] [sfa_system] [LLM] Schema retrieved: No tables found in connected database....
+[2025-12-27 11:58:52,262] [DEBUG] [sfa_system] Generated SQL: -- No tables found in the connected database to retrieve revenue data.
+[2025-12-27 11:58:52,263] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-27 11:58:52,264] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+-- No tables found in the connected database to retrieve revenue data.
+
+Database Results:
+Error: Only SELECT statements are allowed....
+[2025-12-27 11:58:52,326] [DEBUG] [sfa_system] Auditor Synthesizing: last revnue of the company
+[2025-12-27 11:58:52,384] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. If the value has no clear unit context, report the raw number.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Only add units ($, B, M) if the data clearly indicates them
+
+User question: last revnue of the company
+Data:
+
+Step: **SQL**: Retrieve the most recent revenue data from the database.
+Result: SQL Execution Result:
+SQL Query Used:
+-- No tables found in the connected database to retrieve revenue data.
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+
+[2025-12-27 11:58:52,575] [DEBUG] [sfa_system] Auditor Synthesizing Result: Data not available for this period. 
+
+No revenue data can be retrieved.
+[2025-12-27 11:58:52,633] [DEBUG] [sfa_system] Final Output: Data not available for this period. 
+
+No revenue data can be retrieved....
+[2025-12-27 11:58:52,659] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.6402s', 'client': '127.0.0.1'}
+[2025-12-27 11:59:02,376] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0103s', 'client': '127.0.0.1'}
+[2025-12-27 11:59:02,394] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-27 11:59:02,399] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-27 11:59:02,576] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 11:59:02,577] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-27 11:59:02,591] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 11:59:02,593] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=409
+[2025-12-27 11:59:02,595] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-27 11:59:02,634] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-27 11:59:06,080] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:12,999] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0044s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:14,170] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0011s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:14,331] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 12:00:14,333] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0065s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:14,365] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 12:00:14,367] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=409
+[2025-12-27 12:00:14,369] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0066s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:14,396] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0057s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:38,188] [INFO] [sfa_system] Dashboard config saved for user 5
+[2025-12-27 12:00:38,190] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0145s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:40,218] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:43,731] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0009s', 'client': '127.0.0.1'}
+[2025-12-27 12:00:43,821] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 12:00:43,824] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 12:00:43,827] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0143s', 'client': '127.0.0.1'}
+[2025-12-27 12:01:10,523] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0012s', 'client': '127.0.0.1'}
+[2025-12-27 12:01:10,657] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 12:01:10,658] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 12:01:10,661] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0094s', 'client': '127.0.0.1'}
+[2025-12-27 12:01:46,169] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: is the data marketing or revneue? ---
+[2025-12-27 12:01:46,505] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 12:01:46,579] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 5
+[2025-12-27 12:01:46,580] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 12:01:46,582] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=[], llm_len=0
+[2025-12-27 12:01:46,582] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=False, tables_count=0
+[2025-12-27 12:01:46,798] [DEBUG] [sfa_system] Plan Generated:
+1. SQL: Determine the type of data in the connected database.
+[2025-12-27 12:01:46,859] [DEBUG] [sfa_system] Extracted 1 steps: ['SQL: Determine the type of data in the connected database.']
+[2025-12-27 12:01:46,860] [DEBUG] [sfa_system] Executing Step: SQL: Determine the type of data in the connected database.
+[2025-12-27 12:01:46,861] [DEBUG] [sfa_system] Worker executing step: SQL: Determine the type of data in the connected database.
+[2025-12-27 12:01:46,862] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Determine the type of data in the connected database.
+[2025-12-27 12:01:46,863] [DEBUG] [sfa_system] Worker executing SQL: Determine the type of data in the connected database.
+[2025-12-27 12:01:46,863] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 12:01:46,864] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=[], llm_len=0
+[2025-12-27 12:01:46,865] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=False, tables_count=0
+[2025-12-27 12:01:46,865] [DEBUG] [sfa_system] [LLM] User: 5, db_connected: True
+[2025-12-27 12:01:46,866] [DEBUG] [sfa_system] [LLM] Schema retrieved: No tables found in connected database....
+[2025-12-27 12:01:47,685] [DEBUG] [sfa_system] Generated SQL: -- No tables found in the connected database. Cannot generate SQL query.
+[2025-12-27 12:01:47,686] [DEBUG] [sfa_system] DB Result Sample: Error: Only SELECT statements are allowed....
+[2025-12-27 12:01:47,687] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+-- No tables found in the connected database. Cannot generate SQL query.
+
+Database Results:
+Error: Only SELECT statements are allowed....
+[2025-12-27 12:01:47,756] [DEBUG] [sfa_system] Auditor Synthesizing: is the data marketing or revneue?
+[2025-12-27 12:01:47,822] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. If the value has no clear unit context, report the raw number.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Only add units ($, B, M) if the data clearly indicates them
+
+User question: is the data marketing or revneue?
+Data:
+
+Step: SQL: Determine the type of data in the connected database.
+Result: SQL Execution Result:
+SQL Query Used:
+-- No tables found in the connected database. Cannot generate SQL query.
+
+Database Results:
+Error: Only SELECT statements are allowed.
+
+
+[2025-12-27 12:01:48,041] [DEBUG] [sfa_system] Auditor Synthesizing Result: Data not available for this period. 
+No specific data on marketing or revenue is provided. 
+The provided information appears to be related to database query errors.
+[2025-12-27 12:01:48,104] [DEBUG] [sfa_system] Final Output: Data not available for this period. 
+No specific data on marketing or revenue is provided. 
+The prov...
+[2025-12-27 12:01:48,158] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '1.9937s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,437] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,494] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0073s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,677] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/style.css', 'status_code': 304, 'process_time': '0.1054s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,682] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/login.css', 'status_code': 304, 'process_time': '0.1053s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,687] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/api.js?v=1', 'status_code': 304, 'process_time': '0.1096s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,692] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/auth.js?v=1', 'status_code': 304, 'process_time': '0.1134s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,698] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/base.js?v=3', 'status_code': 304, 'process_time': '0.1145s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:03,704] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/login.js', 'status_code': 304, 'process_time': '0.0277s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:07,923] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0806s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:07,963] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0163s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:07,979] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_dashboard.css', 'status_code': 304, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:07,991] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_dashboard.js?v=2', 'status_code': 304, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:08,393] [INFO] [sfa_system] [TenantManager] Decrypted config for user 3: path=C:\Users\Ayham\Desktop\iFYP\Dataset\4.csv
+[2025-12-27 13:50:08,395] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0137s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:08,412] [INFO] [sfa_system] [TenantManager] User 3: Creating manager for db_type=csv, config keys=['path']
+[2025-12-27 13:50:08,473] [INFO] [sfa_system] [TenantManager] User 3: Manager connected successfully, is_connected=True
+[2025-12-27 13:50:08,480] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0766s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:09,550] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0055s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:09,570] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/manager_analytics.js?v=13', 'status_code': 200, 'process_time': '0.0046s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:09,576] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/manager_analytics.css?v=12', 'status_code': 304, 'process_time': '0.0094s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:24,325] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: what is the last close price ---
+[2025-12-27 13:50:24,843] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 13:50:24,917] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 3
+[2025-12-27 13:50:24,918] [INFO] [sfa_system] [TenantManager] User 3: Using cached manager
+[2025-12-27 13:50:24,922] [INFO] [sfa_system] [TenantManager] User 3: Schema retrieved - tables=['4'], llm_len=270
+[2025-12-27 13:50:24,924] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-27 13:50:25,290] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Select Close from TABLE where Date = (Select max(Date) from TABLE)
+[2025-12-27 13:50:25,368] [DEBUG] [sfa_system] Extracted 1 steps: ['**SQL**: Select Close from TABLE where Date = (Select max(Date) from TABLE)']
+[2025-12-27 13:50:25,369] [DEBUG] [sfa_system] Executing Step: SQL: Select Close from TABLE where Date = (Select max(Date) from TABLE)
+[2025-12-27 13:50:25,370] [DEBUG] [sfa_system] Worker executing step: SQL: Select Close from TABLE where Date = (Select max(Date) from TABLE)
+[2025-12-27 13:50:25,371] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Select Close from TABLE where Date = (Select max(Date) from TABLE)
+[2025-12-27 13:50:25,372] [DEBUG] [sfa_system] Worker executing SQL: Select Close from TABLE where Date = (Select max(Date) from TABLE)
+[2025-12-27 13:50:25,373] [INFO] [sfa_system] [TenantManager] User 3: Using cached manager
+[2025-12-27 13:50:25,378] [INFO] [sfa_system] [TenantManager] User 3: Schema retrieved - tables=['4'], llm_len=270
+[2025-12-27 13:50:25,379] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-27 13:50:25,379] [DEBUG] [sfa_system] [LLM] User: 3, db_connected: True
+[2025-12-27 13:50:25,380] [DEBUG] [sfa_system] [LLM] Schema retrieved: TABLE: 4
+COLUMNS: Date (INTEGER), Symbol (TEXT), Series (TEXT), Prev_Close (REAL), Open (REAL), High (REAL), Low (REAL), Last (REAL), Close (REAL), VWAP (REAL), Volume (INTEGER), Turnover (REAL), Trad...
+[2025-12-27 13:50:26,636] [DEBUG] [sfa_system] Generated SQL: SELECT Close FROM `4` WHERE Date = (SELECT MAX(Date) FROM `4`)
+[2025-12-27 13:50:26,637] [INFO] [sfa_system] [TenantManager] User 3: Using cached manager
+[2025-12-27 13:50:26,796] [DEBUG] [sfa_system] DB Result Sample: |   Close |
+|--------:|
+|  411.55 |...
+[2025-12-27 13:50:26,797] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT Close FROM `4` WHERE Date = (SELECT MAX(Date) FROM `4`)
+
+Database Results:
+|   Close |
+|--------:|
+|  411.55 |...
+[2025-12-27 13:50:26,863] [DEBUG] [sfa_system] Auditor Synthesizing: what is the last close price
+[2025-12-27 13:50:26,921] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. If the value has no clear unit context, report the raw number.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Only add units ($, B, M) if the data clearly indicates them
+
+User question: what is the last close price
+Data:
+
+Step: **SQL**: Select Close from TABLE where Date = (Select max(Date) from TABLE)
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT Close FROM `4` WHERE Date = (SELECT MAX(Date) FROM `4`)
+
+Database Results:
+|   Close |
+|--------:|
+|  411.55 |
+
+
+[2025-12-27 13:50:27,146] [DEBUG] [sfa_system] Auditor Synthesizing Result: The last close price is 411.55.
+
+| Close |
+|-------|
+| 411.55 |
+[2025-12-27 13:50:27,207] [DEBUG] [sfa_system] Final Output: The last close price is 411.55.
+
+| Close |
+|-------|
+| 411.55 |...
+[2025-12-27 13:50:27,222] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.9120s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:29,958] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat/feedback/435?feedback=like', 'status_code': 200, 'process_time': '0.0267s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:31,595] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0008s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:35,710] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0395s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:35,730] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:35,810] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 13:50:35,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0047s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:35,827] [INFO] [sfa_system] [TenantManager] User 5: Creating manager for db_type=sqlite, config keys=['path']
+[2025-12-27 13:50:35,830] [INFO] [sfa_system] [TenantManager] User 5: Manager connected successfully, is_connected=True
+[2025-12-27 13:50:35,833] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0135s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:37,309] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0007s', 'client': '127.0.0.1'}
+[2025-12-27 13:50:50,057] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: what is the last revneue? ---
+[2025-12-27 13:50:50,313] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 13:50:50,407] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 5
+[2025-12-27 13:50:50,409] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 13:50:50,428] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=409
+[2025-12-27 13:50:50,429] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-27 13:50:50,650] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve the most recent revenue from the swf_financials table.
+[2025-12-27 13:50:50,713] [DEBUG] [sfa_system] Extracted 1 steps: ['**SQL**: Retrieve the most recent revenue from the swf_financials table.']
+[2025-12-27 13:50:50,714] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the most recent revenue from the swf_financials table.
+[2025-12-27 13:50:50,714] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the most recent revenue from the swf_financials table.
+[2025-12-27 13:50:50,715] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the most recent revenue from the swf_financials table.
+[2025-12-27 13:50:50,716] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the most recent revenue from the swf_financials table.
+[2025-12-27 13:50:50,716] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 13:50:50,720] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=409
+[2025-12-27 13:50:50,721] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-27 13:50:50,722] [DEBUG] [sfa_system] [LLM] User: 5, db_connected: True
+[2025-12-27 13:50:50,723] [DEBUG] [sfa_system] [LLM] Schema retrieved: TABLE: swf_financials
+COLUMNS: year (INTEGER), quarter (INTEGER), revenue (REAL), cost_of_revenue (REAL), gross_profit (REAL), operating_expenses (REAL), operating_income (REAL), other_income_expense ...
+[2025-12-27 13:50:51,784] [DEBUG] [sfa_system] Generated SQL: SELECT revenue 
+FROM swf_financials 
+ORDER BY year DESC, quarter DESC 
+LIMIT 1
+[2025-12-27 13:50:51,786] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 13:50:51,789] [DEBUG] [sfa_system] DB Result Sample: |   revenue |
+|----------:|
+|  2.67e+09 |...
+[2025-12-27 13:50:51,790] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT revenue 
+FROM swf_financials 
+ORDER BY year DESC, quarter DESC 
+LIMIT 1
+
+Database Results:
+|   revenue |
+|----------:|
+|  2.67e+09 |...
+[2025-12-27 13:50:51,853] [DEBUG] [sfa_system] Auditor Synthesizing: what is the last revneue?
+[2025-12-27 13:50:51,922] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. If the value has no clear unit context, report the raw number.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Only add units ($, B, M) if the data clearly indicates them
+
+User question: what is the last revneue?
+Data:
+
+Step: **SQL**: Retrieve the most recent revenue from the swf_financials table.
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT revenue 
+FROM swf_financials 
+ORDER BY year DESC, quarter DESC 
+LIMIT 1
+
+Database Results:
+|   revenue |
+|----------:|
+|  2.67e+09 |
+
+
+[2025-12-27 13:50:52,149] [DEBUG] [sfa_system] Auditor Synthesizing Result: The last revenue is $2,670,000,000. 
+
+| Revenue |
+|---------|
+| $2.67B  |
+[2025-12-27 13:50:52,219] [DEBUG] [sfa_system] Final Output: The last revenue is $2,670,000,000. 
+
+| Revenue |
+|---------|
+| $2.67B  |...
+[2025-12-27 13:50:52,240] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.1999s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:03,901] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat/feedback/436?feedback=like', 'status_code': 200, 'process_time': '0.0156s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:13,506] [INFO] [sfa_system] --- Starting RAMAS Pipeline for: Context:
+Q: what is the last revneue? -> A: The last revenue is $2,670,000,000. 
+
+| Revenue |
+|---------|
+| $2.67B  |
+User Query: what is the last close price? ---
+[2025-12-27 13:51:13,787] [INFO] [sfa_system]   → Intent Labels: ['DATA']
+[2025-12-27 13:51:13,850] [DEBUG] [sfa_system] Planner - Graph allowed: False, User: 5
+[2025-12-27 13:51:13,851] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 13:51:13,855] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=409
+[2025-12-27 13:51:13,856] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-27 13:51:14,117] [DEBUG] [sfa_system] Plan Generated:
+1. **SQL**: Retrieve the latest close price from the database
+[2025-12-27 13:51:14,191] [DEBUG] [sfa_system] Extracted 1 steps: ['**SQL**: Retrieve the latest close price from the database']
+[2025-12-27 13:51:14,192] [DEBUG] [sfa_system] Executing Step: SQL: Retrieve the latest close price from the database
+[2025-12-27 13:51:14,193] [DEBUG] [sfa_system] Worker executing step: SQL: Retrieve the latest close price from the database
+[2025-12-27 13:51:14,194] [DEBUG] [sfa_system] Worker executing step_clean: SQL: Retrieve the latest close price from the database
+[2025-12-27 13:51:14,194] [DEBUG] [sfa_system] Worker executing SQL: Retrieve the latest close price from the database
+[2025-12-27 13:51:14,195] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 13:51:14,199] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=409
+[2025-12-27 13:51:14,200] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-27 13:51:14,200] [DEBUG] [sfa_system] [LLM] User: 5, db_connected: True
+[2025-12-27 13:51:14,201] [DEBUG] [sfa_system] [LLM] Schema retrieved: TABLE: swf_financials
+COLUMNS: year (INTEGER), quarter (INTEGER), revenue (REAL), cost_of_revenue (REAL), gross_profit (REAL), operating_expenses (REAL), operating_income (REAL), other_income_expense ...
+[2025-12-27 13:51:15,301] [DEBUG] [sfa_system] Generated SQL: SELECT *
+FROM swf_financials
+ORDER BY year DESC, quarter DESC
+LIMIT 1
+[2025-12-27 13:51:15,304] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 13:51:15,322] [DEBUG] [sfa_system] DB Result Sample: |   year |   quarter |   revenue |   cost_of_revenue |   gross_profit |   operating_expenses |   operating_income |   other_income_expense |   income_before_tax |   income_tax_expense |   net_income |...
+[2025-12-27 13:51:15,324] [DEBUG] [sfa_system] Step Result: SQL Execution Result:
+SQL Query Used:
+SELECT *
+FROM swf_financials
+ORDER BY year DESC, quarter DESC
+LIMIT 1
+
+Database Results:
+|   year |   quarter |   revenue |   cost_of_revenue |   gross_profit |  ...
+[2025-12-27 13:51:15,402] [DEBUG] [sfa_system] Auditor Synthesizing: Context:
+Q: what is the last revneue? -> A: The last revenue is $2,670,000,000. 
+
+| Revenue |
+|---------|
+| $2.67B  |
+User Query: what is the last close price?
+[2025-12-27 13:51:15,468] [DEBUG] [sfa_system] Auditor Synthesizing without Graph: 
+You are a Financial Reporting Assistant.
+
+Answer the user's question using ONLY the provided data.
+
+RULES:
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
+3. Do NOT mention databases, SQL, or internal systems.
+4. If data is unavailable, say: "Data not available for this period."
+5. If the value has no clear unit context, report the raw number.
+
+STYLE:
+- 2–3 sentences max
+- One small table if helpful
+- Only add units ($, B, M) if the data clearly indicates them
+
+User question: Context:
+Q: what is the last revneue? -> A: The last revenue is $2,670,000,000. 
+
+| Revenue |
+|---------|
+| $2.67B  |
+User Query: what is the last close price?
+Data:
+
+Step: **SQL**: Retrieve the latest close price from the database
+Result: SQL Execution Result:
+SQL Query Used:
+SELECT *
+FROM swf_financials
+ORDER BY year DESC, quarter DESC
+LIMIT 1
+
+Database Results:
+|   year |   quarter |   revenue |   cost_of_revenue |   gross_profit |   operating_expenses |   operating_income |   other_income_expense |   income_before_tax |   income_tax_expense |   net_income |   gross_margin |   operating_margin |   net_margin | data_coverage_flag   | margin_validity_flag   |
+|-------:|----------:|----------:|------------------:|---------------:|---------------------:|-------------------:|-----------------------:|--------------------:|---------------------:|-------------:|---------------:|-------------------:|-------------:|:---------------------|:-----------------------|
+|   2025 |         4 |  2.67e+09 |      -1.91572e+09 |    7.54275e+08 |         -5.77046e+08 |        1.77229e+08 |           -3.66405e+06 |         1.73565e+08 |         -3.79042e+07 |  1.35661e+08 |         0.2825 |           0.066378 |    0.0508094 | COMPLETE             | VALID                  |
+
+
+[2025-12-27 13:51:15,649] [DEBUG] [sfa_system] Auditor Synthesizing Result: Data not available for this period.
+[2025-12-27 13:51:15,711] [DEBUG] [sfa_system] Final Output: Data not available for this period....
+[2025-12-27 13:51:15,732] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '2.2306s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:20,116] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat/feedback/437?feedback=like', 'status_code': 200, 'process_time': '0.0226s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:22,308] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0222s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:22,324] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/css/settings.css', 'status_code': 304, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:22,329] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0074s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:22,409] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-27 13:51:22,411] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:22,460] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-27 13:51:22,466] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=409
+[2025-12-27 13:51:22,468] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0112s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:22,513] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0094s', 'client': '127.0.0.1'}
+[2025-12-27 13:51:23,768] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}

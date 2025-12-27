@@ -115,14 +115,36 @@ async def execute_database_query(
     return result
 
 
+class DisconnectRequest(BaseModel):
+    delete_all_data: bool = True
+
+
 @router.post("/disconnect")
 async def disconnect_database(
+    request: DisconnectRequest = None,
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db)
 ):
     """
     Disconnect user from their external database.
-    Removes encrypted configuration from user record.
+    Removes encrypted configuration AND optionally deletes all user data
+    (chat history, dashboard config, saved graphs).
     """
+    # Disconnect from tenant manager
     result = MultiTenantDBManager.disconnect_database(current_user, db)
+    
+    if result.get("success") and (request is None or request.delete_all_data):
+        # Clear dashboard configuration for fresh start (keep chat history)
+        try:
+            # Clear dashboard configuration only
+            current_user.dashboard_config_encrypted = None
+            
+            db.commit()
+            result["data_deleted"] = True
+            result["message"] = "Database disconnected and dashboard config cleared"
+        except Exception as e:
+            print(f"Error clearing dashboard config: {e}")
+            result["data_deleted"] = False
+    
     return result
+

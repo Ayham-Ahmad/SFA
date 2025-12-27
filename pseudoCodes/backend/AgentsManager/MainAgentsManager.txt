@@ -1,0 +1,11 @@
+import MainRouteManager
+import GraphManager
+
+def getResponse():
+    userQuery = # from the frontend
+    requestType = # from the frontend
+
+    if requestType == 'query':
+        return MainRouteManager.QueryPipeline(userQuery)
+    elif requestType == 'graph':
+        return GraphManager.GraphPipeline(userQuery)

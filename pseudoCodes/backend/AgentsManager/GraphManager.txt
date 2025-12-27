@@ -1,0 +1,5 @@
+def GraphPipeline(userQuery):
+    dbType, dbPath, dbColumns = DBManager.getDBThings()
+    data = Agents.DatabaseQueryAgent(userQuery, dbColumns, dbPath, dbType) # should use the planner-worker-auditor agents, and COT agent, level 2
+
+    return Agents.GraphAgent(data)

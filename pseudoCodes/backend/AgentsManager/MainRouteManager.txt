@@ -1,0 +1,30 @@
+def getRoute(userQuery):
+    route = Agents.RouteAgent(userQuery) # should return a python list only
+ 
+    # a fucntion to make sure that the route is safet to use, 
+    # it should a python list, have one or two values
+    route = saveRoute(route)
+
+    if route is None:
+        return "error message"
+    
+    return route
+
+def getAgentsResponse(userQuery):
+    route = getRoute(userQuery)
+
+    if 'conversation' in route:
+        return Agents.ConversationAgent(userQuery) # should use only level 1
+    elif 'blocked' in route:
+        return Agents.BlockedAgent(userQuery) # should use only level 1
+    elif 'databaseQuery' in route:
+        dbType, dbPath, dbColumns = DBManager.getDBThings()
+        return Agents.DatabaseQueryAgent(userQuery, dbColumns, dbPath, dbType) # should use the planner-worker-auditor agents, and COT agent, level 2
+    elif 'advisory' in route:
+        # use the same agents as databaseQuery pipeline
+        # but the planner-worker-advisory agents, of course the COT agent is working behind
+        return Agents.AdvisoryAgent(result_from_databaseQuery) # level 3
+        
+
+def QueryPipeline(userQuery):
+    return getAgentsResponse(userQuery)

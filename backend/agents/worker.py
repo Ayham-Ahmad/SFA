@@ -7,10 +7,17 @@ from backend.sfa_logger import log_system_debug
 WORKER_MODEL = get_model("worker")
 
 
-def execute_step(step: str) -> str:
+def execute_step(step: str, user=None) -> str:
     """
     Executes a single step from the plan.
     Safe, robust, and whitespace-tolerant version.
+    
+    Args:
+        step: Step instruction from planner
+        user: Optional User model instance for tenant-specific queries
+        
+    Returns:
+        Step execution result
     """
     log_system_debug(f"Worker executing step: {step}")
     original_step = step.strip()
@@ -26,13 +33,14 @@ def execute_step(step: str) -> str:
         query = step_clean.split(":", 1)[1].strip()
         log_system_debug(f"Worker executing SQL: {query}")
 
-        result = run_chain_of_tables(query, model=WORKER_MODEL)
+        result = run_chain_of_tables(query, model=WORKER_MODEL, user=user)
         
         return f"SQL Execution Result:\n{result}"
 
     else:
         # For any other step type, attempt SQL execution as default
         log_system_debug(f"Worker defaulting to SQL for: {original_step}")
-        result = run_chain_of_tables(original_step, model=WORKER_MODEL)
+        result = run_chain_of_tables(original_step, model=WORKER_MODEL, user=user)
         return f"SQL Execution Result:\n{result}"
+
 

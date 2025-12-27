@@ -94,15 +94,24 @@ async def chat_endpoint(
 
     full_context_query = request.message
     
-    # 3. Inject Context
+    # 3. Inject Context (only successful exchanges, skip errors/failures)
     if last_exchanges:
         history_lines = []
+        error_phrases = ["data not available", "error:", "no data", "not found", "no results"]
+        
         for ex in reversed(last_exchanges):
             answer_clean = ex.answer.split("graph_data||")[0].strip() if "graph_data||" in ex.answer else ex.answer
+            # Skip error responses to avoid polluting context
+            if any(phrase in answer_clean.lower() for phrase in error_phrases):
+                continue
+            # Truncate long answers
+            if len(answer_clean) > 200:
+                answer_clean = answer_clean[:200] + "..."
             history_lines.append(f"Q: {ex.question} -> A: {answer_clean}")
         
-        context_str = "\n".join(history_lines)
-        full_context_query = f"Context:\n{context_str}\nUser Query: {request.message}"
+        if history_lines:
+            context_str = "\n".join(history_lines)
+            full_context_query = f"Context:\n{context_str}\nUser Query: {request.message}"
     
     # 4. Execute the appropriate pipeline
     response_text = ""
@@ -116,7 +125,7 @@ async def chat_endpoint(
             from backend.graph_pipeline import run_graph_pipeline
             
             async def run_graph_task():
-                return await asyncio.to_thread(run_graph_pipeline, request.message, query_id)
+                return await asyncio.to_thread(run_graph_pipeline, request.message, query_id, current_user)
             
             task = asyncio.create_task(run_graph_task())
             active_queries[query_id] = task
@@ -148,7 +157,7 @@ async def chat_endpoint(
         else:
             # Use standard RAMAS pipeline for text responses
             async def run_text_task():
-                return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id)
+                return await asyncio.to_thread(run_ramas_pipeline, full_context_query, query_id, current_user)
             
             task = asyncio.create_task(run_text_task())
             active_queries[query_id] = task

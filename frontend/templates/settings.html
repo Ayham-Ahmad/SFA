@@ -129,7 +129,8 @@
 
                     <!-- Dashboard General Config -->
                     <div class="config-subsection mb-4 p-3 rounded" style="background: var(--code-bg);">
-                        <h5 class="mb-3"><i class="fas fa-sliders-h me-2"></i>Dashboard Settings</h5>
+                        <h5 class="mb-3"><i class="fas fa-sliders-h me-2"></i>Dashboard Settings <span
+                                id="dashboard-status" class="status-dot"></span></h5>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label small">Subtitle Column (e.g. Period)</label>
@@ -389,6 +390,48 @@
     </div>
 </div>
 
+<!-- Disconnect Confirmation Modal -->
+<div class="modal fade" id="disconnectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">
+                    <i class="fas fa-exclamation-triangle me-2 text-danger"></i>Disconnect Database
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-4">
+                <div class="alert alert-warning mb-3">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Warning:</strong> This will reset your dashboard configuration:
+                </div>
+                <ul class="mb-3">
+                    <li>Dashboard settings</li>
+                    <li>Graph configurations</li>
+                    <li>Traffic light settings</li>
+                </ul>
+                <p class="text-muted small mb-3">Your chat history will be preserved.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="confirmDeleteCheck"
+                        onchange="updateDisconnectButton()">
+                    <label class="form-check-label" for="confirmDeleteCheck">
+                        I understand that my dashboard configuration will be reset
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cancel
+                </button>
+                <button type="button" class="btn btn-danger px-4" id="confirmDisconnectBtn"
+                    onclick="confirmDisconnect()" disabled>
+                    <i class="fas fa-trash-alt me-2"></i>Delete All & Disconnect
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <link rel="stylesheet" href="/static/css/settings.css">
-<script src="/static/js/settings.js?v=1"></script>
+<script src="/static/js/settings.js?v=2"></script>
 {% endblock %}

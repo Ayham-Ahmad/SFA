@@ -80,10 +80,14 @@ RESPOND WITH ONLY THIS JSON FORMAT (no markdown, no explanation):
         return {"chart_type": "bar", "title": "Financial Analysis"}
 
 
-def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
+def execute_graph_query(question: str, user=None) -> Optional[Dict[str, Any]]:
     """
     Execute SQL query to get data for graph.
     Uses run_chain_of_tables which generates SQL and returns formatted results.
+    
+    Args:
+        question: User's question
+        user: Optional User model instance for tenant-specific queries
     """
     from backend.llm import run_chain_of_tables
     
@@ -91,7 +95,7 @@ def execute_graph_query(question: str) -> Optional[Dict[str, Any]]:
     log_system_debug(f"[GraphPipeline] Question: {question}")
     
     # run_chain_of_tables generates SQL internally and returns formatted results
-    result = run_chain_of_tables(question)
+    result = run_chain_of_tables(question, user=user)
     
     if not result:
         log_system_error("[GraphPipeline] ERROR: No result from chain_of_tables")
@@ -245,6 +249,29 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     log_system_debug(f"[GraphPipeline] Extracted labels: {labels[:5]}...")
     log_system_debug(f"[GraphPipeline] Extracted values: {values[:5]}...")
     
+    # Sort chronologically if labels look like dates or time periods
+    # This ensures graphs show oldest -> newest (left to right)
+    if labels and len(labels) > 1:
+        try:
+            # Check if labels are date-like strings
+            sample = str(labels[0])
+            is_time_series = (
+                '-' in sample or  # YYYY-MM-DD format
+                '/' in sample or  # MM/DD/YYYY format
+                sample.startswith('Q') or  # Q1, Q2, etc
+                (len(sample) == 4 and sample.isdigit())  # Year only
+            )
+            
+            if is_time_series:
+                # Zip, sort, unzip
+                sorted_pairs = sorted(zip(labels, values), key=lambda x: str(x[0]))
+                labels, values = zip(*sorted_pairs)
+                labels = list(labels)
+                values = list(values)
+                log_system_debug(f"[GraphPipeline] Sorted chronologically: {labels[:3]}... -> {labels[-3:]}")
+        except Exception as e:
+            log_system_debug(f"[GraphPipeline] Sort skipped: {e}")
+    
     return {
         "labels": labels,
         "values": values,
@@ -255,9 +282,14 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     }
 
 
-def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
+def run_graph_pipeline(question: str, query_id: str = None, user=None) -> Dict[str, Any]:
     """
     Main graph pipeline function.
+    
+    Args:
+        question: User's question
+        query_id: Optional query ID for progress tracking
+        user: Optional User model instance for tenant-specific queries
     
     Returns:
     {
@@ -271,8 +303,8 @@ def run_graph_pipeline(question: str, query_id: str = None) -> Dict[str, Any]:
     """
     log_system_debug(f"[GraphPipeline] Starting for: {question}")
     
-    # Step 1: Get data via SQL
-    query_result = execute_graph_query(question)
+    # Step 1: Get data via SQL (user-specific)
+    query_result = execute_graph_query(question, user=user)
     
     if not query_result:
         return {

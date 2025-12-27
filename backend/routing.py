@@ -41,7 +41,7 @@ def extract_steps(plan: str):
     return steps
 
 
-def run_graph_pipeline(question: str, query_id: str = None) -> dict:
+def run_graph_pipeline(question: str, query_id: str = None, user=None) -> dict:
     """
     Dedicated pipeline for graph generation requests.
     Flow: Planner → Worker (SQL) → Programmatic Graph Builder
@@ -51,6 +51,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> dict:
     Args:
         question: User's question
         query_id: Optional query ID for progress tracking
+        user: Optional User model instance for tenant-specific queries
         
     Returns:
         {response, graph_data, has_data}
@@ -84,7 +85,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> dict:
             set_query_progress(query_id, "planner", "Preparing data query...")
         
         # Force DATA route (graph_allowed=False since we handle graph separately)
-        plan = plan_task(question, graph_allowed=False)
+        plan = plan_task(question, graph_allowed=False, user=user)
         log_system_debug(f"Graph Pipeline - Plan: {plan}")
         log_agent_interaction(interaction_id, "Planner", "Output", clean_question, plan)
         
@@ -99,7 +100,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> dict:
             if step.strip():
                 clean_step = step.replace("**", "")
                 try:
-                    result = execute_step(clean_step)
+                    result = execute_step(clean_step, user=user)
                     context += f"\n{result}\n"
                     log_agent_interaction(interaction_id, "Worker", "SQLResult", clean_step, result)
                 except Exception as e:
@@ -147,7 +148,7 @@ def run_graph_pipeline(question: str, query_id: str = None) -> dict:
         }
 
 
-def run_ramas_pipeline(question: str, query_id: str = None) -> str:
+def run_ramas_pipeline(question: str, query_id: str = None, user=None) -> str:
     """
     Orchestrates the RAMAS pipeline:
     1. Intent Classification: Skip pipeline for greetings.
@@ -158,6 +159,7 @@ def run_ramas_pipeline(question: str, query_id: str = None) -> str:
     Args:
         question: User's question (may include context prefixes)
         query_id: Optional query ID for progress tracking
+        user: Optional User model instance for tenant-specific queries
         
     Returns:
         Final response string
@@ -307,7 +309,7 @@ User: "{input_for_classification}"
         log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
         
         # Use full context for Planning to maintain memory
-        plan = plan_task(question, graph_allowed)
+        plan = plan_task(question, graph_allowed, user=user)
         log_system_debug(f"Plan Generated:\n{plan}")
         log_agent_interaction(interaction_id, "Planner", "Output", log_input_query, plan)
         
@@ -341,7 +343,7 @@ User: "{input_for_classification}"
                 else:
                     # Standard SQL step
                     try:
-                        result = execute_step(clean_step)
+                        result = execute_step(clean_step, user=user)
                         log_system_debug(f"Step Result: {result[:200]}...")
                     except Exception as step_err:
                         result = f"Error executing step: {step_err}"

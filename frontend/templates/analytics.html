@@ -66,5 +66,31 @@
 
 <link rel="stylesheet" href="/static/css/manager_analytics.css?v=12">
 <!-- Main Analytics Script (all-in-one) -->
-<script src="/static/js/manager_analytics.js?v=12"></script>
+<script src="/static/js/manager_analytics.js?v=13"></script>
+
+<!-- Reset Dashboard Confirmation Modal -->
+<div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: var(--card-bg); color: var(--text-color);">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="resetModalLabel">
+                    <i class="fas fa-undo me-2"></i>Start New Session
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-4">
+                <p>Are you sure you want to start a new session?</p>
+                <p class="text-muted small">This will clear the current conversation and generated graphs.</p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cancel
+                </button>
+                <button type="button" class="btn btn-danger px-4" onclick="confirmReset()">
+                    <i class="fas fa-undo me-2"></i>Reset
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

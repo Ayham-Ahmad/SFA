@@ -5,10 +5,35 @@ Synthesizes final answers from gathered context.
 """
 from backend.utils.llm_client import groq_client, get_model
 from backend.sfa_logger import log_system_debug, log_system_error, log_system_info, log_agent_interaction
-from backend.prompts import GRAPH_SELECTION_LOGIC
 import traceback
 
 MODEL = get_model("auditor")
+
+# Graph Selection Logic - Decision framework for chart type selection
+GRAPH_SELECTION_LOGIC = """
+I require a decision-making framework for selecting appropriate chart types based on user queries that do not specify a chart type. The output should include the following structured analysis:
+
+1. An evaluation of the user's intent categorized under:
+   - Profitability Flow
+   - Comparative Analysis
+   - Composition/Breakdown
+   - Time Trend
+
+2. A recommended chart type based on the Graph Decision Matrix, considering:
+   - Bar/Column → for comparing categories or displaying time-based data.
+   - Line/Area → for illustrating time trends by date.
+   - Pie/Donut → for demonstrating part-to-whole relationships.
+   - Card → for showcasing a single KPI.
+   - Table → for presenting detailed granular values.
+   - Scatter → for analyzing the relationship between two numeric measures.
+   - Waterfall → for visualizing changes from start to end, highlighting contributions.
+
+If no clear match is identified, default to recommending a bar chart.
+
+Ensure that all reasoning is conducted internally and not disclosed in the output.
+
+For context, I am focusing on generating visualizations that cater to an audience with varying levels of data literacy, and the final output should be straightforward and intuitive.
+"""
 
 # TEXT-ONLY prompt (no graph instructions) - CONCISE VERSION
 TEXT_PROMPT = """
@@ -17,18 +42,16 @@ You are a Financial Reporting Assistant.
 Answer the user's question using ONLY the provided data.
 
 RULES:
-1. Use ONLY the values shown.
-2. Do NOT estimate or extrapolate.
+1. Use ONLY the values shown - report them exactly as they appear.
+2. Do NOT estimate, extrapolate, or assume units.
 3. Do NOT mention databases, SQL, or internal systems.
 4. If data is unavailable, say: "Data not available for this period."
-5. Margins are decimals → convert to percentages.
+5. If the value has no clear unit context, report the raw number.
 
 STYLE:
 - 2–3 sentences max
 - One small table if helpful
-- Financial units:
-  - Billions → $XX.XXB
-  - Millions → $XX.XXM
+- Only add units ($, B, M) if the data clearly indicates them
 
 User question: {question}
 Data:
@@ -100,6 +123,12 @@ def audit_and_synthesize(question: str, context: str, graph_allowed: bool = Fals
             max_tokens=2000
         )
         content = response.choices[0].message.content
+        
+        # Strip thinking tags from models that expose reasoning (like DeepSeek)
+        if "<think>" in content:
+            import re
+            content = re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL).strip()
+        
         log_system_debug(f"Auditor Synthesizing Result: {content}")
         
         # Validation: If graph was required but not produced, BUILD IT PROGRAMMATICALLY

@@ -538,10 +538,16 @@ async function loadDefaultGraphs() {
 // --- Utils ---
 function toggleEditMode() { GraphManager.toggleEdit(); }
 function resetDashboard() {
-    if (confirm("Reset everything? Current chat and workspace will be cleared.")) {
-        AppState.clear();
-        location.reload();
-    }
+    // Show Bootstrap modal instead of browser confirm
+    const modal = new bootstrap.Modal(document.getElementById('resetModal'));
+    modal.show();
+}
+
+function confirmReset() {
+    // Close modal and reset
+    bootstrap.Modal.getInstance(document.getElementById('resetModal')).hide();
+    AppState.clear();
+    location.reload();
 }
 
 // Current query ID for cancellation

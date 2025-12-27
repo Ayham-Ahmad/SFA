@@ -1,0 +1,24 @@
+import sqliteManger
+import csvManager
+import frontend.getUserData
+
+def getDatabaseType():
+    return frontend.getUserData.getDatabaseType()
+
+def getDBPath():
+    return frontend.getUserData.getDBPath()
+
+def getDBColumns():
+    dbType = getDatabaseType()
+    dbPath = getDBPath()
+
+    if dbType == 'sqlite':
+        return sqliteManger.getSqliteDBColumns(dbPath)
+    elif dbType == 'csv':
+        return csvManager.getCsvDBColumns(dbPath)
+
+def getDBThings():
+    dbType = getDatabaseType()
+    dbPath = getDBPath()
+    dbColumns = getDBColumns()
+    return dbType, dbPath, dbColumns

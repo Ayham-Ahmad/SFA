@@ -13,6 +13,7 @@ class SQLiteManager:
     """
     Manager for SQLite database files.
     Handles connection, schema extraction, and query execution.
+    Uses new connection for each operation for thread safety.
     """
     
     def __init__(self, config: Dict[str, Any]):
@@ -23,21 +24,29 @@ class SQLiteManager:
             config: Configuration dict with 'path' key
         """
         self.db_path = config.get("path", "")
-        self.connection: Optional[sqlite3.Connection] = None
         self.is_connected = False
+    
+    def _get_connection(self) -> sqlite3.Connection:
+        """Get a new thread-safe connection."""
+        return sqlite3.connect(self.db_path, check_same_thread=False)
     
     def connect(self) -> bool:
         """
-        Connect to SQLite database.
+        Verify database file exists and is accessible.
         
         Returns:
-            True if connected successfully
+            True if database is valid
         """
         try:
             if not os.path.exists(self.db_path):
                 return False
             
-            self.connection = sqlite3.connect(self.db_path)
+            # Test connection
+            conn = self._get_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT 1")
+            conn.close()
+            
             self.is_connected = True
             return True
         except Exception as e:
@@ -46,10 +55,7 @@ class SQLiteManager:
             return False
     
     def disconnect(self) -> None:
-        """Close the database connection."""
-        if self.connection:
-            self.connection.close()
-            self.connection = None
+        """Mark as disconnected."""
         self.is_connected = False
     
     def test_connection(self) -> Dict[str, Any]:
@@ -66,7 +72,7 @@ class SQLiteManager:
             return {"success": False, "message": "File must have .db extension"}
         
         try:
-            conn = sqlite3.connect(self.db_path)
+            conn = self._get_connection()
             cursor = conn.cursor()
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
             tables = [row[0] for row in cursor.fetchall()]
@@ -90,17 +96,18 @@ class SQLiteManager:
         if not self.is_connected:
             self.connect()
         
-        if not self.connection:
-            return []
-        
         try:
-            cursor = self.connection.cursor()
+            conn = self._get_connection()
+            cursor = conn.cursor()
             cursor.execute("""
                 SELECT name FROM sqlite_master 
                 WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '_sfa_%'
             """)
-            return [row[0] for row in cursor.fetchall()]
-        except Exception:
+            tables = [row[0] for row in cursor.fetchall()]
+            conn.close()
+            return tables
+        except Exception as e:
+            print(f"get_tables error: {e}")
             return []
     
     def get_table_schema(self, table_name: str) -> Dict[str, Any]:
@@ -116,11 +123,9 @@ class SQLiteManager:
         if not self.is_connected:
             self.connect()
         
-        if not self.connection:
-            return {}
-        
         try:
-            cursor = self.connection.cursor()
+            conn = self._get_connection()
+            cursor = conn.cursor()
             
             # Get column info
             cursor.execute(f"PRAGMA table_info('{table_name}')")
@@ -155,6 +160,8 @@ class SQLiteManager:
             # Get indexes
             cursor.execute(f"PRAGMA index_list('{table_name}')")
             indexes = [row[1] for row in cursor.fetchall()]
+            
+            conn.close()
             
             return {
                 "table_name": table_name,
@@ -207,7 +214,7 @@ class SQLiteManager:
     
     def execute_query(self, query: str) -> Dict[str, Any]:
         """
-        Execute a SQL query.
+        Execute a SQL query (thread-safe).
         
         Args:
             query: SQL query string
@@ -220,12 +227,14 @@ class SQLiteManager:
                 return {"success": False, "error": "Failed to connect"}
         
         try:
-            cursor = self.connection.cursor()
+            conn = self._get_connection()
+            cursor = conn.cursor()
             cursor.execute(query)
             
             if query.strip().upper().startswith("SELECT"):
                 columns = [desc[0] for desc in cursor.description] if cursor.description else []
                 rows = cursor.fetchall()
+                conn.close()
                 return {
                     "success": True,
                     "columns": columns,
@@ -233,11 +242,13 @@ class SQLiteManager:
                     "row_count": len(rows)
                 }
             else:
-                self.connection.commit()
+                conn.commit()
+                row_count = cursor.rowcount
+                conn.close()
                 return {
                     "success": True,
                     "message": "Query executed",
-                    "row_count": cursor.rowcount
+                    "row_count": row_count
                 }
         except Exception as e:
             return {"success": False, "error": str(e)}

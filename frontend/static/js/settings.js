@@ -117,13 +117,34 @@ async function connectDatabase() {
     }
 }
 
-async function disconnectDatabase() {
-    if (!confirm('Are you sure you want to disconnect?')) return;
+function disconnectDatabase() {
+    // Reset checkbox and button when opening modal
+    const checkbox = document.getElementById('confirmDeleteCheck');
+    const btn = document.getElementById('confirmDisconnectBtn');
+    if (checkbox) checkbox.checked = false;
+    if (btn) btn.disabled = true;
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('disconnectModal'));
+    modal.show();
+}
+
+function updateDisconnectButton() {
+    const checkbox = document.getElementById('confirmDeleteCheck');
+    const btn = document.getElementById('confirmDisconnectBtn');
+    if (checkbox && btn) {
+        btn.disabled = !checkbox.checked;
+    }
+}
+
+async function confirmDisconnect() {
+    // Hide modal first
+    bootstrap.Modal.getInstance(document.getElementById('disconnectModal')).hide();
 
     try {
-        const result = await API.post('/api/database/disconnect', {});
+        const result = await API.post('/api/database/disconnect', { delete_all_data: true });
         if (result.success) {
-            showToast('Disconnected successfully');
+            showToast('Disconnected and data cleared successfully');
             location.reload();
         }
     } catch (error) {
@@ -198,7 +219,7 @@ function updateConnectionUI(status) {
         if (disconnectBtn) disconnectBtn.classList.add('d-none');
         sections.forEach(id => document.getElementById(id)?.classList.add('d-none'));
 
-        if (pathInput) pathInput.disabled = false;
+        if (pathInput) pathInput.disabled = !isEditMode;  // Respect edit mode
         document.querySelectorAll('.db-type-btn').forEach(b => b.style.pointerEvents = '');
     }
 }
@@ -488,10 +509,23 @@ function setupExpressionBuilder() {
     });
 }
 
+function clearExpression() {
+    const input = document.getElementById('expression-input');
+    if (input && !input.disabled) {
+        input.value = '';
+        updateConfigStatusIndicators();
+    }
+}
+
 function updateConfigStatusIndicators() {
+    // Dashboard Settings
+    const subtitle = val('ticker-subtitle-col');
+    setDot('dashboard-status', subtitle);
+
     // Traffic Light
-    const m1 = val('metric1-col'), m2 = val('metric2-col'), expr = val('expression-input');
-    const hasTraffic = (m1 || m2) && expr;
+    const m1 = val('metric1-col'), m2 = val('metric2-col'), m3 = val('metric3-col');
+    const expr = val('expression-input');
+    const hasTraffic = (m1 || m2 || m3) && expr;
     setDot('traffic-light-status', hasTraffic);
 
     // Graph 1
@@ -506,7 +540,7 @@ function updateConfigStatusIndicators() {
 function setDot(id, active) {
     const el = document.getElementById(id);
     if (el) {
-        el.className = `status-indicator ${active ? 'configured' : 'unconfigured'}`;
+        el.className = `status-dot ${active ? 'configured' : 'unconfigured'}`;
         el.title = active ? 'Configured' : 'Not configured';
     }
 }

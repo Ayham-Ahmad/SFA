@@ -1,0 +1,19 @@
+def getUser():
+    # Sql query to return the user data for the enter username and password
+    return userData
+
+def getUserDBPath(userData):
+    return dbPath
+
+def getUserDBType(userData):
+    return dbType
+
+def getUserJSONForSettingsConfig(userData):
+    return json_for_settings_config
+
+def getUserThings():
+    userData = getUser()
+    dbPath = getUserDBPath(userData)
+    dbType = getUserDBType(userData)
+    json_for_settings_config = getUserJSONForSettingsConfig(userData)
+    return dbPath, dbType, json_for_settings_config

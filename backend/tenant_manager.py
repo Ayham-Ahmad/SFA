@@ -157,21 +157,36 @@ class MultiTenantDBManager:
             Manager instance or None
         """
         if not user.db_is_connected or not user.db_connection_encrypted:
+            log_system_info(f"[TenantManager] User {user.id}: No connection info (connected={user.db_is_connected})")
             return None
         
-        # Check cache
+        # Check cache - but verify manager is still valid
         if user.id in MultiTenantDBManager._managers:
-            return MultiTenantDBManager._managers[user.id]
+            cached = MultiTenantDBManager._managers[user.id]
+            # Validate cached manager is still connected
+            if hasattr(cached, 'is_connected') and cached.is_connected:
+                log_system_info(f"[TenantManager] User {user.id}: Using cached manager")
+                return cached
+            # Cached manager is stale - remove it
+            log_system_info(f"[TenantManager] User {user.id}: Cached manager stale, recreating")
+            del MultiTenantDBManager._managers[user.id]
         
         # Create new manager
         config = decrypt_config(user.db_connection_encrypted)
+        log_system_info(f"[TenantManager] User {user.id}: Creating manager for db_type={user.db_type.value}, config keys={list(config.keys())}")
+        
         manager_class = DataCollectionManager.get_manager(user.db_type.value)
         
         if not manager_class:
+            log_system_error(f"[TenantManager] User {user.id}: No manager class for type {user.db_type.value}")
             return None
         
         manager = manager_class(config)
-        manager.connect()
+        if not manager.connect():
+            log_system_error(f"[TenantManager] Failed to connect manager for user {user.id}")
+            return None
+        
+        log_system_info(f"[TenantManager] User {user.id}: Manager connected successfully, is_connected={manager.is_connected}")
         
         # Cache it
         MultiTenantDBManager._managers[user.id] = manager
@@ -194,10 +209,14 @@ class MultiTenantDBManager:
             return {"success": False, "message": "No database connected"}
         
         full_schema = manager.get_full_schema()
+        schema_for_llm = manager.get_schema_for_llm()
+        
+        log_system_info(f"[TenantManager] User {user.id}: Schema retrieved - tables={list(full_schema.get('schema', {}).keys())}, llm_len={len(schema_for_llm) if schema_for_llm else 0}")
+        
         return {
             "success": True,
             "tables": full_schema.get("schema", {}),
-            "schema_for_llm": manager.get_schema_for_llm()
+            "schema_for_llm": schema_for_llm
         }
     
     @staticmethod

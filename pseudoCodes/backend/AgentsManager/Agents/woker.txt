@@ -1,0 +1,15 @@
+
+def COTAgent(step, userQuery):
+    COTResult = LLM.respont.COT(step, userQuery)
+    COTResult = safe.safeCOT(COTResult)
+    return COTResult
+
+def WorkerAgent(steps, userQuery):
+
+    results = []
+    for step in steps:
+        if step.startswith("SQL:"):
+            results.append(COTAgent(step, userQuery))
+        elif step.startswith("Calc:"):
+            results.append(addtion)
+            

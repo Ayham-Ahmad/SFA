@@ -2,6 +2,7 @@
 LLM Chain-of-Tables Module
 ==========================
 Executes Chain-of-Tables reasoning loop for SQL generation and execution.
+Supports user-specific database queries for multi-tenant isolation.
 """
 from backend.utils.llm_client import groq_client, get_model
 from backend.tools.sql_tools import execute_sql_query, get_table_schemas
@@ -32,7 +33,7 @@ Data:
 """
 
 
-def run_chain_of_tables(question: str, model: str = None) -> str:
+def run_chain_of_tables(question: str, model: str = None, user=None) -> str:
     """
     Executes the Chain-of-Tables reasoning loop.
     
@@ -41,37 +42,45 @@ def run_chain_of_tables(question: str, model: str = None) -> str:
     Args:
         question: User's question or instruction
         model: Optional model override
+        user: Optional User model instance for tenant-specific queries
         
     Returns:
         SQL query + database results, or error message
     """
     if model is None:
         model = MODEL
-        
-    schema = get_table_schemas()
     
-    # Import tag information from sql_loader
-    from backend.ingestion.sql_loader import get_tags_for_prompt
-    available_tags = get_tags_for_prompt()
+    # REQUIRE user-specific database - no fallback
+    schema = get_table_schemas(user=user)
     
-    # Get dynamic schema from database
-    from backend.schema_utils import get_full_schema_context
-    dynamic_schema = get_full_schema_context()
+    # Debug logging
+    log_system_debug(f"[LLM] User: {user.id if user else 'None'}, db_connected: {user.db_is_connected if user else 'N/A'}")
+    log_system_debug(f"[LLM] Schema retrieved: {schema[:200] if schema else 'EMPTY'}...")
     
-    sql_generation_prompt = f"""You are an expert SQL generator for a financial analytics database.
+    # Build dynamic schema context
+    if user and user.db_is_connected:
+        # User has their own database - use dynamic schema
+        dynamic_schema = f"""DATABASE SCHEMA (User's Connected Database):
+{schema}
+
+IMPORTANT: Query ONLY the tables and columns shown above. These are the user's actual tables."""
+    else:
+        # No database connected - return error
+        return "Error: No database connected. Please connect a database in Settings first."
+    
+    sql_generation_prompt = f"""You are an expert SQL generator for a data analytics database.
 
 IMPORTANT CONTEXT:
-- The data represents ONE virtual, market-level entity.
-- There are NO individual companies.
-- Queries must be time-based (year / quarter / trade_date).
+- Generate SQL for the user's connected database.
+- Use ONLY the columns and tables shown in the schema below.
+- Be flexible with table/column names - they may vary by dataset.
 
 {dynamic_schema}
 
 RULES:
 - Do NOT invent columns - use ONLY columns listed above.
-- Do NOT reference companies.
-- Use ORDER BY for time series.
-- Query swf_financials for all financial data.
+- Use ORDER BY for time series if date/time columns exist.
+- Handle different data types appropriately.
 
 OUTPUT:
 Return ONLY valid SQL wrapped in ```sql```.
@@ -87,6 +96,11 @@ Question: {question}
             temperature=0
         )
         content = response.choices[0].message.content.strip()
+        
+        # Strip thinking tags from models that expose reasoning (like DeepSeek)
+        if "<think>" in content:
+            import re
+            content = re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL).strip()
         
         # Robust Cleaning
         sql_query = content
@@ -114,8 +128,8 @@ Question: {question}
             
         log_system_debug(f"Generated SQL: {sql_query}")
         
-        # Execute SQL
-        query_result = execute_sql_query(sql_query)
+        # Execute SQL - user-specific if user provided
+        query_result = execute_sql_query(sql_query, user=user)
         
         # Safety: Final truncation if string is still massive
         if len(query_result) > 15000:
@@ -134,3 +148,4 @@ Question: {question}
     except Exception as e:
         log_system_error(f"Chain-of-Tables Error: {e}")
         return f"Error in Chain-of-Tables: {e}"
+
