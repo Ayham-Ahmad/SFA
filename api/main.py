@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 # --- Internal Imports ---
 from backend.security.audit_logger import AuditMiddleware
-from .database import engine, Base
+from .db_session import engine, Base
 
 # --- Import Routes (The Departments) ---
 from api.routes import (

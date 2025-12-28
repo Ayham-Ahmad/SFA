@@ -1,7 +1,7 @@
-from backend.llm import run_chain_of_tables
+from backend.pipeline.llm_wrapper import run_chain_of_tables
 from backend.utils.llm_client import get_model
 import re
-from backend.sfa_logger import log_system_debug
+from backend.core.logger import log_system_debug
 
 # Get model from centralized configuration
 WORKER_MODEL = get_model("worker")

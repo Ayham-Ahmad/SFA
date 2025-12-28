@@ -475,6 +475,33 @@
     </div>
 </div>
 
+<!-- Unsaved Changes Confirmation Modal -->
+<div class="modal fade" id="unsavedChangesModal" tabindex="-1" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title text-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Unsaved Changes
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body py-4">
+                <p class="mb-0 fs-6">You have unsaved changes in your dashboard configuration.</p>
+                <p class="text-muted small mt-2 mb-0">What would you like to do?</p>
+            </div>
+            <div class="modal-footer border-top-0 bg-light rounded-bottom">
+                <button type="button" class="btn btn-outline-secondary me-auto" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="handleDiscardAndLeave()">
+                    <i class="fas fa-times me-2"></i>Discard & Leave
+                </button>
+                <button type="button" class="btn btn-success" onclick="handleSaveAndLeave()">
+                    <i class="fas fa-save me-2"></i>Save & Leave
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <link rel="stylesheet" href="/static/css/settings.css">
 <script src="/static/js/settings.js?v=2"></script>
 {% endblock %}

@@ -16,11 +16,12 @@
     box-shadow: 0 0 50px #ffd700;
 }
 
-/* Calculator Tooltip */
+/* Calculator Tooltip - Theme Aware */
 .calc-tooltip-btn {
     opacity: 0.6;
     transition: opacity 0.2s;
 }
+
 .calc-tooltip-btn:hover {
     opacity: 1;
 }
@@ -28,18 +29,20 @@
 .calc-tooltip-content {
     display: none;
     position: absolute;
-    bottom: 110%; /* Above the container */
+    bottom: 110%;
+    /* Above the container */
     left: 50%;
     transform: translateX(-50%);
     width: 250px;
-    background: #1e293b;
-    border: 1px solid #475569;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #dee2e6);
     border-radius: 8px;
     padding: 12px;
     z-index: 1000;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     font-size: 0.85rem;
     text-align: left;
+    color: var(--text-color, #212529);
 }
 
 .calc-tooltip-btn:hover .calc-tooltip-content {
@@ -50,10 +53,23 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 4px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
     padding-bottom: 4px;
 }
+
 .calc-tooltip-row:last-child {
     border-bottom: none;
     margin-bottom: 0;
+}
+
+/* Dark mode enhancements for tooltip */
+[data-theme="dark"] .calc-tooltip-content {
+    background: #1e293b;
+    border-color: #475569;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .calc-tooltip-row {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
 }

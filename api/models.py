@@ -2,7 +2,7 @@ import enum
 from datetime import datetime, timezone
 from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey, Text, Float, Boolean
 from sqlalchemy.orm import relationship
-from .database import Base
+from .db_session import Base
 
 # --- 1. The Rules (Enums) ---
 # These lists define the strict options allowed in specific columns.

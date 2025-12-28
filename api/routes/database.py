@@ -7,10 +7,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 
-from api.database import get_db
+from api.db_session import get_db
 from api.models import User
-from api.auth import get_current_active_user
-from backend.tenant_manager import MultiTenantDBManager
+from api.auth_utils import get_current_active_user
+from backend.services.tenant_manager import MultiTenantDBManager
 
 router = APIRouter(prefix="/api/database", tags=["Database"])
 

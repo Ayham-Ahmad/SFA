@@ -562,6 +562,8 @@ async function loadDefaultGraphs() {
                 title: data.graph1.title,
                 yLabel: data.graph1.y_label || 'Value'
             });
+            // Tag as default for smart refreshing
+            graph1Chart.sourceId = 'default_1';
             GraphManager.add(graph1Chart);
         }
 
@@ -573,6 +575,8 @@ async function loadDefaultGraphs() {
                 title: data.graph2.title,
                 yLabel: data.graph2.y_label || 'Value'
             });
+            // Tag as default for smart refreshing
+            graph2Chart.sourceId = 'default_2';
             GraphManager.add(graph2Chart);
         }
     } catch (e) { console.error("Default graphs failed", e); }
@@ -619,37 +623,62 @@ function stopQuery() {
 async function refreshGraphs() {
     GraphManager.exitPlacementMode();
 
-    // Store any AI-generated graphs BEFORE clearing (graphs beyond first 2 default slots)
-    const generatedGraphs = AppState.graphs.slice(2);
+    // Show loading indicator on graphs that are being updated
+    // Instead of clearing all, we just fetch new data and update the ones that match
 
-    // Clear all graphs
-    AppState.graphs = [];
+    try {
+        const res = await fetch('/api/dashboard/metrics', {
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        });
+        const data = await res.json();
 
-    // Show loading state
-    const track = document.getElementById('graphs-track');
-    if (track) {
-        track.innerHTML = `
-            <div class="empty-graph-space">
-                <div class="empty-graph-text"><i class="fas fa-sync-alt fa-spin"></i> Refreshing...</div>
-            </div>
-        `;
-    }
+        let updatedAny = false;
 
-    // Reload default graphs from settings configuration
-    await loadDefaultGraphs();
+        // Iterate through existing graphs and update only linked defaults
+        AppState.graphs = AppState.graphs.map(g => {
+            if (g.sourceId === 'default_1' && data.graph1?.dates?.length) {
+                updatedAny = true;
+                const newChart = buildChartFromTemplate({
+                    chart_type: data.graph1.chart_type,
+                    labels: data.graph1.dates,
+                    values: data.graph1.values,
+                    title: data.graph1.title,
+                    yLabel: data.graph1.y_label || 'Value'
+                });
+                newChart.sourceId = 'default_1';
+                return newChart;
+            }
+            if (g.sourceId === 'default_2' && data.graph2?.dates?.length) {
+                updatedAny = true;
+                const newChart = buildChartFromTemplate({
+                    chart_type: data.graph2.chart_type,
+                    labels: data.graph2.dates,
+                    values: data.graph2.values,
+                    title: data.graph2.title,
+                    yLabel: data.graph2.y_label || 'Value'
+                });
+                newChart.sourceId = 'default_2';
+                return newChart;
+            }
+            // Keep AI graphs or unlinked graphs exactly as they are
+            return g;
+        });
 
-    // Restore AI-generated graphs
-    generatedGraphs.forEach(g => {
-        if (AppState.graphs.length < AppState.maxGraphs) {
-            AppState.graphs.push(g);
+        GraphManager.render();
+        AppState.save();
+
+        // Feedback
+        const status = document.getElementById('status-indicator');
+        if (status) {
+            status.innerHTML = updatedAny
+                ? '<span class="text-success fade-out">Graphs updated</span>'
+                : '<span class="text-secondary fade-out">No default graphs to update</span>';
+            setTimeout(() => status.innerHTML = '', 3000);
         }
-    });
 
-    // Re-render with new theme colors
-    GraphManager.render();
-
-    // Save the new state
-    AppState.save();
+    } catch (e) {
+        console.error("Refresh failed", e);
+    }
 }
 
 function rate(id, type) {

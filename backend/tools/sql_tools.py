@@ -37,7 +37,7 @@ def execute_sql_query(query: str, user=None) -> str:
         if not user or not user.db_is_connected:
             return "Error: No database connected. Please connect a database in Settings first."
         
-        from backend.tenant_manager import MultiTenantDBManager
+        from backend.services.tenant_manager import MultiTenantDBManager
         result = MultiTenantDBManager.execute_query_for_user(user, query)
         
         if not result.get("success"):
@@ -89,8 +89,8 @@ def get_table_schemas(user=None) -> str:
         if not user or not user.db_is_connected:
             return "No database connected. Please connect a database in Settings."
         
-        from backend.tenant_manager import MultiTenantDBManager
-        from backend.sfa_logger import log_system_debug, log_system_error
+        from backend.services.tenant_manager import MultiTenantDBManager
+        from backend.core.logger import log_system_debug, log_system_error
         
         schema_result = MultiTenantDBManager.get_schema_for_user(user)
         

@@ -171,22 +171,22 @@ function displayCompany(company, subtitleLabel = null) {
                 <!-- Calculator Tooltip -->
                 <div class="calc-tooltip-btn position-relative" style="cursor: pointer;">
                      <i class="fas fa-calculator text-secondary" style="font-size: 1.2rem;"></i>
-                     <div class="calc-tooltip-content text-white shadow-lg">
-                        <div class="fw-bold text-info mb-2 border-bottom border-secondary pb-1">Traffic Light Logic</div>
+                     <div class="calc-tooltip-content shadow-lg">
+                        <div class="fw-bold text-info mb-2 border-bottom pb-1" style="border-color: var(--border-color) !important;">Traffic Light Logic</div>
                         
                         <div class="calc-tooltip-row">
                             <span class="text-muted">Expr:</span>
-                            <code class="text-white small" style="word-break: break-all;">${company.expression || '-'}</code>
+                            <code class="small" style="word-break: break-all; color: var(--text-color);">${company.expression || '-'}</code>
                         </div>
 
                         ${renderVars(company.calc_details?.vars)}
 
-                        <div class="calc-tooltip-row mt-2 border-top border-secondary pt-1">
+                        <div class="calc-tooltip-row mt-2 pt-1" style="border-top: 1px solid var(--border-color);">
                             <span class="text-muted">Result:</span>
                             <span class="fw-bold ${statusColor}">${formatNumber(company.calc_details?.result)}</span>
                         </div>
                         
-                        <div class="d-flex justify-content-between mt-2 pt-2 border-top border-secondary small">
+                        <div class="d-flex justify-content-between mt-2 pt-2 small" style="border-top: 1px solid var(--border-color);">
                              <div class="text-danger" title="Red Threshold"><i class="fas fa-arrow-down"></i> &lt; ${company.calc_details?.red ?? '-'}</div>
                              <div class="text-success" title="Green Threshold"><i class="fas fa-arrow-up"></i> &ge; ${company.calc_details?.green ?? '-'}</div>
                         </div>
@@ -218,7 +218,7 @@ function renderVars(vars) {
         html += `
             <div class="calc-tooltip-row">
                 <span class="text-muted small">${key}:</span>
-                <span class="text-white small">${formatNumber(val)}</span>
+                <span class="small" style="color: var(--text-color);">${formatNumber(val)}</span>
             </div>`;
     }
     return html;

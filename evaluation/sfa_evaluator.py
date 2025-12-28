@@ -50,7 +50,7 @@ from datetime import datetime
 
 # Import debug logger
 try:
-    from backend.sfa_logger import log_agent_interaction
+    from backend.core.logger import log_agent_interaction
     DEBUG_LOGGING_AVAILABLE = True
 except ImportError:
     DEBUG_LOGGING_AVAILABLE = False
@@ -631,7 +631,7 @@ Score:"""
             from backend.agents.planner import plan_task
             from backend.agents.worker import execute_step
             from backend.agents.auditor import audit_and_synthesize
-            from backend.routing import extract_steps
+            from backend.pipeline.routing import extract_steps
             
             print(f"\n{'='*60}")
             print(f"EVALUATING [ID:{result.query_id}]: {query}")
@@ -655,14 +655,14 @@ Score:"""
             print(f"Graph allowed: {is_graph}")
             
             # 1. Run Planner
-            plan_output = plan_task(query, graph_allowed=is_graph)
+            plan_output = plan_task(query)
             
             # Log Planner output
             if DEBUG_LOGGING_AVAILABLE:
                 log_agent_interaction(
                     eval_id, "Planner", "Output",
                     query,
-                    {"plan": plan_output, "graph_allowed": is_graph}
+                    {"plan": plan_output}
                 )
             
             # Extract tool from plan - handle markdown bold format: **SQL**: or SQL:
@@ -786,7 +786,7 @@ Score:"""
                     )
             
             # 5. Run Auditor
-            result.actual_response = audit_and_synthesize(query, context, graph_allowed=is_graph)
+            result.actual_response = audit_and_synthesize(query, context)
             
             # Log Auditor output
             if DEBUG_LOGGING_AVAILABLE:

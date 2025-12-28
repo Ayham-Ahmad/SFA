@@ -7,13 +7,14 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 # --- Internal Imports ---
-from api.database import get_db
-from api.models import User, ChatHistory, InteractionType
-from api.schemas import ChatRequest
-from api.auth import get_current_active_user
-from backend.routing import run_text_query_pipeline
-from backend.graph_pipeline import run_graph_pipeline
-from backend.sfa_logger import log_system_error
+from api.db_session import get_db
+from api.models import ChatHistory, InteractionType, User
+from api.schemas import ChatRequest, ChatFeedbackRequest
+from api.auth_utils import get_current_active_user
+from backend.pipeline.routing import run_text_query_pipeline
+from backend.pipeline.graph_pipeline import run_graph_pipeline
+from backend.core.logger import log_user_query, log_system_error, log_system_info
+from backend.services.tenant_manager import MultiTenantDBManager
 
 # --- Configuration ---
 TIMEOUT_SECONDS = 120.0

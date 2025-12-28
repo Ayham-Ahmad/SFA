@@ -4,7 +4,7 @@ Advisor Agent
 Generates advisory responses using user's connected database.
 """
 from backend.utils.llm_client import groq_client, get_model
-from backend.sfa_logger import log_system_debug, log_system_error
+from backend.core.logger import log_system_debug, log_system_error
 
 MODEL = get_model("default")
 

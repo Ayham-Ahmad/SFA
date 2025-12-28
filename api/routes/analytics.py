@@ -6,10 +6,11 @@ Dashboard metrics and analytics data endpoints.
 from fastapi import APIRouter, Depends, HTTPException
 
 from api.models import User
-from api.auth import get_current_active_user
-from backend.config_service import ConfigService
-from backend.tenant_manager import MultiTenantDBManager
-from backend.sfa_logger import log_system_error
+from api.auth_utils import get_current_active_user
+from backend.core.logger import log_system_info, log_system_error
+from backend.services.config_service import ConfigService
+
+from backend.services.tenant_manager import MultiTenantDBManager
 from backend.utils.formatters import format_value
 
 router = APIRouter(prefix="/api/dashboard", tags=["Analytics"])

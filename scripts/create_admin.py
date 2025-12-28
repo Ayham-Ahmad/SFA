@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from api.database import SessionLocal, engine, Base
+from api.db_session import SessionLocal, engine, Base
 from api.models import User, UserRole
-from api.auth import get_password_hash
+from api.auth_utils import get_password_hash
 
 def create_admin():
     db = SessionLocal()

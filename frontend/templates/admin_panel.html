@@ -9,8 +9,9 @@
         <div class="shadow-sm rounded p-4" style="background-color: var(--card-bg); color: var(--text-color);">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="fs-5 m-0">Registered Users</h3>
-                <button class="btn btn-primary btn-sm" onclick="showAddUser()"><i class="fas fa-plus me-2"></i>Add
-                    User</button>
+                <button class="btn btn-primary btn-sm" onclick="showAddUser()">
+                    <i class="fas fa-plus me-2"></i>Add User
+                </button>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -20,18 +21,18 @@
                             <th scope="col">Username</th>
                             <th scope="col">Role</th>
                             <th scope="col">Created At</th>
+                            <th scope="col">Last Login</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="users-table-body">
-                        <!-- Users will be populated here by JS -->
+                        <!-- Users will be populated by admin_panel.js -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Add/Edit User Modal -->
 <div class="modal fade" id="userModal" tabindex="-1">
@@ -70,137 +71,6 @@
     </div>
 </div>
 
-<script>
-    let userModal;
-    let deleteUserId = null;
-
-    document.addEventListener('DOMContentLoaded', () => {
-        userModal = new bootstrap.Modal(document.getElementById('userModal'));
-        fetchUsers();
-    });
-
-    function showAddUser() {
-        document.getElementById('userModalLabel').innerText = 'Add User';
-        document.getElementById('userId').value = '';
-        document.getElementById('username').value = '';
-        document.getElementById('password').value = '';
-        document.getElementById('role').value = 'manager';
-        userModal.show();
-    }
-
-    function showEditUser(id, name, role) {
-        document.getElementById('userModalLabel').innerText = 'Edit User';
-        document.getElementById('userId').value = id;
-        document.getElementById('username').value = name;
-        document.getElementById('password').value = ''; // Don't show hash
-        document.getElementById('role').value = role;
-        userModal.show();
-    }
-
-    async function saveUser() {
-        const id = document.getElementById('userId').value;
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const role = document.getElementById('role').value;
-
-        const token = localStorage.getItem('token');
-        const method = id ? 'PUT' : 'POST';
-        const url = id ? `/api/users/${id}` : '/api/users';
-
-        const payload = { username, role };
-        if (password) payload.password = password; // Only send if changed/new
-
-        try {
-            const res = await fetch(url, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (res.ok) {
-                userModal.hide();
-                fetchUsers();
-            } else {
-                alert("Failed to save user.");
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    function deleteUser(id, username) {
-        deleteUserId = id;
-        document.getElementById('deleteUserName').textContent = username || 'this user';
-        const modal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
-        modal.show();
-    }
-
-    async function confirmDeleteUser() {
-        if (!deleteUserId) return;
-
-        bootstrap.Modal.getInstance(document.getElementById('deleteUserModal')).hide();
-
-        const token = localStorage.getItem('token');
-        try {
-            const res = await fetch(`/api/users/${deleteUserId}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-
-            if (res.ok) fetchUsers();
-            else alert("Failed to delete user.");
-        } catch (e) {
-            console.error(e);
-        }
-
-        deleteUserId = null;
-    }
-
-    async function fetchUsers() {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            window.location.href = '/login';
-            return;
-        }
-
-        try {
-            const response = await fetch('/api/users', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-
-            if (response.ok) {
-                const users = await response.json();
-                const tbody = document.getElementById('users-table-body');
-                tbody.innerHTML = '';
-
-                users.forEach(user => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-<th scope="row">${user.id}</th>
-<td>${user.username}</td>
-<td><span class="badge ${user.role === 'admin' ? 'bg-danger' : 'bg-success'}">${user.role.toUpperCase()}</span></td>
-<td>${new Date(user.created_at).toLocaleDateString()}</td>
-<td>
-    <button class="btn btn-sm btn-outline-secondary"
-        onclick="showEditUser('${user.id}', '${user.username}', '${user.role}')"><i class="fas fa-edit"></i></button>
-    <button class="btn btn-sm btn-outline-danger" onclick="deleteUser('${user.id}', '${user.username}')"><i
-            class="fas fa-trash"></i></button>
-</td>
-`;
-                    tbody.appendChild(row);
-                });
-            } else {
-                if (response.status === 401) window.location.href = '/login';
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-</script>
-
 <!-- Delete User Confirmation Modal -->
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -230,4 +100,6 @@
     </div>
 </div>
 
+<!-- Admin Panel JavaScript -->
+<script src="{{ url_for('static', path='js/admin_panel.js') }}"></script>
 {% endblock %}

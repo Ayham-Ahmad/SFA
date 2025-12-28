@@ -5,18 +5,17 @@ Decomposes user questions into actionable SQL steps.
 Supports user-specific database schemas for multi-tenant operation.
 """
 from backend.utils.llm_client import groq_client, get_model
-from backend.sfa_logger import log_system_debug, log_system_error
+from backend.core.logger import log_system_debug, log_system_error, log_system_info
 
 MODEL = get_model("default")
 
 
-def get_planner_prompt(user=None, graph_allowed=False):
+def get_planner_prompt(user=None):
     """
     Build planner prompt with user-specific schema if available.
     
     Args:
         user: Optional User model instance
-        graph_allowed: Whether graphs are allowed
         
     Returns:
         Formatted planner prompt string
@@ -60,10 +59,6 @@ CRITICAL RULES:
 - Maximum 2 steps total.
 - If time is not specified, use the most recent data.
 
-GRAPH CONTROL:
-- graph_allowed = {graph_allowed}
-- If false, DO NOT include visualization steps.
-
 FORMAT (MANDATORY):
 1. <TOOL>: <Action>
 
@@ -74,22 +69,21 @@ Examples:
 """
 
 
-def plan_task(question: str, graph_allowed: bool, user=None) -> str:
+def plan_task(question: str, user=None) -> str:
     """
     Create an execution plan to answer the user's question.
     
     Args:
         question: User's question
-        graph_allowed: Whether graph generation is allowed
         user: Optional User model instance for tenant-specific schema
         
     Returns:
         Numbered list of steps (SQL/ADVISORY)
     """
     try:
-        log_system_debug(f"Planner - Graph allowed: {graph_allowed}, User: {user.id if user else 'None'}")
+        log_system_debug(f"Planner - User: {user.id if user else 'None'}")
         
-        prompt = get_planner_prompt(user=user, graph_allowed=graph_allowed)
+        prompt = get_planner_prompt(user=user)
         prompt += f"\nUser question: {question}"
         
         response = groq_client.chat.completions.create(

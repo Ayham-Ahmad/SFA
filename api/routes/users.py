@@ -6,10 +6,10 @@ Admin-only endpoints for user CRUD operations.
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from api.database import get_db
+from api.db_session import get_db
 from api.models import User
 from api.schemas import UserCreate
-from api.auth import get_admin_user, get_current_active_user, get_password_hash
+from api.auth_utils import get_admin_user, get_current_active_user, get_password_hash
 
 router = APIRouter(prefix="/api/users", tags=["Users"])
 
@@ -88,14 +88,4 @@ async def delete_user(
     return {"ok": True}
 
 
-# Separate router for /users/me (non-admin)
-me_router = APIRouter(prefix="/users", tags=["Users"])
 
-
-@me_router.get("/me")
-async def read_users_me(current_user: User = Depends(get_current_active_user)):
-    """
-    Return the profile of the currently logged-in user.
-    Used by the frontend (sidebar) to display 'Welcome, [Username]'.
-    """
-    return current_user

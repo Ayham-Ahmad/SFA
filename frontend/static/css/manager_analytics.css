@@ -25,25 +25,7 @@
     /* Ensure height for empty state */
 }
 
-.graph-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    cursor: default;
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: calc(50% - 10px);
-    /* Ensure equal width for 2 graphs */
-    height: 380px;
-    display: flex;
-    flex-direction: column;
-    overflow: visible;
-    /* Allow content to be visible */
-    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
-}
+/* Graph Cards - Single consolidated definition */
 
 .graph-card:hover {
     transform: translateY(-2px);

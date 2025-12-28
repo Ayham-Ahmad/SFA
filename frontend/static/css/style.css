@@ -254,12 +254,8 @@ body {
     --code-bg: #2d2d2d;
 }
 
-/* Dark mode specific overrides */
-[data-theme="dark"] .card {
-    background-color: var(--card-bg);
-    border-color: var(--border-color);
-}
 
+/* Dark mode specific overrides */
 [data-theme="dark"] .list-group-item {
     background-color: transparent;
     color: var(--sidebar-text);
@@ -569,11 +565,6 @@ body {
     border: 1px solid var(--border-color) !important;
     background-color: transparent !important;
     padding: 0.5rem;
-}
-
-[data-theme="dark"] .table-striped>tbody>tr:nth-of-type(odd)>* {
-    color: var(--text-color) !important;
-    background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 [data-theme="dark"] .message table thead th {
