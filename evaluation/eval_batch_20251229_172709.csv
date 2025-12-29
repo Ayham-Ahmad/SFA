@@ -1,0 +1,3 @@
+Query_ID,Query,Category,Difficulty,Tool_Accuracy,SQL_Validity,Value_Accuracy,Semantic_Similarity,Overall_Score,Passed,Graph_Generated,Plan_Efficiency,Failure_Mode,SFA_Response,Error
+1,What was the total revenue in 2024?,structured,easy,1.000,0.000,1.000,0.880,0.764,True,False,100%,none,The total revenue in 2024 was approximately 2.89379 billion.,
+2,What was the net income in 2023?,structured,easy,1.000,0.000,0.000,0.000,0.200,False,False,100%,wrong_value,204;964;000,

@@ -62,17 +62,7 @@ app.include_router(analytics_router)  # Graphs & Charts
 app.include_router(pages_router)      # HTML Pages
 
 
-# 5. Legacy/Shared State
-# (Kept for compatibility with your existing chat system)
-from api.routes.chat import (
-    set_query_progress, 
-    clear_query_progress, 
-    active_queries, 
-    query_progress
-)
-
-
-# 6. Start the Server
+# 5. Start the Server
 if __name__ == "__main__":
     print("Starting SFA Server...")
     uvicorn.run("api.main:app", host="127.0.0.1", port=8000, reload=True)

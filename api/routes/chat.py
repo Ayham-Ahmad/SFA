@@ -21,22 +21,14 @@ TIMEOUT_SECONDS = 120.0
 CHAT_HISTORY_LIMIT = 2  
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
-# --- Global State (Tracking Active Tasks) ---
-# We keep track of running queries here so we can cancel them if needed.
-active_queries = {}     # Maps query_id -> asyncio Task
-query_progress = {}     # Maps query_id -> Status message (e.g., "Reading database...")
-
-
-# --- Helper Functions ---
-
-def set_query_progress(query_id: str, agent: str, step: str = ""):
-    """Updates the status message for the frontend loading bar."""
-    query_progress[query_id] = {"agent": agent, "step": step}
-
-
-def clear_query_progress(query_id: str):
-    """Remove progress tracking for completed query."""
-    query_progress.pop(query_id, None)
+# --- Global State (from centralized module to avoid circular imports) ---
+from backend.pipeline.progress import (
+    active_queries, 
+    query_progress, 
+    set_query_progress, 
+    clear_query_progress,
+    get_query_progress
+)
 
 
 async def run_task_safely(task_func, query_id: str):
@@ -99,13 +91,25 @@ async def chat_endpoint(
         .limit(CHAT_HISTORY_LIMIT).all()
 
     # Prepare the input string with history attached
+    # IMPORTANT: Filter out failed responses to prevent agent confusion
     full_prompt = request.message
     if last_chats and not is_graph:
-        history_text = "\n".join([f"Q: {c.question} -> A: {c.answer}" for c in reversed(last_chats)])
-        full_prompt = f"Context:\n{history_text}\nUser Query: {request.message}"
+        # Only include successful responses (not errors or iteration limits)
+        valid_chats = [
+            c for c in reversed(last_chats) 
+            if c.answer and 
+               "error" not in c.answer.lower()[:50] and 
+               "Agent stopped" not in c.answer and
+               "iteration limit" not in c.answer.lower()
+        ]
+        if valid_chats:
+            # Limit context to last 2 exchanges and truncate answers
+            recent = valid_chats[-2:]
+            history_text = "\n".join([f"Q: {c.question} -> A: {c.answer[:200]}..." for c in recent])
+            full_prompt = f"Context:\n{history_text}\nUser Query: {request.message}"
 
     # 3. Define the heavy task (to be run in background)
-    set_query_progress(query_id, "planner", "🔍 Analyzing your request...")
+    set_query_progress(query_id, "classifier", "🔍 Processing your question...")
     
     async def heavy_ai_task():
         if is_graph:

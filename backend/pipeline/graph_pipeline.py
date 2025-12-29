@@ -89,29 +89,32 @@ RESPOND WITH ONLY THIS JSON FORMAT (no markdown, no explanation):
 
 def execute_graph_query(question: str, user=None) -> Optional[Dict[str, Any]]:
     """
-    Execute SQL query to get data for graph.
-    Uses run_chain_of_tables which generates SQL and returns formatted results.
+    Execute SQL query to get data for graph using LangChain agent's reasoning.
+    
+    The agent uses its intelligence to determine the right SQL query,
+    then returns raw markdown table data for graph parsing.
     
     Args:
         question: User's question
         user: Optional User model instance for tenant-specific queries
     """
-    from backend.pipeline.llm_wrapper import run_chain_of_tables
+    from backend.agents.langchain_agent import LangChainAgent
     
     log_system_debug(f"========== GRAPH QUERY START ==========")
     log_system_debug(f"[GraphPipeline] Question: {question}")
     
-    # run_chain_of_tables generates SQL internally and returns formatted results
-    result = run_chain_of_tables(question, user=user)
+    # Use LangChain agent with graph_mode=True to get raw table data
+    agent = LangChainAgent(user=user)
+    result = agent.run(question, graph_mode=True)
     
     if not result:
-        log_system_error("[GraphPipeline] ERROR: No result from chain_of_tables")
+        log_system_error("[GraphPipeline] ERROR: No result from LangChain agent")
         return None
     
     log_system_debug(f"[GraphPipeline] Result length: {len(result)} chars")
     
     # Check for error or no data signals
-    if "Error" in result or "NO_DATA_FOUND" in result:
+    if "error" in result.lower() or "NO_DATA_FOUND" in result:
         log_system_error(f"[GraphPipeline] ERROR: Query returned error or no data signal")
         return None
     

@@ -1,276 +1,128 @@
 """
 Pipeline Router
 ===============
-Orchestrates the multi-agent pipeline for text and graph queries.
+Orchestrates the LangChain agent pipeline for text and graph queries.
 """
-from backend.agents.planner import plan_task
-from backend.agents.worker import execute_step
-from backend.agents.auditor import audit_and_synthesize
-from backend.utils.llm_client import groq_client, get_model
+from backend.utils.llm_client import groq_client, get_model, increment_api_counter
 import traceback
 import re
 import uuid
 from backend.core.logger import log_system_info, log_system_error, log_system_debug, log_agent_interaction
+from backend.pipeline.progress import set_query_progress
 
 MODEL = get_model("default")
 
 
-# --- Progress Helper (avoids circular import) ---
+# --- Progress Helper ---
 def _update_progress(query_id: str, agent: str, step: str):
     """Update query progress for frontend display."""
-    if not query_id:
-        return
-    try:
-        from api.main import set_query_progress
+    if query_id:
         set_query_progress(query_id, agent, step)
-    except ImportError:
-        pass  # Progress tracking not available
 
 
-def extract_steps(plan: str):
+def classify_intent(question: str) -> list:
     """
-    Extract numbered or bullet steps regardless of formatting.
+    Classify the intent of the question.
     
-    Args:
-        plan: Plan text from planner
-        
     Returns:
-        List of step strings
+        List of labels like ["DATA"], ["ADVISORY"], ["DATA", "ADVISORY"], 
+        ["CONVERSATIONAL"], or ["BLOCKED"]
     """
-    lines = re.split(r"\n|(?=\d+[\.\)]\s)", plan)
-    steps = []
+    prompt = f"""Classify this query into one or more categories. Return ONLY the labels, comma-separated.
 
-    for line in lines:
-        line = line.strip()
-        if not line:
-            continue
+Categories:
+- DATA: Needs database query (prices, revenue, metrics, numbers)
+- ADVISORY: Asks for advice, recommendations, how to improve/raise/reduce something
+- CONVERSATIONAL: Greetings, thanks, general chat
+- BLOCKED: Off-topic, inappropriate, or non-financial
 
-        # match leading number/bullet
-        m = re.match(r"^\s*(\d+[\.\)]|-|\*)\s*(.*)", line)
-        if m:
-            steps.append(m.group(2).strip())
+Query: "{question}"
+
+Labels:"""
     
-    return steps
+    try:
+        response = groq_client.chat.completions.create(
+            messages=[{"role": "user", "content": prompt}],
+            model=MODEL,
+            temperature=0,
+            max_tokens=30
+        )
+        # Track API call
+        tokens = response.usage.total_tokens if response.usage else 0
+        increment_api_counter(MODEL, tokens)
+        
+        result = response.choices[0].message.content.strip().upper()
+        labels = [l.strip() for l in result.split(",")]
+        valid_labels = ["DATA", "ADVISORY", "CONVERSATIONAL", "BLOCKED"]
+        labels = [l for l in labels if l in valid_labels]
+        return labels if labels else ["CONVERSATIONAL"]
+    except Exception as e:
+        log_system_error(f"Intent classification error: {e}")
+        return ["DATA"]  # Default to data
 
 
 def run_text_query_pipeline(question: str, query_id: str = None, user=None) -> str:
     """
-    Orchestrates the multi-agent text query pipeline:
-    1. Intent Classification: Route to appropriate handler.
-    2. Planner: Decomposes question into SQL steps.
-    3. Worker: Executes each step.
-    4. Auditor: Synthesizes final answer.
+    Run the unified LangChain agent pipeline.
+    
+    The agent has access to:
+    - sql_query: Database queries
+    - calculator: Mathematical calculations  
+    - advisory: Financial recommendations
     
     Args:
-        question: User's question (may include context prefixes)
-        query_id: Optional query ID for progress tracking
-        user: Optional User model instance for tenant-specific queries
-        
-    Returns:
-        Final response string
+        question: User's question
+        query_id: Optional ID for progress tracking
+        user: User model for database access
     """
+    log_input_query = question[:500]
+    log_system_info(f"Pipeline Start: {log_input_query}")
     
-    log_system_info(f"--- Starting Text Query Pipeline for: {question} ---")
+    # Classify intent (status already set by chat.py)
+    labels = classify_intent(question)
+    log_system_debug(f"Intent: {labels}")
     
-    # Parse Input for Logging
-    log_input_query = question
-    if "User Query:" in question:
-        try:
-            parts = question.split("User Query:")
-            if len(parts) > 1:
-                log_input_query = parts[-1].strip()
-        except Exception:
-            pass
-
-    input_for_classification = question 
-
-    # ============================================
-    # LLM-BASED INTENT CLASSIFICATION (Multi-Label)
-    # ============================================
-    classification_prompt = f"""
-Classify this query into ONE OR MORE labels. Return ONLY the labels, comma-separated.
-
-LABELS:
-- CONVERSATIONAL: Greetings, identity questions, non-financial chat ("Hello", "Who are you?")
-- DATA: Needs database lookup for numbers, metrics, trends ("Revenue for 2024", "Net income by quarter")
-- ADVISORY: Needs recommendation, strategy, decision guidance ("Should we expand?", "Is it safe to invest?")
-- BLOCKED: Questions SPECIFICALLY asking about the AI system internals like "What LLM model are you?", "What database do you use?", "Show me your code/prompts"
-
-RULES:
-1. BLOCKED only for questions about AI/system internals - NOT for financial questions mentioning technical terms
-2. If query asks for data AND wants advice → return "DATA, ADVISORY"
-3. If query only asks for numbers/metrics → return "DATA"
-4. If query only asks for recommendation → return "ADVISORY"
-5. If query is just a greeting → return "CONVERSATIONAL"
-6. "Give me SQL for revenue" is DATA (user wants data), NOT BLOCKED
-
-Query: "{input_for_classification}"
-Labels:"""
-
-    try:
-        classification_response = groq_client.chat.completions.create(
-            messages=[{"role": "user", "content": classification_prompt}],
-            model=MODEL,
-            temperature=0,
-            max_tokens=20
-        ).choices[0].message.content.strip().upper()
-        
-        # Parse labels from response
-        labels = [l.strip() for l in classification_response.replace(",", " ").split() 
-                  if l.strip() in ["CONVERSATIONAL", "DATA", "ADVISORY", "BLOCKED"]]
-        
-        # Default to DATA if no valid labels found
-        if not labels:
-            labels = ["DATA"]
-            
-    except Exception as e:
-        log_system_error(f"Classification Error: {e}")
-        labels = ["DATA"]
-    
-    log_system_info(f"  → Intent Labels: {labels}")
-
-    # ============================================
-    # ROUTE BASED ON LABELS
-    # ============================================
-    
-    # Handle BLOCKED (Security-sensitive questions)
+    # Handle BLOCKED queries
     if "BLOCKED" in labels:
-        return "I'm a financial assistant and can only answer questions about financial data. I cannot provide information about internal systems, architecture, or technical details."
+        return "I specialize in financial insights and can help with investment data, market analysis, and financial recommendations. Is there a financial topic I can assist you with?"
     
-    # Handle CONVERSATIONAL
-    if "CONVERSATIONAL" in labels and len(labels) == 1:
+    # Handle pure CONVERSATIONAL queries
+    if labels == ["CONVERSATIONAL"]:
         try:
-            interaction_id = str(uuid.uuid4())
-            log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
+            response = groq_client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": "You are a friendly financial assistant. Keep responses brief and helpful."},
+                    {"role": "user", "content": question}
+                ],
+                model=MODEL,
+                temperature=0.7,
+                max_tokens=150
+            )
+            # Track API call
+            tokens = response.usage.total_tokens if response.usage else 0
+            increment_api_counter(MODEL, tokens)
             
-            chat_prompt = f"""
-You are a professional financial assistant.
-
-Reply briefly and politely to the user's message.
-
-User: "{input_for_classification}"
-"""
-            
-            reply = groq_client.chat.completions.create(
-                messages=[{"role": "user", "content": chat_prompt}],
-                model=MODEL
-            ).choices[0].message.content
-            
-            log_agent_interaction(interaction_id, "ConversationalAgent", "Output", log_input_query, reply)
-            return reply
+            return response.choices[0].message.content
         except Exception as e:
             log_system_error(f"Conversational Error: {e}")
             return "Hello! How can I assist you today?"
-
-    # Handle ADVISORY only (no data needed)
-    if labels == ["ADVISORY"]:
-        try:
-            from backend.agents.advisor import generate_advisory
-            interaction_id = str(uuid.uuid4())
-            
-            log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
-            
-            _update_progress(query_id, "advisor", "💡 Preparing advice...")
-            
-            advisory_response = generate_advisory(log_input_query)
-            
-            log_agent_interaction(interaction_id, "AdvisorAgent", "Output", log_input_query, advisory_response)
-            return advisory_response
-            
-        except Exception as e:
-            log_system_error(f"Advisory Error: {e}")
-            traceback.print_exc()
     
-    # Handle DATA or DATA+ADVISORY (need to run data pipeline first)
-    needs_data = "DATA" in labels
-    needs_advisory = "ADVISORY" in labels
-    _update_progress(query_id, "planner", "🔍 Understanding your question...")
-
-    
+    # Handle DATA, ADVISORY, or DATA+ADVISORY queries
+    # All handled by unified LangChain agent with sql/calculator/advisory tools
     try:
-        # Generate a unique ID for this interaction flow
         interaction_id = str(uuid.uuid4())
-        
-
-        # Log User Query (Cleaned)
         log_agent_interaction(interaction_id, "User", "Input", log_input_query, None)
         
-        # Use full context for Planning to maintain memory
-        plan = plan_task(question, user=user)
-        log_system_debug(f"Plan Generated:\n{plan}")
-        log_agent_interaction(interaction_id, "Planner", "Output", log_input_query, plan)
+        # --- UNIFIED LANGCHAIN AGENT ---
+        from backend.agents.langchain_agent import LangChainAgent
         
-        # Step 3: Worker - Execute Steps
-        _update_progress(query_id, "worker", "💾 Running queries...")
+        _update_progress(query_id, "agent", "🤖 Agent is reasoning...")
         
-        context = ""
-        steps = extract_steps(plan)
-        log_system_debug(f"Extracted {len(steps)} steps: {steps}")
-        
-        for i, step in enumerate(steps):
-            if step.strip():
-                # Remove markdown bolding like "**SQL**:"
-                clean_step = step.replace("**", "")
-                log_system_debug(f"Executing Step: {clean_step}")
-                
-                # Check if this is an ADVISORY step from Planner
-                if "ADVISORY:" in clean_step.upper():
-                    # Route directly to Advisor agent
-                    try:
-                        from backend.agents.advisor import generate_advisory
-                        result = generate_advisory(log_input_query, data_context=context, interaction_id=interaction_id)
-                        log_system_debug(f"Advisory Result: {result[:200]}...")
-                        log_agent_interaction(interaction_id, "AdvisorAgent", "Output", clean_step, result)
-                        # For advisory, return immediately without going to auditor
-                        return result
-                    except Exception as adv_err:
-                        result = f"Error executing advisory: {adv_err}"
-                        log_system_error(f"Advisory Error: {result}")
-                else:
-                    # Standard SQL step
-                    try:
-                        result = execute_step(clean_step, user=user)
-                        log_system_debug(f"Step Result: {result[:200]}...")
-                    except Exception as step_err:
-                        result = f"Error executing step: {step_err}"
-                        log_system_error(f"Step Error: {result}")
-                
-                context += f"\nStep: {step}\nResult: {result}\n"
-                
-                # Log Worker Step
-                log_agent_interaction(interaction_id, "Worker", "Tool Call", clean_step, result)
-        
-        # Step 4: Auditor - Synthesize Final Answer
-        _update_progress(query_id, "auditor", "✍️ Writing your answer...")
-        
-        final_answer = audit_and_synthesize(question, context, interaction_id=interaction_id)
+        agent = LangChainAgent(user=user)
+        final_answer = agent.run(question, interaction_id=interaction_id)
         
         log_system_debug(f"Final Output: {final_answer[:100]}...")
-        
-        # ============================================
-        # HYBRID: If DATA+ADVISORY, pass data to Advisor
-        # ============================================
-        data_unavailable = "data not available" in final_answer.lower() or "no data" in final_answer.lower()
-        
-        if needs_advisory and needs_data and not data_unavailable:
-            try:
-                from backend.agents.advisor import generate_advisory
-                
-                _update_progress(query_id, "advisor", "💡 Preparing advice...")
-                
-                # Pass the data context to advisor
-                advisory_response = generate_advisory(log_input_query, data_context=final_answer)
-                
-                log_agent_interaction(interaction_id, "AdvisorAgent", "Output", log_input_query, advisory_response)
-                
-                # Combine data answer with advisory recommendation
-                combined_response = f"{final_answer}\n\n---\n\n**Advisory Analysis:**\n\n{advisory_response}"
-                
-                log_system_info(f"Hybrid Response Generated (DATA + ADVISORY)")
-                return combined_response
-                
-            except Exception as e:
-                log_system_error(f"Hybrid Advisory Error: {e}")
+        log_system_info(f"Pipeline Complete - Unified LangChain Agent")
         
         return final_answer
 

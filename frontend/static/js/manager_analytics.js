@@ -258,9 +258,63 @@ const GraphManager = {
 
 // Live status polling helper
 let statusPollInterval = null;
+let secondsTimer = null;
+let debugHistory = [];
+
+function initStatusDisplay(statusElement) {
+    // Add spin animation CSS if not already present
+    if (!document.getElementById('status-spin-style')) {
+        const style = document.createElement('style');
+        style.id = 'status-spin-style';
+        style.textContent = `
+            @keyframes statusSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            .status-spin { animation: statusSpin 1s linear infinite; display: inline-block; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Create structured status display with fixed layout
+    statusElement.innerHTML = `
+        <div class="status-wrapper" style="display: flex; flex-direction: column; width: 100%;">
+            <div class="status-main" style="display: flex; align-items: center; gap: 10px;">
+                <span class="status-spin" style="font-size: 16px;">⚙️</span>
+                <span id="status-text" style="flex: 1;">Processing...</span>
+                <span id="timer-display" style="opacity: 0.8; min-width: 35px; text-align: right;">0s</span>
+                <button id="debug-toggle" style="background: rgba(100,255,218,0.1); border: 1px solid rgba(100,255,218,0.3); border-radius: 4px; cursor: pointer; color: #64ffda; padding: 3px 10px; font-size: 11px; white-space: nowrap; flex-shrink: 0;" title="Show agent thinking">
+                    ▼ Log
+                </button>
+            </div>
+            <div id="debug-panel" style="display: none; max-height: 250px; overflow-y: auto; font-size: 12px; background: rgba(0,0,0,0.6); padding: 12px 16px; margin-top: 10px; border-radius: 8px; font-family: 'Consolas', 'Courier New', monospace; color: #e2e8f0; border: 1px solid rgba(100,255,218,0.3);">
+                <div style="color: #64ffda; margin-bottom: 8px; font-weight: bold; font-size: 13px;">🔍 Agent Thinking:</div>
+            </div>
+        </div>
+    `;
+
+    // Setup debug toggle
+    const toggle = document.getElementById('debug-toggle');
+    const panel = document.getElementById('debug-panel');
+    if (toggle && panel) {
+        toggle.onclick = () => {
+            const hidden = panel.style.display === 'none';
+            panel.style.display = hidden ? 'block' : 'none';
+            toggle.innerHTML = hidden ? '▲ Log' : '▼ Log';
+        };
+    }
+}
 
 function startStatusPolling(queryId, statusElement) {
-    // Poll every 500ms for live status updates
+    debugHistory = [];
+    initStatusDisplay(statusElement);
+
+    // Start timer
+    let seconds = 0;
+    const timerEl = document.getElementById('timer-display');
+    secondsTimer = setInterval(() => {
+        seconds++;
+        if (timerEl) timerEl.textContent = `${seconds}s`;
+    }, 1000);
+
+    // Poll for status updates
     statusPollInterval = setInterval(async () => {
         try {
             const res = await fetch(`/chat/status/${queryId}`, {
@@ -268,22 +322,26 @@ function startStatusPolling(queryId, statusElement) {
             });
             const data = await res.json();
             if (data.step) {
-                // Update the status text with the current step
-                const timerSpan = statusElement.querySelector('span');
-                const timerText = timerSpan ? timerSpan.outerHTML : '';
-                statusElement.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${data.step} ${timerText}`;
+                const statusText = document.getElementById('status-text');
+                if (statusText && statusText.textContent !== data.step) {
+                    statusText.textContent = data.step;
+                    // Add to debug panel
+                    const time = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                    debugHistory.push(`[${time}] ${data.step}`);
+                    const panel = document.getElementById('debug-panel');
+                    if (panel) {
+                        panel.innerHTML = debugHistory.map(h => `<div style="margin-bottom: 2px;">${h}</div>`).join('');
+                        panel.scrollTop = panel.scrollHeight;
+                    }
+                }
             }
-        } catch (e) {
-            // Ignore polling errors
-        }
+        } catch (e) { /* ignore */ }
     }, 500);
 }
 
 function stopStatusPolling() {
-    if (statusPollInterval) {
-        clearInterval(statusPollInterval);
-        statusPollInterval = null;
-    }
+    if (statusPollInterval) { clearInterval(statusPollInterval); statusPollInterval = null; }
+    if (secondsTimer) { clearInterval(secondsTimer); secondsTimer = null; }
 }
 
 async function sendMessage() {
@@ -299,13 +357,7 @@ async function sendMessage() {
     const stopBtn = document.getElementById('stop-btn');
     const sendBtn = document.getElementById('send-btn');
 
-    let seconds = 0;
-    status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting... <span id="timer-text"></span>';
-    const timerSpan = document.getElementById('timer-text');
-    const timer = setInterval(() => {
-        seconds++;
-        timerSpan.textContent = `${seconds}s`;
-    }, 1000);
+    // Timer and status are now handled by startStatusPolling
 
     // Show stop button, hide send button
     if (stopBtn) stopBtn.style.display = 'inline-block';
@@ -322,7 +374,7 @@ async function sendMessage() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')} `
             },
             body: JSON.stringify({
                 message: msg,
@@ -331,12 +383,10 @@ async function sendMessage() {
             })
         });
         const data = await response.json();
-        clearInterval(timer);
         stopStatusPolling();
         status.textContent = '';
         addMessageUI(data.response, 'bot-msg', data.chat_id, data.chart_data);
     } catch (e) {
-        clearInterval(timer);
         stopStatusPolling();
         status.textContent = 'Error sending message.';
     } finally {
@@ -362,13 +412,7 @@ async function requestGraph() {
     const stopBtn = document.getElementById('stop-btn');
     const sendBtn = document.getElementById('send-btn');
 
-    let seconds = 0;
-    status.innerHTML = '<i class="fas fa-chart-line fa-spin"></i> Starting... <span id="graph-timer-text"></span>';
-    const timerSpan = document.getElementById('graph-timer-text');
-    const timer = setInterval(() => {
-        seconds++;
-        timerSpan.textContent = `${seconds}s`;
-    }, 1000);
+    // Timer and status are now handled by startStatusPolling
 
     // Show stop button, hide send button
     if (stopBtn) stopBtn.style.display = 'inline-block';
@@ -385,7 +429,7 @@ async function requestGraph() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')} `
             },
             body: JSON.stringify({
                 message: msg,
@@ -395,7 +439,6 @@ async function requestGraph() {
             })
         });
         const data = await response.json();
-        clearInterval(timer);
         stopStatusPolling();
         status.textContent = '';
 
@@ -424,7 +467,6 @@ async function requestGraph() {
             addMessageUI(data.response || "Couldn't generate graph.", 'bot-msg');
         }
     } catch (e) {
-        clearInterval(timer);
         stopStatusPolling();
         status.textContent = 'Error.';
     } finally {
@@ -440,7 +482,7 @@ function addMessageUI(text, className, chatId = null, chartData = null) {
     if (!text) return;
     const box = document.getElementById('chat-messages');
     const div = document.createElement('div');
-    div.className = `message ${className}`;
+    div.className = `message ${className} `;
 
     // Markdown / Rendering
     if (typeof marked !== 'undefined') {
@@ -495,7 +537,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 4. Update Greeting
     const greet = document.getElementById('chat-greeting');
-    if (greet && !hasLocal) greet.textContent = `Hello ${AppState.username}! How can I help?`;
+    if (greet && !hasLocal) greet.textContent = `Hello ${AppState.username} !How can I help ? `;
 
     // 5. Listen for config updates from Settings page
     window.addEventListener('storage', (e) => {
@@ -549,7 +591,7 @@ async function restoreFromBackend() {
 async function loadDefaultGraphs() {
     try {
         const res = await fetch('/api/dashboard/metrics', {
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')} ` }
         });
         const data = await res.json();
 
@@ -604,7 +646,7 @@ function stopQuery() {
     if (currentQueryId) {
         fetch(`/chat/cancel/${currentQueryId}`, {
             method: 'POST',
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')} ` }
         });
 
         const status = document.getElementById('status-indicator');
@@ -628,7 +670,7 @@ async function refreshGraphs() {
 
     try {
         const res = await fetch('/api/dashboard/metrics', {
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')} ` }
         });
         const data = await res.json();
 
@@ -684,7 +726,7 @@ async function refreshGraphs() {
 function rate(id, type) {
     fetch(`/chat/feedback/${id}?feedback=${type}`, {
         method: 'POST',
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')} ` }
     }).then(() => {
         // Reset both buttons to default state
         const likeBtn = document.querySelector(`[onclick="rate(${id}, 'like')"]`);

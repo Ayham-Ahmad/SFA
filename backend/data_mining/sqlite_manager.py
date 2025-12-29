@@ -208,7 +208,8 @@ class SQLiteManager:
         for table_name, table_info in schema.get("schema", {}).items():
             cols = table_info.get("columns", [])
             col_list = ", ".join([f"{c['name']} ({c['type']})" for c in cols])
-            parts.append(f"TABLE: {table_name}\nCOLUMNS: {col_list}\nROWS: {table_info.get('row_count', 0)}")
+            # Wrap table name in backticks for SQL safety (handles numeric/special names)
+            parts.append(f"TABLE: `{table_name}`\nCOLUMNS: {col_list}\nROWS: {table_info.get('row_count', 0)}")
         
         return "\n\n".join(parts)
     
