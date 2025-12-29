@@ -32388,3 +32388,767 @@ User Query: Compare revenue between 2023 and 2024
 [2025-12-29 22:24:52,433] [DEBUG] [sfa_system] [GraphPipeline] Result length: 64 chars
 [2025-12-29 22:24:52,434] [ERROR] [sfa_system] [GraphPipeline] ERROR: No markdown table found in result
 [2025-12-29 22:24:52,454] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '53.4441s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:35,372] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/', 'status_code': 307, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:35,388] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/login', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:39,698] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/token', 'status_code': 200, 'process_time': '0.0554s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:39,722] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/manager', 'status_code': 200, 'process_time': '0.0105s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:39,844] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-29 22:48:39,845] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:39,858] [INFO] [sfa_system] [TenantManager] User 5: Creating manager for db_type=sqlite, config keys=['path']
+[2025-12-29 22:48:39,860] [INFO] [sfa_system] [TenantManager] User 5: Manager connected successfully, is_connected=True
+[2025-12-29 22:48:39,862] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/manager/live-data', 'status_code': 200, 'process_time': '0.0101s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:41,026] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:41,163] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=ca87fede-b29e-4b59-8fea-864598468e58', 'status_code': 200, 'process_time': '0.0048s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:49,046] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0006s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:49,153] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:48:49,155] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:48:49,157] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0090s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:52,759] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:48:52,761] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:48:52,762] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0068s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:56,109] [DEBUG] [sfa_system] [GraphPipeline] Starting for: Plot quarterly revenue for 2023
+[2025-12-29 22:48:56,619] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:57,121] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:57,620] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:58,147] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:58,612] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:59,119] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:48:59,624] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0056s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:00,119] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:00,618] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:01,106] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:01,624] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:02,119] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:02,613] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:03,109] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:03,111] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-29 22:49:03,113] [DEBUG] [sfa_system] [GraphPipeline] Question: Plot quarterly revenue for 2023
+[2025-12-29 22:49:03,618] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:03,817] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:49:03,972] [DEBUG] [sfa_system] [LangChain] Task mode: graph
+[2025-12-29 22:49:03,973] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:49:03,976] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:49:03,977] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:49:03,978] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:49:04,119] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:04,620] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:05,131] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:05,154] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:49:05,619] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:06,114] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:06,558] [DEBUG] [sfa_system] [SQL] Cache HIT for: SELECT year, quarter, revenue FROM swf_financials ...
+[2025-12-29 22:49:06,619] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:07,119] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/baa70942-aea7-4b5c-a39a-e39b217da454', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:07,135] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:49:07,137] [DEBUG] [sfa_system] [GraphPipeline] Result length: 221 chars
+[2025-12-29 22:49:07,138] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-29 22:49:07,138] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+|   year |   quarter |     revenue |
+|-------:|----------:|------------:|
+|   2023 |         1 | 4.98825e+08 |
+|   2023 |         2 | 5.26e+08    |
+|   2023 |         3 | 5.57435e+08 |
+|   2023 |         4 | 6.08e+08    |
+[2025-12-29 22:49:07,141] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'quarter', 'revenue']
+[2025-12-29 22:49:07,141] [DEBUG] [sfa_system] [GraphPipeline] Found 4 data rows
+[2025-12-29 22:49:07,141] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=1, date_col=None
+[2025-12-29 22:49:07,142] [DEBUG] [sfa_system] [GraphPipeline] Using value col 2 (revenue), is_percentage=False
+[2025-12-29 22:49:07,142] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2023 Q1', '2023 Q2', '2023 Q3', '2023 Q4']...
+[2025-12-29 22:49:07,143] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [498825000.0, 526000000.0, 557435000.0, 608000000.0]...
+[2025-12-29 22:49:07,382] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Quarterly Revenue for 2023
+[2025-12-29 22:49:07,384] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 4 points, is_percentage=False
+[2025-12-29 22:49:07,393] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '11.2915s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:37,702] [DEBUG] [sfa_system] [GraphPipeline] Starting for: Show net income trend for 2022-2024
+[2025-12-29 22:49:37,703] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-29 22:49:37,704] [DEBUG] [sfa_system] [GraphPipeline] Question: Show net income trend for 2022-2024
+[2025-12-29 22:49:38,204] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:38,440] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:49:38,445] [DEBUG] [sfa_system] [LangChain] Task mode: graph
+[2025-12-29 22:49:38,445] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:49:38,448] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:49:38,449] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:49:38,451] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:49:38,641] [ERROR] [sfa_system] [LangChain] Failure: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jv3n6vnwe4qb2k782t15hcpn` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99964, Requested 361. Please try again in 4m40.8s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 22:49:38,706] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:39,205] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:39,445] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.1-8b-instant
+[2025-12-29 22:49:39,449] [DEBUG] [sfa_system] [LangChain] Task mode: graph
+[2025-12-29 22:49:39,450] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:49:39,453] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:49:39,454] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:49:39,455] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:49:39,704] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:40,203] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:40,705] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0033s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:41,204] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:41,679] [DEBUG] [sfa_system] [SQL] Cache HIT for: `SELECT * FROM swf_financials WHERE year BETWEEN 2...
+[2025-12-29 22:49:41,704] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:42,205] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:42,704] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:43,202] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:43,285] [DEBUG] [sfa_system] [SQL] Cache HIT for: `SELECT year, quarter, net_income FROM swf_financi...
+[2025-12-29 22:49:43,704] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:44,205] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9d3eceaf-4bec-4bb5-b146-684793b31e80', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:49:44,211] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: What could be the possible reason for the error message despite providing a valid SQL query?
+...
+[2025-12-29 22:49:44,443] [ERROR] [sfa_system] [AdvisoryTool] Error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jv3n6vnwe4qb2k782t15hcpn` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99957, Requested 260. Please try again in 3m7.488s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 22:49:44,445] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 22:49:44,460] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:49:44,463] [DEBUG] [sfa_system] [GraphPipeline] Result length: 42 chars
+[2025-12-29 22:49:44,463] [ERROR] [sfa_system] [GraphPipeline] ERROR: Query returned error or no data signal
+[2025-12-29 22:49:44,471] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '6.7733s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:44,430] [DEBUG] [sfa_system] [GraphPipeline] Starting for: Show net income trend for 2022-2024
+[2025-12-29 22:50:44,908] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:45,405] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:45,908] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:46,405] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:46,908] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:47,418] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:47,904] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:48,406] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:48,906] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:49,407] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:49,846] [DEBUG] [sfa_system] ========== GRAPH QUERY START ==========
+[2025-12-29 22:50:49,847] [DEBUG] [sfa_system] [GraphPipeline] Question: Show net income trend for 2022-2024
+[2025-12-29 22:50:49,905] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:50,406] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:50,630] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:50:50,759] [DEBUG] [sfa_system] [LangChain] Task mode: graph
+[2025-12-29 22:50:50,761] [INFO] [sfa_system] [TenantManager] User 5: Creating manager for db_type=sqlite, config keys=['path']
+[2025-12-29 22:50:50,763] [INFO] [sfa_system] [TenantManager] User 5: Manager connected successfully, is_connected=True
+[2025-12-29 22:50:50,766] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:50:50,766] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:50:50,767] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:50:50,905] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:51,404] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:51,731] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:50:51,905] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:52,404] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:52,792] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:50:52,793] [DEBUG] [sfa_system] [GraphPipeline] Result length: 531 chars
+[2025-12-29 22:50:52,793] [DEBUG] [sfa_system] ========== GRAPH QUERY SUCCESS ==========
+[2025-12-29 22:50:52,794] [DEBUG] [sfa_system] [GraphPipeline] Parsing result text (first 500 chars):
+|   year |   quarter |   net_income |
+|-------:|----------:|-------------:|
+|   2022 |         1 |  4.41532e+07 |
+|   2022 |         2 |  3.54243e+07 |
+|   2022 |         3 |  6.67054e+07 |
+|   2022 |         4 |  2.55576e+07 |
+|   2023 |         1 |  7.1247e+07  |
+|   2023 |         2 |  2.52439e+07 |
+|   2023 |         3 |  6.22089e+07 |
+|   2023 |         4 |  4.62642e+07 |
+|   2024 |         1 |  2.5927e+07  |
+|   2024 |         2 |  9.10955e+07 |
+|   2024 |         3 |  1.95585e+07 |
+|   20
+[2025-12-29 22:50:52,798] [DEBUG] [sfa_system] [GraphPipeline] Columns found: ['year', 'quarter', 'net_income']
+[2025-12-29 22:50:52,798] [DEBUG] [sfa_system] [GraphPipeline] Found 12 data rows
+[2025-12-29 22:50:52,799] [DEBUG] [sfa_system] [GraphPipeline] Column detection: year_col=0, qtr_col=1, date_col=None
+[2025-12-29 22:50:52,800] [DEBUG] [sfa_system] [GraphPipeline] Using value col 2 (net_income), is_percentage=False
+[2025-12-29 22:50:52,800] [DEBUG] [sfa_system] [GraphPipeline] Extracted labels: ['2022 Q1', '2022 Q2', '2022 Q3', '2022 Q4', '2023 Q1']...
+[2025-12-29 22:50:52,801] [DEBUG] [sfa_system] [GraphPipeline] Extracted values: [44153200.0, 35424300.0, 66705400.0, 25557600.0, 71247000.0]...
+[2025-12-29 22:50:52,905] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a76c73ed-b47e-4234-8112-68d5d2054b20', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:50:53,033] [DEBUG] [sfa_system] [GraphPipeline] LLM metadata: type=line, title=Net Income Trend 2022-2024
+[2025-12-29 22:50:53,034] [DEBUG] [sfa_system] [GraphPipeline] Success - line chart with 12 points, is_percentage=False
+[2025-12-29 22:50:53,056] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '8.6533s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:06,428] [INFO] [sfa_system] Pipeline Start: Context:
+Q: Show net income trend for 2022-2024 -> A: No data available for this query....
+Q: Show net income trend for 2022-2024 -> A: Graph ready! Click a slot to place it....
+User Query: What was the income before tax in 2024?
+[2025-12-29 22:51:06,877] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 22:51:06,923] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:07,425] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:07,679] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:51:07,684] [DEBUG] [sfa_system] [LangChain] Task mode: graph
+[2025-12-29 22:51:07,684] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:07,688] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:51:07,689] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:51:07,689] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:51:07,922] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:08,428] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0069s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:08,433] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:08,922] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:09,421] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:09,643] [DEBUG] [sfa_system] [Calculator] Evaluating: df['total_income_before_tax_2024'] = df.loc[df['year'] == 2024, 'income_before_tax'].sum()
+
+[2025-12-29 22:51:09,644] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: invalid syntax (<string>, line 1)
+[2025-12-29 22:51:09,916] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:10,418] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:10,461] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:10,464] [DEBUG] [sfa_system] [Validator] GRAPH mode received only 1 row(s)
+[2025-12-29 22:51:10,926] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/79c613c6-600a-478f-8758-1c8560892b7b', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:11,261] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:51:11,262] [DEBUG] [sfa_system] Final Output: |   SUM(income_before_tax) |
+|-------------------------:|
+|              2.02694e+08 |...
+[2025-12-29 22:51:11,263] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:51:11,281] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.8679s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:23,173] [INFO] [sfa_system] Pipeline Start: Context:
+Q: Show net income trend for 2022-2024 -> A: Graph ready! Click a slot to place it....
+Q: What was the income before tax in 2024? -> A: |   SUM(income_before_tax) |
+|-------------------------:|
+|              2.02694e+08 |...
+User Query: What was the income tax in Q4 2023?
+[2025-12-29 22:51:23,674] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:24,173] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:24,374] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 22:51:24,675] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:25,176] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:25,176] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:51:25,182] [DEBUG] [sfa_system] [LangChain] Task mode: graph
+[2025-12-29 22:51:25,183] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:25,186] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:51:25,187] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:51:25,188] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:51:25,674] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:26,035] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:26,037] [DEBUG] [sfa_system] [Validator] GRAPH mode received only 1 row(s)
+[2025-12-29 22:51:26,175] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:26,672] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:27,174] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:27,675] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:28,178] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0052s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:28,674] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:28,739] [DEBUG] [sfa_system] [SQL] Cache HIT for: SELECT income_tax_expense FROM swf_financials WHER...
+[2025-12-29 22:51:29,175] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/70912efa-d443-4cb3-b2fd-8a9796608bab', 'status_code': 200, 'process_time': '0.0041s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:29,178] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:51:29,179] [DEBUG] [sfa_system] Final Output: |   income_tax_expense |
+|---------------------:|
+|         -1.24365e+07 |...
+[2025-12-29 22:51:29,181] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:51:29,187] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '6.0186s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:38,014] [INFO] [sfa_system] Pipeline Start: Context:
+Q: What was the income before tax in 2024? -> A: |   SUM(income_before_tax) |
+|-------------------------:|
+|              2.02694e+08 |...
+Q: What was the income tax in Q4 2023? -> A: |   income_tax_expense |
+|---------------------:|
+|         -1.24365e+07 |...
+User Query: What was the total revenue in 2019?
+[2025-12-29 22:51:38,273] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 22:51:38,515] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/0324273a-73af-4b63-808f-2cba98972942', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:38,989] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:51:38,993] [DEBUG] [sfa_system] [LangChain] Task mode: agg
+[2025-12-29 22:51:38,994] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:38,997] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:51:38,997] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:51:38,997] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:51:39,026] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/0324273a-73af-4b63-808f-2cba98972942', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:39,526] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/0324273a-73af-4b63-808f-2cba98972942', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:39,650] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:40,013] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/0324273a-73af-4b63-808f-2cba98972942', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:40,519] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/0324273a-73af-4b63-808f-2cba98972942', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:41,020] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/0324273a-73af-4b63-808f-2cba98972942', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:41,349] [DEBUG] [sfa_system] [Calculator] Evaluating: {:.2f}".format(9.4331e+08 / 1e6) + "M
+[2025-12-29 22:51:41,350] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: invalid decimal literal (<string>, line 1)
+[2025-12-29 22:51:41,524] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/0324273a-73af-4b63-808f-2cba98972942', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:41,946] [DEBUG] [sfa_system] [Calculator] Evaluating: {:.2f}".format(943310000 / 1e6) + "M
+[2025-12-29 22:51:41,947] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: invalid decimal literal (<string>, line 1)
+[2025-12-29 22:51:41,949] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 22:51:41,963] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:51:41,964] [DEBUG] [sfa_system] Final Output: |   SUM(revenue) |
+|---------------:|
+|     $943.31M |...
+[2025-12-29 22:51:41,965] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:51:41,972] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '3.9604s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:47,563] [INFO] [sfa_system] Pipeline Start: Context:
+Q: What was the income tax in Q4 2023? -> A: |   income_tax_expense |
+|---------------------:|
+|         -1.24365e+07 |...
+Q: What was the total revenue in 2019? -> A: |   SUM(revenue) |
+|---------------:|
+|     $943.31M |...
+User Query: What was the average operating margin in 2023?
+[2025-12-29 22:51:47,791] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 22:51:48,072] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:48,563] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:51:48,567] [DEBUG] [sfa_system] [LangChain] Task mode: agg
+[2025-12-29 22:51:48,568] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:48,574] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:51:48,575] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:48,576] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:51:48,578] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:51:49,075] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:49,376] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:49,577] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:49,932] [DEBUG] [sfa_system] [Calculator] Evaluating: {:.0%}".format(0.122608)
+
+[2025-12-29 22:51:49,933] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: unterminated string literal (detected at line 1) (<string>, line 1)
+[2025-12-29 22:51:50,074] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:50,577] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:50,611] [DEBUG] [sfa_system] [Calculator] Evaluating: df = 0.122608; print('{:.0%}'.format(df))"
+
+[2025-12-29 22:51:50,612] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: unterminated string literal (detected at line 1) (<string>, line 1)
+[2025-12-29 22:51:51,075] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:51,313] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:51,576] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/5664d668-f2a1-4b86-aa79-c2c91484f63e', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:51,807] [DEBUG] [sfa_system] [Calculator] Evaluating: {:.2f}%".format(12.2608)
+
+[2025-12-29 22:51:51,808] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: invalid decimal literal (<string>, line 1)
+[2025-12-29 22:51:51,811] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 22:51:51,826] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:51:51,827] [DEBUG] [sfa_system] Final Output: |   AVG(operating_margin) |
+|------------------------:|
+|                0.122608 |...
+[2025-12-29 22:51:51,828] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:51:51,846] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.2854s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:58,048] [INFO] [sfa_system] Pipeline Start: Context:
+Q: What was the total revenue in 2019? -> A: |   SUM(revenue) |
+|---------------:|
+|     $943.31M |...
+Q: What was the average operating margin in 2023? -> A: |   AVG(operating_margin) |
+|------------------------:|
+|                0.122608 |...
+User Query: What strategic actions should be taken?
+[2025-12-29 22:51:58,290] [DEBUG] [sfa_system] Intent: ['ADVISORY', 'DATA']
+[2025-12-29 22:51:58,557] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:59,016] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:51:59,021] [DEBUG] [sfa_system] [LangChain] Task mode: advisory
+[2025-12-29 22:51:59,022] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:51:59,025] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:51:59,026] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:51:59,027] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:51:59,052] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:51:59,558] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:00,059] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:00,339] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: The company has a total revenue of $943.31M in 2019 and an average operating margin of 0.122608 in 2...
+[2025-12-29 22:52:00,558] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:01,057] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:01,558] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:01,816] [DEBUG] [sfa_system] [AdvisoryTool] Generated insight successfully
+[2025-12-29 22:52:02,053] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:02,559] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:03,058] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:03,217] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: Based on the analysis, what are the key risks that need to be monitored when implementing the recomm...
+[2025-12-29 22:52:03,560] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:04,059] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:04,558] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:04,705] [DEBUG] [sfa_system] [AdvisoryTool] Generated insight successfully
+[2025-12-29 22:52:05,058] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/a25e7c4a-0037-4e23-be5b-64d342afa66a', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:05,240] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:52:05,240] [DEBUG] [sfa_system] Final Output: To improve financial performance, the company should implement a moderate strategy, allocating 10-20...
+[2025-12-29 22:52:05,241] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:52:05,259] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.2140s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:14,618] [INFO] [sfa_system] Pipeline Start: Context:
+Q: What was the average operating margin in 2023? -> A: |   AVG(operating_margin) |
+|------------------------:|
+|                0.122608 |...
+Q: What strategic actions should be taken? -> A: To improve financial performance, the company should implement a moderate strategy, allocating 10-20% of revenue towards a mix of cost reduction, revenue growth initiatives, and strategic investments ...
+User Query: Recommend investment strategies for 2025
+[2025-12-29 22:52:14,955] [DEBUG] [sfa_system] Intent: ['ADVISORY', 'DATA']
+[2025-12-29 22:52:15,118] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:15,626] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:15,712] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:52:15,716] [DEBUG] [sfa_system] [LangChain] Task mode: advisory
+[2025-12-29 22:52:15,717] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:52:15,720] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:52:15,721] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:52:15,722] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:52:16,127] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:16,625] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:16,650] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: Considering the average operating margin in 2023 was 0.122608, what investment strategies would you ...
+[2025-12-29 22:52:17,128] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:17,626] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:18,125] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:18,200] [DEBUG] [sfa_system] [AdvisoryTool] Generated insight successfully
+[2025-12-29 22:52:18,624] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:19,123] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/659b52dd-171e-4a15-b333-6ae9bbee6d73', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:19,478] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:52:19,479] [DEBUG] [sfa_system] Final Output: To improve financial performance in 2025, the company should adopt a moderate investment strategy, b...
+[2025-12-29 22:52:19,479] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:52:19,486] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '4.8714s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:21,796] [INFO] [sfa_system] Pipeline Start: Context:
+Q: What strategic actions should be taken? -> A: To improve financial performance, the company should implement a moderate strategy, allocating 10-20% of revenue towards a mix of cost reduction, revenue growth initiatives, and strategic investments ...
+Q: Recommend investment strategies for 2025 -> A: To improve financial performance in 2025, the company should adopt a moderate investment strategy, balancing operational efficiency with strategic investments in growth areas, such as digi
+[2025-12-29 22:52:22,006] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 22:52:22,308] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:22,756] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:52:22,760] [DEBUG] [sfa_system] [LangChain] Task mode: advisory
+[2025-12-29 22:52:22,760] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:52:22,763] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:52:22,763] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:52:22,764] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:52:22,810] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:23,310] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:23,737] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:52:23,797] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:24,309] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:24,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:25,091] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: Considering the net income in Q2 2025 is approximately $60.9 million, what strategic actions should ...
+[2025-12-29 22:52:25,296] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:25,797] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:26,307] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:26,640] [DEBUG] [sfa_system] [AdvisoryTool] Generated insight successfully
+[2025-12-29 22:52:26,808] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:27,306] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:27,808] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:28,142] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: What are the key considerations for implementing a moderate investment strategy in 2025, and how can...
+[2025-12-29 22:52:28,297] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:28,808] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:29,309] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:29,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:30,308] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:30,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:30,826] [DEBUG] [sfa_system] [AdvisoryTool] Generated insight successfully
+[2025-12-29 22:52:31,303] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:31,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:32,308] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:32,810] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:33,307] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:33,797] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:34,308] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:34,798] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:35,309] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:35,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:36,298] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:36,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:37,295] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:37,809] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:38,308] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:38,810] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:39,308] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:39,811] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/383863a6-3e5c-4abe-9425-a339691e1b5c', 'status_code': 200, 'process_time': '0.0043s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:39,960] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:52:39,961] [DEBUG] [sfa_system] Final Output: The net income in Q2 2025 is approximately $60.9 million. To improve financial performance, the comp...
+[2025-12-29 22:52:39,962] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:52:39,968] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '18.1744s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:48,094] [INFO] [sfa_system] Pipeline Start: Context:
+Q: Recommend investment strategies for 2025 -> A: To improve financial performance in 2025, the company should adopt a moderate investment strategy, balancing operational efficiency with strategic investments in growth areas, such as digital transfor...
+Q: What was the net income in Q2 2025? -> A: The net income in Q2 2025 is approximately $60.9 million. To improve financial performance, the company should implement a moderate strategy, allocating 10-20% of revenue towards a mix of cost
+[2025-12-29 22:52:48,343] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 22:52:48,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:49,061] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:52:49,066] [DEBUG] [sfa_system] [LangChain] Task mode: advisory
+[2025-12-29 22:52:49,066] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:52:49,070] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:52:49,071] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:52:49,071] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:52:49,098] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:49,592] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:50,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:50,230] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:52:50,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:51,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:51,578] [DEBUG] [sfa_system] [Calculator] Evaluating: df_2022 = df[df['year'] == 2022]; df_2024 = df[df['year'] == 2024]; total_revenue_2022 = df_2022['revenue'].sum(); total_revenue_2024 = df_2024['revenue'].sum(); revenue_ratio = total_revenue_2024 / total_revenue_2022
+
+[2025-12-29 22:52:51,579] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: invalid syntax (<string>, line 1)
+[2025-12-29 22:52:51,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:52,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:52,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:53,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:53,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:54,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:54,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:55,091] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:55,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:55,667] [DEBUG] [sfa_system] [Calculator] Evaluating: df_2022 = df[df['year'] == 2022]; df_2024 = df[df['year'] == 2024]; total_revenue_2022 = df_2022['revenue'].sum(); total_revenue_2024 = df_2024['revenue'].sum(); revenue_ratio = total_revenue_2024 / total_revenue_2022; print("Total Revenue 2022: ", total_revenue_2022); print("Total Revenue 2024: ", total_revenue_2024); print("Revenue Ratio 2024/2022: ", revenue_ratio)
+
+[2025-12-29 22:52:55,668] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: invalid syntax (<string>, line 1)
+[2025-12-29 22:52:56,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:56,591] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:57,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:57,597] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:58,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:58,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:59,091] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:52:59,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:00,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:00,606] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:01,104] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:01,591] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:02,095] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:02,607] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:03,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:03,602] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:04,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:04,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:05,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:05,604] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:06,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:06,592] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:07,108] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:07,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:08,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:08,596] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:09,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:09,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:10,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:10,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:11,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:11,592] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:12,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:12,592] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:13,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:13,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:14,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:14,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:15,107] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:15,592] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:16,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:16,598] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0094s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:17,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:17,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:18,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:18,593] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:19,092] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:19,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:20,093] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:20,595] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:21,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:21,592] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:22,095] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:22,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:23,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:23,592] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:24,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:24,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:25,094] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:25,594] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:26,095] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:26,587] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat/cancel/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0081s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:26,589] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '38.4998s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:26,598] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/fac97c05-7c4b-4fdd-9c6b-ce0550a2b85c', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:32,812] [INFO] [sfa_system] Pipeline Start: Context:
+Q: What was the net income in Q2 2025? -> A: The net income in Q2 2025 is approximately $60.9 million. To improve financial performance, the company should implement a moderate strategy, allocating 10-20% of revenue towards a mix of cost reducti...
+Q: Compare revenue between 2022 and 2024 -> A: Query cancelled by user....
+User Query: Compare revenue between 2022 and 2024
+[2025-12-29 22:53:33,323] [DEBUG] [sfa_system] Intent: ['DATA', 'ADVISORY']
+[2025-12-29 22:53:33,323] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:33,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:34,050] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 22:53:34,054] [DEBUG] [sfa_system] [LangChain] Task mode: advisory
+[2025-12-29 22:53:34,055] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:53:34,057] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:53:34,058] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:53:34,059] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:53:34,311] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:34,811] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:35,310] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:35,391] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:53:35,668] [ERROR] [sfa_system] [LangChain] Failure: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 100000, Requested 599. Please try again in 8m37.535999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 22:53:35,811] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:36,311] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:36,423] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.1-8b-instant
+[2025-12-29 22:53:36,427] [DEBUG] [sfa_system] [LangChain] Task mode: advisory
+[2025-12-29 22:53:36,428] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 22:53:36,430] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 22:53:36,431] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 22:53:36,431] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 22:53:36,811] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:37,310] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:37,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:38,312] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0031s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:38,811] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:39,311] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:39,605] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: The user wants to compare revenue between 2022 and 2024, but the tool is not allowing it. I need to ...
+[2025-12-29 22:53:39,754] [ERROR] [sfa_system] [AdvisoryTool] Error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99995, Requested 277. Please try again in 3m55.008s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 22:53:39,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:40,313] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/913f6ef6-2f75-4c70-b0e1-bbbdf81e3b60', 'status_code': 200, 'process_time': '0.0038s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:40,364] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 22:53:40,393] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:53:40,394] [DEBUG] [sfa_system] Final Output: Error: Only SELECT statements are allowed....
+[2025-12-29 22:53:40,394] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 22:53:40,401] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '7.5941s', 'client': '127.0.0.1'}
+[2025-12-29 22:53:55,212] [ERROR] [sfa_system] [LangChain] Failure: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99978, Requested 981. Please try again in 13m48.575999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 22:53:56,024] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.1-8b-instant
+[2025-12-29 22:53:56,028] [DEBUG] [sfa_system] [LangChain] Task mode: advisory
+[2025-12-29 22:53:56,029] [DEBUG] [sfa_system] [LangChain] Schema length: 186
+[2025-12-29 22:53:58,587] [DEBUG] [sfa_system] [SQL] Cache HIT for: `SELECT revenue FROM financial_data WHERE year IN ...
+[2025-12-29 22:54:00,133] [DEBUG] [sfa_system] [SQL] Cache HIT for: `SELECT revenue FROM financial_data WHERE year IN ...
+[2025-12-29 22:54:00,875] [DEBUG] [sfa_system] [SQL] Cache HIT for: `SELECT revenue FROM financial_data WHERE year IN ...
+[2025-12-29 22:54:05,490] [DEBUG] [sfa_system] [SQL] Cache HIT for: `SELECT revenue FROM financial_data WHERE year IN ...
+[2025-12-29 22:54:05,493] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 22:54:05,507] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 22:54:05,508] [DEBUG] [sfa_system] Final Output: Error: Only SELECT statements are allowed....
+[2025-12-29 22:54:05,509] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 23:01:33,876] [INFO] [sfa_system] Pipeline Start: Context:
+Q: Compare revenue between 2022 and 2024 -> A: Query cancelled by user....
+User Query: Compare revenue between 2022 and 2024
+[2025-12-29 23:01:34,266] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 23:01:34,352] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0087s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:34,849] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:35,370] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0042s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:35,852] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:36,346] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:36,860] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:37,439] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0662s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:37,860] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:38,344] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:38,859] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:39,362] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:39,859] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:40,347] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:40,587] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 23:01:40,661] [DEBUG] [sfa_system] [LangChain] Task mode: comparison
+[2025-12-29 23:01:40,663] [INFO] [sfa_system] [TenantManager] User 5: Creating manager for db_type=sqlite, config keys=['path']
+[2025-12-29 23:01:40,665] [INFO] [sfa_system] [TenantManager] User 5: Manager connected successfully, is_connected=True
+[2025-12-29 23:01:40,668] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 23:01:40,668] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 23:01:40,669] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 23:01:40,848] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0035s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:41,345] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:41,859] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:42,067] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:01:42,248] [ERROR] [sfa_system] [LangChain] Failure: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 100000, Requested 534. Please try again in 7m41.376s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:01:42,348] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:42,846] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:42,946] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.1-8b-instant
+[2025-12-29 23:01:42,951] [DEBUG] [sfa_system] [LangChain] Task mode: comparison
+[2025-12-29 23:01:42,952] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:01:42,954] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 23:01:42,955] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 23:01:42,956] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 23:01:43,344] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:43,717] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:01:43,844] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:44,344] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:44,624] [DEBUG] [sfa_system] [Calculator] Evaluating: `df['revenue_2022'] = df['revenue'][df['year'] == 2022]; df['revenue_2024'] = df['revenue'][df['year'] == 2024]; df['revenue_diff'] = df['revenue_2024'] - df['revenue_2022']; df['revenue_pct_change'] = (df['revenue_2024'] - df['revenue_2022']) / df['revenue_2022'] * 100`
+[2025-12-29 23:01:44,625] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: invalid syntax (<string>, line 1)
+[2025-12-29 23:01:44,859] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:45,345] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0020s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:45,590] [DEBUG] [sfa_system] [Calculator] Evaluating: `df['revenue_2022'] = df.loc[df['year'] == 2022, 'revenue']; df['revenue_2024'] = df.loc[df['year'] == 2024, 'revenue']; df['revenue_diff'] = df['revenue_2024'] - df['revenue_2022']; df['revenue_pct_change'] = ((df['revenue_2024'] - df['revenue_2022']) / df['revenue_2022]) * 100`
+
+[2025-12-29 23:01:45,591] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: unterminated string literal (detected at line 1) (<string>, line 1)
+[2025-12-29 23:01:45,862] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:46,343] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:46,467] [DEBUG] [sfa_system] [Calculator] Evaluating: `df['revenue_2022'] = df.loc[df['year'] == 2022, 'revenue']; df['revenue_2024'] = df.loc[df['year'] == 2024, 'revenue']; df['revenue_diff'] = df['revenue_2024'] - df['revenue_2022']; df['revenue_pct_change'] = ((df['revenue_2024'] - df['revenue_2022']) / df['revenue_2022]) * 100`
+
+[2025-12-29 23:01:46,468] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: unterminated string literal (detected at line 1) (<string>, line 1)
+[2025-12-29 23:01:46,860] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:47,340] [DEBUG] [sfa_system] [Calculator] Evaluating: `df['revenue_2022'] = df.loc[df['year'] == 2022, 'revenue']; df['revenue_2024'] = df.loc[df['year'] == 2024, 'revenue']; df['revenue_diff'] = df['revenue_2024'] - df['revenue_2022']; df['revenue_pct_change'] = ((df['revenue_2024'] - df['revenue_2022']) / df['revenue_2022]) * 100`
+
+[2025-12-29 23:01:47,341] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: unterminated string literal (detected at line 1) (<string>, line 1)
+[2025-12-29 23:01:47,343] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 23:01:47,358] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/b132c0e9-6649-443e-8036-dee6579b1439', 'status_code': 200, 'process_time': '0.0039s', 'client': '127.0.0.1'}
+[2025-12-29 23:01:47,362] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 23:01:47,364] [DEBUG] [sfa_system] Final Output: $814.08M...
+[2025-12-29 23:01:47,364] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 23:01:47,374] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '13.5253s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:20,296] [INFO] [sfa_system] Pipeline Start: Context:
+Q: Compare revenue between 2022 and 2024 -> A: $814.08M...
+User Query: What was the average operating margin in 2023?
+[2025-12-29 23:02:20,434] [ERROR] [sfa_system] Intent classification error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99956, Requested 161. Please try again in 1m41.088s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:02:20,435] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 23:02:20,795] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:21,230] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 23:02:21,235] [DEBUG] [sfa_system] [LangChain] Task mode: comparison
+[2025-12-29 23:02:21,235] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:02:21,238] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 23:02:21,238] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 23:02:21,239] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 23:02:21,297] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:21,480] [ERROR] [sfa_system] [LangChain] Failure: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99955, Requested 374. Please try again in 4m44.256s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:02:21,795] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:22,266] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.1-8b-instant
+[2025-12-29 23:02:22,270] [DEBUG] [sfa_system] [LangChain] Task mode: comparison
+[2025-12-29 23:02:22,271] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:02:22,273] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 23:02:22,275] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 23:02:22,275] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 23:02:22,296] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0032s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:22,794] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:23,055] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:02:23,294] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:23,794] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0016s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:24,297] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:24,339] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: What does an average operating margin of 0.122608 imply for a company?...
+[2025-12-29 23:02:24,464] [ERROR] [sfa_system] [AdvisoryTool] Error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99951, Requested 260. Please try again in 3m2.304s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:02:24,796] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0030s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:25,050] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: What does an average operating margin of 0.122608 imply for a company?...
+[2025-12-29 23:02:25,156] [ERROR] [sfa_system] [AdvisoryTool] Error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99951, Requested 260. Please try again in 3m2.304s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:02:25,295] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:25,674] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: What does an average operating margin of 0.122608 imply for a company?...
+[2025-12-29 23:02:25,780] [ERROR] [sfa_system] [AdvisoryTool] Error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99950, Requested 260. Please try again in 3m1.44s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:02:25,810] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0062s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:26,276] [DEBUG] [sfa_system] [AdvisoryTool] Generating insight for: What does an average operating margin of 0.122608 imply for a company?...
+[2025-12-29 23:02:26,294] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/9453e7ec-83dc-47bb-bd72-d535897c693a', 'status_code': 200, 'process_time': '0.0017s', 'client': '127.0.0.1'}
+[2025-12-29 23:02:26,383] [ERROR] [sfa_system] [AdvisoryTool] Error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99949, Requested 260. Please try again in 3m0.576s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:02:26,415] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 23:02:26,443] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 23:02:26,444] [DEBUG] [sfa_system] Final Output: 12.26%...
+[2025-12-29 23:02:26,445] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 23:02:26,452] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '6.1598s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:29,832] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/analytics', 'status_code': 200, 'process_time': '0.0108s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:30,005] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/history?session_id=ed338746-1e9e-4a7d-b9cf-3d81a69ca1dd', 'status_code': 200, 'process_time': '0.0227s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:36,314] [INFO] [sfa_system] Pipeline Start: Context:
+Q: Compare revenue between 2022 and 2024 -> A: $814.08M...
+Q: What was the average operating margin in 2023? -> A: 12.26%...
+User Query: Compare revenue between 2022 and 2024
+[2025-12-29 23:12:36,666] [DEBUG] [sfa_system] Intent: ['DATA']
+[2025-12-29 23:12:36,875] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:37,321] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:37,817] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:38,315] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0027s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:38,813] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0034s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:39,320] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0103s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:39,815] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:40,313] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:40,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0028s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:41,312] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:41,817] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0029s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:42,314] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0022s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:42,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0026s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:42,919] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.3-70b-versatile
+[2025-12-29 23:12:42,999] [DEBUG] [sfa_system] [LangChain] Task mode: comparison
+[2025-12-29 23:12:43,002] [INFO] [sfa_system] [TenantManager] User 5: Creating manager for db_type=sqlite, config keys=['path']
+[2025-12-29 23:12:43,003] [INFO] [sfa_system] [TenantManager] User 5: Manager connected successfully, is_connected=True
+[2025-12-29 23:12:43,006] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 23:12:43,007] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 23:12:43,008] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 23:12:43,315] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:43,813] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:43,971] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:12:44,157] [ERROR] [sfa_system] [LangChain] Failure: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jyb500eqfm9r02km6yy6z092` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 100000, Requested 600. Please try again in 8m38.4s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2025-12-29 23:12:44,313] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0024s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:44,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:44,832] [DEBUG] [sfa_system] [LangChain] Initialized LLM: llama-3.1-8b-instant
+[2025-12-29 23:12:44,838] [DEBUG] [sfa_system] [LangChain] Task mode: comparison
+[2025-12-29 23:12:44,839] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:12:44,842] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 23:12:44,843] [DEBUG] [sfa_system] [sql_tools] get_schema_for_user result: success=True, has_schema_for_llm=True, tables_count=1
+[2025-12-29 23:12:44,844] [DEBUG] [sfa_system] [LangChain] Schema length: 411
+[2025-12-29 23:12:45,312] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0021s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:45,510] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:12:45,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:46,031] [DEBUG] [sfa_system] [Calculator] Evaluating: f"2022: ${df['SUM(revenue)'][0]:,.2f} vs 2024: ${df['SUM(revenue)'][1]:,.2f} ({(df['SUM(revenue)'][1] - df['SUM(revenue)'][0]) / df['SUM(revenue)'][0] * 100:.2f}%)"
+
+[2025-12-29 23:12:46,032] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: 'NoneType' object is not subscriptable
+[2025-12-29 23:12:46,311] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0018s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:46,642] [DEBUG] [sfa_system] [SQL] Cache HIT for: SELECT year, SUM(revenue) FROM swf_financials WHER...
+[2025-12-29 23:12:46,812] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0023s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:47,185] [DEBUG] [sfa_system] [Calculator] Evaluating: f"2022: ${df['SUM(revenue)'][0]:,.2f} vs 2024: ${df['SUM(revenue)'][1]:,.2f} ({((df['SUM(revenue)'][1] - df['SUM(revenue)'][0]) / df['SUM(revenue)'][0] * 100):.2f}%)"
+
+[2025-12-29 23:12:47,186] [DEBUG] [sfa_system] [Calculator] Result: Calculation Error: 'NoneType' object is not subscriptable
+[2025-12-29 23:12:47,312] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0025s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:47,814] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/chat/status/3eb8bba1-7181-48b7-b899-075a88d3bc1d', 'status_code': 200, 'process_time': '0.0019s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:47,833] [DEBUG] [sfa_system] [SQL] Cache HIT for: SELECT year, SUM(revenue) FROM swf_financials WHER...
+[2025-12-29 23:12:47,836] [DEBUG] [sfa_system] [LangChain] Extracted SQL result as fallback
+[2025-12-29 23:12:47,849] [INFO] [sfa_system] [LangChain] Agent completed
+[2025-12-29 23:12:47,850] [DEBUG] [sfa_system] Final Output: |   year |   SUM(revenue) |
+|-------:|---------------:|
+|   2022 |    $1.69B |
+|   2024 |    $2.89B ...
+[2025-12-29 23:12:47,853] [INFO] [sfa_system] Pipeline Complete - Unified LangChain Agent
+[2025-12-29 23:12:47,864] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat', 'status_code': 200, 'process_time': '11.5564s', 'client': '127.0.0.1'}
+[2025-12-29 23:12:53,405] [INFO] [sfa_system] HTTP Audit: {'method': 'POST', 'url': 'http://127.0.0.1:8000/chat/feedback/561?feedback=like', 'status_code': 200, 'process_time': '0.0221s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:02,170] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:02,171] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:02,172] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0070s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:02,768] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:02,769] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:02,771] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0061s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:02,932] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:02,934] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:02,936] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0060s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:03,096] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:03,098] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:03,099] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/dashboard/metrics', 'status_code': 200, 'process_time': '0.0053s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:07,155] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/settings', 'status_code': 200, 'process_time': '0.0284s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:07,233] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/static/js/settings.js?v=2', 'status_code': 304, 'process_time': '0.0547s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:07,248] [INFO] [sfa_system] [TenantManager] Decrypted config for user 5: path=C:\Users\Ayham\Desktop\iFYP\Codes\SFA_V5\data\db\financial_data.db
+[2025-12-29 23:13:07,250] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/status', 'status_code': 200, 'process_time': '0.0054s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:07,258] [INFO] [sfa_system] [TenantManager] User 5: Using cached manager
+[2025-12-29 23:13:07,262] [INFO] [sfa_system] [TenantManager] User 5: Schema retrieved - tables=['swf_financials'], llm_len=411
+[2025-12-29 23:13:07,263] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/database/schema', 'status_code': 200, 'process_time': '0.0067s', 'client': '127.0.0.1'}
+[2025-12-29 23:13:07,283] [INFO] [sfa_system] HTTP Audit: {'method': 'GET', 'url': 'http://127.0.0.1:8000/api/config/dashboard', 'status_code': 200, 'process_time': '0.0036s', 'client': '127.0.0.1'}

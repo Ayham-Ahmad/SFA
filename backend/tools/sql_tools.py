@@ -20,7 +20,9 @@ def execute_sql_query(query: str, user=None) -> str:
     Returns:
         Result as a markdown table string or error message.
     """
-    normalized = query.strip().lower()
+    # Clean up query - strip whitespace and backticks (LLM sometimes wraps in backticks)
+    query = query.strip().strip('`').strip()
+    normalized = query.lower()
     
     # Security check: allow SELECT and CTEs (WITH ... SELECT)
     if not (normalized.startswith("select") or normalized.startswith("with")):
