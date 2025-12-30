@@ -1,1 +1,45 @@
+# Virtual environment
 .venv
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Data and logs (sensitive)
+data/
+logs/
+*.log
+*.db
+*.sqlite
+
+# Debug and test files
+debug/
+tests/
+evaluation/
+
+# Documentation (if generated)
+docs/
+pseudoCodes/
+scripts/
+
+# Environment variables (IMPORTANT - contains secrets)
+.env
+.env.local
+
+# IDE settings
+.vscode/
+.idea/
+
+# Word/report files (not code)
+*.docx
+*.pdf
+Chapter*.md
+
+# OS files
+.DS_Store
+Thumbs.db

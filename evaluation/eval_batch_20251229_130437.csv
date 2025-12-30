@@ -1,6 +1,0 @@
-Query_ID,Query,Category,Difficulty,Tool_Accuracy,SQL_Validity,Value_Accuracy,Semantic_Similarity,Overall_Score,Passed,Graph_Generated,Plan_Efficiency,Failure_Mode,SFA_Response,Error
-1,What was the total revenue in 2024?,structured,easy,0.000,0.000,0.000,0.000,0.000,False,False,100%,wrong_tool,I couldn't complete the analysis. Please try rephrasing your question.,
-2,What was the net income in 2023?,structured,easy,0.000,0.000,0.000,0.000,0.000,False,False,100%,wrong_tool,I couldn't complete the analysis. Please try rephrasing your question.,
-3,What was the gross profit in Q1 2024?,structured,easy,1.000,0.000,0.000,0.000,0.200,False,False,100%,wrong_value,Obtain the latest publicly available financial statements (e.g.; 10-Q reports) for Q1 2024; and extract the revenue and COGS figures to calculate the gross profit.,
-4,What is the operating margin for Q2 2024?,structured,medium,0.000,0.000,0.000,0.000,0.000,False,False,100%,wrong_tool,I couldn't complete the analysis. Please try rephrasing your question.,
-5,What was the cost of revenue in 2022?,structured,easy,0.000,0.000,0.000,0.000,0.000,False,False,100%,wrong_tool,I couldn't complete the analysis. Please try rephrasing your question.,
