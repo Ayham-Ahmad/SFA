@@ -2,6 +2,20 @@
    Analytics Page Styles - Theme Aware
    ============================================================================ */
 
+/* Modal Centering - Account for sidebar (all modals on this page) */
+.modal-dialog {
+    /* When sidebar is open (default), offset modal to center in content area */
+    margin-left: calc(50% + 110px) !important;
+    margin-right: auto !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+}
+
+/* When sidebar is collapsed/toggled, center normally */
+#wrapper.toggled .modal-dialog {
+    margin-left: 50% !important;
+}
+
 /* Graphs Space */
 .graphs-space-container {
     background: var(--card-bg);
@@ -37,36 +51,70 @@
     height: 100%;
 }
 
-/* Edit Mode */
-.edit-mode .graph-card {
-    border: 2px solid #dc3545;
+/* Graph Card Hover Controls */
+.graph-card:hover .graph-delete-btn,
+.graph-card:hover .graph-drag-handle {
+    opacity: 1;
 }
 
-.edit-mode .graph-delete-btn {
-    display: flex;
-    /* Show only in edit mode */
+/* Drag Handle - top left */
+.graph-drag-handle {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 20;
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--text-muted);
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.3);
 }
 
-/* Delete Button */
+.graph-drag-handle:hover {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.graph-drag-handle:active {
+    cursor: grabbing;
+}
+
+.graph-card.dragging {
+    cursor: grabbing;
+    opacity: 0.7;
+    transform: scale(1.02);
+}
+
+.graph-card.drag-over {
+    border: 2px dashed #3498db !important;
+}
+
+/* Delete Button - top right (cross icon) */
 .graph-delete-btn {
     position: absolute;
     top: 8px;
     right: 8px;
     z-index: 20;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     padding: 0;
-    display: none;
-    /* Hidden by default */
+    display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.9;
+    opacity: 0;
     transition: all 0.2s ease;
+    background: rgba(220, 53, 69, 0.8);
+    border: none;
+    color: white;
+    font-size: 0.9rem;
 }
 
 .graph-delete-btn:hover {
     opacity: 1;
+    background: #dc3545;
     transform: scale(1.1);
 }
 

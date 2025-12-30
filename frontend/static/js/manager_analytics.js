@@ -9,7 +9,6 @@ const AppState = {
     graphs: [],
     maxGraphs: 3,
     sessionId: null,
-    isEditMode: false,
     pendingGraphData: null,
     username: localStorage.getItem('username') || 'Guest',
 
@@ -71,22 +70,10 @@ const GraphManager = {
         this.render();
     },
 
-    // Toggle EDIT mode (delete/reorder functionality)
-    toggleEdit(force = null) {
-        AppState.isEditMode = force !== null ? force : !AppState.isEditMode;
-        // Exit placement mode when entering edit mode
-        if (AppState.isEditMode) this.isPlacementMode = false;
-        this.container.classList.toggle('edit-mode', AppState.isEditMode);
-        this.container.classList.remove('placement-mode');
-        this.render();
-    },
-
     // Enter PLACEMENT mode (when new graph is generated)
     enterPlacementMode(graphData) {
         AppState.pendingGraphData = graphData;
         this.isPlacementMode = true;
-        AppState.isEditMode = false;
-        this.container.classList.remove('edit-mode');
         this.container.classList.add('placement-mode');
         this.render();
     },
@@ -114,20 +101,39 @@ const GraphManager = {
     },
 
     delete(index) {
-        if (confirm("Delete this graph?")) {
-            AppState.graphs.splice(index, 1);
+        // Store index for modal confirmation
+        this.pendingDeleteIndex = index;
+        const modal = new bootstrap.Modal(document.getElementById('deleteGraphModal'));
+        modal.show();
+
+        // Wire up confirm button (remove old listener first)
+        const confirmBtn = document.getElementById('confirmDeleteGraphBtn');
+        const newBtn = confirmBtn.cloneNode(true);
+        confirmBtn.parentNode.replaceChild(newBtn, confirmBtn);
+        newBtn.onclick = () => {
+            AppState.graphs.splice(this.pendingDeleteIndex, 1);
             this.render();
             AppState.save();
-        }
+            bootstrap.Modal.getInstance(document.getElementById('deleteGraphModal')).hide();
+            showToast('Graph deleted', 'success');
+        };
     },
 
     deleteAll() {
-        if (confirm("Delete all graphs?")) {
+        const modal = new bootstrap.Modal(document.getElementById('deleteAllGraphsModal'));
+        modal.show();
+
+        // Wire up confirm button (remove old listener first)
+        const confirmBtn = document.getElementById('confirmDeleteAllBtn');
+        const newBtn = confirmBtn.cloneNode(true);
+        confirmBtn.parentNode.replaceChild(newBtn, confirmBtn);
+        newBtn.onclick = () => {
             AppState.graphs = [];
-            this.toggleEdit(false);
             this.render();
             AppState.save();
-        }
+            bootstrap.Modal.getInstance(document.getElementById('deleteAllGraphsModal')).hide();
+            showToast('All graphs deleted', 'success');
+        };
     },
 
     reorder(fromIndex, toIndex) {
@@ -141,10 +147,6 @@ const GraphManager = {
     render() {
         this.track.innerHTML = '';
 
-        // Remove any existing Delete All button
-        const existingDelAllBtn = this.container.querySelector('.delete-all-btn');
-        if (existingDelAllBtn) existingDelAllBtn.remove();
-
         // --- EMPTY STATE: Show "Graph Space" placeholder ---
         if (AppState.graphs.length === 0 && !this.isPlacementMode) {
             this.track.innerHTML = `
@@ -155,54 +157,42 @@ const GraphManager = {
             return;
         }
 
-        // --- EDIT MODE: Delete All button ---
-        if (AppState.isEditMode && AppState.graphs.length > 0) {
-            const delAllBtn = document.createElement('button');
-            delAllBtn.className = 'btn btn-sm btn-danger delete-all-btn';
-            delAllBtn.innerHTML = '<i class="fas fa-trash"></i> Delete All';
-            delAllBtn.onclick = (e) => { e.stopPropagation(); this.deleteAll(); };
-            delAllBtn.style.cssText = 'position:absolute; top:10px; left:20px; z-index:30;';
-            this.container.appendChild(delAllBtn);
-        }
-
         AppState.graphs.forEach((g, i) => {
             const card = document.createElement('div');
             card.className = 'graph-card';
             card.dataset.index = i;
 
-            // --- EDIT MODE: Drag-and-drop + delete buttons ---
-            if (AppState.isEditMode) {
-                card.classList.add('editing');
-                card.draggable = true;
-                card.ondragstart = () => { this.draggedIndex = i; card.classList.add('dragging'); };
-                card.ondragend = () => { card.classList.remove('dragging'); this.draggedIndex = null; };
-                card.ondragover = (e) => { e.preventDefault(); card.classList.add('drag-over'); };
-                card.ondragleave = () => { card.classList.remove('drag-over'); };
-                card.ondrop = (e) => {
-                    e.preventDefault();
-                    card.classList.remove('drag-over');
-                    if (this.draggedIndex !== null && this.draggedIndex !== i) {
-                        this.reorder(this.draggedIndex, i);
-                    }
-                };
+            // --- HOVER CONTROLS: Always add, shown on hover via CSS ---
+            card.draggable = true;
+            card.ondragstart = () => { this.draggedIndex = i; card.classList.add('dragging'); };
+            card.ondragend = () => { card.classList.remove('dragging'); this.draggedIndex = null; };
+            card.ondragover = (e) => { e.preventDefault(); card.classList.add('drag-over'); };
+            card.ondragleave = () => { card.classList.remove('drag-over'); };
+            card.ondrop = (e) => {
+                e.preventDefault();
+                card.classList.remove('drag-over');
+                if (this.draggedIndex !== null && this.draggedIndex !== i) {
+                    this.reorder(this.draggedIndex, i);
+                }
+            };
 
-                // Delete button
-                const delBtn = document.createElement('button');
-                delBtn.className = 'btn btn-sm btn-danger graph-delete-btn';
-                delBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                delBtn.title = 'Delete this graph';
-                delBtn.onclick = (e) => { e.stopPropagation(); this.delete(i); };
-                card.appendChild(delBtn);
+            // Delete button (cross icon, visible on hover)
+            const delBtn = document.createElement('button');
+            delBtn.className = 'btn btn-sm graph-delete-btn';
+            delBtn.innerHTML = '<i class="fas fa-times"></i>';
+            delBtn.title = 'Delete this graph';
+            delBtn.onclick = (e) => { e.stopPropagation(); this.delete(i); };
+            card.appendChild(delBtn);
 
-                // Drag handle
-                const dragHandle = document.createElement('div');
-                dragHandle.className = 'graph-drag-handle';
-                dragHandle.innerHTML = '<i class="fas fa-grip-vertical"></i>';
-                dragHandle.title = 'Drag to reorder';
-                card.appendChild(dragHandle);
-            }
+            // Drag handle (visible on hover)
+            const dragHandle = document.createElement('div');
+            dragHandle.className = 'graph-drag-handle';
+            dragHandle.innerHTML = '<i class="fas fa-grip-vertical"></i>';
+            dragHandle.title = 'Drag to reorder';
+            card.appendChild(dragHandle);
+
             // --- PLACEMENT MODE: Click to replace ---
-            else if (this.isPlacementMode) {
+            if (this.isPlacementMode) {
                 card.classList.add('replaceable');
                 card.onclick = () => {
                     this.replace(i, AppState.pendingGraphData);
@@ -642,6 +632,68 @@ function confirmReset() {
 // Current query ID for cancellation
 let currentQueryId = null;
 
+// Live refresh state
+let liveRefreshTimer = null;
+let liveRefreshInterval = 10000; // Default 10 seconds, will be updated from config
+
+async function toggleLiveRefresh() {
+    const toggle = document.getElementById('live-toggle');
+    const icon = document.getElementById('live-icon');
+
+    if (toggle.checked) {
+        // Enable live refresh - fetch interval from dashboard config
+        try {
+            const res = await fetch('/api/manager/live-data', {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+            const data = await res.json();
+            liveRefreshInterval = (data.refresh_interval || 10) * 1000;
+        } catch (e) {
+            console.warn('Could not fetch refresh interval, using default 10s');
+            liveRefreshInterval = 10000;
+        }
+
+        // Start auto-refresh
+        startLiveRefresh();
+
+        // Visual feedback - active state (green antenna)
+        if (icon) {
+            icon.style.color = '#2ecc71';
+        }
+
+        // Show toast notification
+        showToast(`Live refresh ON (${liveRefreshInterval / 1000}s)`, 'success');
+    } else {
+        // Disable live refresh
+        stopLiveRefresh();
+
+        // Visual feedback - inactive state (muted antenna)
+        if (icon) {
+            icon.style.color = 'var(--text-muted)';
+        }
+
+        showToast('Live refresh OFF', 'secondary');
+    }
+}
+
+function startLiveRefresh() {
+    // Clear any existing timer
+    if (liveRefreshTimer) clearInterval(liveRefreshTimer);
+
+    // Start new interval
+    liveRefreshTimer = setInterval(() => {
+        console.log('[Live] Auto-refreshing graphs...');
+        refreshGraphs();
+    }, liveRefreshInterval);
+}
+
+function stopLiveRefresh() {
+    if (liveRefreshTimer) {
+        clearInterval(liveRefreshTimer);
+        liveRefreshTimer = null;
+    }
+}
+
 function stopQuery() {
     if (currentQueryId) {
         fetch(`/chat/cancel/${currentQueryId}`, {
@@ -661,6 +713,7 @@ function stopQuery() {
         currentQueryId = null;
     }
 }
+
 
 async function refreshGraphs() {
     GraphManager.exitPlacementMode();
@@ -709,18 +762,49 @@ async function refreshGraphs() {
         GraphManager.render();
         AppState.save();
 
-        // Feedback
-        const status = document.getElementById('status-indicator');
-        if (status) {
-            status.innerHTML = updatedAny
-                ? '<span class="text-success fade-out">Graphs updated</span>'
-                : '<span class="text-secondary fade-out">No default graphs to update</span>';
-            setTimeout(() => status.innerHTML = '', 3000);
-        }
+        // Show floating toast notification
+        showToast(updatedAny ? 'Graphs updated' : 'No default graphs to update', updatedAny ? 'success' : 'secondary');
 
     } catch (e) {
         console.error("Refresh failed", e);
+        showToast('Refresh failed', 'danger');
     }
+}
+
+// Floating toast notification - centers in main content area
+function showToast(message, type = 'success') {
+    // Remove any existing toast
+    const existing = document.getElementById('floating-toast');
+    if (existing) existing.remove();
+
+    // Calculate center based on sidebar state
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarWidth = sidebar && sidebar.offsetWidth > 0 ? sidebar.offsetWidth : 0;
+    const centerX = sidebarWidth + (window.innerWidth - sidebarWidth) / 2;
+
+    const toast = document.createElement('div');
+    toast.id = 'floating-toast';
+    toast.className = `alert alert-${type}`;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: ${centerX}px;
+        transform: translateX(-50%);
+        z-index: 9999;
+        padding: 10px 24px;
+        font-size: 0.9rem;
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    `;
+    toast.innerHTML = `<i class="fas fa-check-circle me-2"></i>${message}`;
+    document.body.appendChild(toast);
+
+    // Fade out and remove
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 500);
+    }, 2000);
 }
 
 function rate(id, type) {
