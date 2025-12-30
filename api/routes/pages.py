@@ -7,11 +7,12 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from api.database import get_db
+from api.db_session import get_db
 from api.models import User
-from api.auth import get_current_active_user
-from backend.config_service import ConfigService
-from backend.ticker_service import ticker_service
+from api.auth_utils import get_current_active_user
+from backend.core.logger import log_system_error
+from backend.services.ticker_service import ticker_service
+from backend.services.config_service import ConfigService
 
 router = APIRouter(tags=["Pages"])
 
@@ -88,7 +89,7 @@ async def live_data(current_user: User = Depends(get_current_active_user)):
     subtitle_column = config.ticker_title_column if config else None
     
     return {
-        "companies": data,
+        "data": data,
         "refresh_interval": refresh_interval,
         "subtitle_column": subtitle_column
     }

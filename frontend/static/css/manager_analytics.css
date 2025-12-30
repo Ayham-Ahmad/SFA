@@ -2,6 +2,20 @@
    Analytics Page Styles - Theme Aware
    ============================================================================ */
 
+/* Modal Centering - Account for sidebar (all modals on this page) */
+.modal-dialog {
+    /* When sidebar is open (default), offset modal to center in content area */
+    margin-left: calc(50% + 110px) !important;
+    margin-right: auto !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+}
+
+/* When sidebar is collapsed/toggled, center normally */
+#wrapper.toggled .modal-dialog {
+    margin-left: 50% !important;
+}
+
 /* Graphs Space */
 .graphs-space-container {
     background: var(--card-bg);
@@ -25,22 +39,7 @@
     /* Ensure height for empty state */
 }
 
-.graph-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    cursor: default;
-    flex: 1 1 0;
-    min-width: 0;
-    height: 380px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
-}
+/* Graph Cards - Single consolidated definition */
 
 .graph-card:hover {
     transform: translateY(-2px);
@@ -52,37 +51,121 @@
     height: 100%;
 }
 
-/* Edit Mode */
-.edit-mode .graph-card {
-    border: 2px solid #dc3545;
+/* Graph Card Hover Controls */
+.graph-card:hover .graph-delete-btn,
+.graph-card:hover .graph-drag-handle {
+    opacity: 1;
 }
 
-.edit-mode .graph-delete-btn {
-    display: flex;
-    /* Show only in edit mode */
+/* Drag Handle - top left */
+.graph-drag-handle {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 20;
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--text-muted);
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.3);
 }
 
-/* Delete Button */
+.graph-drag-handle:hover {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.graph-drag-handle:active {
+    cursor: grabbing;
+}
+
+.graph-card.dragging {
+    cursor: grabbing;
+    opacity: 0.7;
+    transform: scale(1.02);
+}
+
+.graph-card.drag-over {
+    border: 2px dashed #3498db !important;
+}
+
+/* Delete Button - top right (cross icon) */
 .graph-delete-btn {
     position: absolute;
     top: 8px;
     right: 8px;
     z-index: 20;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     padding: 0;
-    display: none;
-    /* Hidden by default */
+    display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.9;
+    opacity: 0;
     transition: all 0.2s ease;
+    background: rgba(220, 53, 69, 0.8);
+    border: none;
+    color: white;
+    font-size: 0.9rem;
 }
 
 .graph-delete-btn:hover {
     opacity: 1;
+    background: #dc3545;
     transform: scale(1.1);
+}
+
+/* Replace Badge (Placement Mode) */
+.replace-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 157, 99, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 25;
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    animation: pulse-badge 2s infinite;
+}
+
+.replace-badge i {
+    margin-right: 8px;
+}
+
+@keyframes pulse-badge {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 6px 25px rgba(0, 157, 99, 0.6);
+    }
+}
+
+/* Replaceable graph card styling */
+.graph-card.replaceable {
+    cursor: pointer;
+    border: 2px dashed #00d884 !important;
+}
+
+.graph-card.replaceable:hover {
+    border-color: #00ff9d !important;
+}
+
+.graph-card.replaceable:hover .replace-badge {
+    background: rgba(0, 216, 132, 1);
 }
 
 /* Chat Tables */
@@ -147,3 +230,111 @@
     transform: rotate(-30deg);
     user-select: none;
 }
+
+/* Dark mode for empty graph */
+[data-theme="dark"] .empty-graph-space {
+    border-color: #404040;
+}
+
+[data-theme="dark"] .empty-graph-text {
+    color: #666;
+}
+
+/* ============================================================================
+   Floating Add Graph Button
+   ============================================================================ */
+.add-graph-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d884 0%, #009d63 100%);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    transition: all 0.3s ease;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-graph-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 157, 99, 0.5);
+}
+
+.add-graph-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Pulse animation for pending graph */
+.add-graph-btn.has-pending {
+    animation: pulse-add 2s infinite;
+}
+
+@keyframes pulse-add {
+    0% {
+        box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 25px rgba(0, 216, 132, 0.6), 0 0 0 10px rgba(0, 216, 132, 0.1);
+    }
+
+    100% {
+        box-shadow: 0 4px 15px rgba(0, 157, 99, 0.4);
+    }
+}
+
+/* Juggle animation for new graphs */
+@keyframes juggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-2deg);
+    }
+
+    75% {
+        transform: rotate(2deg);
+    }
+}
+
+.graph-card.new-graph {
+    animation: juggle 0.5s ease-in-out;
+}
+
+/* Improved graph card styling */
+.graph-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    cursor: default;
+    flex: 1 1 0;
+    min-width: 300px;
+    max-width: calc(50% - 10px);
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+}
+
+/* Graph tooltip improvements */
+.graph-card .js-plotly-plot .plotly .hoverlayer {
+    z-index: 100;
+}
+
+/* Better hover box styling via Plotly config is in JS */

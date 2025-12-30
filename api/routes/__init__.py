@@ -5,7 +5,8 @@ Organizes API endpoints into logical modules.
 """
 from .auth import router as auth_router
 from .chat import router as chat_router
-from .users import router as users_router, me_router
+from .users import router as users_router
+from .me import router as me_router
 from .database import router as database_router
 from .config import router as config_router
 from .pages import router as pages_router

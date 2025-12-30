@@ -1,7 +1,7 @@
 import time
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-from backend.sfa_logger import log_system_info
+from backend.core.logger import log_system_info
 
 class AuditMiddleware(BaseHTTPMiddleware):
     """

@@ -6,11 +6,11 @@ Handles user authentication and token generation.
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 
-from api.database import get_db
+from api.db_session import get_db
 from api.models import User
-from api.auth import (
+from api.auth_utils import (
     ACCESS_TOKEN_EXPIRE_MINUTES,
     create_access_token,
     verify_password
@@ -38,6 +38,10 @@ async def login_for_access_token(
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    
+    # Update last_login timestamp
+    user.last_login = datetime.now(timezone.utc)
+    db.commit()
     
     # Calculate token expiration time
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)

@@ -1,67 +1,75 @@
-/* Dashboard-specific overrides */
+/* Dashboard-specific overrides - most styles are in style.css */
 
-/* Traffic Light Base Styles */
-.light {
-    border-radius: 50%;
-    opacity: 0.2;
-    /* Inactive state dimmed */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 3px solid rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Colors (Inactive Base) */
-.light.red {
-    background-color: #550000;
-    /* Dark red */
-    box-shadow: inset 0 0 15px #330000;
-}
-
-.light.yellow {
-    background-color: #554400;
-    /* Dark yellow/gold */
-    box-shadow: inset 0 0 15px #332200;
-}
-
-.light.green {
-    background-color: #003300;
-    /* Dark green */
-    box-shadow: inset 0 0 15px #002200;
-}
-
-/* Active States (Glowing) */
+/* Enhanced traffic light glow effects for dashboard */
 .light.red.active {
-    opacity: 1;
     background-color: #ff3333;
-    box-shadow: 0 0 30px #ff0000, 0 0 60px #ff3333, inset 0 0 10px rgba(0, 0, 0, 0.2);
-    border-color: #ff9999;
-}
-
-.light.yellow.active {
-    opacity: 1;
-    background-color: #ffd700;
-    box-shadow: 0 0 30px #ffaa00, 0 0 60px #ffd700, inset 0 0 10px rgba(0, 0, 0, 0.2);
-    border-color: #ffecb3;
+    box-shadow: 0 0 50px #ff3333;
 }
 
 .light.green.active {
-    opacity: 1;
     background-color: #00fa9a;
-    box-shadow: 0 0 30px #00cc00, 0 0 60px #00fa9a, inset 0 0 10px rgba(0, 0, 0, 0.2);
-    border-color: #ccffcc;
+    box-shadow: 0 0 50px #00fa9a;
 }
 
-/* Container Polish */
-.traffic-light-container {
+.light.yellow.active {
+    background-color: #ffd700;
+    box-shadow: 0 0 50px #ffd700;
+}
+
+/* Calculator Tooltip - Theme Aware */
+.calc-tooltip-btn {
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.calc-tooltip-btn:hover {
+    opacity: 1;
+}
+
+.calc-tooltip-content {
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    /* Above the container */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #dee2e6);
+    border-radius: 8px;
+    padding: 12px;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    font-size: 0.85rem;
+    text-align: left;
+    color: var(--text-color, #212529);
+}
+
+.calc-tooltip-btn:hover .calc-tooltip-content {
+    display: block;
+}
+
+.calc-tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+    padding-bottom: 4px;
+}
+
+.calc-tooltip-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Dark mode enhancements for tooltip */
+[data-theme="dark"] .calc-tooltip-content {
     background: #1e293b;
-    /* Dark slate */
-    border: 1px solid #334155;
-    padding: 1.5rem !important;
-    min-width: 300px;
+    border-color: #475569;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    color: #e0e0e0;
 }
 
-/* Metric Cards */
-.metric-value {
-    font-family: 'Monaco', 'Consolas', monospace;
-    letter-spacing: -1px;
+[data-theme="dark"] .calc-tooltip-row {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
 }

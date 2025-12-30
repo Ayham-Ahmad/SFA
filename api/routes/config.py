@@ -6,13 +6,13 @@ Dashboard settings save/load and data retrieval endpoints.
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from api.database import get_db
+from api.db_session import get_db
 from api.models import User
-from api.auth import get_current_active_user
+from api.auth_utils import get_current_active_user
 from api.config_models import DashboardConfig
-from backend.config_service import ConfigService
-from backend.tenant_manager import MultiTenantDBManager
-from backend.ticker_service import ticker_service
+from backend.services.config_service import ConfigService
+from backend.services.tenant_manager import MultiTenantDBManager
+from backend.services.ticker_service import ticker_service
 
 router = APIRouter(prefix="/api", tags=["Configuration"])
 
@@ -65,7 +65,7 @@ async def get_dashboard_data(current_user: User = Depends(get_current_active_use
     
     if not config:
         # Fall back to legacy data
-        return {"companies": ticker_service.get_batch()}
+        return {"data": ticker_service.get_batch()}
     
     if not current_user.db_is_connected:
         return {"error": "No database connected"}

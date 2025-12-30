@@ -37,7 +37,7 @@
                 </a>
                 {% endif %}
                 <a href="/settings"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold manager-link {% if active_page == 'settings' or active_page == 'database' %}active{% endif %}">
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold {% if active_page == 'settings' or active_page == 'database' %}active{% endif %}">
                     <i class="fas fa-cog me-2"></i>Settings
                 </a>
                 <!-- Admin Link (hidden by default, shown via JS for admin users OR always shown on admin page) -->
