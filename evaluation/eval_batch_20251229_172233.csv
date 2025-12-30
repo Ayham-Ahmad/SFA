@@ -1,0 +1,6 @@
+Query_ID,Query,Category,Difficulty,Tool_Accuracy,SQL_Validity,Value_Accuracy,Semantic_Similarity,Overall_Score,Passed,Graph_Generated,Plan_Efficiency,Failure_Mode,SFA_Response,Error
+1,What was the total revenue in 2024?,structured,easy,1.000,0.000,0.000,0.000,0.200,False,False,100%,wrong_value,Agent stopped due to iteration limit or time limit.,
+2,What was the net income in 2023?,structured,easy,1.000,0.000,0.000,0.000,0.200,False,False,100%,wrong_value,The net income in 2023 was approximately $71.25 million; $25.24 million; $62.21 million; and $46.26 million for each quarter.,
+3,What was the gross profit in Q1 2024?,structured,easy,1.000,0.000,0.000,0.000,0.200,False,False,100%,wrong_value,$221.45M,
+4,What is the operating margin for Q2 2024?,structured,medium,1.000,0.000,0.000,0.000,0.200,False,False,100%,wrong_value,The operating margin for Q2 2024 is 0.175071.,
+5,What was the cost of revenue in 2022?,structured,easy,1.000,0.000,0.000,0.000,0.200,False,False,100%,wrong_value,The cost of revenue in 2022 had values ranging from -$229.46M to -$329.99M.,

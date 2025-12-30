@@ -46,7 +46,9 @@ CHART TYPE RULES:
 - scatter: Show correlation between two numeric metrics
 
 TITLE RULES:
-- Be specific: Include the metric name (Gross Income, Net Revenue, Stock Price)
+- Be specific: Include the metric name (Revenue, Net Income, Gross Income, etc.)
+- IMPORTANT: If values are in billions/millions (e.g., 2500000000), use "Revenue" or "Income" NOT "Margin"
+- Only use "Margin" in the title if values are percentages (0.35 or 35%)
 - Include time period if mentioned in the question
 - Keep it concise (max 6 words)
 - Do NOT use generic titles like "Financial Analysis"
@@ -263,18 +265,41 @@ def parse_table_result(result_text: str) -> Optional[Dict[str, List]]:
     # This ensures graphs show oldest -> newest (left to right)
     if labels and len(labels) > 1:
         try:
-            # Check if labels are date-like strings
             sample = str(labels[0])
+            
+            # Detect various time series formats
             is_time_series = (
-                '-' in sample or  # YYYY-MM-DD format
-                '/' in sample or  # MM/DD/YYYY format
-                sample.startswith('Q') or  # Q1, Q2, etc
+                '-' in sample or              # YYYY-MM-DD format
+                '/' in sample or              # MM/DD/YYYY format
+                sample.startswith('Q') or     # Q1, Q2, etc
+                'Q' in sample or              # 2025 Q1, 2024 Q4, etc
                 (len(sample) == 4 and sample.isdigit())  # Year only
             )
             
             if is_time_series:
-                # Zip, sort, unzip
-                sorted_pairs = sorted(zip(labels, values), key=lambda x: str(x[0]))
+                # Custom sort key for "YYYY QX" format
+                def sort_key(item):
+                    label = str(item[0])
+                    # Handle "2025 Q1" format
+                    if ' Q' in label:
+                        parts = label.split(' Q')
+                        try:
+                            year = int(parts[0])
+                            quarter = int(parts[1]) if len(parts) > 1 else 0
+                            return (year, quarter)
+                        except (ValueError, IndexError):
+                            return (0, 0)
+                    # Handle "Q1", "Q2" format
+                    elif label.startswith('Q') and len(label) == 2:
+                        try:
+                            return (0, int(label[1]))
+                        except ValueError:
+                            return (0, 0)
+                    # Default string sort
+                    return (0, label)
+                
+                # Sort chronologically (oldest to newest)
+                sorted_pairs = sorted(zip(labels, values), key=sort_key)
                 labels, values = zip(*sorted_pairs)
                 labels = list(labels)
                 values = list(values)

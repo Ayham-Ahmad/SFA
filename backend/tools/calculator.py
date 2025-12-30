@@ -85,5 +85,5 @@ def get_calculator_tool(data_context_getter, query_id_getter=None) -> Tool:
     return Tool(
         name="calculator",
         func=run_calc,
-        description="Useful for performing calculations on data. Input should be a Python expression using 'df' for the dataframe. Example: `df['margin'] = df['revenue'] - df['cost']`"
+        description="Performs simple mathematical calculations. Input must be a valid Python math expression that returns a single value. Examples: '(1690000000 - 285000000) / 1690000000 * 100' or 'round(2.5 / 1.2, 2)'. Do NOT use variable assignments (=), DataFrames, or column references. Only use numbers and math operators (+, -, *, /, round, abs, min, max)."
     )

@@ -56,15 +56,15 @@ def execute_sql_query(query: str, user=None) -> str:
         if df.empty:
             return "No results found."
         
-        # Format financial values for readability
-        if 'value' in df.columns:
-            df['value'] = df['value'].apply(format_financial_value)
-        if 'value_usd' in df.columns:
-            df['value_usd'] = df['value_usd'].apply(format_financial_value)
-        if 'val' in df.columns:
-            df['val'] = df['val'].apply(format_financial_value)
-        if 'ddate' in df.columns:
-            df['ddate'] = df['ddate'].apply(format_date)
+        # Format financial values for readability - apply to ALL numeric columns
+        for col in df.columns:
+            if df[col].dtype in ['float64', 'int64']:
+                # Check if values are large enough to need formatting
+                max_val = df[col].abs().max()
+                if max_val > 10000:  # Format if values > 10,000
+                    df[col] = df[col].apply(format_financial_value)
+            elif col.lower() == 'ddate':
+                df[col] = df[col].apply(format_date)
         
         # Safety: Limit rows to prevent massive context
         if len(df) > 200:
