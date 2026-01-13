@@ -11,6 +11,7 @@ from .database import router as database_router
 from .config import router as config_router
 from .pages import router as pages_router
 from .analytics import router as analytics_router
+from .upload import router as upload_router
 
 __all__ = [
     "auth_router",
@@ -20,6 +21,7 @@ __all__ = [
     "database_router",
     "config_router",
     "pages_router",
-    "analytics_router"
+    "analytics_router",
+    "upload_router"
 ]
 

@@ -21,6 +21,20 @@ def safe_calculate(expression: str, data_context: List[Dict[str, Any]] = None) -
         JSON string with the calculated results added to the dataset.
     """
     try:
+        # Strip surrounding quotes if present (LLM sometimes wraps expression in quotes)
+        expression = expression.strip()
+        if (expression.startswith("'") and expression.endswith("'")) or \
+           (expression.startswith('"') and expression.endswith('"')):
+            expression = expression[1:-1]
+        
+        # Sanitize: remove $ symbols and convert B/M/K to actual numbers
+        import re
+        expression = expression.replace('$', '')
+        # Convert 4.58B to 4580000000, 814.08M to 814080000, etc.
+        expression = re.sub(r'(\d+\.?\d*)B', lambda m: str(float(m.group(1)) * 1e9), expression, flags=re.I)
+        expression = re.sub(r'(\d+\.?\d*)M', lambda m: str(float(m.group(1)) * 1e6), expression, flags=re.I)
+        expression = re.sub(r'(\d+\.?\d*)K', lambda m: str(float(m.group(1)) * 1e3), expression, flags=re.I)
+        
         if not data_context:
             # Simple scalar math
             allowed_names = {"abs": abs, "round": round, "min": min, "max": max}
@@ -85,5 +99,5 @@ def get_calculator_tool(data_context_getter, query_id_getter=None) -> Tool:
     return Tool(
         name="calculator",
         func=run_calc,
-        description="Performs simple mathematical calculations. Input must be a valid Python math expression that returns a single value. Examples: '(1690000000 - 285000000) / 1690000000 * 100' or 'round(2.5 / 1.2, 2)'. Do NOT use variable assignments (=), DataFrames, or column references. Only use numbers and math operators (+, -, *, /, round, abs, min, max)."
+        description="Performs simple mathematical calculations. Input must be a valid Python math expression. Use raw numbers only - do NOT include $ symbols or B/M/K suffixes. Examples: '(4580000000 - 1430000000) / 1430000000 * 100' or 'round(2.5 / 1.2, 2)'. Only use numbers and operators (+, -, *, /, round, abs, min, max)."
     )

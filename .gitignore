@@ -1,5 +1,5 @@
 # Virtual environment
-.venv
+.venv/
 venv/
 env/
 
@@ -10,32 +10,45 @@ __pycache__/
 *.so
 .pytest_cache/
 
-# Data and logs (sensitive)
-data/
-logs/
-*.log
-*.db
-*.sqlite
+# Environment variables (CONTAINS SECRETS - NEVER COMMIT)
+.env
+.env.local
+.env.production
 
-# Debug and test files
+# Sensitive data files
+data/.db_encryption_key
+data/tenants/
+
+# Large data files (users will upload their own on Railway)
+data/*.csv
+data/*.db
+data/db/*.db
+data/raw_data/
+data/datasets/
+
+# Debug and test files (not needed in production)
 debug/
 tests/
 evaluation/
+*.log
+logs/
 
-# Documentation (if generated)
+# Documentation and scripts (not needed in production)
 docs/
 pseudoCodes/
 scripts/
+*.ipynb
 
-# Environment variables (IMPORTANT - contains secrets)
-.env
-.env.local
+# Test files
+test_*.py
+check_db.py
+eval_log_bg.txt
 
 # IDE settings
 .vscode/
 .idea/
 
-# Word/report files (not code)
+# Word/report files
 *.docx
 *.pdf
 Chapter*.md

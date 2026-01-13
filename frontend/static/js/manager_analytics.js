@@ -956,8 +956,8 @@ function buildChartFromTemplate(chartData) {
         };
     }
 
-    // ======= EXPENSES (Donut Pie Chart) =======
-    if (templateKey === 'expenses' || templateKey === 'pie') {
+    // ======= PIE CHART (Donut) =======
+    if (templateKey === 'pie') {
         return {
             data: [{
                 labels: labels,

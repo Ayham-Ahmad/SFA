@@ -9,8 +9,8 @@ os.makedirs("data/db", exist_ok=True)
 
 # --- 2. Database Configuration ---
 # The address of your database file.
-# "sqlite:///" tells Python to use SQLite.
-DATABASE_URL = "sqlite:///./data/db/users_accounts_data.db"
+# Defaults to local "users_accounts_data.db" if not set in environment.
+DATABASE_URL = os.getenv("ACCOUNTS_DATABASE_URL", "sqlite:///./data/db/users_accounts_data.db")
 
 # --- 3. The Engine (The Connection Manager) ---
 # This object manages the central connection to the database.

@@ -56,14 +56,30 @@ def execute_sql_query(query: str, user=None) -> str:
         if df.empty:
             return "No results found."
         
+        # Sort by year/quarter if those columns exist (chronological order)
+        sort_cols = []
+        for col in df.columns:
+            col_lower = col.lower()
+            if col_lower in ['year', 'yr', 'fiscal_year']:
+                sort_cols.append(col)
+            elif col_lower in ['quarter', 'qtr', 'fiscal_quarter']:
+                sort_cols.append(col)
+        if sort_cols:
+            df = df.sort_values(by=sort_cols, ascending=True)
+        
         # Format financial values for readability - apply to ALL numeric columns
         for col in df.columns:
-            if df[col].dtype in ['float64', 'int64']:
-                # Check if values are large enough to need formatting
-                max_val = df[col].abs().max()
-                if max_val > 10000:  # Format if values > 10,000
-                    df[col] = df[col].apply(format_financial_value)
-            elif col.lower() == 'ddate':
+            # Try to convert to numeric first (handles object dtype)
+            try:
+                numeric_col = pd.to_numeric(df[col], errors='coerce')
+                if numeric_col.notna().any():
+                    max_val = numeric_col.abs().max()
+                    if max_val > 10000:  # Format if values > 10,000
+                        df[col] = numeric_col.apply(format_financial_value)
+            except:
+                pass
+            
+            if col.lower() == 'ddate':
                 df[col] = df[col].apply(format_date)
         
         # Safety: Limit rows to prevent massive context

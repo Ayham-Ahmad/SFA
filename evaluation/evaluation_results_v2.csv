@@ -1,3 +1,0 @@
-Timestamp,Query_ID,Query,Category,Difficulty,Tool_Accuracy,SQL_Validity,Value_Accuracy,Semantic_Similarity,Overall_Score,Passed,Graph_Generated,Error
-2025-12-23T12:27:02.741661,1,What was the total revenue in 2024?,structured,easy,1.000,1.000,1.000,0.927,0.978,True,False,
-2025-12-23T13:10:05.127069,1,What was the total revenue in 2024?,structured,easy,1.000,1.000,1.000,0.946,0.984,True,False,

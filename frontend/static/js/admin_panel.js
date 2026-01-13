@@ -7,8 +7,36 @@
 let userModal;
 let deleteUserId = null;
 
+// Toast notification helper
+function showToast(message, type = 'error') {
+    // Remove existing toast if any
+    const existing = document.querySelector('.admin-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = `admin-toast alert alert-${type === 'error' ? 'danger' : 'success'} position-fixed`;
+    toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px; animation: fadeIn 0.3s ease;';
+    toast.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'check-circle'} me-2"></i>
+            <span>${message}</span>
+            <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+        </div>
+    `;
+    document.body.appendChild(toast);
+
+    // Auto-remove after 4 seconds
+    setTimeout(() => toast.remove(), 4000);
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if user is admin, redirect if not
+    if (typeof Auth !== 'undefined' && Auth.getRole() !== 'admin') {
+        window.location.href = '/manager';
+        return;
+    }
+
     userModal = new bootstrap.Modal(document.getElementById('userModal'));
     fetchUsers();
 });
@@ -22,6 +50,7 @@ function showAddUser() {
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
     document.getElementById('role').value = 'manager';
+    document.getElementById('user-error-msg').style.display = 'none';
     userModal.show();
 }
 
@@ -34,6 +63,7 @@ function showEditUser(id, name, role) {
     document.getElementById('username').value = name;
     document.getElementById('password').value = '';
     document.getElementById('role').value = role;
+    document.getElementById('user-error-msg').style.display = 'none';
     userModal.show();
 }
 
@@ -65,14 +95,19 @@ async function saveUser() {
 
         if (res.ok) {
             userModal.hide();
+            showToast(id ? 'User updated successfully' : 'User created successfully', 'success');
             fetchUsers();
         } else {
             const error = await res.json();
-            alert(error.detail || 'Failed to save user.');
+            const errorMsg = document.getElementById('user-error-msg');
+            errorMsg.textContent = error.detail || 'Failed to save user.';
+            errorMsg.style.display = 'block';
         }
     } catch (e) {
         console.error('Save user error:', e);
-        alert('An error occurred while saving the user.');
+        const errorMsg = document.getElementById('user-error-msg');
+        errorMsg.textContent = 'An error occurred while saving the user.';
+        errorMsg.style.display = 'block';
     }
 }
 
@@ -102,9 +137,10 @@ async function confirmDeleteUser() {
         });
 
         if (res.ok) {
+            showToast('User deleted successfully', 'success');
             fetchUsers();
         } else {
-            alert('Failed to delete user.');
+            showToast('Failed to delete user.');
         }
     } catch (e) {
         console.error('Delete user error:', e);

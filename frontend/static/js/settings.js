@@ -36,10 +36,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2. Initial State
     updateEditableState();
 
-    // 3. Load Data
+    // 4. Load Data
     await loadConnectionStatus();
+    await loadUploadedFiles();
 
-    // 4. Setup unsaved changes warning
+    // 5. Setup unsaved changes warning
     setupUnsavedChangesWarning();
 
     // Initial status check (will show red dots if elements exist)
@@ -233,6 +234,94 @@ async function connectDatabase() {
         showToast(error.message, 'error');
     } finally {
         if (btn) btn.disabled = !isEditMode;
+    }
+}
+
+async function uploadDataset() {
+    const fileInput = document.getElementById('upload-file');
+    if (!fileInput.files.length) return;
+
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const progress = document.getElementById('upload-progress');
+    const label = document.getElementById('upload-label');
+    
+    if (progress) progress.classList.remove('d-none');
+    if (label) label.classList.add('disabled');
+
+    try {
+        const response = await fetch('/api/upload/dataset', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${Auth.getToken()}`
+            }
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            showToast('File uploaded successfully!');
+            await loadUploadedFiles();
+            // Automatically put the path in the input
+            const pathInput = document.getElementById('db-path');
+            if (pathInput) {
+                pathInput.value = result.path;
+                // Trigger change to enable Connect button
+                if (isEditMode) {
+                    document.getElementById('btn-connect').disabled = false;
+                    document.getElementById('btn-test').disabled = false;
+                }
+            }
+        } else {
+            showToast(result.detail || 'Upload failed', 'error');
+        }
+    } catch (e) {
+        showToast(e.message, 'error');
+    } finally {
+        if (progress) progress.classList.add('d-none');
+        if (label) label.classList.remove('disabled');
+        fileInput.value = ''; // Reset input
+    }
+}
+
+async function loadUploadedFiles() {
+    const list = document.getElementById('uploaded-files-list');
+    if (!list) return;
+
+    try {
+        const result = await API.get('/api/upload/list');
+        if (result.files && result.files.length > 0) {
+            list.innerHTML = result.files.map(f => `
+                <div class="d-flex justify-content-between align-items-center mb-2 p-2 rounded bg-white shadow-sm border">
+                    <div class="text-truncate me-2" title="${f.name}">
+                        <i class="fas ${f.name.endsWith('.csv') ? 'fa-file-csv' : 'fa-database'} me-2 text-primary"></i>
+                        <span>${f.name}</span>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary py-0 px-2" onclick="useUploadedFile('${f.path.replace(/\\/g, '\\\\')}')">
+                        Use
+                    </button>
+                </div>
+            `).join('');
+        } else {
+            list.innerHTML = '<div class="text-center py-2">No uploaded files yet</div>';
+        }
+    } catch (e) {
+        console.error('Failed to load uploaded files:', e);
+    }
+}
+
+function useUploadedFile(path) {
+    const pathInput = document.getElementById('db-path');
+    if (pathInput) {
+        pathInput.value = path;
+        showToast('Path updated to uploaded file');
+        if (isEditMode) {
+            document.getElementById('btn-connect').disabled = false;
+            document.getElementById('btn-test').disabled = false;
+        }
     }
 }
 

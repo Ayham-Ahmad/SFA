@@ -18,7 +18,8 @@ from api.routes import (
     database_router,
     config_router,
     pages_router,
-    analytics_router
+    analytics_router,
+    upload_router
 )
 
 # 1. Setup Phase
@@ -43,12 +44,13 @@ app.add_middleware(
 )
 
 # Enable the custom Audit Logger
-app.add_middleware(AuditMiddleware)
+# app.add_middleware(AuditMiddleware)
 
 
 # 3. Static Files (Images, CSS, JS)
 # This makes the "frontend/static" folder accessible at "http://.../static"
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+app.mount("/data/datasets", StaticFiles(directory="data/datasets"), name="datasets")
 
 
 # 4. Route Registration (Connecting the Departments)
@@ -59,7 +61,20 @@ app.include_router(me_router)         # Current User Profile
 app.include_router(database_router)   # Database Tools
 app.include_router(config_router)     # Dashboard Settings
 app.include_router(analytics_router)  # Graphs & Charts
+app.include_router(upload_router)     # File Uploads
 app.include_router(pages_router)      # HTML Pages
+
+
+# 4.5 Startup Warmup - Preload heavy modules for faster first request
+@app.on_event("startup")
+async def warmup():
+    """Preload heavy AI modules to speed up first request."""
+    print("🔥 Warming up AI modules...")
+    from backend.agents.langchain_agent import LangChainAgent
+    from backend.pipeline.routing import run_text_query_pipeline
+    from backend.pipeline.graph_pipeline import run_graph_pipeline
+    from langchain_groq import ChatGroq
+    print("✅ Warmup complete - ready for requests!")
 
 
 # 5. Start the Server

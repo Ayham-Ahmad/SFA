@@ -18,7 +18,8 @@ from backend.services.tenant_manager import MultiTenantDBManager
 
 # --- Configuration ---
 TIMEOUT_SECONDS = 120.0
-CHAT_HISTORY_LIMIT = 2  
+CHAT_HISTORY_LIMIT = 2       # Number of previous messages to include as context
+ENABLE_CHAT_HISTORY = True  # Toggle: True = include history context, False = each query independent
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
 # --- Global State (from centralized module to avoid circular imports) ---
@@ -83,30 +84,31 @@ async def chat_endpoint(
     is_graph = (request.interaction_type == "graph")
     interaction_type = InteractionType.GRAPH_BUTTON if is_graph else InteractionType.QUERY
 
-    # 2. Build Context (Fetch last 2 messages)
-    last_chats = db.query(ChatHistory)\
-        .filter(ChatHistory.user_id == current_user.id)\
-        .filter(ChatHistory.session_id == request.session_id)\
-        .order_by(ChatHistory.timestamp.desc())\
-        .limit(CHAT_HISTORY_LIMIT).all()
-
-    # Prepare the input string with history attached
-    # IMPORTANT: Filter out failed responses to prevent agent confusion
+    # 2. Build the prompt (with optional history context)
     full_prompt = request.message
-    if last_chats and not is_graph:
-        # Only include successful responses (not errors or iteration limits)
-        valid_chats = [
-            c for c in reversed(last_chats) 
-            if c.answer and 
-               "error" not in c.answer.lower()[:50] and 
-               "Agent stopped" not in c.answer and
-               "iteration limit" not in c.answer.lower()
-        ]
-        if valid_chats:
-            # Limit context to last 2 exchanges and truncate answers
-            recent = valid_chats[-2:]
-            history_text = "\n".join([f"Q: {c.question} -> A: {c.answer[:200]}..." for c in recent])
-            full_prompt = f"Context:\n{history_text}\nUser Query: {request.message}"
+    
+    if ENABLE_CHAT_HISTORY and not is_graph:
+        # Fetch last N messages for context
+        last_chats = db.query(ChatHistory)\
+            .filter(ChatHistory.user_id == current_user.id)\
+            .filter(ChatHistory.session_id == request.session_id)\
+            .order_by(ChatHistory.timestamp.desc())\
+            .limit(CHAT_HISTORY_LIMIT).all()
+        
+        if last_chats:
+            # Only include successful responses (not errors or iteration limits)
+            valid_chats = [
+                c for c in reversed(last_chats) 
+                if c.answer and 
+                   "error" not in c.answer.lower()[:50] and 
+                   "Agent stopped" not in c.answer and
+                   "iteration limit" not in c.answer.lower()
+            ]
+            if valid_chats:
+                # Limit context to last 2 exchanges and truncate answers
+                recent = valid_chats[-2:]
+                history_text = "\n".join([f"Q: {c.question} -> A: {c.answer[:200]}..." for c in recent])
+                full_prompt = f"Context:\n{history_text}\nUser Query: {request.message}"
 
     # 3. Define the heavy task (to be run in background)
     set_query_progress(query_id, "classifier", "🔍 Processing your question...")
@@ -115,7 +117,11 @@ async def chat_endpoint(
         if is_graph:
             return await asyncio.to_thread(run_graph_pipeline, request.message, query_id, current_user)
         else:
-            return await asyncio.to_thread(run_text_query_pipeline, full_prompt, query_id, current_user)
+            result = await asyncio.to_thread(run_text_query_pipeline, full_prompt, query_id, current_user)
+            # Unwrap dictionary result to return only text content for the API
+            if isinstance(result, dict) and "output" in result:
+                return result["output"]
+            return result
 
     # 4. Run it!
     answer_text, chart_data = await run_task_safely(heavy_ai_task, query_id)

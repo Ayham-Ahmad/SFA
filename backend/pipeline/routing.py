@@ -119,14 +119,20 @@ def run_text_query_pipeline(question: str, query_id: str = None, user=None) -> s
         _update_progress(query_id, "agent", "🤖 Agent is reasoning...")
         
         agent = LangChainAgent(user=user)
-        final_answer = agent.run(question, interaction_id=interaction_id)
+        # agent.run now returns a dict {"output": str, "steps": int}
+        result = agent.run(question, interaction_id=interaction_id, query_id=query_id)
         
-        log_system_debug(f"Final Output: {final_answer[:100]}...")
+        # Log final output (extract text part)
+        final_answer = result["output"] if isinstance(result, dict) else result
+        log_system_debug(f"Final Output: {str(final_answer)[:100]}...")
         log_system_info(f"Pipeline Complete - Unified LangChain Agent")
         
-        return final_answer
+        return result
 
     except Exception as e:
         error_msg = traceback.format_exc()
-        log_system_error(f"Pipeline Error: {error_msg}")
-        return f"Error encountered: {str(e)}"
+        log_system_error(f"Text Query Pipeline Failed: {str(e)}", error_msg)
+        return {
+            "output": f"I encountered an error processing your request: {str(e)}",
+            "steps": 0
+        }

@@ -53,36 +53,58 @@ def get_advisory_tool():
         if _current_interaction_id:
             log_agent_interaction(_current_interaction_id, "AdvisoryTool", "Tool Call", input_text[:500], None)
         
-        advisory_prompt = f"""You are a Smart Financial Advisor (SFA) providing professional financial insights.
+        advisory_prompt = f"""You are a Smart Financial Advisor (SFA) providing professional, data-driven financial insights.
 
-CRITICAL PRINCIPLES:
-1. NEVER imply direct control over market prices - prices are driven by supply/demand and market forces
-2. Frame strategies as illustrative scenarios, NOT precise price targets
-3. Acknowledge client context limitations
-4. Provide clear, actionable guidance while acknowledging uncertainty
+MANDATORY RULES (follow strictly):
+1. INTENT VALIDATION: Restate the user's goal. If the goal is flawed (e.g., "raise market price"), clarify what CAN vs CANNOT be controlled.
+2. DATA GROUNDING: Every recommendation MUST reference actual data observations (time window, trends, volatility, patterns). No generic advice.
+3. STRATEGY JUSTIFICATION: Explain WHY the chosen strategy fits the data, and why alternatives were not selected.
+4. ACTIONABILITY: Provide concrete steps (what to do, how often, when to review/stop).
+5. RISK & ASSUMPTIONS: Explicitly state key assumptions and primary risks.
 
-RESPONSE FORMAT:
+RESPONSE FORMAT (use these exact section headers):
 
-**Context & Assumptions:**
-- Asset type, timeframe, and key data points
-- Note: "This analysis is suitable for investors with moderate risk tolerance"
+## 1. Objective Clarification
+Restate the user's goal and clarify what can/cannot be directly influenced.
+Example: "While closing prices cannot be directly controlled, investment outcomes can be influenced through timing, allocation, and risk management."
 
-**Assessment:**
-What the data shows (trends, patterns, key observations)
+## 2. Data Summary
+Summarize the data window and key observations from the provided data.
+- Time period analyzed
+- Key metrics observed (trend direction, volatility level, support/resistance, anomalies)
+Example: "Analysis of the last 2 months shows moderate volatility (±5%) with no clear upward momentum."
 
-**Strategy Options:**
-Present 2-3 approaches with trade-offs:
-- Conservative: [lower risk option]
-- Moderate: [balanced approach]  
-- Aggressive: [higher risk/reward option]
+## 3. Insight & Interpretation
+Explain what the data implies for decision-making.
+IMPORTANT: Include an explicit scope statement like: "This interpretation is based on short-term price action and volatility. Volume trends and fundamental indicators are not incorporated in this analysis."
+Example: "The sideways pattern with frequent reversals suggests elevated timing risk for lump-sum entry."
 
-**Recommended Action:**
-Clear next step based on the analysis
+## 4. Recommended Strategy
+State ONE clear recommendation and justify it based on the data.
+Add: "The advisory therefore focuses on investment positioning rather than price manipulation."
+Example: "Dollar-cost averaging is recommended to mitigate entry timing risk under uncertain short-term conditions."
 
-**Key Risks:**
-Top 2-3 risks to monitor
+## 5. Execution Guidance
+Provide concrete, actionable steps with FLEXIBILITY:
+- What to do
+- Frequency/timeline (offer options: "weekly or monthly tranches, depending on operational constraints and transaction costs")
+- Trigger for reassessment
+Example: "Allocate in equal weekly or bi-weekly tranches over 6 months. Review if volatility exceeds 10% or a breakout occurs."
 
-User request and context:
+## 6. Risks, Assumptions & Downside Protection
+List 2-3 key assumptions and risks.
+MUST INCLUDE explicit downside protection/exit rule.
+Example:
+- Assumption: Market remains range-bound
+- Risk: Sudden breakout or macroeconomic shock may reduce effectiveness
+- Downside Protection: "If price consistently breaks below the identified support level with increasing volatility, pause capital deployment pending reassessment."
+
+## 7. Confidence Note
+A brief reliability statement.
+Example: "This advisory is based on limited historical data and should be used as decision support, not a standalone directive."
+
+---
+User request and data context:
 {input_text}
 """
         
@@ -91,7 +113,7 @@ User request and context:
                 messages=[{"role": "user", "content": advisory_prompt}],
                 model=MODEL,
                 temperature=0.4,
-                max_tokens=400  # Reduced to conserve API tokens
+                max_tokens=700  # Increased for structured 7-section advisory template
             )
             
             result = response.choices[0].message.content
