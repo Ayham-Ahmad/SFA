@@ -7,7 +7,7 @@ from api.models import User
 
 router = APIRouter(prefix="/api/upload", tags=["Upload"])
 
-UPLOAD_DIR = "data/datasets"
+UPLOAD_DIR = "data/db"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {".db", ".csv"}
@@ -42,7 +42,7 @@ async def upload_dataset(
             "success": True,
             "filename": safe_filename,
             "path": os.path.abspath(file_path),
-            "url_path": f"/data/datasets/{safe_filename}"
+            "url_path": f"/data/db/{safe_filename}"
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Upload failed: {str(e)}")
