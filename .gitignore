@@ -19,7 +19,7 @@ __pycache__/
 data/*
 !data/db/
 data/db/*
-!data/db/users_accounts_data
+!data/db/users_accounts_data.db
 
 # Debug and test files (not needed in production)
 debug/
