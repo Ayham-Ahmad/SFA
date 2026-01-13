@@ -15,16 +15,11 @@ __pycache__/
 .env.local
 .env.production
 
-# Sensitive data files
-data/.db_encryption_key
-data/tenants/
-
-# Large data files (users will upload their own on Railway)
-data/*.csv
-data/*.db
-data/db/*.db
-data/raw_data/
-data/datasets/
+# Data folder - ignore everything except users_accounts_data.db
+data/*
+!data/db/
+data/db/*
+!data/db/users_accounts_data
 
 # Debug and test files (not needed in production)
 debug/
