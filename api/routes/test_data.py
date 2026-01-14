@@ -80,3 +80,94 @@ async def add_live_data(current_user: User = Depends(get_current_active_user)):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
+
+
+@router.post("/init-users")
+async def init_users_database():
+    """
+    Initialize the users database with a default admin user.
+    WARNING: This will create tables if they don't exist and add a default admin.
+    Use this only for initial Railway setup.
+    """
+    import os
+    from backend.utils.paths import DATA_DIR
+    from api.auth_utils import get_password_hash
+    
+    db_path = os.path.join(DATA_DIR, "users_accounts_data.db")
+    
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        # Create users table
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username VARCHAR UNIQUE NOT NULL,
+                password_hash VARCHAR NOT NULL,
+                role VARCHAR DEFAULT 'MANAGER',
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                last_login TIMESTAMP,
+                db_is_connected BOOLEAN DEFAULT 0,
+                db_connection_encrypted TEXT,
+                dashboard_config_encrypted TEXT
+            )
+        ''')
+        
+        # Create chat_history table
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS chat_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                role VARCHAR NOT NULL,
+                content TEXT NOT NULL,
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users (id)
+            )
+        ''')
+        
+        # Check if admin exists
+        cursor.execute("SELECT id FROM users WHERE username = 'admin'")
+        if not cursor.fetchone():
+            # Create default admin with password 'admin123'
+            admin_hash = get_password_hash("admin123")
+            cursor.execute(
+                "INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)",
+                ("admin", admin_hash, "ADMIN")
+            )
+        
+        conn.commit()
+        
+        # Get user count
+        cursor.execute("SELECT COUNT(*) FROM users")
+        user_count = cursor.fetchone()[0]
+        
+        conn.close()
+        
+        return {
+            "success": True,
+            "message": f"Database initialized at {db_path}",
+            "user_count": user_count,
+            "default_admin": "admin / admin123"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Init error: {e}")
+
+
+@router.get("/debug-paths")
+async def debug_paths():
+    """Debug endpoint to show current paths."""
+    import os
+    from backend.utils.paths import DATA_DIR, BACKUP_DIR
+    
+    db_path = os.path.join(DATA_DIR, "users_accounts_data.db")
+    
+    return {
+        "DATA_DIR": DATA_DIR,
+        "BACKUP_DIR": BACKUP_DIR,
+        "db_exists": os.path.exists(db_path),
+        "db_path": db_path,
+        "SFA_DATA_DIR_env": os.getenv("SFA_DATA_DIR", "NOT SET"),
+        "ACCOUNTS_DATABASE_URL_env": os.getenv("ACCOUNTS_DATABASE_URL", "NOT SET")
+    }
+
