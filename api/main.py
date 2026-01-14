@@ -24,8 +24,10 @@ from api.routes import (
     config_router,
     pages_router,
     analytics_router,
-    upload_router
+    upload_router,
+    test_data_router
 )
+
 
 # 1. Setup Phase
 # Load passwords/settings from the .env file
@@ -67,6 +69,7 @@ app.include_router(database_router)   # Database Tools
 app.include_router(config_router)     # Dashboard Settings
 app.include_router(analytics_router)  # Graphs & Charts
 app.include_router(upload_router)     # File Uploads
+app.include_router(test_data_router)  # Test Data API
 app.include_router(pages_router)      # HTML Pages
 
 

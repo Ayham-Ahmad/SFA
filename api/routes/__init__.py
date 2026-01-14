@@ -12,6 +12,7 @@ from .config import router as config_router
 from .pages import router as pages_router
 from .analytics import router as analytics_router
 from .upload import router as upload_router
+from .test_data import router as test_data_router
 
 __all__ = [
     "auth_router",
@@ -22,6 +23,8 @@ __all__ = [
     "config_router",
     "pages_router",
     "analytics_router",
-    "upload_router"
+    "upload_router",
+    "test_data_router"
 ]
+
 
