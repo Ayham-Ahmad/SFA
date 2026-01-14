@@ -2,15 +2,17 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from backend.utils.paths import DATA_DIR
 
 # --- 1. File System Setup ---
 # We make sure the folder exists so the database file can be created inside it.
-os.makedirs("data/db", exist_ok=True)
+os.makedirs(DATA_DIR, exist_ok=True)
 
 # --- 2. Database Configuration ---
 # The address of your database file.
-# Defaults to local "users_accounts_data.db" if not set in environment.
-DATABASE_URL = os.getenv("ACCOUNTS_DATABASE_URL", "sqlite:///./data/db/users_accounts_data.db")
+# Defaults to users_accounts_data.db inside DATA_DIR if not set in environment.
+DATABASE_URL = os.getenv("ACCOUNTS_DATABASE_URL", f"sqlite:///{os.path.join(DATA_DIR, 'users_accounts_data.db')}")
+
 
 # --- 3. The Engine (The Connection Manager) ---
 # This object manages the central connection to the database.
