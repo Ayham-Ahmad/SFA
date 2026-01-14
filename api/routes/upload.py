@@ -50,9 +50,14 @@ async def upload_dataset(
 @router.get("/list")
 async def list_datasets(current_user: User = Depends(get_current_active_user)):
     """List all available datasets in the upload directory."""
+    # Files to hide from users
+    HIDDEN_FILES = {"users_accounts_data.db"}
+    
     files = []
     if os.path.exists(UPLOAD_DIR):
         for f in os.listdir(UPLOAD_DIR):
+            if f in HIDDEN_FILES:
+                continue
             if any(f.lower().endswith(ext) for ext in ALLOWED_EXTENSIONS):
                 files.append({
                     "name": f,

@@ -293,8 +293,11 @@ async function loadUploadedFiles() {
 
     try {
         const result = await API.get('/api/upload/list');
-        if (result.files && result.files.length > 0) {
-            list.innerHTML = result.files.map(f => `
+        // Filter out system files
+        const userFiles = (result.files || []).filter(f => f.name !== 'users_accounts_data.db');
+        
+        if (userFiles.length > 0) {
+            list.innerHTML = userFiles.map(f => `
                 <div class="d-flex justify-content-between align-items-center mb-2 p-2 rounded bg-white shadow-sm border">
                     <div class="text-truncate me-2" title="${f.name}">
                         <i class="fas ${f.name.endsWith('.csv') ? 'fa-file-csv' : 'fa-database'} me-2 text-primary"></i>
@@ -305,6 +308,7 @@ async function loadUploadedFiles() {
                     </button>
                 </div>
             `).join('');
+
         } else {
             list.innerHTML = '<div class="text-center py-2">No uploaded files yet</div>';
         }
