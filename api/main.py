@@ -54,6 +54,7 @@ app.add_middleware(
 # app.add_middleware(AuditMiddleware)
 
 
+
 # 3. Static Files (Images, CSS, JS)
 # This makes the "frontend/static" folder accessible at "http://.../static"
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
