@@ -50,7 +50,7 @@ app.add_middleware(
 # 3. Static Files (Images, CSS, JS)
 # This makes the "frontend/static" folder accessible at "http://.../static"
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-app.mount("/data/datasets", StaticFiles(directory="data/datasets"), name="datasets")
+app.mount("/data/db", StaticFiles(directory="data/db"), name="datasets")
 
 
 # 4. Route Registration (Connecting the Departments)
