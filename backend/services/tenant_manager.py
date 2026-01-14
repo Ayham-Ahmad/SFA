@@ -19,7 +19,13 @@ KEY_FILE = os.path.join(BASE_DIR, "data", ".db_encryption_key")
 
 
 def get_encryption_key() -> bytes:
-    """Get or create encryption key."""
+    """Get encryption key from env var or file."""
+    # First check environment variable (for Railway/Docker)
+    env_key = os.getenv("DB_ENCRYPTION_KEY")
+    if env_key:
+        return env_key.encode()
+    
+    # Fall back to file-based key (for local development)
     if os.path.exists(KEY_FILE):
         with open(KEY_FILE, "rb") as f:
             return f.read()
@@ -29,6 +35,7 @@ def get_encryption_key() -> bytes:
         with open(KEY_FILE, "wb") as f:
             f.write(key)
         return key
+
 
 
 def encrypt_config(config: Dict) -> str:

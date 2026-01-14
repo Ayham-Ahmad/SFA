@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 # --- Internal Imports ---
 from backend.security.audit_logger import AuditMiddleware
+from backend.utils.paths import DATA_DIR
 from .init_volume import init_volume
 from .db_session import engine, Base
 
@@ -54,7 +55,7 @@ app.add_middleware(
 # 3. Static Files (Images, CSS, JS)
 # This makes the "frontend/static" folder accessible at "http://.../static"
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-app.mount("/data/db", StaticFiles(directory="data/db"), name="datasets")
+app.mount("/data/db", StaticFiles(directory=DATA_DIR), name="datasets")
 
 
 # 4. Route Registration (Connecting the Departments)

@@ -4,11 +4,13 @@ from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
 from typing import List
 from api.auth_utils import get_current_active_user
 from api.models import User
+from backend.utils.paths import DATA_DIR
 
 router = APIRouter(prefix="/api/upload", tags=["Upload"])
 
-UPLOAD_DIR = "data/db"
+UPLOAD_DIR = DATA_DIR
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 
 ALLOWED_EXTENSIONS = {".db", ".csv"}
 

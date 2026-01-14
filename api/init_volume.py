@@ -6,19 +6,18 @@ This solves the Railway volume overlay problem where the volume hides git files.
 """
 import os
 import shutil
+from backend.utils.paths import DATA_DIR, BACKUP_DIR
 
-VOLUME_PATH = "data/db"
-BACKUP_PATH = "data/db_backup"
 DB_FILE = "users_accounts_data.db"
 
 
 def init_volume():
     """Copy initial database to volume if it doesn't exist."""
-    volume_db = os.path.join(VOLUME_PATH, DB_FILE)
-    backup_db = os.path.join(BACKUP_PATH, DB_FILE)
+    volume_db = os.path.join(DATA_DIR, DB_FILE)
+    backup_db = os.path.join(BACKUP_DIR, DB_FILE)
     
     # Ensure volume directory exists
-    os.makedirs(VOLUME_PATH, exist_ok=True)
+    os.makedirs(DATA_DIR, exist_ok=True)
     
     # Copy backup to volume if volume is empty
     if not os.path.exists(volume_db):
@@ -29,3 +28,4 @@ def init_volume():
             print(f"[Init] No backup database found at {backup_db}")
     else:
         print(f"[Init] Database already exists at {volume_db}")
+
