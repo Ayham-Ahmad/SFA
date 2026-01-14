@@ -91,6 +91,8 @@ async def get_current_active_user(current_user: User = Depends(get_current_user)
 
 async def get_admin_user(current_user: User = Depends(get_current_user)):
     """Checks if the logged-in user is an admin."""
-    if current_user.role != "admin":
+    # Handle both enum and string comparisons, case-insensitive
+    role_value = current_user.role.value if hasattr(current_user.role, 'value') else str(current_user.role)
+    if role_value.lower() != "admin":
         raise HTTPException(status_code=403, detail="Not authorized")
     return current_user
