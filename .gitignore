@@ -15,9 +15,10 @@ __pycache__/
 .env.local
 .env.production
 
-# Data folder - ignore everything except users_accounts_data.db
+# Data folder - ignore everything except backup and users_accounts_data.db
 data/*
 !data/db/
+!data/db_backup/
 data/db/*
 !data/db/users_accounts_data.db
 

@@ -7,7 +7,11 @@ from fastapi.staticfiles import StaticFiles
 
 # --- Internal Imports ---
 from backend.security.audit_logger import AuditMiddleware
+from .init_volume import init_volume
 from .db_session import engine, Base
+
+# Initialize volume with backup database on first boot (for Railway)
+init_volume()
 
 # --- Import Routes (The Departments) ---
 from api.routes import (
