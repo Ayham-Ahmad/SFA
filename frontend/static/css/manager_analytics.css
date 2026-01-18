@@ -178,6 +178,9 @@
     border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
     font-size: 0.85rem;
     color: var(--text-color) !important;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .message table th,

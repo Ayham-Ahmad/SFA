@@ -557,6 +557,10 @@ body {
     border-color: var(--border-color) !important;
     margin-bottom: 1rem;
     width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%;
 }
 
 [data-theme="dark"] .message table th,

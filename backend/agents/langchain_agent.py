@@ -149,6 +149,12 @@ class ReasoningCallbackHandler(BaseCallbackHandler):
             usage = response.llm_output.get('token_usage', {})
             tokens = usage.get('total_tokens', 0)
         
+        # Fallback: check generation_info if llm_output doesn't have tokens
+        if tokens == 0 and response.generations:
+            gen_info = getattr(response.generations[0][0], 'generation_info', {}) or {}
+            usage = gen_info.get('usage', {}) or gen_info.get('token_usage', {})
+            tokens = usage.get('total_tokens', 0)
+        
         # Always increment the counter for each LLM call
         increment_api_counter(PRIMARY_MODEL, tokens)
 
@@ -214,12 +220,13 @@ CRITICAL RULES:
 3. Your final response MUST start with exactly "Final Answer: " (including the space after the colon)
 4. Omitting the "Final Answer: " prefix will cause processing to fail
 5. If SQL returns a formatted value like "$2.89B" or "$814.08M", use it directly as the Final Answer - do NOT use calculator to convert it
-6. NEVER use "Action: None" - when you have the data you need, go directly to "Final Answer:"
+6. NEVER write "Action: None" or any action without Action Input. When you have the data you need, SKIP the Action line entirely and go directly to "Final Answer:"
 7. For GRAPH/CHART/VISUALIZATION requests: Return the SQL table result DIRECTLY as your Final Answer - do NOT summarize, calculate averages, or transform the data. The table format is required for rendering charts.
-8. If a table name is a NUMBER (e.g., 6, 123), you MUST wrap it in square brackets: SELECT * FROM [6]. Using quotes or backticks will cause errors.
+8. TABLE NAMES: If a table name is purely numeric (e.g., "4", "123"), you MUST wrap it in square brackets: SELECT * FROM [4]. Do NOT use quotes, backticks, or the word TABLE - only square brackets work for numeric table names.
 9. ADVISORY TOOL RULES:
    a) When calling advisory, you MUST include the FULL SQL data in your Action Input. Example: "User asks about investment strategy. Here is the data: [paste the full table]"
    b) After advisory returns, copy its ENTIRE structured response as your Final Answer. Do NOT summarize or condense the advisory output.
+10. LOOKUP QUERIES: When the user asks for "last data", "latest record", or similar, provide a COMPLETE SUMMARY of all columns in your Final Answer. Do NOT just return one random value - list the key fields: Date, Symbol, Open, High, Low, Close, Volume, etc.
 
 Begin!
 
@@ -403,7 +410,12 @@ class LangChainAgent:
             if mode == TaskMode.GRAPH:
                 return output
             elif output.strip().startswith('|'):
-                return extract_value_from_table(output)
+                # For AGGREGATION mode, extract single value; for LOOKUP, keep full table
+                if mode == TaskMode.AGGREGATION:
+                    return extract_value_from_table(output)
+                else:
+                    # Keep full table for LOOKUP and other modes
+                    return format_currency_number(output)
             else:
                 return format_currency_number(output)
 
